@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import {} from 'resize'
 import MyHome from "./components/MyHome";
 export default {
   name: 'App',
@@ -13,7 +14,5 @@ export default {
 </script>
 
 <style>
-  *{
-    font-size:100px;
-  }
+
 </style>
