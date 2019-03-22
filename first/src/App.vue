@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import {} from 'resize'
 import MyHome from "./components/MyHome";
 export default {
   name: 'App',
