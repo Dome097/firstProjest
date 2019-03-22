@@ -13,5 +13,7 @@ export default {
 </script>
 
 <style>
-
+  *{
+    font-size:100px;
+  }
 </style>
