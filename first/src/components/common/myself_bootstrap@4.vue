@@ -37,7 +37,6 @@
 
 
   </section>
-
 </template>
 
 <script>
@@ -67,9 +66,9 @@
         console.log(error)
       });
       Vue.axios.get("https://elm.cangdu.org/v1/cities?type=group", null).then((res) => {
-       // console.log(res.data);
+        // console.log(res.data);
         let arr = Object.keys(res.data).sort();
-       // console.log(arr);
+        // console.log(arr);
         for (let i = 0; i < arr.length; i++) {
           const obj = {allCity: arr[i], city: res.data[arr[i]]};
           console.log(obj);
@@ -80,9 +79,6 @@
       })
     }
   }
-
-
-
 </script>
 
 <style scoped>
