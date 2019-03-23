@@ -1,3 +1,4 @@
+// px转换rem
 //监听浏览器大小设置字体
 (function(doc, win) {
   var html = doc.getElementsByTagName("html")[0],

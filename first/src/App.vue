@@ -1,18 +1,15 @@
 <template>
-  <div id="app">
-  <MyHome></MyHome>
-  </div>
+  <div id="app"></div>
 </template>
 
 <script>
-import {} from './resize'
-import MyHome from "./components/MyHome";
+import {} from './config/rem'
 export default {
   name: 'App',
-  components: {MyHome}
+  components: {}
 }
 </script>
 
 <style>
-
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 </style>
