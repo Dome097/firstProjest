@@ -42,7 +42,7 @@
 <script>
   import Vue from 'vue'
   export default {
-    name: 'MyHome',
+    name: 'MySelf',
     data() {
       return {
         // 定位城市的数据
@@ -146,3 +146,4 @@
     text-overflow:ellipsis /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;*/
   }
 </style>
+

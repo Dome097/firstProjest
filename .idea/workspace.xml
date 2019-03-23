@@ -1,80 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b800a755-6c11-4dff-b2c2-b5063f2a0a7a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/first/src/components/common/alertTip.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/components/common/buyCart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/components/common/computeTime.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/components/common/loading.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/components/common/mixin.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/components/common/myself_bootstrap@4.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/components/common/ratingStar.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/components/common/shoplist.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/components/footer/footGuide.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/components/header/head.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/config/env.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/config/fetch.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/config/mUtils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/balance/balance.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/balance/children/detail.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/benefit/benefit.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/benefit/children/commend.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/benefit/children/coupon.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/benefit/children/exchange.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/benefit/children/hbDescription.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/benefit/children/hbHistory.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/city/city.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/confirmOrder/children/children/addAddress.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/confirmOrder/children/children/children/searchAddress.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/confirmOrder/children/chooseAddress.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/confirmOrder/children/invoice.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/confirmOrder/children/payment.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/confirmOrder/children/remark.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/confirmOrder/children/useValidation.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/confirmOrder/confirmOrder.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/download/downLoad.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/find/find.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/food/food.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/forget/forget.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/home/home.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/login/login.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/msite/msite.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/order/children/orderDetail.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/order/order.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/points/children/detail.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/points/points.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/profile/children/children/address.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/profile/children/children/children/add.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/profile/children/children/children/children/addDetail.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/profile/children/info.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/profile/children/setusername.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/profile/profile.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/search/search.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/service/children/questionDetail.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/service/service.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/shop/children/children/shopSafe.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/shop/children/foodDetail.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/shop/children/shopDetail.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/shop/shop.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/vipcard/children/invoiceRecord.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/vipcard/children/useCart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/vipcard/children/vipDescription.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/page/vipcard/vipcard.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/store/action.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/store/getters.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/store/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/store/mutation-types.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/store/mutations.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/style/common.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first/src/style/mixin.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/first/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/first/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/src/components/MyHome.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/src/resize.js" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/config/rem.js" afterDir="false" />
-    </list>
+    <list default="true" id="b800a755-6c11-4dff-b2c2-b5063f2a0a7a" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,21 +21,32 @@
     <session id="-1497305509">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="vue" value="1" />
+          <entry key="vue" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Vue.js" value="1" />
+          <entry key="Vue.js" value="3" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/first/src/App.vue">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-169" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/first/src/components/common/myself_bootstrap@4.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="16" column="48" lean-forward="true" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -1306,6 +1244,21 @@
               <item name="first" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="firstProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="firstProject" type="462c0819:PsiDirectoryNode" />
+              <item name="first" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="firstProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="firstProject" type="462c0819:PsiDirectoryNode" />
+              <item name="first" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -1342,11 +1295,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33000" />
+    <option name="totallyTimeSpent" value="299000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1375,7 +1327,16 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/first/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-169" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first/src/components/common/myself_bootstrap@4.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="16" column="48" lean-forward="true" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

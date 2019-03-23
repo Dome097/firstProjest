@@ -1,12 +1,15 @@
 <template>
-  <div id="app"></div>
+  <div id="app">
+    <MySelf></MySelf>
+  </div>
 </template>
 
 <script>
 import {} from './config/rem'
+import MySelf from "./components/common/MySelf";
 export default {
   name: 'App',
-  components: {}
+  components: {MySelf}
 }
 </script>
 
