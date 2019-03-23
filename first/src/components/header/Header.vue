@@ -5,7 +5,7 @@
       <div class="pull-right">
         <span><router-link :to="{}">登录</router-link></span>
         <span>|</span>
-        <span><router-link :to="{}">注册</router-link></span>
+        <span><router-link :to="{}">注册1</router-link></span>
       </div>
     </nav>
   </section >
