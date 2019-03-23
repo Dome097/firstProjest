@@ -1,29 +1,37 @@
 <template>
-  <section class="container-fluid">
+  <section class="container-fluid" >
     <nav class="nv navbar navbar-fixed-top">
-      <a href="###" class="pull-left">ele.me</a>
+      <router-link class="pull-left" :to="{}">ele.me</router-link>
       <div class="pull-right">
-        <span><a href="###">登录</a></span>
+        <span><router-link :to="{}">登录</router-link></span>
         <span>|</span>
-        <span><a href="###">注册</a></span>
+        <span><router-link :to="{}">注册</router-link></span>
       </div>
     </nav>
-  </section>
+  </section >
+  <!--<section class="container-fluid" v-if="isdrag">-->
+    <!--<nav class="nv navbar navbar-fixed-top">-->
+      <!--<router-link class="pull-left" :to="{}"> < </router-link>-->
+      <!--<router-link class="pull-center" :to="{}">郑州</router-link>-->
+      <!--<router-link class="pull-right" :to="{}">切换城市</router-link>-->
+    <!--</nav>-->
+  <!--</section>-->
 </template>
 
 <script>
 // 头部公共组件
 export default {
-  name: "header"
+  name: "Header",
+  // data(){
+  //   return {
+  //     flag:false
+  //   }
+  // }
 }
 </script>
 
 <style scoped>
-  .nv>a{
-    color: #fff;
-    text-decoration: none;
-  }
-  .pull-right>span>a{
+  .nv a{
     color: #fff;
     text-decoration: none;
   }
