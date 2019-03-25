@@ -1,5 +1,6 @@
 <template>
   <section class="container-fluid" >
+    <!--第一个头部-->
     <nav class="nv navbar navbar-fixed-top firstHead" v-if="isFirst">
       <router-link class="pull-left" :to="{}">ele.me</router-link>
       <div class="pull-right">
@@ -8,13 +9,15 @@
         <span><router-link :to="{name:'login'}">注册</router-link></span>
       </div>
     </nav>
+    <!--第二个头部-->
     <nav class="nv navbar navbar-fixed-top firstHead" v-if="isdrag">
-      <router-link class="pull-left" :to="{}"> < </router-link>
+      <i class="pull-left iconfont">&#xe682</i>
       <router-link :to="{}" class="centerContent">郑州</router-link>
       <router-link class="pull-right" :to="{}">切换城市</router-link>
     </nav>
+    <!--第三个头部-->
     <nav class="nv navbar navbar-fixed-top firstHead" v-if="isshow">
-      <span class="glyphicon glyphicon-search"></span>
+      <span class="glyphicon glyphicon-search pull-left"></span>
       <router-link class="centerContent" :to="{}">千山区</router-link>
       <div class="pull-right">
         <span><router-link :to="{name:'login'}">登录</router-link></span>
@@ -22,7 +25,9 @@
         <span><router-link :to="{name:'login'}">注册</router-link></span>
       </div>
     </nav>
-    <nav class="nv navbar navbar-fixed-top bg-warning" :style="{height: '1.5rem',background:'gray',opacity:'0.4'}" v-if="isFour">
+    <!--第四个头部-->
+    <nav class="nv navbar navbar-fixed-top bg-warning fourModule" :style="{}" v-if="isFour">
+      <i class="iconfont toLeft">&#xe682</i>
       <img src="../../assets/logo.png" alt="" class="pull-left" style="width: 0.8rem; height: 1rem">
       <div class="introduce">
         <p>效果演示</p>
@@ -51,8 +56,8 @@ export default {
   name: "Header",
   data(){
     return {
-      isFirst:true,
-      isdrag:false,
+      isFirst:false,
+      isdrag:true,
       isshow:false,
       isFour:false
     }
@@ -77,8 +82,8 @@ export default {
     bottom:0.05rem;
   }
   .firstHead{
-    background-color: blue;
-
+    background-color: #008de1;
+    text-align: center;
   }
   .bottomContent{
     position: absolute;
@@ -88,7 +93,14 @@ export default {
   .introduce{
     margin-left:1rem;
   }
-  .centerContent{
-   margin-left: 35%;
+  .fourModule{
+    height: 1.5rem;
+    background:#BBBBBB;
+    opacity:0.4
+  }
+  .toLeft{
+    color:white;
+    position: absolute;
+    left:0.05rem;
   }
 </style>
