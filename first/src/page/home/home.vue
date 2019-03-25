@@ -20,7 +20,7 @@
       <div class="hotCity container-fluid">
         <p>热门城市</p>
         <ul class="row">
-          <td v-for="(item , index) in hot_city"  class="col-xs-3"><router-link :to="{name:'City'}">{{item}}</router-link></td>
+          <td v-for="(item , index) in hot_city"  class="col-xs-3"><router-link :to="{name:'city'}">{{item}}</router-link></td>
         </ul>
       </div>
       <div class="hotCity container-fluid row" v-for="item in allCity" >
