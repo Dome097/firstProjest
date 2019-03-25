@@ -10,13 +10,13 @@
       </div>
     </nav>
     <!--第二个头部-->
-    <nav class="nv navbar navbar-fixed-top firstHead" v-if="isdrag">
-      <i class="pull-left iconfont">&#xe682</i>
+    <nav class="nv navbar navbar-fixed-top firstHead" v-if="isdrag" v-show="isShow">
+      <i class="pull-left iconfont" @click="back">&#xe682</i>
       <router-link :to="{}" class="centerContent">郑州</router-link>
       <router-link class="pull-right" :to="{}">切换城市</router-link>
     </nav>
     <!--第三个头部-->
-    <nav class="nv navbar navbar-fixed-top firstHead" v-if="isshow">
+    <nav class="nv navbar navbar-fixed-top firstHead" v-if="isThree">
       <span class="glyphicon glyphicon-search pull-left"></span>
       <router-link class="centerContent" :to="{}">千山区</router-link>
       <div class="pull-right">
@@ -58,8 +58,24 @@ export default {
     return {
       isFirst:true,
       isdrag:false,
-      isshow:false,
-      isFour:false
+      isThree:false,
+      isFour:false,
+      isShow:false
+    }
+  },
+  methods:{
+    back(){
+      this.$router.go(-1);
+    }
+  },
+  watch:{
+    $route(now,old){     //监控路由变换，控制返回按钮的显示
+      // if(now.path=="/home/home"){
+      //   this.isShow=false;
+      // } else{
+      //   this.isShow=true;
+      // }
+      console.log(now.path)
     }
   }
 }
