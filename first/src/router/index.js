@@ -103,9 +103,9 @@ export default new Router({
     },
     {
       // 城市
-      path: '/City',
+      path: '/city',
       component: City,
-      name: 'City'
+      name: 'city'
     },
     { // 余额 一级路由
       path: '/balance',
@@ -145,15 +145,15 @@ export default new Router({
         },
         {
           // 红包说明
-          path: 'HbDescription',
+          path: 'hbDescription',
           component: BenefitHbDescription,
-          name: 'HbDescription'
+          name: 'hbDescription'
         },
         {
           // 历史红包
-          path: 'HbHistory',
+          path: 'hbHistory',
           component: BenefitHbHistory,
-          name: 'HbHistory'
+          name: 'hbHistory'
         }
       ]
     },

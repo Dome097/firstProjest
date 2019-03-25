@@ -1,5 +1,7 @@
 <template>
-
+  <section>
+    <h2>这是代金券说明组件</h2>
+  </section>
 </template>
 
 <script>

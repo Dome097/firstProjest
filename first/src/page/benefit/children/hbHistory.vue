@@ -1,5 +1,7 @@
 <template>
-
+  <section>
+    <h2>这是历史红包</h2>
+  </section>
 </template>
 
 <script>

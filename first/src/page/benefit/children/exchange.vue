@@ -1,5 +1,7 @@
 <template>
-
+  <section>
+    <h2>兑换红包</h2>
+  </section>
 </template>
 
 <script>

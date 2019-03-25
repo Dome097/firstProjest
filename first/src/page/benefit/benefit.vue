@@ -1,5 +1,8 @@
 <template>
-
+  <section>
+    <h2>这是红包页</h2>
+    <router-view></router-view>
+  </section>
 </template>
 
 <script>
