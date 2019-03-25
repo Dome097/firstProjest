@@ -18,7 +18,7 @@ export default {
 
 <style>
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-
+@import '../src/assets/icon.css';
 *{
   text-decoration: none;
   margin: 0;
