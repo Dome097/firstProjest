@@ -1,21 +1,24 @@
 <template>
   <div id="app">
-    <MySelf></MySelf>
+    <Header></Header>
+    <router-view></router-view>
+    <FootGuide></FootGuide>
   </div>
 </template>
 
 <script>
 import {} from './config/rem'
-import MySelf from "./components/common/MySelf";
+import Header from "./components/header/Header";
+import FootGuide from "./components/footer/footGuide";
 export default {
   name: 'App',
-  components: {MySelf}
+  components: {Header, FootGuide}
 }
 </script>
 
 <style>
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-<<<<<<< HEAD
+
 *{
   text-decoration: none;
   margin: 0;
@@ -25,6 +28,5 @@ export default {
   width: 100%;
   height: 100%;
 }
-=======
->>>>>>> 2bcb7d0116b225dd90966788c46b207855a53c74
+
 </style>
