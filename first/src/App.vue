@@ -1,15 +1,18 @@
 <template>
   <div id="app">
-    <MySelf></MySelf>
+    <Header></Header>
+    <router-view></router-view>
+    <FootGuide></FootGuide>
   </div>
 </template>
 
 <script>
 import {} from './config/rem'
-import MySelf from "./components/common/MySelf";
+import Header from "./components/header/Header";
+import FootGuide from "./components/footer/footGuide";
 export default {
   name: 'App',
-  components: {MySelf}
+  components: {Header, FootGuide}
 }
 </script>
 
