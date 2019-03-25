@@ -2,33 +2,28 @@
   <section class="container-fluid" >
     <nav class="nv navbar navbar-fixed-top">
       <router-link class="pull-left" :to="{}">ele.me</router-link>
-
       <div class="pull-right">
         <span><router-link :to="{}">登录</router-link></span>
         <span>|</span>
         <span><router-link :to="{}">注册</router-link></span>
       </div>
     </nav>
-  </section >
-  <!--<section class="container-fluid" v-if="isdrag">-->
-    <!--<nav class="nv navbar navbar-fixed-top">-->
+    <!--<nav class="nv navbar navbar-fixed-top" v-if="isdrag">-->
       <!--<router-link class="pull-left" :to="{}"> < </router-link>-->
       <!--<router-link class="pull-center" :to="{}">郑州</router-link>-->
       <!--<router-link class="pull-right" :to="{}">切换城市</router-link>-->
     <!--</nav>-->
-  <!--</section>-->
-  <!--<section class="container-fluid" >-->
-    <!--<nav class="nv navbar navbar-fixed-top">-->
-      <!--<span class="glyphicon glyphicon-search"></span>-->
-      <!--<router-link class="pull-center" :to="{}">千山区</router-link>-->
-      <!--<div class="pull-right">-->
-        <!--<span><router-link :to="{}">登录</router-link></span>-->
-        <!--<span>|</span>-->
-        <!--<span><router-link :to="{}">注册</router-link></span>-->
-      <!--</div>-->
+    <!--<nav class="nv navbar navbar-fixed-top" v-if="isshow">-->
+    <!--<span class="glyphicon glyphicon-search"></span>-->
+    <!--<router-link class="pull-center" :to="{}">千山区</router-link>-->
+    <!--<div class="pull-right">-->
+    <!--<span><router-link :to="{}">登录</router-link></span>-->
+    <!--<span>|</span>-->
+    <!--<span><router-link :to="{}">注册</router-link></span>-->
+    <!--</div>-->
     <!--</nav>-->
-  <!--</section>-->
- 
+
+  </section >
 </template>
 
 <script>
