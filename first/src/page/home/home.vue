@@ -14,8 +14,8 @@
         <span class="ps col-xs-7">定位不准时,请在城市列表选择</span>
       </div>
       <div class="selectCity row">
-        <span class="col-xs-10">{{currentCity}}</span>
-        <span class="col-xs-2">></span>
+        <router-link :to="{name:'city'}" class="col-xs-10">{{currentCity}}</router-link>
+        <router-link :to="{name:'city'}" class="col-xs-2">></router-link>
       </div>
       <div class="hotCity container-fluid">
         <p>热门城市</p>
@@ -26,7 +26,7 @@
       <div class="hotCity container-fluid row" v-for="item in allCity" >
         <p>{{item.cityNum}}</p>
         <ul class="row">
-          <td v-for="i in item.city" class="col-xs-3 citys"><router-link :to="{}">{{i.name}}</router-link></td>
+          <td v-for="i in item.city" class="col-xs-3 citys"><router-link :to="{name:'city'}">{{i.name}}</router-link></td>
         </ul>
       </div>
     </div>
@@ -130,6 +130,10 @@ export default {
     line-height: 0.4rem;
     width: 100%;
     background-color: #fff;
+  }
+  .selectCity>a{
+    text-decoration: none;
+    color: #000;
   }
   .ps{
     font-size: xx-small;
