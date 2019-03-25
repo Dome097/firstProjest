@@ -93,7 +93,6 @@ export default {
 </script>
 
 <style scoped>
-
   .city{
     font-size: .16rem;
     overflow: hidden;

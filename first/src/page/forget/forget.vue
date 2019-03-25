@@ -45,9 +45,6 @@ export default {
 </script>
 
 <style scoped>
-  section {
-    margin-top: .6rem;
-  }
   input {
     width: 100%;
     outline: medium;
@@ -57,14 +54,14 @@ export default {
   }
   .verificationCode {
     position: absolute;
-    top: 1.96rem;
+    top: 1.70rem;
     right: .5rem;
     width: .4rem;
     height: .2rem;
   }
   .retubing {
     position: absolute;
-    top: 1.95rem;
+    top: 1.75rem;
     right: 0;
     width: .4rem;
     height: .2rem;

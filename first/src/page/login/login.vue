@@ -53,9 +53,6 @@ export default {
 </script>
 
 <style scoped>
-  section {
-    margin-top: .6rem;
-  }
   input {
     width: 100%;
     outline: medium;
@@ -73,14 +70,14 @@ export default {
   }
   img {
     position: absolute;
-    top: 1.35rem;
+    top: 1.05rem;
     right: .5rem;
     width: .4rem;
     height: .2rem;
   }
   .a1 {
     position: absolute;
-    top: 1.3rem;
+    top: 1.0rem;
     right: 0;
     width: .4rem;
     height: .2rem;
@@ -92,17 +89,17 @@ export default {
   }
   .div1 {
     position: absolute;
-    top: 1rem;
+    top: 0.75rem;
     right: .1rem;
     width: .4rem;
     height: .2rem;
     background-color: silver;
     border-radius: .1rem;
-    transition: all 5s initial;
+    transition: all .5s initial;
   }
   .div01 {
     position: absolute;
-    top: 1rem;
+    top: 0.75rem;
     right: .1rem;
     width: .4rem;
     height: .2rem;
@@ -125,6 +122,7 @@ export default {
     width: .2rem;
     height: .2rem;
     top: 0;
+    right: .2rem;
     border-radius: 100%;
     background-color: beige;
     transition: all .5s;
