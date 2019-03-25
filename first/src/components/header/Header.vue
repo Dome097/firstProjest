@@ -13,11 +13,11 @@
     <nav class="nv navbar navbar-fixed-top firstHead"  v-show="isShow">
       <i class="pull-left iconfont" @click="back">&#xe682</i>
       <router-link :to="{}" class="centerContent">郑州</router-link>
-      <router-link class="pull-right" :to="{}" v-show="isHide">切换城市</router-link>
+      <span class="pull-right" v-show="isHide" @click="back">切换城市</span>
     </nav>
     <!--第三个头部-->
     <nav class="nv navbar navbar-fixed-top firstHead" v-if="isThree">
-      <span class="glyphicon glyphicon-search pull-left"></span>
+      <router-link class="glyphicon glyphicon-search pull-left" :to="{name:'search'}"></router-link>
       <router-link class="centerContent" :to="{}">千山区</router-link>
       <div class="pull-right">
         <span><router-link :to="{name:'login'}">登录</router-link></span>
@@ -66,7 +66,7 @@ export default {
   methods:{
     back(){
       this.$router.go(-1);
-    }
+    },
   },
   watch:{
     $route(now,old){     //监控路由变换，控制返回按钮的显示
