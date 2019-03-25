@@ -10,10 +10,10 @@
       </div>
     </nav>
     <!--第二个头部-->
-    <nav class="nv navbar navbar-fixed-top firstHead" v-if="isdrag" v-show="isShow">
+    <nav class="nv navbar navbar-fixed-top firstHead"  v-show="isShow">
       <i class="pull-left iconfont" @click="back">&#xe682</i>
       <router-link :to="{}" class="centerContent">郑州</router-link>
-      <router-link class="pull-right" :to="{}">切换城市</router-link>
+      <router-link class="pull-right" :to="{}" v-show="isHide">切换城市</router-link>
     </nav>
     <!--第三个头部-->
     <nav class="nv navbar navbar-fixed-top firstHead" v-if="isThree">
@@ -57,10 +57,10 @@ export default {
   data(){
     return {
       isFirst:true,
-      isdrag:false,
       isThree:false,
       isFour:false,
-      isShow:false
+      isShow:false,
+      isHide:true
     }
   },
   methods:{
@@ -70,12 +70,26 @@ export default {
   },
   watch:{
     $route(now,old){     //监控路由变换，控制返回按钮的显示
-      // if(now.path=="/home/home"){
-      //   this.isShow=false;
-      // } else{
-      //   this.isShow=true;
-      // }
-      console.log(now.path)
+      if(now.path==="/home"){
+        this.isShow=false;
+        this.isThree = false;
+        this.isFour = false;
+      } else if(now.path==="/city"){
+        this.isShow = true;
+        this.isFirst=false;
+        this.isThree = false;
+        this.isFour = false;
+      }else if(now.path === "/msite"){
+        this.isThree = true;
+        this.isFirst=false;
+        this.isShow=false;
+        this.isFour = false;
+      }else if(now.path === "/shop/shopDetail"){
+        this.isFour = true;
+        this.isFirst=false;
+        this.isShow=false;
+        this.isThree = false;
+      }
     }
   }
 }
