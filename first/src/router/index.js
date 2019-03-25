@@ -59,7 +59,39 @@ import points from '../page/points/points'
 // 积分说明
 import pointsDetail from '../page/points/children/detail'
 // 个人中心
-
+import profile from '../page/profile/profile'
+// 账户信息
+import info from '../page/profile/children/info'
+// 重置用户名
+import setusername from '../page/profile/children/setusername'
+// 地址
+import address from '../page/profile/children/children/address'
+// 新增地址
+import add from '../page/profile/children/children/children/add'
+// 搜索地址
+import addDetail from '../page/profile/children/children/children/children/addDetail'
+// 搜索页
+import search from '../page/search/search'
+// 服务中心
+import service from '../page/service/service'
+// 问题详情
+import questionDetail from '../page/service/children/questionDetail'
+// 商铺筛选页
+import shop from '../page/shop/shop'
+// 商铺信息页
+import foodDetail from '../page/shop/children/foodDetail'
+// 单个商铺信息页
+import shopDetail from '../page/shop/children/shopDetail'
+// 商品认证信息页
+import shopSafe from '../page/shop/children/children/shopSafe'
+// 会员卡办理页
+import vipcard from '../page/vipcard/vipcard'
+// 购买记录
+import invoiceRecord from '../page/vipcard/children/invoiceRecord'
+// 使用卡号购买
+import useCart from '../page/vipcard/children/useCart'
+// 会员说明
+import vipDescription from '../page/vipcard/children/vipDescription'
 Vue.use(VueAxios, axios)
 Vue.use(Router)
 
@@ -241,8 +273,102 @@ export default new Router({
         }
       ]
     },
-    {
-
+    { // 个人中心 一级路由
+      path: '/profile',
+      component: profile,
+      name: 'profile',
+      children: [ // 二级路由
+        { // 账户信息
+          path: 'info',
+          component: info,
+          name: 'info'
+        },
+        { // 重置用户名
+          path: 'setusername',
+          component: setusername,
+          name: 'setusername'
+        },
+        { // 地址
+          path: 'address',
+          component: address,
+          name: 'address',
+          children: [ // 三级路由
+            { // 新增地址
+              path: 'add',
+              component: add,
+              name: 'add',
+              children: [ // 四级路由
+                { // 搜索地址
+                  path: 'addDetail'
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    { // 搜索页 // 一级路由
+      path: '/search',
+      component: search,
+      name: 'search'
+    },
+    { // 服务中心 一级路由
+      path: '/service',
+      component: service,
+      name: 'service',
+      children: [ // 二级路由
+        { // 问题详情
+          path: 'questionDetail',
+          component: questionDetail,
+          name: 'questionDetail'
+        }
+      ]
+    },
+    { // 商品筛选页 一级路由
+      path: '/shop',
+      component: shop,
+      name: 'shop',
+      children: [ // 二级路由
+        { // 商铺信息页
+          path: 'foodDetail',
+          component: foodDetail,
+          name: 'foodDetail'
+        },
+        { // 单个商铺信息页
+          path: 'shopDetail',
+          component: shopDetail,
+          name: 'shopDetail',
+          children: [ // 三级路由
+            { // 商铺认证信息页
+              path: 'shopSafe',
+              component: shopSafe,
+              name: 'shopSafe'
+            }
+          ]
+        }
+      ]
+    },
+    { // 会员卡办理 一级路由
+      path: '/vipcard',
+      component: vipcard,
+      name: 'vipcard',
+      children: [ // 二级路由
+        { // 购买记录
+          path: 'invoiceRecord',
+          component: invoiceRecord,
+          name: 'invoiceRecord'
+        },
+        { // 使用卡号购买
+          path: 'useCart',
+          component: useCart,
+          name: 'useCart'
+        },
+        { // 会员说明
+          path: 'vipDescription',
+          component: vipDescription,
+          name: 'vipDescription'
+        }
+      ]
     }
   ]
 })
