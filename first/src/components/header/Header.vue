@@ -56,8 +56,8 @@ export default {
   name: "Header",
   data(){
     return {
-      isFirst:false,
-      isdrag:true,
+      isFirst:true,
+      isdrag:false,
       isshow:false,
       isFour:false
     }
