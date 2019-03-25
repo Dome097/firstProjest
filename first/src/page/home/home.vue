@@ -20,7 +20,7 @@
       <div class="hotCity container-fluid">
         <p>热门城市</p>
         <ul class="row">
-          <td v-for="(item , index) in hot_city" class="col-xs-3"><router-link :to="{}">{{item}}</router-link></td>
+          <td v-for="(item , index) in hot_city"  class="col-xs-3"><router-link :to="{name:'City'}">{{item}}</router-link></td>
         </ul>
       </div>
       <div class="hotCity container-fluid row" v-for="item in allCity" >
@@ -45,9 +45,18 @@ export default {
       hot_city:[],
       // 声明数组存贮全部城市对应的编号
       allCity:[],
+      // 声明数组存储热门城市编号
+      hot_cityNum:[],
+      // 声明数组存储所有城市编号
     }
   },
-  methods:{},
+  methods:{
+    // 点击热门城市跳转到对应城市,应传递参数,参数是对应城市id
+    sendCityNum(i){
+      this.hot_cityNum = i
+      console.log(this.hot_cityNum)
+    }
+  },
   computed:{},
   mounted(){
     // 当前定位城市
@@ -59,9 +68,11 @@ export default {
     })
     // 在创建之前请求hot_city数据
     Vue.axios.get('https://elm.cangdu.org/v1/cities?type=hot',null).then((res)=>{
-      // 把请求到的数据遍历一下,存入数组
+      // 把请求到的数据遍历一下,获取城市对应的name,存入hot_city数组
       this.hot_city = res.data.map((item)=>{return item.name})
-      // console.log(this.hot_city);
+      // 把请求到的数据遍历一下,获取城市对应的id,存入cityNum数组
+      this.hot_cityNum = res.data.map((item)=>{return item.id})
+      console.log(this.hot_cityNum);
     }).catch((error)=>{
       console.log(error)
     })
@@ -73,6 +84,7 @@ export default {
         const obj = {cityNum: arr[i], city: res.data[arr[i]]};
         this.allCity.push(obj);
       }
+      console.log()
     }).catch((error)=>{
       console.log(error)
     })
