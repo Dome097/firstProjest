@@ -28,9 +28,7 @@
       <!--</div>-->
     <!--</nav>-->
   <!--</section>-->
-  <section>
-    
-  </section>
+
 </template>
 
 <script>
