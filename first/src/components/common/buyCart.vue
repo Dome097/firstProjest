@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD:first/src/components/MyHome.vue
   <section class="city container-fluid" >
     <nav class="nv navbar navbar-fixed-top">
       <a href="###" class="pull-left">ele.me</a>
@@ -78,6 +79,16 @@
         })
       }
     }
+=======
+
+</template>
+
+<script>
+// 购物车组件
+export default {
+  name: "buyCart"
+}
+>>>>>>> 2bcb7d0116b225dd90966788c46b207855a53c74:first/src/components/common/buyCart.vue
 </script>
 
 <style scoped>
