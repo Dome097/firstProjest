@@ -3,10 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import store from './store'//引入store
+import './assets/reset.css'
 
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
