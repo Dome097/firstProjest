@@ -6,15 +6,15 @@
           <i class="iconfont" :class="{fonc:isChoose1}" @click="changeColor1">&#xe722;</i>
           <p>外卖</p>
         </router-link>
-        <router-link :to="{name:'search'}" class="router-link-active">
+        <router-link :to="{name:'search'}">
           <i class="iconfont" :class="{fonc:isChoose2}"  @click="changeColor2">&#xe718;</i>
           <p>搜索</p>
       </router-link>
-        <router-link :to="{name:'order'}" class="router-link-active">
+        <router-link :to="{name:'order'}">
           <i class="iconfont" :class="{fonc:isChoose3}" @click="changeColor3">&#xe75f;</i>
           <p>订单</p>
         </router-link>
-        <router-link :to="{name:'profile'}" class="router-link-active">
+        <router-link :to="{name:'profile'}">
           <i class="iconfont" :class="{fonc:isChoose4}" @click="changeColor4">&#xe60b;</i>
           <p>我的</p>
         </router-link>

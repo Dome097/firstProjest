@@ -1,6 +1,5 @@
 <template>
   <section class="container-fluid">
-    <!--<div class="emptyEle"></div>-->
     <div class="download">
       <img src="../../assets/appLogo.jpg" alt="">
       <p>下载饿了么APP</p>
@@ -18,10 +17,6 @@ export default {
 </script>
 
 <style scoped>
-  /*.emptyEle{*/
-    /*width: 100%;*/
-    /*height: 0.46rem;*/
-  /*}*/
   .download{
     width: 100%;
     height: 100%;
