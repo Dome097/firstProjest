@@ -7,8 +7,10 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import store from './store'//引入store
 import './assets/reset.css'
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
 
-Vue.use(VueAxios, axios)
+Vue.use(VueAxios, axios, MintUI)
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
