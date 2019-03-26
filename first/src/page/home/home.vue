@@ -117,7 +117,6 @@ export default {
   }
   .content{
     width: 100%;
-    margin-top: 0.5rem;
     font-size: smaller;
     padding: 0;
   }
