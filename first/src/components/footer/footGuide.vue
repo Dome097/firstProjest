@@ -38,14 +38,11 @@ export default {
   methods:{
     changeColor1(){
       this.isChoose1 = true;
-      console.log(this.isChoose1)
-
       this.isChoose2 = false;
       this.isChoose3 = false;
       this.isChoose4 = false;
     },
     changeColor2(){
-      console.log(222)
       this.isChoose1 = false;
       this.isChoose2 = true;
       this.isChoose3 = false;

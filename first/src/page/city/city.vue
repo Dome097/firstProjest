@@ -1,6 +1,6 @@
 <template>
   <section class="container-fluid">
-    <div class="emptyEle"></div>
+    <!--<div class="emptyEle"></div>-->
     <div class="searchAddress">
       <div class="input-group input-group-lg inValue">
         <input type="text" class="form-control" placeholder="输入学校、商务楼、地址" aria-describedby="sizing-addon1" v-model="inputValue">
@@ -46,10 +46,10 @@ export default {
     padding: 0;
     background-color: #f7f7f7;
   }
-  .emptyEle{
-    width: 100%;
-    height: 0.46rem;
-  }
+  /*.emptyEle{*/
+    /*width: 100%;*/
+    /*height: 0.46rem;*/
+  /*}*/
   .searchAddress{
     width: 100%;
     /*height: 100%;*/
