@@ -1,16 +1,16 @@
 <template>
   <section>
-      <input type="text" placeholder="账号"/>
-      <input type="text" placeholder="密码"/>
+      <input type="text" placeholder="账号" v-model="mindUsername"/>
+      <input type="text" placeholder="密码" v-model="mindPassword"/>
       <div @click="da = !da" :class="{div1:da,div01:!da}">
         <div :class="{div2:da,div02:!da}"></div>
       </div>
-      <input type="text" placeholder="验证码"/>
+      <input type="text" placeholder="验证码" v-model="mindCaptcha_code"/>
       <img :src="src" alt="">
       <a href="###" @click="re" class="a1">换一张</a>
       <p>温馨提示: 未注册过的账号,登录时将会自动注册</p>
       <p>注册过的用户可凭账号密码登录</p>
-      <button class="btn btn-success">登录</button>
+      <button @click="goLogin" class="btn btn-success">登录</button>
       <router-link :to="{name:'forget'}" class="pull-right">重置密码?</router-link>
   </section>
 </template>
@@ -23,7 +23,10 @@ export default {
   data () {
     return {
       da: true,
-      src: ''
+      src: '',
+      mindUsername: '',
+      mindPassword: '',
+      mindCaptcha_code: ''
     }
   },
   methods: {
@@ -31,14 +34,53 @@ export default {
     changePassword () {
 
     },
+    // 登录
+    goLogin () {
+      this.$http({
+        method: 'post',
+        url: 'https://elm.cangdu.org/v2/login',
+        withCredentials: true, // 默认的
+        data: {
+          captcha_code: this.mindCaptcha_code,
+          password: this.mindPassword,
+          username: this.mindUsername
+        },
+
+      }).then(res => {
+        // alert("登陆成功");
+        console.log('---', res)
+        //给vuex保存用户信息
+        // this.$router.push({
+        //   name: "person",
+        //   query: res.data
+        // });
+      });
+      // Vue.axios.post('https://elm.cangdu.org/v2/login',{username: this.mindUsername,Password: this.mindPassword,captcha_code: this.mindCaptcha_code},{withCredentials:true}).then((res)=>{
+      //   console.log('登录的返回值',res)
+      //   console.log(this.mindCaptcha_code)
+      //   // this.src = res.data.code
+      // }).catch(error => {
+      //   console.log(error)
+      // })
+    },
     // 换一张验证码
     re () {
-      Vue.axios.post('https://elm.cangdu.org/v1/captchas',null).then((res)=>{
-        console.log(res.data)
+      this.$http({
+        method: 'post',
+        url: 'https://elm.cangdu.org/v1/captchas',
+        //https://developer.mozilla.org/zh-CN/docs/Web/API/Request/credentials
+        //用于表示用户代理是否应该在跨域请求的情况下从其他域发送cookies。
+        withCredentials: true, // 默认false
+      }).then((res) => {
+        console.log('tap', res);
         this.src = res.data.code
-      }).catch(error => {
-        console.log(error)
       })
+      // Vue.axios.post('https://elm.cangdu.org/v1/captchas',null).then((res)=>{
+      //   console.log(res)
+      //   this.src = res.data.code
+      // }).catch(error => {
+      //   console.log(error)
+      // })
     }
   },
   mounted () {

@@ -2,7 +2,7 @@
   <div id="app">
     <Header></Header>
     <router-view></router-view>
-    <FootGuide></FootGuide>
+    <!--<FootGuide></FootGuide>-->
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
   padding: 0;
 }
 section {
-  margin-top: .16rem;
+  margin-top: .44rem;
 }
 #app,html,body{
   width: 100%;

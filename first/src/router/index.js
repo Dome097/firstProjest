@@ -99,7 +99,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/benefit'
+      redirect: '/home'
     },
     {
       // 城市
