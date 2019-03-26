@@ -1,13 +1,13 @@
 <template>
   <section>
-      <input type="text" placeholder="账号">
-      <input type="text" placeholder="旧密码">
-      <input type="text" placeholder="请输入新密码">
-      <input type="text" placeholder="请确认密码">
-      <input type="text" placeholder="验证码">
+      <input type="text" placeholder="账号" v-model="mindUsername">
+      <input type="text" placeholder="旧密码" v-model="oldPassword">
+      <input type="text" placeholder="请输入新密码" v-model="newPassword">
+      <input type="text" placeholder="请确认密码" v-model="verifyNewPassword">
+      <input type="text" placeholder="验证码" v-model="mindCaptcha_code">
       <img class="verificationCode" :src="src" alt="">
-      <a href="###" class="retubing" @click="re">换一张</a>
-      <button class="btn btn-success">登录</button>
+      <a href="###" class="retubing" @click="gainAuthCode">换一张</a>
+      <button @click="affirmAmend" class="btn btn-success">确认修改</button>
   </section>
 </template>
 
@@ -19,28 +19,67 @@ export default {
   data () {
     return {
       da: true,
-      src: ''
+      src: '',
+      mindUsername: '',
+      oldPassword: '',
+      newPassword: '',
+      verifyNewPassword: '',
+      mindCaptcha_code: ''
     }
   },
   methods: {
     // 换一张验证码
-    re () {
-      Vue.axios.post('https://elm.cangdu.org/v1/captchas',null).then((res)=>{
-        console.log(res.data)
+    gainAuthCode () {
+      this.$http({
+        method: 'post',
+        url: 'https://elm.cangdu.org/v1/captchas',
+        //https://developer.mozilla.org/zh-CN/docs/Web/API/Request/credentials
+        //用于表示用户代理是否应该在跨域请求的情况下从其他域发送cookies。
+        withCredentials: true, // 默认false
+      }).then((res) => {
+        console.log('tap', res);
         this.src = res.data.code
-      }).catch(error => {
-        console.log(error)
       })
+    },
+    // 确认修改密码
+    affirmAmend () {
+        this.$http({
+          method: 'post',
+          url: 'https://elm.cangdu.org/v2/changepassword',
+          data: {
+            username: this.mindUsername,
+            oldpassWord: this.oldPassword,
+            newpassword: this.newPassword,
+            confirmpassword: this.verifyNewPassword,
+            captcha_code: this.mindCaptcha_code
+          },
+          //https://developer.mozilla.org/zh-CN/docs/Web/API/Request/credentials
+          //用于表示用户代理是否应该在跨域请求的情况下从其他域发送cookies。
+          withCredentials: true, // 默认false
+        }).then((res) => {
+          console.log('tap', res);
+          this.src = res.data.code
+          if (res.data.success === '密码修改成功') {
+            alert('密码修改成功')
+          }else {
+            alert(res.data.message)
+            this.gainAuthCode ()
+          }
+        })
     }
   },
   mounted () {
-    Vue.axios.post('https://elm.cangdu.org/v1/captchas',null).then((res)=>{
-      console.log(res.data)
-      this.src = res.data.code
-    }).catch(error => {
-      console.log(error)
-    })
-  }
+      this.$http({
+        method: 'post',
+        url: 'https://elm.cangdu.org/v1/captchas',
+        //https://developer.mozilla.org/zh-CN/docs/Web/API/Request/credentials
+        //用于表示用户代理是否应该在跨域请求的情况下从其他域发送cookies。
+        withCredentials: true, // 默认false
+      }).then((res) => {
+        console.log('tap', res);
+        this.src = res.data.code
+      })
+    }
 }
 </script>
 

@@ -7,7 +7,7 @@
       </div>
       <input type="text" placeholder="验证码" v-model="mindCaptcha_code"/>
       <img :src="src" alt="">
-      <a href="###" @click="re" class="a1">换一张</a>
+      <a href="###" @click="gainAuthCode" class="a1">换一张</a>
       <p>温馨提示: 未注册过的账号,登录时将会自动注册</p>
       <p>注册过的用户可凭账号密码登录</p>
       <button @click="goLogin" class="btn btn-success">登录</button>
@@ -45,9 +45,7 @@ export default {
           password: this.mindPassword,
           username: this.mindUsername
         },
-
       }).then(res => {
-        // alert("登陆成功");
         console.log('---', res)
         //给vuex保存用户信息
         // this.$router.push({
@@ -64,7 +62,7 @@ export default {
       // })
     },
     // 换一张验证码
-    re () {
+    gainAuthCode () {
       this.$http({
         method: 'post',
         url: 'https://elm.cangdu.org/v1/captchas',
@@ -75,22 +73,20 @@ export default {
         console.log('tap', res);
         this.src = res.data.code
       })
-      // Vue.axios.post('https://elm.cangdu.org/v1/captchas',null).then((res)=>{
-      //   console.log(res)
-      //   this.src = res.data.code
-      // }).catch(error => {
-      //   console.log(error)
-      // })
     }
   },
   mounted () {
-    Vue.axios.post('https://elm.cangdu.org/v1/captchas',null).then((res)=>{
-      console.log(res.data)
-      this.src = res.data.code
-    }).catch(error => {
-      console.log(error)
-    })
-  }
+      this.$http({
+        method: 'post',
+        url: 'https://elm.cangdu.org/v1/captchas',
+        //https://developer.mozilla.org/zh-CN/docs/Web/API/Request/credentials
+        //用于表示用户代理是否应该在跨域请求的情况下从其他域发送cookies。
+        withCredentials: true, // 默认false
+      }).then((res) => {
+        console.log('tap', res);
+        this.src = res.data.code
+      })
+    }
 }
 </script>
 
