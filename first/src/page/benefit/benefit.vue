@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="box" v-if="isIf !== hbDes">
+    <div class="box" v-if="isIf === '红包'|| isIf === '商家代金券'">
       <span class="hB" @click="isIf = '红包'">红包</span>
       <span class="chit" @click="isIf = '商家代金券'">商家代金券</span>
     </div>
@@ -36,7 +36,8 @@
     </div>
     <router-view></router-view>
     <div v-if="isIf === '商家代金券'">
-      <router-link :to="{name: 'coupon'}"><span class="pCircle">?</span>商家代金券说明</router-link>
+      <img src="../../images/description.png" alt="">
+      <router-link :to="{name: 'coupon'}" class="right"><span class="pCircle">?</span>商家代金券说明</router-link>
       <p>无法使用代金券</p>
       <br>
       <p>非客户端或客户端版本过低</p>
@@ -56,20 +57,21 @@ export default {
       id: 24444,
       hBarr:[],
       hbDes: '红包说明',
-      hbHis: '历史红包'
-
+      hbHis: '历史红包',
+      hbExchange: '兑换红包',
+      hbCommend: '推荐有奖'
     }
   },
   methods: {
+    // 跳转兑换红包
     goExchange () {
-
+      this.isIf = '兑换红包'
+      this.$router.push({name:'exchange',params:{move:'兑换红包'}})
     },
+    // 跳转推荐有奖
     goCommend () {
-
-    },
-    // 过期红包跳转
-    pastDueHb () {
-      this.$router.push({name:'hbHistory',params:{userId:'666666'}})
+      this.isIf = '推荐有奖'
+      this.$router.push({name:'commend',params:{move:'推荐有奖'}})
     }
   },
   mounted () {

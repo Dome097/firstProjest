@@ -9,6 +9,11 @@ import store from './store'//引入store
 import './assets/reset.css'
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
+import ElementUI from 'element-ui'
+
+import 'element-ui/lib/theme-default/index.css'
+
+Vue.use(ElementUI)
 
 Vue.use(VueAxios, axios, MintUI)
 Vue.config.productionTip = false

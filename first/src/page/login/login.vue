@@ -66,7 +66,6 @@ export default {
       this.$http({
         method: 'post',
         url: 'https://elm.cangdu.org/v1/captchas',
-        //https://developer.mozilla.org/zh-CN/docs/Web/API/Request/credentials
         //用于表示用户代理是否应该在跨域请求的情况下从其他域发送cookies。
         withCredentials: true, // 默认false
       }).then((res) => {
