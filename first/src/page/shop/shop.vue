@@ -1,8 +1,8 @@
 <template>
   <div id="shop">
     <div class="wrap">
-      <div @click="getFoodList" class="productBtn"><a>商品</a></div>
-      <div @click="getRateList" class="rateBtn"><a>评价</a></div>
+      <div @click="getFoodList" class="productBtn" :class="{pStyle:true}">商品</div>
+      <div @click="getRateList" class="rateBtn">评价</div>
     </div>
     <router-view></router-view>
   </div>
@@ -14,7 +14,6 @@ export default {
   name: "shop",
   data(){
     return {
-
     }
   },
   methods:{
@@ -40,12 +39,11 @@ export default {
   .productBtn, .rateBtn{
     width: 50%;
     text-align: center;
-    color:gray;
     float: left;
     font-size: 0.26rem;
-
   }
-  .rateBtn{
-
+  .productBtn>a, .rateBtn>a{
+    color:gray;
   }
+
 </style>

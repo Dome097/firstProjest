@@ -20,9 +20,10 @@
             show-score
             color="#F7BA2A"
             score-template="{value}"
+            class="star"
             >
           </el-rate>
-          <span>月售{{item.recent_order_num}}单</span>
+          <span class="secondContent">月售{{item.recent_order_num}}单</span>
           <span class="secondRight">
             <span class="send">蜂鸟专送</span>
             <span class="go">准时达</span>
@@ -56,10 +57,10 @@ export default {
   mounted(){
     Vue.axios.get('https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762',null).then((res) => {
       this.dataList = res.data;
-      console.log(this.dataList);
+    //  console.log(this.dataList);
       res.data.map((n)=>{
         this.value.push(n.rating);
-        console.log(this.value);
+      //  console.log(this.value);
       })
     });
   },
@@ -108,12 +109,22 @@ export default {
   .secondLine{
     font-size: 0.02rem;
   }
+  .secondContent{
+    position:absolute;
+    top: 0;
+    left:0.8rem;
+  }
+  .secondRight{
+    position:absolute;
+    right: 0;
+    top:0
+  }
   .threeLine{
     font-size: 0.04rem;
   }
-  .bao,.secondRight{
+  .bao{
     position:absolute;
-    right: 0.1rem;
+    right: 0rem;
   }
   .threeRight{
     position:absolute;
@@ -142,5 +153,13 @@ export default {
   }
   .star{
     width: 1.5rem;
+  }
+</style>
+<style>
+  .el-rate__icon, .el-icon-star-on{
+    font-size: 0.02rem;
+  }
+  .el-rate__item{
+    width: 0.12rem;
   }
 </style>
