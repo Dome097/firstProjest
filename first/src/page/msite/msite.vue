@@ -26,7 +26,7 @@
     name: "msite",
     methods:{
       toFood(){
-        this.$router.push({name:'food'})
+        this.$router.push({name:'food',params:{cate:i.title}})
       }
     },
     components: {
