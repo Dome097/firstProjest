@@ -35,12 +35,17 @@
       </div>
     </div>
     <router-view></router-view>
-    <div v-if="isIf === '商家代金券'">
-      <router-link :to="{name: 'coupon'}" class="right">商家代金券说明</router-link>
+    <div v-if="isIf === '商家代金券'" class="chitInterface">
+      <span @click="isIf = false">
+        <router-link :to="{name: 'coupon'}" class="right">商家代金券说明</router-link>
+      </span>
       <img src="../../images/description.png" class="imgQuestionMark right">
-      <p>无法使用代金券</p>
-      <p>非客户端或客户端版本过低</p>
-      <button class="btn btn-success">下载或升级客户端</button>
+      <div class="chitContent">
+        <img src="../../images/voucher.png" class="voucher" alt="">
+        <p>无法使用代金券</p>
+        <p>非客户端或客户端版本过低</p>
+        <button class="btn btn-success" @click="goDownLoad">下载或升级客户端</button>
+      </div>
       <router-view></router-view>
     </div>
   </section>
@@ -62,6 +67,10 @@ export default {
     }
   },
   methods: {
+    // 切换到下载组件
+    goDownLoad () {
+      this.$router.push({name:'download',params:{move:'下载'}})
+    },
     // 跳转兑换红包
     goExchange () {
       this.isIf = '兑换红包'
@@ -126,7 +135,21 @@ export default {
   }
   .imgQuestionMark {
     width: .16rem;
-    margin-top: 0.1rem;
+    margin-top: 0.02rem;
+  }
+  .chitInterface {
+    margin-top: 0.2rem;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+  }
+  .chitContent {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+  .voucher {
+    width: 1rem;
+    margin-bottom: 0.1rem;
   }
   .hbBox {
     display: flex;

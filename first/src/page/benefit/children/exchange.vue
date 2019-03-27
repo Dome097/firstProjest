@@ -10,7 +10,6 @@
       </span>
     </span>
     <button @click="reqExchange" class="btn btn-primary btn-lg btn-block ">兑换</button>
-
   </section>
 </template>
 
