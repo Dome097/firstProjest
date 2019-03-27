@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap" @click="toShopDetail">
+  <div class="wrap" @click="toShop">
     <div class="box" v-for="(item,index) in dataList">
       <div class="leftImg pull-left">
         <img :src="'https://elm.cangdu.org/img/'+item.image_path" alt="">
@@ -65,7 +65,7 @@ export default {
     });
   },
   methods:{
-    toShopDetail(){
+    toShop(){
       this.$router.push({name:'shop'})
     }
   }

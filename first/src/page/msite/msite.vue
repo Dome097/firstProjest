@@ -1,6 +1,6 @@
 <template>
   <section>
-    <mt-swipe class="box">
+    <mt-swipe class="box" @click="toFood">
         <mt-swipe-item  v-for="item in dataArr" :key="item.id" class="wrap">
           <div v-for="i in item " class="lunbotu" @click="toShop">
             <img :src="'https://fuss10.elemecdn.com'+i.image_url" alt="">
@@ -25,8 +25,8 @@
   export default {
     name: "msite",
     methods:{
-      toShop(){
-        this.$router.push({name:'shop'})
+      toFood(){
+        this.$router.push({name:'food'})
       }
     },
     components: {
