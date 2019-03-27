@@ -5,18 +5,45 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import store from './store'//引入store
 import './assets/reset.css'
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import ElementUI from 'element-ui'
+import VueX from 'vuex'
 
 import '../node_modules/element-ui/lib/theme-chalk/index.css'
 
-Vue.use(ElementUI)
 
-Vue.use(VueAxios, axios, MintUI)
+Vue.use(VueAxios, axios)
+Vue.use(VueX)
+Vue.use(MintUI)
+Vue.use(ElementUI)
 Vue.config.productionTip = false
+
+const moduleG = {
+  state:{},
+  mutations: {},
+  actions: {}
+}
+const moduleJ = {
+  state:{},
+  mutations: {},
+  actions: {}
+}
+const moduleD = {
+  state:{
+    a:'准时达'
+  },
+  mutations: {},
+  actions: {}
+}
+const store = new VueX.Store({
+  modules: {
+    ghc: moduleG,
+    jym: moduleJ,
+    dome: moduleD
+  }
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

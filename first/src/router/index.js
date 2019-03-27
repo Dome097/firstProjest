@@ -92,7 +92,6 @@ import invoiceRecord from '../page/vipcard/children/invoiceRecord'
 import useCart from '../page/vipcard/children/useCart'
 // 会员说明
 import vipDescription from '../page/vipcard/children/vipDescription'
-Vue.use(VueAxios, axios)
 Vue.use(Router)
 
 export default new Router({
