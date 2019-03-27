@@ -108,14 +108,14 @@ export default {
   }
   img {
     position: absolute;
-    top: 1.05rem;
+    top: 1.15rem;
     right: .5rem;
     width: .4rem;
     height: .2rem;
   }
   .a1 {
     position: absolute;
-    top: 1.0rem;
+    top: 1.15rem;
     right: 0;
     width: .4rem;
     height: .2rem;
@@ -127,7 +127,7 @@ export default {
   }
   .div1 {
     position: absolute;
-    top: 0.75rem;
+    top: 0.85rem;
     right: .1rem;
     width: .4rem;
     height: .2rem;
@@ -137,7 +137,7 @@ export default {
   }
   .div01 {
     position: absolute;
-    top: 0.75rem;
+    top: 0.85rem;
     right: .1rem;
     width: .4rem;
     height: .2rem;

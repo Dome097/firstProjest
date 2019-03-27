@@ -93,14 +93,14 @@ export default {
   }
   .verificationCode {
     position: absolute;
-    top: 1.70rem;
+    top: 1.85rem;
     right: .5rem;
     width: .4rem;
     height: .2rem;
   }
   .retubing {
     position: absolute;
-    top: 1.75rem;
+    top: 1.85rem;
     right: 0;
     width: .4rem;
     height: .2rem;

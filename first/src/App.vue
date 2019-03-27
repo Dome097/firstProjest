@@ -2,7 +2,7 @@
   <div id="app">
     <Header></Header>
     <router-view></router-view>
-    <FootGuide></FootGuide>
+    <!--<FootGuide></FootGuide>-->
   </div>
 </template>
 
@@ -30,5 +30,6 @@ export default {
 }
 #app {
   margin-top: 0.44rem;
+  background-color: #f5f5f5;
 }
 </style>
