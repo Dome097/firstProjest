@@ -1,8 +1,14 @@
 <template>
   <div id="shop">
     <div class="wrap">
-      <div @click="getFoodList" class="productBtn" :class="{pStyle:true}">商品</div>
-      <div @click="getRateList" class="rateBtn">评价</div>
+      <div @click="pStyle=true" class="productBtn" :class="{style:pStyle}">
+        商品
+        <div v-if="pStyle" class="smallBorder"></div>
+      </div>
+      <div @click="pStyle=false" class="rateBtn" :class="{style:!pStyle}">
+        评价
+        <div v-if="!pStyle" class="smallBorder"></div>
+      </div>
     </div>
     <router-view></router-view>
   </div>
@@ -14,15 +20,11 @@ export default {
   name: "shop",
   data(){
     return {
+      pStyle:true
     }
   },
   methods:{
-    getFoodList(){
 
-    },
-    getRateList(){
-      this.$router.push({name:'ratingStar'})
-    }
   }
 }
 </script>
@@ -44,6 +46,15 @@ export default {
   }
   .productBtn>a, .rateBtn>a{
     color:gray;
-  }
 
+  }
+  .style{
+    color:blue;
+  }
+  .smallBorder{
+    width: 0.5rem;
+    height: 0.02rem;
+    background-color: blue;
+    margin: 0 auto;
+  }
 </style>
