@@ -191,6 +191,9 @@ export default {
       this.popupVisible1 = false;
       this.popupVisible2 = true
     }
+  },
+  mounted(){
+
   }
 }
 </script>
@@ -267,7 +270,6 @@ export default {
 }
 .questionTitle p{
   margin: 0;
-
 }
 .questionTitle>div>a{
   height: 0.4rem;
