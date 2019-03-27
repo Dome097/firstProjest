@@ -328,25 +328,16 @@ export default new Router({
       path: '/shop',
       component: shop,
       name: 'shop',
-      children: [ // 二级路由
-        { // 商铺信息页
-          path: 'foodDetail',
-          component: foodDetail,
-          name: 'foodDetail'
-        },
-        { // 单个商铺信息页
-          path: 'shopDetail',
-          component: shopDetail,
-          name: 'shopDetail',
-          children: [ // 三级路由
-            { // 商铺认证信息页
-              path: 'shopSafe',
-              component: shopSafe,
-              name: 'shopSafe'
-            }
-          ]
-        }
-      ]
+    },
+    { // 单个商铺信息页 一级路由
+      path: '/shopDetail',
+      component: shopDetail,
+      name: 'shopDetail',
+    },
+    { // 商铺认证信息页 一级路由
+      path: '/shopSafe',
+      component: shopSafe,
+      name: 'shopSafe'
     },
     { // 会员卡办理 一级路由
       path: '/vipcard',

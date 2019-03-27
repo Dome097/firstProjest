@@ -65,7 +65,7 @@ export default {
   },
   methods:{
     toShopDetail(){
-      this.$router.push({name:'shopDetail'})
+      this.$router.push({name:'shop'})
     }
   }
 }
