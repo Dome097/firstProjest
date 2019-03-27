@@ -1,8 +1,8 @@
 <template>
   <section>
     <mt-swipe class="box">
-        <mt-swipe-item  v-for="(item,index) in dataArr" :key="item.id" class="wrap">
-          <div v-for="i in item " class="lunbotu" @click="toFood(index)">
+        <mt-swipe-item  v-for="item in dataArr" :key="item.id" class="wrap">
+          <div v-for="(i ,index) in item " class="lunbotu" @click="toFood(index)">
             <img :src="'https://fuss10.elemecdn.com'+i.image_url" alt="">
             <p>{{i.title}}</p>
           </div>
@@ -28,6 +28,7 @@
       toFood(index){
         this.$router.push({name:'food'})
         this.$store.state.dome.cate = [this.dataArr,index]
+        console.log(index);
       }
     },
     components: {
