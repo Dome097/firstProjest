@@ -1,8 +1,8 @@
 <template>
   <section>
-    <mt-swipe class="box" @click="toFood">
+    <mt-swipe class="box">
         <mt-swipe-item  v-for="item in dataArr" :key="item.id" class="wrap">
-          <div v-for="i in item " class="lunbotu" @click="toShop">
+          <div v-for="i in item " class="lunbotu" @click="toFood">
             <img :src="'https://fuss10.elemecdn.com'+i.image_url" alt="">
             <p>{{i.title}}</p>
           </div>
