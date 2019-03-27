@@ -36,10 +36,9 @@
     </div>
     <router-view></router-view>
     <div v-if="isIf === '商家代金券'">
-      <img src="../../images/description.png" alt="">
-      <router-link :to="{name: 'coupon'}" class="right"><span class="pCircle">?</span>商家代金券说明</router-link>
+      <router-link :to="{name: 'coupon'}" class="right">商家代金券说明</router-link>
+      <img src="../../images/description.png" class="imgQuestionMark right">
       <p>无法使用代金券</p>
-      <br>
       <p>非客户端或客户端版本过低</p>
       <button class="btn btn-success">下载或升级客户端</button>
       <router-view></router-view>
@@ -125,16 +124,9 @@ export default {
     text-align: center;
     line-height: 0.5rem;
   }
-  .pCircle {
-    color: white;
-    display: inline-block;
+  .imgQuestionMark {
     width: .16rem;
-    height: .16rem;
-    border-radius: 50%;
-    font-size: .16rem;
-    background-color: #90B4FC;
-    text-align: center;
-    line-height: .16rem;
+    margin-top: 0.1rem;
   }
   .hbBox {
     display: flex;
