@@ -6,6 +6,8 @@ import VueAxios from 'vue-axios'
 import City from '../page/city/city'
 // 余额
 import Balance from '../page/balance/balance'
+// 我的余额
+import mybalance from '../page/balance/children/mybalance'
 // 余额说明
 import BalanceDetail from '../page/balance/children/detail'
 // 红包页
@@ -56,10 +58,14 @@ import order from '../page/order/order'
 import orderDetail from '../page/order/children/orderDetail'
 // 积分页
 import points from '../page/points/points'
+// 我的积分
+import mypoints from '../page/points/children/mypoints'
 // 积分说明
 import pointsDetail from '../page/points/children/detail'
 // 个人中心
 import profile from '../page/profile/profile'
+// 我的
+import mind from '../page/profile/children/mind'
 // 账户信息
 import info from '../page/profile/children/info'
 // 重置用户名
@@ -109,9 +115,16 @@ export default new Router({
     },
     { // 余额 一级路由
       path: '/balance',
+      redirect:'/balance/mybalance',
       component: Balance,
       name: 'balance',
       children: [ // 二级路由
+        // 我的余额
+        {
+          path:'mybalance',
+          component:mybalance,
+          name:'mybalance'
+        },
         // 余额说明
         {
           path: 'detail',
@@ -263,9 +276,16 @@ export default new Router({
     },
     { // 积分页 一级路由
       path: '/points',
+      redirect:'/points/mypoints',
       component: points,
       name: 'points',
       children: [ // 二级路由
+        {
+          // 我的积分
+          path: 'mypoints',
+          component: mypoints,
+          name: 'mypoints'
+        },
         { // 积分说明
           path: 'pointsDetail',
           component: pointsDetail,
@@ -276,8 +296,15 @@ export default new Router({
     { // 个人中心 一级路由
       path: '/profile',
       component: profile,
+      redirect:'/profile/mind',
       name: 'profile',
       children: [ // 二级路由
+        {
+          // 我的
+          path: 'mind',
+          component: mind,
+          name: 'mind'
+        },
         { // 账户信息
           path: 'info',
           component: info,

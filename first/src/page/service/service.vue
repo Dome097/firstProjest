@@ -1,5 +1,5 @@
 <template>
-  <section class="container-fluid">
+  <section class="container-fluid service">
     <div class="row contact" v-if="isIf">
       <div class="col-xs-6 left">
         <router-link :to="{}">
@@ -166,7 +166,7 @@
 
 <script>
 // 服务中心
-// 引入Vue 引入Popup模块
+// 引入Vue,引入Popup模块
 import Vue from 'vue'
 import { Popup } from 'mint-ui';
 // 将Popup模块,转化成组件
@@ -205,6 +205,9 @@ export default {
   height: 1.8rem;
   border-radius: 0.1rem;
 }
+  .service{
+    background-color: white;
+  }
 .contact .mint-popup+.mint-popup{
   height: 1.2rem;
 }

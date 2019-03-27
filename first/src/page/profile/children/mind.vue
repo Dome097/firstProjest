@@ -1,0 +1,222 @@
+<template>
+  <section class="container-fluid profile">
+    <div class="header">
+      <router-link :to="{name:'login'}" class="row">
+        <div class="photo col-xs-3">
+          <i class="iconfont">&#xe677;</i>
+        </div>
+        <div class="col-xs-6 login">
+          <span>登录</span>
+          <span>/</span>
+          <span>注册</span><br>
+          <i class="iconfont">&#xe633;</i>
+          <span class="number">暂无绑定手机号</span>
+        </div>
+        <i class="iconfont col-xs-1">&#xe634;</i>
+      </router-link>
+    </div>
+    <div class="content">
+      <div class="col-xs-4 left">
+        <router-link :to="{name:'balance'}">
+          <p><span>0.00</span>元</p>
+          <p>我的余额</p>
+        </router-link>
+      </div>
+      <div class="col-xs-4 middle">
+        <router-link :to="{name:'benefit'}">
+          <p><span>0</span>个</p>
+          <p>我的优惠</p>
+        </router-link>
+      </div>
+      <div class="col-xs-4 right">
+        <router-link :to="{name:'points'}">
+          <p><span>0</span>分</p>
+          <p>我的积分</p>
+        </router-link>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="lists">
+        <router-link :to="{name:'order'}">
+          <i class="iconfont">&#xe75f;</i>
+          <p>我的订单</p>
+          <i class="iconfont">&#xe634;</i>
+        </router-link>
+      </div>
+      <div class="lists">
+        <router-link :to="{name:'points'}">
+          <i class="iconfont">&#xe62d;</i>
+          <p>积分商城</p>
+          <i class="iconfont">&#xe634;</i>
+        </router-link>
+      </div>
+      <div class="lists">
+        <router-link :to="{name:'vipcard'}">
+          <i class="iconfont">&#xe73a;</i>
+          <p>饿了么会员卡</p>
+          <i class="iconfont">&#xe634;</i>
+        </router-link>
+      </div>
+      <div class="lists">
+        <router-link :to="{name:'service'}">
+          <i></i>
+          <p>服务中心</p>
+          <i class="iconfont">&#xe634;</i>
+        </router-link>
+      </div>
+      <div class="lists">
+        <router-link :to="{name:'download'}">
+          <img src="../../../../src/assets/appLogo.jpg" alt="">
+          <p>下载饿了么APP</p>
+          <i class="iconfont">&#xe634;</i>
+        </router-link>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+  // 个人中心
+  export default {
+    name: "mind"
+  }
+</script>
+
+<style scoped>
+  .profile{
+    width: 100%;
+    padding: 0;
+    background-color: #e4e4e4;
+  }
+  .content{
+    border-top:0.01rem solid transparent;
+  }
+  .header{
+    width: 100%;
+    height: 1rem;
+    background-color: #008de1;
+  }
+  .header>a{
+    color: #fff;
+  }
+  .photo{
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    background-color: white;
+    border-radius: 0.6rem;
+    text-align: center;
+    overflow:hidden;
+    margin-left: 0.15rem;
+  }
+  .photo>i{
+    /*padding-left: -0.1rem;*/
+    font-size: 0.5rem;
+    color: #e5e5e5;
+    position: absolute;
+    left: 0.05rem;
+    top: 0;
+  }
+  .header>a>i:nth-child(3){
+    color: #fff;
+    top: 0.1rem;
+    right: -0.6rem;
+    position: relative;
+  }
+  .login>span{
+    font-size: 0.18rem;
+  }
+  .login>.number{
+    font-size: 0.14rem;
+  }
+  .left,.middle,.right{
+    background-color: white;
+    height: 1rem;
+    text-align: center;
+    line-height: 0.26rem;
+    display: inline-block;
+    padding: 0.2rem 0;
+    border-bottom: 0.01rem solid #e4e4e4;
+  }
+  .left span,.middle span,.right span{
+    font-size: x-large;
+  }
+  .left span{
+    color: orange;
+  }
+  .middle span{
+    color: red;
+  }
+  .right span{
+    color: limegreen;
+  }
+  .left,.middle{
+    border-right: 0.01rem solid #e4e4e4;
+  }
+  .left>a,.right>a,.middle>a{
+    text-decoration: none;
+    color: black;
+  }
+  .lists{
+    background-color: white;
+  }
+  .lists>a>i:nth-child(1){
+    float: left;
+    margin-right: 0.04rem;
+    border-bottom: none;
+  }
+  .lists p{
+    margin: 0;
+  }
+  .lists>a{
+    height: 0.4rem;
+    line-height: 0.4rem;
+    text-decoration: none;
+    color: dimgrey;
+    display: block;
+    clear: both;
+    padding:0 0.16rem ;
+    border-bottom: 0.01rem solid #e4e4e4;
+  }
+  .lists>a>p,i{
+    display: inline-block;
+  }
+  .lists>a>p{
+    float: left;
+  }
+  .lists>a>i:nth-child(3){
+    float: right;
+    color: #b2b2b2;
+  }
+  .detail>.lists:nth-child(1)>a>i:nth-child(1){
+    color: #008de1;
+  }
+  .detail>.lists:nth-child(2)>a>i:nth-child(1){
+    font-size: 0.18rem;
+    color: orange;
+  }
+  .detail>.lists:nth-child(3)>a>i:nth-child(1){
+    color: gold;
+  }
+  .detail>.lists:nth-child(4)>a>i:nth-child(1){
+    width: 0.18rem;
+    height: 0.18rem;
+    background-color: #008de1;
+    margin-top: 0.1rem;
+  }
+  .detail>.lists:nth-child(5)>a>img{
+    width: 0.18rem;
+    height: 0.18rem;
+    border-radius: 0.03rem;
+    float: left;
+    margin-top: 0.1rem;
+    margin-right: 0.03rem;
+  }
+  .lists:nth-of-type(4){
+    margin-top: 0.1rem;
+  }
+  .lists:nth-of-type(1){
+    margin-top: 0.1rem;
+  }
+</style>
+
