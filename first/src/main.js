@@ -32,7 +32,8 @@ const moduleJ = {
 }
 const moduleD = {
   state:{
-    a:'准时达'
+    a:'准时达',
+    cate:''
   },
   mutations: {},
   actions: {}

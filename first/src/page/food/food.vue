@@ -2,7 +2,7 @@
   <section>
     <div class="top">
       <div>
-        <span>{{this.$store.state.dome.a}}</span>
+        <span>{{this.$store.state.dome.cate[0][this.$store.state.dome.cate[2]][this.$store.state.dome.cate[1]].title}}</span>
         <i class="el-icon-caret-bottom"></i>
       </div>
       <div>
@@ -33,7 +33,8 @@ export default {
   computed:{
   },
   mounted () {
-    console.log(this.$store.state.dome.a = '王德军')
+    console.log(this.$store.state.dome.cate)
+    console.log(this.$store.state.dome.cate[0][0][this.$store.state.dome.cate[1]].title)
   }
 }
 </script>
