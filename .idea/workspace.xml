@@ -42,13 +42,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="js" value="26" />
-          <entry key="vue" value="5749" />
+          <entry key="vue" value="5780" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="26" />
-          <entry key="Vue.js" value="5749" />
+          <entry key="Vue.js" value="5780" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -111,8 +111,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/first/src/page/msite/msite.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="30" column="7" lean-forward="true" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
+            <state relative-caret-position="150">
+              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
               <folding>
                 <element signature="e#505#545#0" expanded="true" />
               </folding>
@@ -296,12 +296,12 @@
       <workItem from="1553254334618" duration="14000" />
       <workItem from="1553475402161" duration="29516000" />
       <workItem from="1553561847471" duration="27776000" />
-      <workItem from="1553648380783" duration="22790000" />
+      <workItem from="1553648380783" duration="23066000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87388000" />
+    <option name="totallyTimeSpent" value="87664000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -433,8 +433,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/first/src/page/msite/msite.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="30" column="7" lean-forward="true" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
+        <state relative-caret-position="150">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
           <folding>
             <element signature="e#505#545#0" expanded="true" />
           </folding>

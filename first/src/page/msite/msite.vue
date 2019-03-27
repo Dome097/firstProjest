@@ -4,7 +4,7 @@
         <mt-swipe-item  v-for="item in dataArr" :key="item.id" class="wrap">
           <div v-for="i in item " class="lunbotu" @click="toFood">
             <img :src="'https://fuss10.elemecdn.com'+i.image_url" alt="">
-            <p>{{i.title}}</p>
+            <p>{{titleData=i.title}}</p>
           </div>
         </mt-swipe-item>
     </mt-swipe>
@@ -27,7 +27,7 @@
     methods:{
       toFood(){
         this.$router.push({name:'food'})
-        this.$store.state.dome.cate = i.title
+        this.$store.state.dome.cate = this.titleData
       }
     },
     components: {
@@ -40,6 +40,7 @@
         dataArr:[],
         arr1:[],
         arr2:[],
+        titleData:''
       }
     },
     mounted(){
