@@ -1,5 +1,7 @@
 <template>
-
+  <div>
+    <p>问题详情</p>
+  </div>
 </template>
 
 <script>
