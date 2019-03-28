@@ -19,6 +19,7 @@ Vue.use(VueX)
 Vue.use(MintUI)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
+
 Vue.use(storage)
 const moduleG = {
   state:{
