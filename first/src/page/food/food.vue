@@ -5,17 +5,17 @@
       <!--头部-->
       <div class="dome-top">
         <!--头左部-->
-        <div @click="">
+        <div @click="clickSpinner(1)">
           <span>{{this.$store.state.dome.cate[0][this.$store.state.dome.cate[2]][this.$store.state.dome.cate[1]].title}}</span>
           <i class="el-icon-caret-bottom"></i>
         </div>
         <!--头中部-->
-        <div>
+        <div @click="clickSpinner(2)">
           <span>{{'排序'}}</span>
           <i class="el-icon-caret-bottom"></i>
         </div>
         <!--头右部-->
-        <div>
+        <div @click="clickSpinner(3)">
           <span>{{'筛选'}}</span>
           <i class="el-icon-caret-bottom"></i>
         </div>
@@ -23,7 +23,7 @@
       <!--下拉内容-->
       <div class="dome-spinner">
         <!--分类排序-->
-        <div class="dome-classify" v-if="false">
+        <div class="dome-classify" v-if="controlIf === 1">
           <!--分类左-->
           <div class="dome-classifyLeft">
             <!--循环每行-->
@@ -57,14 +57,72 @@
           </div>
         </div>
         <!--排序方式-->
-        <div class="dome-sort" v-if="true">
-          <!--图片-->
-          <!--方式-->
+        <div class="dome-sort"  v-if="controlIf === 2">
+          <!--循环每行-->
+          <div class="dome-sort-line" v-for="(item, index) in iconArr">
+            <!--字体图标容器-->
+            <div class="dome-sort-icon-bag">
+              <!--字体图标-->
+              <i class="iconfont" :class="{domeIcon1: index === 0, domeIcon2: index === 1, domeIcon3: index === 2, domeIcon4: index === 3, domeIcon5: index === 4, domeIcon6: index === 5}" v-html="item[0]"></i>
+            </div>
+            <!--方式容器-->
+            <div class="dome-sort-way">
+              <!--方式-->
+              <span>{{item[1]}}</span>
+            </div>
+          </div>
         </div>
         <!--筛选-->
-        <div class="dome-screen" v-if="false">
+        <div class="dome-screen" v-if="controlIf === 3">
           <!--筛选上部容器-->
-          <div class="dome-screen-top"></div>
+          <div class="dome-screen-top">
+            <!--配送方式-->
+            <div class="dome-screen-distribution">
+              <p>配送方式</p>
+              <p>
+                <!--蜂鸟字体图标-->
+                <i class="iconfont dome-screen-icon">&#xe631;</i>
+                蜂鸟配送
+              </p>
+            </div>
+            <!--商家属性-->
+            <div class="dome-screen-property">
+              <p>商家属性 (可以多选)</p>
+              <!--p容器-->
+              <div class="dome-screen-property-p">
+                <p>
+                  <!--品牌商家字体图标-->
+                  <span class="dome-imitate dome-imitate-color1">品</span>
+                  品牌商家
+                </p>
+                <!--外卖保字体图标-->
+                <p>
+                  <span class="dome-imitate dome-imitate-color2">保</span>
+                  外卖保
+                </p>
+                <!--准时达字体图标-->
+                <p>
+                  <span class="dome-imitate dome-imitate-color3">准</span>
+                  准时达
+                </p>
+                <!--新店字体图标-->
+                <p>
+                  <span class="dome-imitate dome-imitate-color4">新</span>
+                  新店
+                </p>
+                <!--在线支付字体图标-->
+                <p>
+                  <span class="dome-imitate dome-imitate-color5">付</span>
+                  在线支付
+                </p>
+                <!--开发票字体图标-->
+                <p>
+                  <span class="dome-imitate dome-imitate-color6">票</span>
+                  开发票
+                </p>
+              </div>
+            </div>
+          </div>
           <!--筛选下部按钮容器-->
           <div class="dome-screen-below">
             <!--按钮容器左-->
@@ -99,11 +157,29 @@ export default {
       // 选中处理
       focus: '',
       // 控制分类右侧显示
-      downClassify:''
+      downClassify:'',
+      // 控制下拉显隐
+      controlIf:'',
+      // 排序字体图标
+      iconArr:[['&#xe66d;', '智能排序'], ['&#xe611;', '距离最近'], ['&#xe614;', '销量最高'], ['&#xe621;', '起送价最低'], ['&#xe62e;', '配送速度最快'], ['&#xe630;', '评分最高']]
     }
   },
   components: {Shoplist},
-  methods: {},
+  methods: {
+    clickSpinner (i) {
+      if (this.controlIf) {
+        let contol = this.controlIf
+        this.controlIf = !this.controlIf
+        console.log(!this.controlIf)
+        if (contol === i) {
+          return
+        }
+        this.controlIf = i
+        return
+      }
+      this.controlIf = i
+    }
+  },
   computed:{
   },
   mounted () {
@@ -157,15 +233,17 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: rgba(22,22,22,0.1)
+  /*background-color: rgba(22,22,22,0.1)*/
 }
 /*分类容器*/
 .dome-classify {
   position: absolute;
   width: 100%;
+  /*height: 100%;*/
   height: 4.5rem;
   display: flex;
   z-index: 4;
+  /*background-color: rgba(22,22,22,0.1);*/
 }
 /*分类左侧*/
 .dome-classifyLeft {
@@ -208,6 +286,11 @@ export default {
   width: 50%;
   background-color: white;
   height: 100%;
+  overflow: scroll;
+}
+/*清除滚动条*/
+.dome-classify-right::-webkit-scrollbar{
+  display: none;
 }
 /*分类右侧每行*/
 .dome-classify-right-line {
@@ -230,8 +313,48 @@ export default {
   position: absolute;
   width: 100%;
   height: 3rem;
-  background-color: #e29857;
+  background-color: white;
   z-index: 4;
+}
+/*排序循环每行*/
+.dome-sort-line {
+  height: 0.5rem;
+  width: 100%;
+  line-height: 0.5rem;
+  display: flex;
+}
+/*字体图标容器*/
+.dome-sort-icon-bag {
+  width: 10%;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  text-align: center;
+}
+/*排序方式容器*/
+.dome-sort-way {
+  width: 90%;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  border-bottom: #a4a4a4 solid 0.01rem;
+}
+/*字体图标颜色*/
+.domeIcon1 {
+  color: blue;
+}
+.domeIcon2 {
+  color: #90B4FC;
+}
+.domeIcon3 {
+  color: red;
+}
+.domeIcon4 {
+  color: #ffed45;
+}
+.domeIcon5 {
+  color: #42ff9a;
+}
+.domeIcon6 {
+  color: #fcc934;
 }
 /*筛选容器*/
 .dome-screen {
@@ -245,7 +368,88 @@ export default {
 .dome-screen-top {
   width: 100%;
   height: 2rem;
-  background-color: #90B4FC;
+  background-color: white;
+}
+/*配送方式*/
+.dome-screen-distribution {
+  height: 0.8rem;
+  width: 90%;
+  margin: 0 auto 0;
+  line-height: 0.3rem;
+}
+/*配送方式的p*/
+.dome-screen-distribution>p+p {
+  height: 0.3rem;
+  line-height: 0.3rem;
+  width: 30%;
+  border: #a4a4a4 solid 0.01rem;
+  border-radius: 0.05rem;
+  text-indent: 0.1rem;
+}
+/*商铺属性*/
+.dome-screen-property {
+  height: 1.2rem;
+  width: 90%;
+  margin: 0 auto 0;
+  /*line-height: 0.3rem;*/
+}
+/*商铺属性P容器*/
+.dome-screen-property-p {
+  height: 0.7rem;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+/*商铺属性的p*/
+.dome-screen-property-p p {
+  margin: 0 auto 0 0;
+  height: 0.3rem;
+  line-height: 0.3rem;
+  width: 30%;
+  border: #a4a4a4 solid 0.01rem;
+  border-radius: 0.05rem;
+  text-indent: 0.1rem;
+}
+/*筛选i标签*/
+.dome-screen-top i {
+  font-size: 0.2rem;
+  color: #008de1;
+}
+/*仿i标签*/
+.dome-imitate {
+  font-size: 0.14rem;
+  border-radius: 0.03rem;
+  padding: 0.02rem;
+}
+/*仿i标签1*/
+.dome-imitate-color1 {
+  border: #2fd5cf solid 0.01rem;
+  color: #2fd5cf;
+}
+/*仿i标签2*/
+.dome-imitate-color2 {
+  border: #a4a4a4 solid 0.01rem;
+  color: #a4a4a4;
+}
+/*仿i标签3*/
+.dome-imitate-color3 {
+  border: #3966d5 solid 0.01rem;
+  color: #3966d5;
+}
+/*仿i标签4*/
+.dome-imitate-color4 {
+  border: #efa93d solid 0.01rem;
+  color: #efa93d;
+}
+/*仿i标签5*/
+.dome-imitate-color5 {
+  border: #ef7839 solid 0.01rem;
+  color: #ef7839;
+}
+/*仿i标签6*/
+.dome-imitate-color6 {
+  border: #a4a4a4 solid 0.01rem;
+  color: #a4a4a4;
 }
 /*筛选下部按钮容器*/
 .dome-screen-below {
