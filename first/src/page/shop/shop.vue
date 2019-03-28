@@ -10,14 +10,21 @@
         <div v-if="!pStyle" class="smallBorder"></div>
       </div>
     </div>
-    <router-view></router-view>
+    <div class="content">
+      <div class="leftScroll"></div>
+      <div class="rightScroll">
+        <rating-star></rating-star>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 // 商品筛选页
+import RatingStar from "../../components/common/ratingStar";
 export default {
   name: "shop",
+  components: {RatingStar},
   data(){
     return {
       pStyle:true
