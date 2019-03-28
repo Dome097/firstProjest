@@ -21,7 +21,10 @@ Vue.use(ElementUI)
 Vue.config.productionTip = false
 Vue.use(storage)
 const moduleG = {
-  state:{},
+  state:{
+// 搜索页历史记录
+    searchHistory:[{keys:''}]
+  },
   mutations: {},
   actions: {}
 }
