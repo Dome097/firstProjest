@@ -10,7 +10,7 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import ElementUI from 'element-ui'
 import VueX from 'vuex'
-
+import storage from './config/storage'
 import '../node_modules/element-ui/lib/theme-chalk/index.css'
 
 
@@ -19,7 +19,7 @@ Vue.use(VueX)
 Vue.use(MintUI)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
-
+Vue.use(storage)
 const moduleG = {
   state:{},
   mutations: {},
