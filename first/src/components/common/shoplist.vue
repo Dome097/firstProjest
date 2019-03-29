@@ -64,6 +64,28 @@ export default {
       })
     });
   },
+  computed:{
+    shopListSort(){
+      console.log(this.$store.state.jym.res)
+      return this.$store.state.jym.res
+    }
+  },
+  watch:{
+    shopListSort:{
+      //回调函数,会在shopListSort发生变化时触发
+      handler(){
+        this.dataList = this.$store.state.jym.res
+        //  console.log(this.dataList);
+        this.$store.state.jym.res.map((n)=>{
+          this.value.push(n.rating);
+          //  console.log(this.value);
+        })
+      },
+      //是否在页面刷新时调用回调函数,默认值是false
+      immediate:true,
+      deep:true
+    },
+  },
   methods:{
     toShop(){
       this.$router.push({name:'shop'})

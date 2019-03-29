@@ -224,6 +224,7 @@ export default {
           order_by: i
         }
       }).then(res => {
+<<<<<<< HEAD
         this.$store.state.jym.res = res.data
         // console.log(res)
         this.dataList = res.data;
@@ -238,8 +239,25 @@ export default {
         res.data.map((n)=>{
           this.value.push(n.rating);
           //  console.log(this.value);
+=======
+        this.$store.commit('getRes',res.data)
+       // console.log(res)
+        this.dataList = res.data;
+        res.data.map((n)=>{
+          this.value.push(n.rating);
+          // console.log(this.value);
+>>>>>>> 9e2adcf3265dedcf6cac58db5459a517de851371
         })
+        console.log(this.$store.state.jym.res)
       })
+      // Vue.axios.get('https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762',null).then((res) => {
+      //   this.dataList = res.data;
+      //   //  console.log(this.dataList);
+      //   res.data.map((n)=>{
+      //     this.value.push(n.rating);
+      //     //  console.log(this.value);
+      //   })
+      // })
     }
   },
   computed:{
