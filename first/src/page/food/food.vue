@@ -224,7 +224,7 @@ export default {
           order_by: i
         }
       }).then(res => {
-        this.$store.state.jym.res = res
+        this.$store.state.jym.res = res.data
         // console.log(res)
         this.dataList = res.data;
         res.data.map((n)=>{
