@@ -325,7 +325,9 @@ export default new Router({
               name: 'add',
               children: [ // 四级路由
                 { // 搜索地址
-                  path: 'addDetail'
+                  path: 'addDetail',
+                  component: addDetail,
+                  name: 'addDetail',
                 }
               ]
             }

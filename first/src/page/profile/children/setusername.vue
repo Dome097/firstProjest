@@ -1,11 +1,11 @@
 <template>
   <section class="container-fluid resetName">
     <div>
-      <el-input placeholder="输入用户名" @change="inputInfo"></el-input>
+      <el-input placeholder="输入用户名" @change="inputInfo" :class="{changeColor:isChange}"></el-input>
     </div>
-    <p>用户名只能修改一次(5-24字符之间)</p>
+    <p :class="{changeTextColor:isChange}">用户名只能修改一次(5-24字符之间)</p>
     <div class="btn">
-      <el-button>确认修改</el-button>
+      <button :class="{changeBtnColor:isChange}">确认修改</button>
     </div>
   </section>
 </template>
@@ -16,13 +16,13 @@ export default {
   name: "setusername",
   data(){
     return{
-
+      isChange:false
     }
   },
   methods:{
     // 输入框状态改变时,修改input的边框颜色,p标签颜色
     inputInfo(){
-
+      this.isChange = true
     }
   }
 }
@@ -42,9 +42,7 @@ export default {
     height:0.4rem;
     margin-top: 0.1rem;
   }
-  .el-input__inner{
-    padding: 0 !important;
-  }
+
   .resetName>p{
     width: 95%;
     padding: 0.04rem 0.1rem;
@@ -60,6 +58,16 @@ export default {
     height:0.4rem;
     background-color: #008de1;
     color: #ffffff;
+    border: 0;
     border-radius: 0;
+  }
+  .changeBorderColor{
+    border: 0.01rem solid red;
+  }
+  .changeTextColor{
+    color: red;
+  }
+  .changeBtnColor{
+    color: darkgrey;
   }
 </style>
