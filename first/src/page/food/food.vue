@@ -20,135 +20,6 @@
           <i class="el-icon-caret-bottom" :class="{domeDropDownArrow:controlIf===3, domeFocusColor:controlIf===3}"></i>
         </div>
       </div>
-      <!--下拉内容-->
-      <!--<div class="dome-spinner">-->
-        <!--&lt;!&ndash;遮罩淡入淡出动画&ndash;&gt;-->
-        <!--<transition name="dome0">-->
-        <!--<div class="dome-shade" v-if="controlIf"></div>-->
-        <!--</transition>-->
-        <!--&lt;!&ndash;分类上,下拉动画&ndash;&gt;-->
-        <!--<transition name="dome1">-->
-        <!--&lt;!&ndash;分类排序&ndash;&gt;-->
-        <!--<div class="dome-classify" v-if="controlIf === 1">-->
-          <!--&lt;!&ndash;分类左&ndash;&gt;-->
-          <!--<div class="dome-classifyLeft">-->
-            <!--&lt;!&ndash;循环每行&ndash;&gt;-->
-            <!--<div v-for="(item, index) in classify" class="dome-classifyLeft-line" :class="{domeClassifyFocus:focus===index}" @click="focus = index">-->
-              <!--&lt;!&ndash;分类图片&ndash;&gt;-->
-              <!--<img class="dome-classifyLeft-img" :src="item.image_url.slice(-4).endsWith('png')===true?http+item.image_url+'.png':http+item.image_url+'.jpeg'" alt="">-->
-              <!--&lt;!&ndash;商家图标&ndash;&gt;-->
-              <!--<i class="iconfont dome-merchant" v-if="index === 7">&#xe69e;</i>-->
-              <!--&lt;!&ndash;名称&ndash;&gt;-->
-              <!--<span>{{item.name}}</span>-->
-              <!--&lt;!&ndash;箭头&ndash;&gt;-->
-              <!--<i class="dome-arrows iconfont right">&#xe634;</i>-->
-              <!--&lt;!&ndash;数量包&ndash;&gt;-->
-              <!--<div class="dome-classifyLeft-quantity-bag right">-->
-                <!--&lt;!&ndash;数量&ndash;&gt;-->
-                <!--<span class="dome-classifyLeft-quantity">-->
-                  <!--{{item.count}}-->
-                <!--</span>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--&lt;!&ndash;分类右&ndash;&gt;-->
-          <!--<div class="dome-classify-right">-->
-            <!--&lt;!&ndash;右侧循环每行&ndash;&gt;-->
-            <!--<div class="dome-classify-right-line right" v-for="(item, index) in downClassifyArr[focus]" v-if="index">-->
-              <!--&lt;!&ndash;左侧容器&ndash;&gt;-->
-              <!--<span class="dome-classify-right-line-span left">{{item.name}}</span>-->
-              <!--&lt;!&ndash;右侧容器&ndash;&gt;-->
-              <!--<span class="dome-classify-right-line-span right">{{item.count}}</span>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--</transition>-->
-        <!--&lt;!&ndash;排序方式上,下拉动画&ndash;&gt;-->
-        <!--<transition name="dome2">-->
-        <!--&lt;!&ndash;排序方式&ndash;&gt;-->
-        <!--<div class="dome-sort"  v-if="controlIf === 2">-->
-          <!--&lt;!&ndash;循环每行&ndash;&gt;-->
-          <!--<div class="dome-sort-line" v-for="(item, index) in iconArr">-->
-            <!--&lt;!&ndash;字体图标容器&ndash;&gt;-->
-            <!--<div class="dome-sort-icon-bag">-->
-              <!--&lt;!&ndash;字体图标&ndash;&gt;-->
-              <!--<i class="iconfont" :class="{domeIcon1: index === 0, domeIcon2: index === 1, domeIcon3: index === 2, domeIcon4: index === 3, domeIcon5: index === 4, domeIcon6: index === 5}" v-html="item[0]"></i>-->
-            <!--</div>-->
-            <!--&lt;!&ndash;方式容器&ndash;&gt;-->
-            <!--<div class="dome-sort-way">-->
-              <!--&lt;!&ndash;方式&ndash;&gt;-->
-              <!--<span>{{item[1]}}</span>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--</transition>-->
-        <!--&lt;!&ndash;筛选上,下拉动画&ndash;&gt;-->
-        <!--<transition name="dome3">-->
-        <!--&lt;!&ndash;筛选&ndash;&gt;-->
-        <!--<div class="dome-screen" v-if="controlIf === 3">-->
-          <!--&lt;!&ndash;筛选上部容器&ndash;&gt;-->
-          <!--<div class="dome-screen-top">-->
-            <!--&lt;!&ndash;配送方式&ndash;&gt;-->
-            <!--<div class="dome-screen-distribution">-->
-              <!--<p>配送方式</p>-->
-              <!--<p>-->
-                <!--&lt;!&ndash;蜂鸟字体图标&ndash;&gt;-->
-                <!--<i class="iconfont dome-screen-icon">&#xe631;</i>-->
-                <!--蜂鸟配送-->
-              <!--</p>-->
-            <!--</div>-->
-            <!--&lt;!&ndash;商家属性&ndash;&gt;-->
-            <!--<div class="dome-screen-property">-->
-              <!--<p>商家属性 (可以多选)</p>-->
-              <!--&lt;!&ndash;p容器&ndash;&gt;-->
-              <!--<div class="dome-screen-property-p">-->
-                <!--<p>-->
-                  <!--&lt;!&ndash;品牌商家字体图标&ndash;&gt;-->
-                  <!--<span class="dome-imitate dome-imitate-color1">品</span>-->
-                  <!--品牌商家-->
-                <!--</p>-->
-                <!--&lt;!&ndash;外卖保字体图标&ndash;&gt;-->
-                <!--<p>-->
-                  <!--<span class="dome-imitate dome-imitate-color2">保</span>-->
-                  <!--外卖保-->
-                <!--</p>-->
-                <!--&lt;!&ndash;准时达字体图标&ndash;&gt;-->
-                <!--<p>-->
-                  <!--<span class="dome-imitate dome-imitate-color3">准</span>-->
-                  <!--准时达-->
-                <!--</p>-->
-                <!--&lt;!&ndash;新店字体图标&ndash;&gt;-->
-                <!--<p>-->
-                  <!--<span class="dome-imitate dome-imitate-color4">新</span>-->
-                  <!--新店-->
-                <!--</p>-->
-                <!--&lt;!&ndash;在线支付字体图标&ndash;&gt;-->
-                <!--<p>-->
-                  <!--<span class="dome-imitate dome-imitate-color5">付</span>-->
-                  <!--在线支付-->
-                <!--</p>-->
-                <!--&lt;!&ndash;开发票字体图标&ndash;&gt;-->
-                <!--<p>-->
-                  <!--<span class="dome-imitate dome-imitate-color6">票</span>-->
-                  <!--开发票-->
-                <!--</p>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--&lt;!&ndash;筛选下部按钮容器&ndash;&gt;-->
-          <!--<div class="dome-screen-below">-->
-            <!--&lt;!&ndash;按钮容器左&ndash;&gt;-->
-            <!--<div class="dome-screen-but-left">-->
-              <!--<button class="btn btn-default">清空</button>-->
-            <!--</div>-->
-            <!--&lt;!&ndash;按钮容器右&ndash;&gt;-->
-            <!--<div class="dome-screen-but-right">-->
-              <!--<button class="btn btn-success">确定</button>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--</transition>-->
-      <!--</div>-->
     </div>
     <!--下拉内容-->
     <div class="dome-spinner">
@@ -205,7 +76,7 @@
               <i class="iconfont" :class="{domeIcon1: index === 0, domeIcon2: index === 1, domeIcon3: index === 2, domeIcon4: index === 3, domeIcon5: index === 4, domeIcon6: index === 5}" v-html="item[0]"></i>
             </div>
             <!--方式容器-->
-            <div class="dome-sort-way">
+            <div class="dome-sort-way" @click="goSort(index+1)">
               <!--方式-->
               <span>{{item[1]}}</span>
             </div>
@@ -284,6 +155,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 // 食品筛选排序页
 import Shoplist from "../../components/common/shoplist";
 export default {
@@ -305,7 +177,11 @@ export default {
       // 排序字体图标
       iconArr:[['&#xe66d;', '智能排序'], ['&#xe611;', '距离最近'], ['&#xe614;', '销量最高'], ['&#xe621;', '起送价最低'], ['&#xe62e;', '配送速度最快'], ['&#xe630;', '评分最高']],
       // 分类
-      classifyOne: ''
+      classifyOne: '',
+
+      dataList:[],
+
+      value:[]
     }
   },
   components: {Shoplist},
@@ -337,6 +213,33 @@ export default {
       if (this.controlIf === 1) {
         this.classifyOne = '分类'
       }
+    },
+    goSort (i) {
+      this.$http({
+        url:'https://elm.cangdu.org/shopping/restaurants',
+        type: 'get',
+        params: {
+          latitude: '31.22967',
+          longitude: '121.4762',
+          order_by: i
+        }
+      }).then(res => {
+        this.$store.state.jym.res = res
+        console.log(res)
+        this.dataList = res.data;
+        res.data.map((n)=>{
+          this.value.push(n.rating);
+           console.log(this.value);
+        })
+      })
+      Vue.axios.get('https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762',null).then((res) => {
+        this.dataList = res.data;
+        //  console.log(this.dataList);
+        res.data.map((n)=>{
+          this.value.push(n.rating);
+          //  console.log(this.value);
+        })
+      })
     }
   },
   computed:{
@@ -356,8 +259,10 @@ export default {
         this.downClassifyArr.push(i.sub_categories)
       }
       console.log('this.downClassifyArr',this.downClassifyArr)
+      console.log('this.$store.state.dome',this.$store.state.dome)
       this.downClassify = 2
       this.classifyOne = this.$store.state.dome.cate[0][this.$store.state.dome.cate[2]][this.$store.state.dome.cate[1]].title
+      console.log('this.classifyOne',this.classifyOne)
     })
   }
 }
@@ -681,5 +586,9 @@ export default {
 }
 .dome0-enter, .dome0-leave-to {
   background-color:  rgba(33,33,33,0);
+}
+.wrap {
+  position: absolute;
+  top: 1rem;
 }
 </style>

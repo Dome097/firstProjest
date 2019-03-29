@@ -52,7 +52,7 @@ export default {
           name: "profile"
         });
         this.$store.state.ghc.accountData = res.data
-        console.log('ghc',this.$store.state.ghc)
+        console.log('ghc',this.$store)
       });
       // Vue.axios.post('https://elm.cangdu.org/v2/login',{username: this.mindUsername,Password: this.mindPassword,captcha_code: this.mindCaptcha_code},{withCredentials:true}).then((res)=>{
       //   console.log('登录的返回值',res)
