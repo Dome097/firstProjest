@@ -17,7 +17,7 @@
   </div>
   <ul class="recordList" v-if="record">
     <li>搜索历史</li>
-    <li v-for = "(item ,key) in list" v-if = "!item.checked" class="records">{{item.title}}<i class="iconfont" @click="removeData(key)" >&#xe62a;</i></li>
+    <li v-for = "(item ,key) in list" v-if = "!item.checked" class="records" @click="searchInRecord(item.title)">{{item.title}}<i class="iconfont" @click="removeData(key)" >&#xe62a;</i></li>
     <li @click="clearAllRecord">清空搜索历史</li>
   </ul>
   <ul class="searchFail" v-if="noAnswer">
@@ -46,7 +46,9 @@ export default {
       record:true,
       input: '',
       // 存储历史记录
-      list:[]
+      list:[],
+      // 从store中获取当前城市信息
+      curCity:this.$store.state.currentCity
     }
   },
   methods: {
@@ -67,7 +69,12 @@ export default {
     clearAllRecord(){
 
     },
+    // 在记录中发起搜索
+    searchInRecord(i){
+      this.searchInfo(i)
+    },
     searchInfo(i){
+      console.log(this.curCity);
       this.input = i;
       console.log(i);
       // 调用添加历史记录的函数
@@ -91,32 +98,49 @@ export default {
       })
     },
     doAdd() {
+      // 判断输入框内容为空,禁用触发点击事件
+      if(this.input=''){
+
+      }
       // 将输入框的值去除空格
       this.input = this.input.trim();
       // 判断list中是否有数据
-      // if (this.list.length>0){//有数据
-      //   // 判断是否有重复
-      //   if(this.list.indexOf(this.input)!== -1){
-      //     // 删除原数组中重复的内容,再添加新的成员
-      //     this.list.splice(this.list.indexOf(this.input),1);
-      //     // 一定用unshift(),加在数组中的开头,历史记录显示的顺序是最近输入到以前输入
-      //     this.list.unshift(this.input)
-      //   }else{
-      //     // 如果没有重复,直接添加
-      //     this.list.unshift(this.input)
-      //   }
-      // }else{
-      //   // 如果没有数据,直接加入
-      //   this.list.unshift(this.input)
-      // }
-      // // 如果记录超过6条,删除最后一条
-      if(this.list.length>6){
+      if (this.list.length>0){//有数据
+        // 判断是否有重复
+        if(this.list.some(item => {if(item.title === this.input){return true}})){
+          // 删除原数组中重复的内容,再添加新的成员
+          console.log(this.list.some(item => {if(item.title === this.input){return true}}))
+          this.list.splice(this.list.item.title = this.input,1);
+          // 一定用unshift(),加在数组中的开头,历史记录显示的顺序是最近输入到以前输入
+          // this.list.unshift(this.input)
+          this.list.unshift({
+            title: this.input,
+            checked: false
+          });
+        }else{
+          // 如果没有重复,直接添加
+          // this.list.unshift(this.input)
+          this.list.unshift({
+            title: this.input,
+            checked: false
+          });
+        }
+      }else{
+        // 如果没有数据,直接加入
+        // this.list.unshift(this.input)
+        this.list.unshift({
+          title: this.input,
+          checked: false
+        });
+      }
+      // 如果记录超过6条,删除最后一条
+      if(this.list.length>7){
         this.list.pop()
       }
-      this.list.push({
-        title: this.input,
-        checked: false
-      });
+      // this.list.unshift({
+      //   title: this.input,
+      //   checked: false
+      // });
       console.log(this.list);
       this.storage.set("list", this.list)
     },

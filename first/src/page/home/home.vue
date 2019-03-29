@@ -1,13 +1,13 @@
 <template>
   <section class="city container-fluid" >
-    <nav class="nv navbar navbar-fixed-top">
-      <a href="###" class="pull-left">ele.me</a>
-      <div class="pull-right">
-        <span><a href="###">登录</a></span>
-        <span>|</span>
-        <span><a href="###">注册</a></span>
-      </div>
-    </nav>
+    <!--<nav class="nv navbar navbar-fixed-top">-->
+      <!--<a href="###" class="pull-left">ele.me</a>-->
+      <!--<div class="pull-right">-->
+        <!--<span><a href="###">登录</a></span>-->
+        <!--<span>|</span>-->
+        <!--<span><a href="###">注册</a></span>-->
+      <!--</div>-->
+    <!--</nav>-->
     <div class="content container-fluid" >
       <div class="selectCity row">
         <span class="col-xs-5" >当前定位城市:</span>
@@ -26,7 +26,7 @@
       <div class="hotCity container-fluid row" v-for="item in allCity" >
         <p>{{item.cityNum}}</p>
         <ul class="row">
-          <td v-for="i in item.city" class="col-xs-3 citys"><router-link :to="{name:'city'}">{{i.name}}</router-link></td>
+          <td v-for="i in item.city" class="col-xs-3 citys" @click="selectThis(i)"><router-link :to="{name:'city'}">{{i.name}}</router-link></td>
         </ul>
       </div>
     </div>
@@ -55,6 +55,11 @@ export default {
     sendCityNum(i){
       this.hot_cityNum = i
       console.log(this.hot_cityNum)
+    },
+    // 点击任意城市,获取这个城市的信息
+    selectThis(i){
+      console.log(i)
+      this.$store.commit('CITY',i)
     }
   },
   computed:{},
@@ -84,7 +89,13 @@ export default {
         const obj = {cityNum: arr[i], city: res.data[arr[i]]};
         this.allCity.push(obj);
       }
-      console.log()
+      // console.log(this.allCity)
+      // for (let item of this.allCity) {
+      //   console.log(item.city)
+      //   for (let i of item.city) {
+      //     console.log(i.id)
+      //   }
+      // }
     }).catch((error)=>{
       console.log(error)
     })
@@ -100,21 +111,21 @@ export default {
     padding: 0;
     background-color: #f5f5f5;
   }
-  .nv>a{
-    color: #fff;
-    text-decoration: none;
-  }
-  .pull-right>span>a{
-    color: #fff;
-    text-decoration: none;
-  }
-  .nv{
-    padding: 0.12rem;
-    color: white;
-    width: 100%;
-    height: 0.2rem;
-    background-color: blue;
-  }
+  /*.nv>a{*/
+    /*color: #fff;*/
+    /*text-decoration: none;*/
+  /*}*/
+  /*.pull-right>span>a{*/
+    /*color: #fff;*/
+    /*text-decoration: none;*/
+  /*}*/
+  /*.nv{*/
+    /*padding: 0.12rem;*/
+    /*color: white;*/
+    /*width: 100%;*/
+    /*height: 0.2rem;*/
+    /*background-color: blue;*/
+  /*}*/
   .content{
     width: 100%;
     font-size: smaller;
