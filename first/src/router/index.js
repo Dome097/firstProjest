@@ -355,6 +355,11 @@ export default new Router({
       component: shop,
       name: 'shop',
     },
+    {// 商家详情页 一级路由
+    path: '/foodDetail',
+    component: foodDetail,
+    name: 'foodDetail',
+    },
     { // 单个商铺信息页 一级路由
       path: '/shopDetail',
       component: shopDetail,
