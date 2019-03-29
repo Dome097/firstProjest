@@ -23,10 +23,15 @@ Vue.config.productionTip = false
 Vue.use(storage)
 const moduleG = {
   state:{
-// 搜索页历史记录
-    searchHistory:[{keys:''}]
+// 当前所选城市信息
+    currentCity:[]
   },
-  mutations: {},
+  mutations: {
+    // 接收
+    "CITY": function(state, currentCity) {
+      state.currentCity = currentCity
+    }
+  },
   actions: {}
 }
 const moduleJ = {
