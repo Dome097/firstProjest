@@ -225,11 +225,11 @@ export default {
         }
       }).then(res => {
         this.$store.state.jym.res = res
-        console.log(res)
+        // console.log(res)
         this.dataList = res.data;
         res.data.map((n)=>{
           this.value.push(n.rating);
-           console.log(this.value);
+           // console.log(this.value);
         })
       })
       Vue.axios.get('https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762',null).then((res) => {
