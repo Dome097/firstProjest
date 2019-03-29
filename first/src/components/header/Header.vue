@@ -38,13 +38,13 @@
           <span>/</span>
           <span>配送费¥5</span>
         </p>
-        <span class="pull-right" > > </span>
+        <i class="iconfont pull-right goFoodDetail" @click="toFoodDetail">&#xe634</i>
         <p>公告:欢迎光临,用餐高峰请提前下单,谢谢</p>
         <span class="pull-left leftSmallImg">
           <img src="../../assets/logo.png" alt="" style="width: 0.3rem">
           <span>满30减5,满60减8 (APP专享) </span>
         </span>
-        <span class="pull-right bottomContent">1个活动 > </span>
+        <i class="iconfont pull-right bottomContent">1个活动 &#xe634 </i>
       </div>
     </nav>
   </section >
@@ -67,6 +67,10 @@ export default {
     back(){
       this.$router.go(-1);
     },
+    toFoodDetail(){
+      console.log(11112345678)
+      this.$router.push({name:'foodDetail'});
+    }
   },
   watch:{
     $route(now,old){     //监控路由变换，控制返回按钮的显示
@@ -121,7 +125,7 @@ export default {
     bottom:0.1rem;
   }
   .introduce{
-    margin-left:1rem;
+    margin-left:0.06rem;
   }
   .fourModule{
     height: 1.5rem;
@@ -133,4 +137,14 @@ export default {
     position: absolute;
     left:0.05rem;
   }
+  .goFoodDetail{
+    position: absolute;
+    right:0.05rem;
+    z-index: 5;
+    margin-left: 0.2rem;
+    height: 0.4rem;
+    font-family: initial;
+    font-weight: bold;
+  }
+
 </style>

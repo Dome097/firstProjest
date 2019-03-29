@@ -30,8 +30,14 @@ const moduleG = {
   actions: {}
 }
 const moduleJ = {
-  state:{},
-  mutations: {},
+  state:{
+    res:[]
+  },
+  mutations: {
+    getRes(state, res){
+      state.res = res;
+    }
+  },
   actions: {}
 }
 const moduleD = {

@@ -63,13 +63,17 @@
             </span>
             <span class="onTime">{{item.time_spent_desc}}</span>
           </div>
-          <div v-for="(i,n) in item.item_ratings" class="imgDir">
+          <div v-for="(i,n) in item.item_ratings" class="imgDiv">
             <span class="imgF">
               <img v-if="i.image_hash" :src="i.image_hash.slice(-4).endsWith('png')===true?http+i.image_hash+'.png':http+i.image_hash+'.jpeg'
 ">
-              <span>{{i.food_name}}</span>
             </span>
           </div>
+          <span v-for="(m,f) in item.item_ratings" class="imgD">
+             <span class="imgDes">
+              <span>{{m.food_name}}</span>
+            </span>
+          </span>
         </div>
         <div class="rightBS pull-right">
           <span>{{item.rated_at}}</span>
@@ -188,7 +192,7 @@ export default {
   }
   .buttomStar{
     width: 100%;
-    height: 2rem;
+    height: 2.2rem;
     padding: 0.1rem;
     border-bottom: 0.01rem solid gray;
   }
@@ -205,6 +209,7 @@ export default {
     width: 65%;
     float: left;
     margin-left: 0.2rem;
+
   }
   .rightBS{
     width: 18%;
@@ -229,17 +234,20 @@ export default {
     position: absolute;
     top:0;
   }
+  .imgDiv{
+    width: 1.6rem;
+  }
   .imgF{
     float: left;
-    display: flex;
-    flex-wrap: wrap;
     width: 0.8rem;
-    table-layot:fixed;
   }
-  .imgF>span{
+  .imgD{
+    width: 1rem;
+  }
+  .imgDes{
     display: inline-block;
     border: 0.01rem solid gray;
-    width: 0.8rem;
+    width: 0.5rem;
     height: 0.3rem;
     text-align: center;
     line-height: 0.3rem;
@@ -248,8 +256,9 @@ export default {
     overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
     text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;*/
     margin-right: 0.2rem;
-    margin-top: 0.1rem;
     border-radius: 10%;
+    float: left;
+    clear: both;
   }
 </style>
 <style>
