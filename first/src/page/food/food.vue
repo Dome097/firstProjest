@@ -6,22 +6,158 @@
       <div class="dome-top">
         <!--头左部-->
         <div @click="clickSpinner(1)">
-          <span>{{this.$store.state.dome.cate[0][this.$store.state.dome.cate[2]][this.$store.state.dome.cate[1]].title}}</span>
-          <i class="el-icon-caret-bottom"></i>
+          <span :class="{domeFocusColor:controlIf===1}">{{classifyOne}}</span>
+          <i class="el-icon-caret-bottom" :class="{domeDropDownArrow:controlIf===1, domeFocusColor:controlIf===1}"></i>
         </div>
         <!--头中部-->
         <div @click="clickSpinner(2)">
-          <span>{{'排序'}}</span>
-          <i class="el-icon-caret-bottom"></i>
+          <span :class="{domeFocusColor:controlIf===2}">{{'排序'}}</span>
+          <i class="el-icon-caret-bottom" :class="{domeDropDownArrow:controlIf===2, domeFocusColor:controlIf===2}"></i>
         </div>
         <!--头右部-->
         <div @click="clickSpinner(3)">
-          <span>{{'筛选'}}</span>
-          <i class="el-icon-caret-bottom"></i>
+          <span :class="{domeFocusColor:controlIf===3}">{{'筛选'}}</span>
+          <i class="el-icon-caret-bottom" :class="{domeDropDownArrow:controlIf===3, domeFocusColor:controlIf===3}"></i>
         </div>
       </div>
       <!--下拉内容-->
-      <div class="dome-spinner">
+      <!--<div class="dome-spinner">-->
+        <!--&lt;!&ndash;遮罩淡入淡出动画&ndash;&gt;-->
+        <!--<transition name="dome0">-->
+        <!--<div class="dome-shade" v-if="controlIf"></div>-->
+        <!--</transition>-->
+        <!--&lt;!&ndash;分类上,下拉动画&ndash;&gt;-->
+        <!--<transition name="dome1">-->
+        <!--&lt;!&ndash;分类排序&ndash;&gt;-->
+        <!--<div class="dome-classify" v-if="controlIf === 1">-->
+          <!--&lt;!&ndash;分类左&ndash;&gt;-->
+          <!--<div class="dome-classifyLeft">-->
+            <!--&lt;!&ndash;循环每行&ndash;&gt;-->
+            <!--<div v-for="(item, index) in classify" class="dome-classifyLeft-line" :class="{domeClassifyFocus:focus===index}" @click="focus = index">-->
+              <!--&lt;!&ndash;分类图片&ndash;&gt;-->
+              <!--<img class="dome-classifyLeft-img" :src="item.image_url.slice(-4).endsWith('png')===true?http+item.image_url+'.png':http+item.image_url+'.jpeg'" alt="">-->
+              <!--&lt;!&ndash;商家图标&ndash;&gt;-->
+              <!--<i class="iconfont dome-merchant" v-if="index === 7">&#xe69e;</i>-->
+              <!--&lt;!&ndash;名称&ndash;&gt;-->
+              <!--<span>{{item.name}}</span>-->
+              <!--&lt;!&ndash;箭头&ndash;&gt;-->
+              <!--<i class="dome-arrows iconfont right">&#xe634;</i>-->
+              <!--&lt;!&ndash;数量包&ndash;&gt;-->
+              <!--<div class="dome-classifyLeft-quantity-bag right">-->
+                <!--&lt;!&ndash;数量&ndash;&gt;-->
+                <!--<span class="dome-classifyLeft-quantity">-->
+                  <!--{{item.count}}-->
+                <!--</span>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--&lt;!&ndash;分类右&ndash;&gt;-->
+          <!--<div class="dome-classify-right">-->
+            <!--&lt;!&ndash;右侧循环每行&ndash;&gt;-->
+            <!--<div class="dome-classify-right-line right" v-for="(item, index) in downClassifyArr[focus]" v-if="index">-->
+              <!--&lt;!&ndash;左侧容器&ndash;&gt;-->
+              <!--<span class="dome-classify-right-line-span left">{{item.name}}</span>-->
+              <!--&lt;!&ndash;右侧容器&ndash;&gt;-->
+              <!--<span class="dome-classify-right-line-span right">{{item.count}}</span>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--</transition>-->
+        <!--&lt;!&ndash;排序方式上,下拉动画&ndash;&gt;-->
+        <!--<transition name="dome2">-->
+        <!--&lt;!&ndash;排序方式&ndash;&gt;-->
+        <!--<div class="dome-sort"  v-if="controlIf === 2">-->
+          <!--&lt;!&ndash;循环每行&ndash;&gt;-->
+          <!--<div class="dome-sort-line" v-for="(item, index) in iconArr">-->
+            <!--&lt;!&ndash;字体图标容器&ndash;&gt;-->
+            <!--<div class="dome-sort-icon-bag">-->
+              <!--&lt;!&ndash;字体图标&ndash;&gt;-->
+              <!--<i class="iconfont" :class="{domeIcon1: index === 0, domeIcon2: index === 1, domeIcon3: index === 2, domeIcon4: index === 3, domeIcon5: index === 4, domeIcon6: index === 5}" v-html="item[0]"></i>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;方式容器&ndash;&gt;-->
+            <!--<div class="dome-sort-way">-->
+              <!--&lt;!&ndash;方式&ndash;&gt;-->
+              <!--<span>{{item[1]}}</span>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--</transition>-->
+        <!--&lt;!&ndash;筛选上,下拉动画&ndash;&gt;-->
+        <!--<transition name="dome3">-->
+        <!--&lt;!&ndash;筛选&ndash;&gt;-->
+        <!--<div class="dome-screen" v-if="controlIf === 3">-->
+          <!--&lt;!&ndash;筛选上部容器&ndash;&gt;-->
+          <!--<div class="dome-screen-top">-->
+            <!--&lt;!&ndash;配送方式&ndash;&gt;-->
+            <!--<div class="dome-screen-distribution">-->
+              <!--<p>配送方式</p>-->
+              <!--<p>-->
+                <!--&lt;!&ndash;蜂鸟字体图标&ndash;&gt;-->
+                <!--<i class="iconfont dome-screen-icon">&#xe631;</i>-->
+                <!--蜂鸟配送-->
+              <!--</p>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;商家属性&ndash;&gt;-->
+            <!--<div class="dome-screen-property">-->
+              <!--<p>商家属性 (可以多选)</p>-->
+              <!--&lt;!&ndash;p容器&ndash;&gt;-->
+              <!--<div class="dome-screen-property-p">-->
+                <!--<p>-->
+                  <!--&lt;!&ndash;品牌商家字体图标&ndash;&gt;-->
+                  <!--<span class="dome-imitate dome-imitate-color1">品</span>-->
+                  <!--品牌商家-->
+                <!--</p>-->
+                <!--&lt;!&ndash;外卖保字体图标&ndash;&gt;-->
+                <!--<p>-->
+                  <!--<span class="dome-imitate dome-imitate-color2">保</span>-->
+                  <!--外卖保-->
+                <!--</p>-->
+                <!--&lt;!&ndash;准时达字体图标&ndash;&gt;-->
+                <!--<p>-->
+                  <!--<span class="dome-imitate dome-imitate-color3">准</span>-->
+                  <!--准时达-->
+                <!--</p>-->
+                <!--&lt;!&ndash;新店字体图标&ndash;&gt;-->
+                <!--<p>-->
+                  <!--<span class="dome-imitate dome-imitate-color4">新</span>-->
+                  <!--新店-->
+                <!--</p>-->
+                <!--&lt;!&ndash;在线支付字体图标&ndash;&gt;-->
+                <!--<p>-->
+                  <!--<span class="dome-imitate dome-imitate-color5">付</span>-->
+                  <!--在线支付-->
+                <!--</p>-->
+                <!--&lt;!&ndash;开发票字体图标&ndash;&gt;-->
+                <!--<p>-->
+                  <!--<span class="dome-imitate dome-imitate-color6">票</span>-->
+                  <!--开发票-->
+                <!--</p>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--&lt;!&ndash;筛选下部按钮容器&ndash;&gt;-->
+          <!--<div class="dome-screen-below">-->
+            <!--&lt;!&ndash;按钮容器左&ndash;&gt;-->
+            <!--<div class="dome-screen-but-left">-->
+              <!--<button class="btn btn-default">清空</button>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;按钮容器右&ndash;&gt;-->
+            <!--<div class="dome-screen-but-right">-->
+              <!--<button class="btn btn-success">确定</button>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--</transition>-->
+      <!--</div>-->
+    </div>
+    <!--下拉内容-->
+    <div class="dome-spinner">
+      <!--遮罩淡入淡出动画-->
+      <transition name="dome0">
+        <div class="dome-shade" v-if="controlIf"></div>
+      </transition>
+      <!--分类上,下拉动画-->
+      <transition name="dome1">
         <!--分类排序-->
         <div class="dome-classify" v-if="controlIf === 1">
           <!--分类左-->
@@ -56,6 +192,9 @@
             </div>
           </div>
         </div>
+      </transition>
+      <!--排序方式上,下拉动画-->
+      <transition name="dome2">
         <!--排序方式-->
         <div class="dome-sort"  v-if="controlIf === 2">
           <!--循环每行-->
@@ -72,6 +211,9 @@
             </div>
           </div>
         </div>
+      </transition>
+      <!--筛选上,下拉动画-->
+      <transition name="dome3">
         <!--筛选-->
         <div class="dome-screen" v-if="controlIf === 3">
           <!--筛选上部容器-->
@@ -135,7 +277,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </transition>
     </div>
     <shoplist></shoplist>
   </section>
@@ -161,23 +303,40 @@ export default {
       // 控制下拉显隐
       controlIf:'',
       // 排序字体图标
-      iconArr:[['&#xe66d;', '智能排序'], ['&#xe611;', '距离最近'], ['&#xe614;', '销量最高'], ['&#xe621;', '起送价最低'], ['&#xe62e;', '配送速度最快'], ['&#xe630;', '评分最高']]
+      iconArr:[['&#xe66d;', '智能排序'], ['&#xe611;', '距离最近'], ['&#xe614;', '销量最高'], ['&#xe621;', '起送价最低'], ['&#xe62e;', '配送速度最快'], ['&#xe630;', '评分最高']],
+      // 分类
+      classifyOne: ''
     }
   },
   components: {Shoplist},
   methods: {
+    // 控制下拉框显隐
     clickSpinner (i) {
+      // 以显示的情况
       if (this.controlIf) {
         let contol = this.controlIf
         this.controlIf = !this.controlIf
-        console.log(!this.controlIf)
+        this.classifyOne = '分类'
+        // 本次点击时,以是下拉状态
         if (contol === i) {
+          this.classifyOne = this.$store.state.dome.cate[0][this.$store.state.dome.cate[2]][this.$store.state.dome.cate[1]].title
           return
         }
+        if (i === 1) {
+          this.classifyOne = '分类'
+          this.controlIf = i
+          return
+        }
+        this.classifyOne = this.$store.state.dome.cate[0][this.$store.state.dome.cate[2]][this.$store.state.dome.cate[1]].title
         this.controlIf = i
         return
       }
+      // 未显示的情况
       this.controlIf = i
+      // 是否改为分类
+      if (this.controlIf === 1) {
+        this.classifyOne = '分类'
+      }
     }
   },
   computed:{
@@ -198,17 +357,31 @@ export default {
       }
       console.log('this.downClassifyArr',this.downClassifyArr)
       this.downClassify = 2
+      this.classifyOne = this.$store.state.dome.cate[0][this.$store.state.dome.cate[2]][this.$store.state.dome.cate[1]].title
     })
   }
 }
 </script>
 
 <style scoped>
+/*向上的箭头*/
+.domeDropDownArrow {
+  transform: rotate(180deg);
+  transition: transform 1s;
+}
+/*点击时的颜色*/
+.domeFocusColor {
+  color: blue;
+}
+/*箭头默认*/
+.el-icon-caret-bottom {
+  transition: transform 1s;
+}
 /*下拉整体容器*/
 .dome-food {
   position: fixed;
   width: 100%;
-  z-index: 2;
+  z-index: 222;
 }
 /*头部容器*/
 .dome-top {
@@ -217,22 +390,26 @@ export default {
   padding-top: 0.2rem;
   background-color: white;
   border-bottom: #e4e4e4 solid 0.01rem;
-  z-index: 3;
+  background-color: white;
+  z-index: 333;
 }
 .dome-top>div {
   width:30%;
   text-align: center;
   margin: 0 auto 0.1rem ;
-  z-index: 4;
+  background-color: white;
+  z-index: 444;
 }
 .dome-top>div:nth-child(-n+2) {
   border-right: #e4e4e4 solid 0.01rem;
 }
 /*下拉列表*/
 .dome-spinner {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
+  top: 0.9rem;
+  z-index: 3;
   /*background-color: rgba(22,22,22,0.1)*/
 }
 /*分类容器*/
@@ -243,6 +420,7 @@ export default {
   height: 4.5rem;
   display: flex;
   z-index: 4;
+  top: 0;
   /*background-color: rgba(22,22,22,0.1);*/
 }
 /*分类左侧*/
@@ -315,6 +493,7 @@ export default {
   height: 3rem;
   background-color: white;
   z-index: 4;
+  top:0;
 }
 /*排序循环每行*/
 .dome-sort-line {
@@ -336,6 +515,7 @@ export default {
   height: 0.5rem;
   line-height: 0.5rem;
   border-bottom: #a4a4a4 solid 0.01rem;
+  top:0
 }
 /*字体图标颜色*/
 .domeIcon1 {
@@ -363,6 +543,7 @@ export default {
   height: 2.5rem;
   background-color: #a4a4a4;
   z-index: 4;
+  top: 0;
 }
 /*筛选上部容器*/
 .dome-screen-top {
@@ -477,5 +658,28 @@ export default {
 /*按钮*/
 .dome-screen-below button {
   width: 90%;
+}
+/*下部遮罩*/
+.dome-shade {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 2;
+  background-color: rgba(33,33,33,0.5);
+}
+/*下拉上拉动画*/
+.dome1-enter-active, .dome1-leave-active, .dome2-enter-active, .dome2-leave-active, .dome3-enter-active, .dome3-leave-active {
+  transition: top 1s;
+}
+.dome1-enter, .dome1-leave-to,.dome2-enter, .dome2-leave-to,.dome3-enter, .dome3-leave-to/* .fade-leave-active below version 2.1.8 */ {
+  top: -5rem;
+}
+/*遮罩淡入淡出动画*/
+.dome0-enter-active, .dome0-leave-active {
+  transition: background-color 1s;
+
+}
+.dome0-enter, .dome0-leave-to {
+  background-color:  rgba(33,33,33,0);
 }
 </style>
