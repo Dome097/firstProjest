@@ -99,40 +99,39 @@ export default {
     },
     doAdd() {
       // 判断输入框内容为空,禁用触发点击事件
-      if(this.input=''){
 
-      }
-      // 将输入框的值去除空格
-      this.input = this.input.trim();
-      // 判断list中是否有数据
-      if (this.list.length>0){//有数据
-        // 判断是否有重复
-        if(this.list.some(item => {if(item.title === this.input){return true}})){
-          // 删除原数组中重复的内容,再添加新的成员
-          console.log(this.list.some(item => {if(item.title === this.input){return true}}))
-          this.list.splice(this.list.item.title = this.input,1);
-          // 一定用unshift(),加在数组中的开头,历史记录显示的顺序是最近输入到以前输入
-          // this.list.unshift(this.input)
-          this.list.unshift({
-            title: this.input,
-            checked: false
-          });
+        // 将输入框的值去除空格
+        this.input = this.input.trim();
+        // 判断list中是否有数据
+        if (this.list.length>0){//有数据
+          // 判断是否有重复
+          if(this.list.some(item => {if(item.title === this.input){return true}})){
+            // 删除原数组中重复的内容,再添加新的成员
+            console.log(this.list.some(item => {if(item.title === this.input){return true}}))
+            this.list.splice(this.list.item.title = this.input,1);
+            // 一定用unshift(),加在数组中的开头,历史记录显示的顺序是最近输入到以前输入
+            // this.list.unshift(this.input)
+            this.list.unshift({
+              title: this.input,
+              checked: false
+            });
+          }else{
+            // 如果没有重复,直接添加
+            // this.list.unshift(this.input)
+            this.list.unshift({
+              title: this.input,
+              checked: false
+            });
+          }
         }else{
-          // 如果没有重复,直接添加
+          // 如果没有数据,直接加入
           // this.list.unshift(this.input)
           this.list.unshift({
             title: this.input,
             checked: false
           });
         }
-      }else{
-        // 如果没有数据,直接加入
-        // this.list.unshift(this.input)
-        this.list.unshift({
-          title: this.input,
-          checked: false
-        });
-      }
+
       // 如果记录超过6条,删除最后一条
       if(this.list.length>7){
         this.list.pop()
@@ -181,6 +180,9 @@ export default {
   .el-input{
     width: 2.7rem;
     float: left;
+  }
+  .el-input__inner{
+    outline-style: none;
   }
   .el-row{
     width: 0.8rem;

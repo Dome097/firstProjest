@@ -1,11 +1,11 @@
 <template>
   <section class="container-fluid resetName">
     <div>
-      <el-input placeholder="输入用户名" @focus="inputInfo" :class="{changeColor:isChange}"></el-input>
+      <input placeholder="输入用户名" @focus="inputInfo" v-model="isValue" :class="{changeColor:isChange} "></input>
     </div>
     <p :class="{changeTextColor:isChange}">用户名只能修改一次(5-24字符之间)</p>
     <div class="btn">
-      <button :class="{changeBtnColor:isChange}">确认修改</button>
+      <button :class="{changeBtnColor:isChange}" @click="resetThat">确认修改</button>
     </div>
   </section>
 </template>
@@ -16,13 +16,17 @@ export default {
   name: "setusername",
   data(){
     return{
-      isChange:false
+      isChange:false,
+      isValue:""
     }
   },
   methods:{
     // 输入框状态改变时,修改input的边框颜色,p标签颜色
     inputInfo(){
       this.isChange = true
+    },
+    resetThat(){
+      this.$router.push({name:'info',query:{name:this.isValue}})
     }
   }
 }
@@ -37,10 +41,14 @@ export default {
   .resetName>div{
     text-align: center;
   }
-  .el-input{
+  input{
     width: 95%;
     height:0.4rem;
     margin-top: 0.1rem;
+    border: 0.01rem solid #e4e4e4;
+    border-radius: 0.04rem;
+    padding-left: 0.1rem;
+    outline-style: none;
   }
 
   .resetName>p{

@@ -1,8 +1,10 @@
 <template>
   <section class="container-fluid AccountInfo">
     <div class="content">
-      <router-link :to="{}"><span>头像</span><span>{{'头像'}}<i class="iconfont">&#xe634;</i></span></router-link>
-      <router-link :to="{name:'setusername'}"><span>用户名</span><span>{{'name'}}<i class="iconfont">&#xe634;</i></span></router-link>
+      <div><span>头像</span><i class="iconfont">&#xe634;</i><img src="../../../assets/logo.png" alt="图片无法显示!">
+        <input type="file"/>
+      </div>
+      <router-link :to="{name:'setusername'}"><span>用户名</span><span>{{getName}}<i class="iconfont">&#xe634;</i></span></router-link>
       <router-link :to="{name:'myaddress'}"><span>收货地址</span><i class="iconfont">&#xe634;</i></router-link>
       <p>账号绑定</p>
       <router-link :to="{}" @click.native="remindSet"><span><i class="iconfont">&#xe633;</i></span>手机<i class="iconfont">&#xe634;</i></router-link>
@@ -13,26 +15,26 @@
       <el-button class="btn" @click="remindClose">退出登录</el-button>
     </div>
     <!--提示在APP上设置-->
-    <mt-popup
-      v-model="popupVisible1"
-      popup-transition="popup-fade" :modal = false>
+    <div
+      v-if="popupVisible1"
+      class="animated heartBeat alertBox1">
       <div class="remindSet">
         <i class="iconfont">&#xe632;</i>
         <p>请在手机APP中设置</p>
         <button @click="sureSet">确认</button>
       </div>
-    </mt-popup>
+    </div>
     <!--确认是否退出登录-->
-    <mt-popup
-      v-model="popupVisible2"
-      popup-transition="popup-fade" :modal = false>
+    <div
+      v-if="popupVisible2"
+      class="animated heartBeat alertBox2" >
       <div class="remindClose">
         <i class="iconfont">&#xe632;</i>
-        <p>请在手机APP中设置</p>
+        <p>是否退出登录</p>
         <button @click="waiting">再等等</button>
         <button @click="closeIt">退出登录</button>
       </div>
-    </mt-popup>
+    </div>
   </section>
 </template>
 
@@ -47,35 +49,53 @@ export default {
   data(){
     return{
       popupVisible1:false,
-      popupVisible2:false
+      popupVisible2:false,
+      // 接收修改后的用户名
+      getName:this.$route.query.name,
+      // 动态图片地址
+      pics:'../../../assets/logo.png',
+
     }
   },
   methods:{
     remindSet(){
+      // 点击提醒绑定手机时,使弹框显示
       this.popupVisible1 = true
     },
     remindClose(){
+      // 点击退出登录按钮时,使弹框显示
       this.popupVisible2 = true
     },
     sureSet(){
+      // 点击弹框上的确认按钮,使该弹框消失
       this.popupVisible1 = false
     },
     waiting(){
+      // 点击弹框上的等等按钮,使该弹框消失
       this.popupVisible2 = false
     },
     closeIt(){
-      this.popupVisible2 = false
+      // 点击弹框上的退出按钮,使该弹框消失
+      this.popupVisible2 = false;
       // 退出登录,并回到个人中心
-    }
-  }
-}
+      this.$router.push({name:'mind'});
+      // 退出登录,发起请求
+      Vue.axios.get('https://elm.cangdu.org/v2/signout',null).then(res => {
+        console.log(res.data);
+      }).catch((error) => {
+        console.log(error)
+      })
+    },
+  },
+ }
 </script>
 
 <style scoped>
-.AccountInfo{
+  .AccountInfo{
   width: 100%;
   height: 100%;
   padding: 0;
+  position: relative;
 }
 .content>a,p{
   width: 100%;
@@ -89,6 +109,17 @@ export default {
   display: inline-block;
   color: #000;
 }
+.content>div{
+  display: inline-block;
+  width: 100%;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  background-color: white;
+  border-top: 0.01rem solid #e4e4e4;
+  padding: 0 0.1rem;
+  clear: both;
+  color: #000;
+}
 .content>p{
   height: 0.3rem;
   line-height: 0.3rem;
@@ -99,6 +130,29 @@ export default {
 }
 .content>a>span+span{
   float: right;
+}
+.content>div:nth-child(1){
+  position: relative;
+}
+.content>div:nth-child(1)>i{
+  float: right;
+}
+.content>div:nth-child(1)>input{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1000;
+  margin: 0;
+  left: 0;
+  top: 0;
+}
+.content>div:nth-child(1)>img{
+  float: right;
+  width: 0.6rem;
+  margin: 0.1rem;
+  border-radius: 0.6rem;
+  background-color: #008de1;
 }
 .content>a:nth-child(3)>i{
   float: right;
@@ -140,23 +194,38 @@ export default {
   background-color: red;
   border-radius: 0.04rem;
 }
-.mint-popup{
-  width: 80%;
+.alertBox1,.alertBox2{
+  position: fixed;
+  left: 15%;
+  top: 20%;
+  width: 70%;
   height: 2rem;
   border-radius: 0.1rem;
+  background-color: white;
 }
-.remindSet{
+.alertBox2{
+  height: 2.4rem;
+  text-align: center;
+}
+.remindSet, .remindClose{
   text-align: center;
   position: relative;
   height: 2rem;
-  overflow: hidden;
 }
   .remindSet>i{
     font-size: 0.8rem;
-    color: gold;
+    color: orange;
+  }
+  .remindClose>i{
+    font-size: 1rem;
+    color: orange;
   }
 .remindSet>p{
   border: 0;
+}
+.remindClose>p{
+  border: 0;
+  font-size: 0.2rem;
 }
 .remindSet>button{
   width: 100%;
@@ -170,9 +239,18 @@ export default {
   left: 0;
   bottom: 0;
   border-radius:0 0 0.1rem 0.1rem ;
-
 }
-  .remindClose{
-
+  .remindClose>button{
+    width: 30%;
+    height: 0.4rem;
+    border: none;
+    padding: 0;
+    background-color: silver;
+    color: white;
+    border-radius: 0.06rem;
+    margin:0 0.1rem ;
   }
+.remindClose>button+button{
+  background-color: red;
+}
 </style>

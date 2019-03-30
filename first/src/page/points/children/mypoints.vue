@@ -7,8 +7,18 @@
 "></i>积分说明</router-link>
         <p><span>0</span>分</p>
         <el-row>
-          <el-button type="danger">积分兑换商品</el-button>
+          <el-button type="danger" class="btn" @click="convert">积分兑换商品</el-button>
         </el-row>
+      </div>
+    </div>
+    <!--提示在APP上设置-->
+    <div
+      v-if="popupVisible1"
+      :modal = false class="animated heartBeat alertBox1">
+      <div class="remindSet">
+        <i class="iconfont">&#xe632;</i>
+        <p>快去下单赚取大量积分吧</p>
+        <button @click="sureSet">确认</button>
       </div>
     </div>
     <div class="content">
@@ -23,9 +33,22 @@
 </template>
 
 <script>
-    export default {
-        name: "mypoints"
+  export default {
+    name: "mypoints",
+    data(){
+      return{
+        popupVisible1:false
+      }
+    },
+    methods:{
+      convert(){
+        this.popupVisible1 = true
+      },
+      sureSet(){
+        this.popupVisible1 = false
+      }
     }
+  }
 </script>
 
 <style scoped>
@@ -72,6 +95,9 @@
   }
   .el-row>button{
     width: 3.4rem;
+    background-color: orangered;
+    height: 0.4rem;
+    color: white;
   }
   .defaultShow{
     text-align: center;
@@ -86,5 +112,39 @@
   .defaultShow>p:nth-child(4){
     font-size: 0.12rem;
     color: #b2b2b2;
+  }
+  .alertBox1{
+    position: fixed;
+    left: 15%;
+    top: 20%;
+    width: 70%;
+    height: 2rem;
+    border-radius: 0.1rem;
+    background-color: white;
+  }
+  .remindSet{
+    text-align: center;
+    position: relative;
+    height: 2rem;
+  }
+  .remindSet>i{
+    font-size: 0.8rem;
+    color: orange;
+  }
+  .remindSet>p{
+    border: 0;
+  }
+  .remindSet>button{
+    width: 100%;
+    height: 0.4rem;
+    border: 0;
+    margin-bottom: 0;
+    padding: 0;
+    background-color: limegreen;
+    color: white;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-radius:0 0 0.1rem 0.1rem ;
   }
 </style>
