@@ -71,7 +71,7 @@ import info from '../page/profile/children/info'
 // 重置用户名
 import setusername from '../page/profile/children/setusername'
 // 地址
-import address from '../page/profile/children/children/address'
+import myaddress from '../page/profile/children/children/myaddress'
 // 新增地址
 import add from '../page/profile/children/children/children/add'
 // 搜索地址
@@ -315,9 +315,9 @@ export default new Router({
           name: 'setusername'
         },
         { // 地址
-          path: 'address',
-          component: address,
-          name: 'address',
+          path: 'myaddress',
+          component: myaddress,
+          name: 'myaddress',
           children: [ // 三级路由
             { // 新增地址
               path: 'add',
