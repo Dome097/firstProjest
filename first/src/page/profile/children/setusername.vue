@@ -1,7 +1,7 @@
 <template>
   <section class="container-fluid resetName">
     <div>
-      <el-input placeholder="输入用户名" @change="inputInfo" :class="{changeColor:isChange}"></el-input>
+      <el-input placeholder="输入用户名" @focus="inputInfo" :class="{changeColor:isChange}"></el-input>
     </div>
     <p :class="{changeTextColor:isChange}">用户名只能修改一次(5-24字符之间)</p>
     <div class="btn">

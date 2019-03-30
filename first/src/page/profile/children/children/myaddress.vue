@@ -1,5 +1,5 @@
 <template>
-  <section class="container-fluid address">
+  <section class="container-fluid ads">
     <router-link :to="{name:'add'}"><span>新增地址</span><i class="iconfont">&#xe634;</i></router-link>
   </section>
 </template>
@@ -7,17 +7,17 @@
 <script>
 // 地址
 export default {
-  name: "address"
+  name: "myaddress"
 }
 </script>
 
 <style scoped>
-.address{
+.ads{
   width: 100%;
   height: 100%;
   padding: 0;
 }
-.address>a{
+.ads>a{
   height: 0.4rem;
   width: 100%;
   line-height: 0.4rem;
@@ -29,11 +29,11 @@ export default {
   text-decoration: none;
   display: inline-block;
 }
-.address>a>span{
+.ads>a>span{
   float: left;
   color: #000;
 }
-.address>a>i{
+.ads>a>i{
   float: right;
   color: #a4a4a4;
 }
