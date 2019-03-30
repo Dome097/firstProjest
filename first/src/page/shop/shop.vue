@@ -11,8 +11,10 @@
       </div>
     </div>
     <div class="content">
-      <div class="leftScroll"></div>
-      <div class="rightScroll">
+      <div class="leftScroll" v-if="pStyle">
+        <shop-detail></shop-detail>
+      </div>
+      <div class="rightScroll" v-if="!pStyle">
         <rating-star></rating-star>
       </div>
     </div>
@@ -22,9 +24,11 @@
 <script>
 // 商品筛选页
 import RatingStar from "../../components/common/ratingStar";
+import ShopDetail from "./children/shopDetail";
+
 export default {
   name: "shop",
-  components: {RatingStar},
+  components: {ShopDetail, RatingStar},
   data(){
     return {
       pStyle:true
