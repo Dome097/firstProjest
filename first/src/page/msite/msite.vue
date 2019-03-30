@@ -2,7 +2,7 @@
   <section>
     <mt-swipe class="box">
         <mt-swipe-item  v-for="(item, pardon) in dataArr" :key="item.id" class="wrap">
-          <div v-for="(i ,index) in item " class="lunbotu" @click="toFood(index,pardon)">
+          <div v-for="(i ,index) in item " class="lunbotu" @click="toFood(i)">
             <img :src="'https://fuss10.elemecdn.com'+i.image_url" alt="">
             <p>{{i.title}}</p>
           </div>
@@ -25,10 +25,10 @@
   export default {
     name: "msite",
     methods:{
-      toFood(index,pardon){
+      toFood(i){
+        console.log('i',i)
+        this.$store.commit({type: 'goMsite',name: i.title})
         this.$router.push({name:'food'})
-        this.$store.state.dome.cate = [this.dataArr,index,pardon]
-        console.log(index);
       }
     },
     components: {

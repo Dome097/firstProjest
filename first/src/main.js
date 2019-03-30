@@ -47,10 +47,43 @@ const moduleJ = {
 }
 const moduleD = {
   state:{
-    a:'准时达',
-    cate:''
+    // msite向food传值
+    foodTitle: '',
+    // 请求到的数组
+    dataList: [],
+    // 请求到的评星
+    value1: [],
+    // 纬度
+    latitude: '31.22967',
+    // 经度
+    longitude: '121.4762',
+    // 请求数据的数量，默认20
+    limit: 0,
+    // 排序方式id： 1：起送价、2：配送速度、3:评分、4: 智能排序(默认)、5:距离最近、6:销量最高
+    order_by: 0,
+    // 配送方式id
+    delivery_mode: [],
+    // 餐馆支持特权的id
+    support_ids: [],
+    // 餐馆分类id
+    restaurant_category_ids: []
   },
-  mutations: {},
+  mutations: {
+    // 给food的title赋值
+    goMsite (state, title) {
+      state.foodTitle = title.name
+    },
+    // 请求商铺
+    getShop (state, payload) {
+      state.restaurant_category_ids = payload.restaurant_category_ids
+      Vue.axios.get(`https://elm.cangdu.org/shopping/restaurants?latitude=${state.latitude}&longitude=${state.longitude}&limit=${state.limit?state.limit:''}&order_by=${state.order_by?state.order_by:''}&delivery_mode[]=${state.delivery_mode}&support_ids[]=${state.support_ids}&restaurant_category_ids[]=${state.restaurant_category_ids}`,null).then((res) => {
+        state.dataList = res.data;
+        res.data.map((n)=>{
+          state.value1.push(n.rating);
+        })
+      });
+    }
+  },
   actions: {}
 }
 const store = new VueX.Store({
