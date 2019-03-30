@@ -14,7 +14,6 @@ import storage from './config/storage'
 import '../node_modules/element-ui/lib/theme-chalk/index.css'
 import animate from 'animate.css'
 
-
 Vue.use(VueAxios, axios)
 Vue.use(VueX)
 Vue.use(MintUI)
@@ -72,6 +71,7 @@ const moduleD = {
     singleStore: {}
   },
   mutations: {
+
     // 单个商铺信息对象赋值
     getSingleStore (state, payload) {
       state.singleStore = payload.data
@@ -85,20 +85,37 @@ const moduleD = {
       // 纬度
       if (payload.latitude) {
         state.latitude = payload.latitude
+        console.log('传来了纬度')
       }
       // 经度
       if (payload.longitude) {
         state.longitude = payload.longitude
+        console.log('传来了经度')
       }
-      // 
+      // 请求数据的数量，默认20
       if (payload.limit) {
         state.limit = payload.limit
+        console.log('传来了请求数据的数量')
       }
+      // 排序方式id： 1：起送价、2：配送速度、3:评分、4: 智能排序(默认)、5:距离最近、6:销量最高
+      if (payload.order_by) {
+        state.order_by = payload.order_by
+        console.log('传来了排序方式id')
+      }
+      // 配送方式id
+      if (payload.delivery_mode) {
+        state.delivery_mode = payload.delivery_mode
+        console.log('传来了配送方式id')
+      }
+      // 餐馆支持特权的id
+      if (payload.support_ids) {
+        state.support_ids = payload.support_ids
+        console.log('传来了餐馆支持特权的id')
+      }
+       // 餐馆分类id
       if (payload.restaurant_category_ids) {
         state.restaurant_category_ids = payload.restaurant_category_ids
-      }
-      if (payload.restaurant_category_ids) {
-
+        console.log('产来了餐馆分类的id')
       }
       Vue.axios.get(`https://elm.cangdu.org/shopping/restaurants?latitude=${state.latitude}&longitude=${state.longitude}&limit=${state.limit?state.limit:''}&order_by=${state.order_by?state.order_by:''}&delivery_mode[]=${state.delivery_mode}&support_ids[]=${state.support_ids}&restaurant_category_ids[]=${state.restaurant_category_ids}`,null).then((res) => {
         state.dataList = res.data;

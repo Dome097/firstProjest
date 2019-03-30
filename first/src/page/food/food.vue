@@ -224,6 +224,19 @@ export default {
   },
   components: {Shoplist},
   methods: {
+    // 排序函数 (公用代码,可写在外部)
+     domeUseSort (latitude, longitude, limit, order_by, delivery_mode, support_ids, restaurant_category_ids){
+      this.$store.commit({
+        type:'getShop',
+        latitude:latitude, // 纬度
+        longitude:longitude, // 经度
+        limit:limit, // 请求数据的数量，默认20
+        order_by:order_by, // 排序方式id
+        delivery_mode:delivery_mode, // 配送方式id
+        support_ids:support_ids, // 餐馆支持特权的id
+        restaurant_category_ids:restaurant_category_ids // 餐馆分类id
+      })
+    },
     // 控制下拉框显隐
     clickSpinner (i) {
       // 以显示的情况
@@ -254,20 +267,7 @@ export default {
     },
     goSort (i) {
       this.sortFocus = i-1
-      this.$store.commit({type:'getShop', order_by:i})
-      this.$http({
-        url:'https://elm.cangdu.org/shopping/restaurants',
-        type: 'get',
-        params: {
-          latitude: '31.22967',
-          longitude: '121.4762',
-          order_by: i
-        }
-      }).then(res => {
-        this.$store.commit('getRes',res.data)
-        console.log(this.$store.state.jym.res)
-        this.controlIf = false
-      })
+      this.domeUseSort(0, '', false, i)
     },
     //  餐馆分类请求
     classifyReq (arr,item, index) {
@@ -276,7 +276,8 @@ export default {
       this.classifyFocus = index
       this.classifyOne = item.name
       // 调用计算属性 操作vuex
-      this.$store.commit({type: 'getShop',restaurant_category_ids:item.id})
+      this.domeUseSort('', '', '', '', '', '', item.id)
+      // this.$store.commit({type: 'getShop',restaurant_category_ids:item.id})
     },
     // 清空按钮
     screenEmpty () {
@@ -312,6 +313,10 @@ export default {
     getFoodTilie () {
       return this.$store.state.dome.foodTitle
     },
+    // 排序请求
+    domeSort () {
+      return this.$store.state.dome.order_by
+    }
   },
   watch: {
     getFoodTilie: {
@@ -331,9 +336,19 @@ export default {
       },
       immediate:true,
       deep:true
+    },
+    // 排序
+    domeSort: {
+      handler() {
+        this.$store.commit('getRes',this.$store.state.dome.dataList)
+        this.controlIf = false
+      },
+      immediate:true,
+      deep:true
     }
   },
   mounted () {
+    console.log('this',this)
   },
   created () {
     // 请求所有商铺分类列表
