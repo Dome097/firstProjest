@@ -88,8 +88,9 @@ export default {
   },
   methods:{
     toShop(item){
-      // this.$router.push({name:'shop'})
+      this.$router.push({name:'shop'})
       console.log('item', item)
+      this.$store.commit({type:'getSingleStore',data:item})
     }
   }
 }

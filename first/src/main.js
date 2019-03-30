@@ -66,9 +66,15 @@ const moduleD = {
     // 餐馆支持特权的id
     support_ids: [],
     // 餐馆分类id
-    restaurant_category_ids: []
+    restaurant_category_ids: [],
+    // 单个商铺信息对象
+    singleStore: {}
   },
   mutations: {
+    // 单个商铺信息对象赋值
+    getSingleStore (state, payload) {
+      state.singleStore = payload.data
+    },
     // 给food的title赋值
     goMsite (state, title) {
       state.foodTitle = title.name

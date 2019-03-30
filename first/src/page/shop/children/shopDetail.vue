@@ -52,20 +52,19 @@ export default {
   },
   computed:{
    goods () {
-       return this.$store.state.msg.goods
+       return this.$store.state.dome.singleStore
     }
   },
-  // watch:{
-  //   show(){
-  //     if(this.show){
-  //       setTimeout(()=>{
-  //         new Better(this.$refs.detail,{
-  //           click:true
-  //         })
-  //       })
-  //     }
-  //   }
-  // },
+  watch:{
+    goods: {
+      handler(){
+        console.log('this.$store.state.dome.singleStore',this.$store.state.dome.singleStore)
+      },
+      //是否在页面刷新时调用回调函数,默认值是false
+      immediate:true,
+      deep:true
+    }
+  },
   // methods:{
   //   change(index){
   //     this.flag = false
