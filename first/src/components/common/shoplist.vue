@@ -1,6 +1,6 @@
 <template>
-  <div class="wrap" @click="toShop">
-    <div class="box" v-for="(item,index) in dataList">
+  <div class="wrap">
+    <div class="box" v-for="(item,index) in dataList" @click="toShop(item)">
       <div class="leftImg pull-left">
         <img :src="'https://elm.cangdu.org/img/'+item.image_path" alt="">
       </div>
@@ -57,7 +57,7 @@ export default {
   mounted(){
     Vue.axios.get('https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762',null).then((res) => {
       this.dataList = res.data;
-    //  console.log(this.dataList);
+      console.log(this.dataList);
       res.data.map((n)=>{
         this.value.push(n.rating);
       //  console.log(this.value);
@@ -87,8 +87,10 @@ export default {
     },
   },
   methods:{
-    toShop(){
+    toShop(item){
       this.$router.push({name:'shop'})
+      console.log('item', item)
+      this.$store.commit({type:'getSingleStore',data:item})
     }
   }
 }

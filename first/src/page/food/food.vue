@@ -55,7 +55,7 @@
           <!--分类右-->
           <div class="dome-classify-right">
             <!--右侧循环每行-->
-            <div class="dome-classify-right-line right" v-for="(item, index) in downClassifyArr[focus]" v-if="index">
+            <div class="dome-classify-right-line right" v-for="(item, index) in downClassifyArr[focus]" :class="{domeFocusColor:classifyFocus === index && classifyLeft === focus}" v-if="index" @click="classifyReq(downClassifyArr[focus],item, index)">
               <!--左侧容器-->
               <span class="dome-classify-right-line-span left">{{item.name}}</span>
               <!--右侧容器-->
@@ -67,7 +67,7 @@
       <!--排序方式上,下拉动画-->
       <transition name="dome2">
         <!--排序方式-->
-        <div class="dome-sort"  v-if="controlIf === 2">
+        <div class="dome-sort" v-if="controlIf === 2">
           <!--循环每行-->
           <div class="dome-sort-line" v-for="(item, index) in iconArr">
             <!--字体图标容器-->
@@ -78,7 +78,12 @@
             <!--方式容器-->
             <div class="dome-sort-way" @click="goSort(index+1)">
               <!--方式-->
-              <span>{{item[1]}}</span>
+              <span :class="{domeIcon1:sortFocus===index}" >{{item[1]}}</span>
+            </div>
+            <!--选中对号-->
+            <div class="dome-sort-true" v-if="sortFocus===index">
+              <!--对号-->
+              <i class="iconfont">&#xe604;</i>
             </div>
           </div>
         </div>
@@ -92,9 +97,11 @@
             <!--配送方式-->
             <div class="dome-screen-distribution">
               <p>配送方式</p>
-              <p>
+              <p @click="screenHummingbird?screenAmount++:screenAmount--;screenHummingbird = !screenHummingbird">
                 <!--蜂鸟字体图标-->
-                <i class="iconfont dome-screen-icon">&#xe631;</i>
+                <i class="iconfont dome-screen-icon" v-if="screenHummingbird">&#xe631;</i>
+                <!--蜂鸟字体图标选中时变为对号-->
+                <i v-if="!screenHummingbird" class="iconfont dome-screen-icon">&#xe604;</i>
                 蜂鸟配送
               </p>
             </div>
@@ -103,34 +110,46 @@
               <p>商家属性 (可以多选)</p>
               <!--p容器-->
               <div class="dome-screen-property-p">
-                <p>
+                <p @click="screenBrand?screenAmount++:screenAmount--;screenBrand = !screenBrand">
                   <!--品牌商家字体图标-->
-                  <span class="dome-imitate dome-imitate-color1">品</span>
+                  <span v-if="screenBrand" class="dome-imitate dome-imitate-color1">品</span>
+                  <!--品牌商家字体图标选中时变为对号-->
+                  <i v-if="!screenBrand" class="iconfont dome-screen-icon">&#xe604;</i>
                   品牌商家
                 </p>
                 <!--外卖保字体图标-->
-                <p>
-                  <span class="dome-imitate dome-imitate-color2">保</span>
+                <p @click="screenGuarantee?screenAmount++:screenAmount--;screenGuarantee = !screenGuarantee">
+                  <span v-if="screenGuarantee" class="dome-imitate dome-imitate-color2">保</span>
+                  <!--外卖保字体图标选中时变为对号-->
+                  <i v-if="!screenGuarantee" class="iconfont dome-screen-icon">&#xe604;</i>
                   外卖保
                 </p>
                 <!--准时达字体图标-->
-                <p>
-                  <span class="dome-imitate dome-imitate-color3">准</span>
+                <p @click="screenPunctuality?screenAmount++:screenAmount--;screenPunctuality = !screenPunctuality">
+                  <span v-if="screenPunctuality" class="dome-imitate dome-imitate-color3">准</span>
+                  <!--准时达字体图标选中时变为对号-->
+                  <i v-if="!screenPunctuality" class="iconfont dome-screen-icon">&#xe604;</i>
                   准时达
                 </p>
                 <!--新店字体图标-->
-                <p>
-                  <span class="dome-imitate dome-imitate-color4">新</span>
+                <p @click="screenNew?screenAmount++:screenAmount--;screenNew = !screenNew">
+                  <span v-if="screenNew" class="dome-imitate dome-imitate-color4">新</span>
+                  <!--新店字体图标选中时变为对号-->
+                  <i v-if="!screenNew" class="iconfont dome-screen-icon">&#xe604;</i>
                   新店
                 </p>
                 <!--在线支付字体图标-->
-                <p>
-                  <span class="dome-imitate dome-imitate-color5">付</span>
+                <p @click="screenOnLine?screenAmount++:screenAmount--;screenOnLine = !screenOnLine">
+                  <span v-if="screenOnLine" class="dome-imitate dome-imitate-color5">付</span>
+                  <!--在线支付字体图标选中时变为对号-->
+                  <i v-if="!screenOnLine" class="iconfont dome-screen-icon">&#xe604;</i>
                   在线支付
                 </p>
                 <!--开发票字体图标-->
-                <p>
-                  <span class="dome-imitate dome-imitate-color6">票</span>
+                <p @click="screenInvoice?screenAmount++:screenAmount--;screenInvoice = !screenInvoice">
+                  <span v-if="screenInvoice" class="dome-imitate dome-imitate-color6">票</span>
+                  <!--开发票字体图标选中时变为对号-->
+                  <i v-if="!screenInvoice" class="iconfont dome-screen-icon">&#xe604;</i>
                   开发票
                 </p>
               </div>
@@ -140,11 +159,11 @@
           <div class="dome-screen-below">
             <!--按钮容器左-->
             <div class="dome-screen-but-left">
-              <button class="btn btn-default">清空</button>
+              <button class="btn btn-default" @click="screenEmpty">清空</button>
             </div>
             <!--按钮容器右-->
             <div class="dome-screen-but-right">
-              <button class="btn btn-success">确定</button>
+              <button class="btn btn-success" @click="screenAffirm">确定{{screenAmount? '('+screenAmount+')':' '}}</button>
             </div>
           </div>
         </div>
@@ -178,10 +197,29 @@ export default {
       iconArr:[['&#xe66d;', '智能排序'], ['&#xe611;', '距离最近'], ['&#xe614;', '销量最高'], ['&#xe621;', '起送价最低'], ['&#xe62e;', '配送速度最快'], ['&#xe630;', '评分最高']],
       // 分类
       classifyOne: '',
-
-      dataList:[],
-
-      value:[]
+      // 排序选中
+      sortFocus: '',
+      // 分类选中
+      classifyFocus:'',
+      // 存储左侧数字标记
+      classifyLeft: '',
+      // 筛选选中变量 7个
+      // 控制蜂鸟配送
+      screenHummingbird: true,
+      // 控制品牌商家
+      screenBrand : true,
+      // 控制外卖保
+      screenGuarantee: true,
+      // 控制准时达
+      screenPunctuality: true,
+      // 控制新店
+      screenNew: true,
+      // 控制在线支付
+      screenOnLine:true,
+      // 控制开发票
+      screenInvoice: true,
+      // 确定按钮的数量
+      screenAmount:0
     }
   },
   components: {Shoplist},
@@ -195,7 +233,7 @@ export default {
         this.classifyOne = '分类'
         // 本次点击时,以是下拉状态
         if (contol === i) {
-          this.classifyOne = this.$store.state.dome.cate[0][this.$store.state.dome.cate[2]][this.$store.state.dome.cate[1]].title
+          this.classifyOne = this.$store.state.dome.foodTitle
           return
         }
         if (i === 1) {
@@ -203,7 +241,7 @@ export default {
           this.controlIf = i
           return
         }
-        this.classifyOne = this.$store.state.dome.cate[0][this.$store.state.dome.cate[2]][this.$store.state.dome.cate[1]].title
+        this.classifyOne = this.$store.state.dome.foodTitle
         this.controlIf = i
         return
       }
@@ -215,6 +253,7 @@ export default {
       }
     },
     goSort (i) {
+      this.sortFocus = i-1
       this.$http({
         url:'https://elm.cangdu.org/shopping/restaurants',
         type: 'get',
@@ -225,17 +264,73 @@ export default {
         }
       }).then(res => {
         this.$store.commit('getRes',res.data)
-       // console.log(res)
-        this.dataList = res.data;
-        res.data.map((n)=>{
-          this.value.push(n.rating);
-          // console.log(this.value);
-        })
         console.log(this.$store.state.jym.res)
+        this.controlIf = false
       })
+    },
+    //  餐馆分类请求
+    classifyReq (arr,item, index) {
+      // 给左侧数字赋值 用来判断蓝色字体
+      this.classifyLeft = this.focus
+      this.classifyFocus = index
+      this.classifyOne = item.name
+      // 调用计算属性 操作vuex
+      this.$store.commit({type: 'getShop',restaurant_category_ids:item.id})
+    },
+    // 清空按钮
+    screenEmpty () {
+      this.screenHummingbird = true,
+        // 控制品牌商家
+      this.screenBrand = true,
+        // 控制外卖保
+      this.screenGuarantee = true,
+        // 控制准时达
+      this.screenPunctuality = true,
+        // 控制新店
+      this.screenNew = true,
+        // 控制在线支付
+      this.screenOnLine = true,
+        // 控制开发票
+      this.screenInvoice = true,
+        // 确定按钮的数量
+      this.screenAmount = 0
+    },
+    // 确认按钮
+    screenAffirm () {
+      // 点击上拉
+      this.controlIf = false
+      //
     }
   },
   computed:{
+    // 商铺分类请求
+    domeGetFoodClassify () {
+      return this.$store.state.dome.dataList
+    },
+    // 获取从msite传来的标题
+    getFoodTilie () {
+      return this.$store.state.dome.foodTitle
+    },
+  },
+  watch: {
+    getFoodTilie: {
+      //回调函数,会在计算属性发生变化时触发
+      handler(){
+        this.controlIf = false
+      },
+      //是否在页面刷新时调用回调函数,默认值是false
+      immediate:true,
+      //深度监听
+      deep:true
+    },
+    domeGetFoodClassify: {
+      handler(){
+        this.controlIf = false
+        this.$store.commit('getRes',this.$store.state.dome.dataList)
+      },
+      immediate:true,
+      deep:true
+    }
   },
   mounted () {
   },
@@ -246,14 +341,31 @@ export default {
       url:'https://elm.cangdu.org/shopping/v2/restaurant/category'
     }).then((res)=> {
       this.classify = res.data
+      console.log('this.classify', this.classify)
       for (let i of res.data) {
         this.downClassifyArr.push(i.sub_categories)
       }
-      console.log('this.downClassifyArr',this.downClassifyArr)
-      console.log('this.$store.state.dome',this.$store.state.dome)
+      // console.log('this.downClassifyArr',this.downClassifyArr)
+      // console.log('this.$store.state.dome',this.$store.state.dome)
       this.downClassify = 2
-      this.classifyOne = this.$store.state.dome.cate[0][this.$store.state.dome.cate[2]][this.$store.state.dome.cate[1]].title
-      console.log('this.classifyOne',this.classifyOne)
+      this.classifyOne = this.$store.state.dome.foodTitle
+      // console.log('this.classifyOne',this.classifyOne)
+      // 数组转字符串
+      let jsonArr = [];
+      // 遍历得到的数组 给jsonArr添加元素
+      for (let arr of this.classify) {
+        jsonArr.push(JSON.stringify(arr))
+      }
+      // 声明一个变量储存数字 即为下标
+      let digit = 0
+      // 遍历jsonArr
+      for (let jsonA of jsonArr) {
+        if (jsonA.indexOf(this.classifyOne) !== -1) {
+          console.log('digit',digit)
+          this.focus = digit
+        }
+        digit++
+      }
     })
   }
 }
@@ -412,6 +524,15 @@ export default {
   line-height: 0.5rem;
   border-bottom: #a4a4a4 solid 0.01rem;
   top:0
+}
+/*选中对号容器*/
+.dome-sort-true {
+  position: absolute;
+  right: 0;
+  width: 5%;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  color: blue;
 }
 /*字体图标颜色*/
 .domeIcon1 {
