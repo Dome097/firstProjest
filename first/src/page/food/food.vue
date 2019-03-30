@@ -254,6 +254,7 @@ export default {
     },
     goSort (i) {
       this.sortFocus = i-1
+      this.$store.commit({type:'getShop', order_by:i})
       this.$http({
         url:'https://elm.cangdu.org/shopping/restaurants',
         type: 'get',

@@ -81,7 +81,24 @@ const moduleD = {
     },
     // 请求商铺
     getShop (state, payload) {
-      state.restaurant_category_ids = payload.restaurant_category_ids
+      // 纬度
+      if (payload.latitude) {
+        state.latitude = payload.latitude
+      }
+      // 经度
+      if (payload.longitude) {
+        state.longitude = payload.longitude
+      }
+      // 
+      if (payload.limit) {
+        state.limit = payload.limit
+      }
+      if (payload.restaurant_category_ids) {
+        state.restaurant_category_ids = payload.restaurant_category_ids
+      }
+      if (payload.restaurant_category_ids) {
+
+      }
       Vue.axios.get(`https://elm.cangdu.org/shopping/restaurants?latitude=${state.latitude}&longitude=${state.longitude}&limit=${state.limit?state.limit:''}&order_by=${state.order_by?state.order_by:''}&delivery_mode[]=${state.delivery_mode}&support_ids[]=${state.support_ids}&restaurant_category_ids[]=${state.restaurant_category_ids}`,null).then((res) => {
         state.dataList = res.data;
         res.data.map((n)=>{
