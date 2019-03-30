@@ -46,7 +46,7 @@
       <hr>
       <div class="buttomStar" v-for="(item, index) in buttomData">
         <div class="leftBS">
-          <img src="//elm.cangdu.org/img/default.jpg" alt="">
+          <img :src="item.avatar===''?'//elm.cangdu.org/img/default.jpg':http+item.avatar+'.jpeg'">
         </div>
         <div class="middleBS" >
           <p>{{item.username}}</p>
@@ -97,13 +97,14 @@ export default {
       rateCateData:[],
       buttomData:[],
       http: 'https://fuss10.elemecdn.com/',
-      value1:5
+      value1:5,
+
     }
   },
   created() {
     Vue.axios.get("https://elm.cangdu.org/ugc/v2/restaurants/1/ratings/scores", null).then((res) => {
       this.rateData = res.data;
-    //  console.log( this.rateData);
+     console.log( this.rateData);
       this.value = res.data.service_score.toFixed(1)-0;
       this.val = res.data.food_score.toFixed(1)-0;
       this.over = (this.rateData.compare_rating)*100+'%';
