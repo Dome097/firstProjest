@@ -74,12 +74,33 @@ export default {
     shopListSort:{
       //回调函数,会在shopListSort发生变化时触发
       handler(){
-        this.dataList = this.$store.state.jym.res
-        //  console.log(this.dataList);
-        this.$store.state.jym.res.map((n)=>{
-          this.value.push(n.rating);
-          //  console.log(this.value);
-        })
+        let is_new_shop = []
+        if (this.$store.state.dome.is_new || this.$store.state.dome.is_premium) {
+          let value = []
+          console.log('即将筛选新店和是否支持线上支付')
+          this.$store.state.jym.res.map((n) =>{
+            console.log('this是',this)
+            if (n.is_new === this.$store.state.dome.is_new && n.is_premium === this.$store.state.dome.is_premium) {
+              is_new_shop.push(n)
+            }
+          })
+          this.dataList = is_new_shop
+          console.log('筛选成功后的数据',this.dataList)
+          is_new_shop.map((n)=>{
+            value.push(n.rating);
+          })
+          this.value = value
+          console.log('this.$store.state.jym.res:', this.$store.state.jym.res)
+        }else {
+          let value = []
+          this.dataList = this.$store.state.jym.res
+          //  console.log(this.dataList);
+          this.$store.state.jym.res.map((n)=>{
+            value.push(n.rating);
+            //  console.log(this.value);
+          })
+          this.value = value
+        }
       },
       //是否在页面刷新时调用回调函数,默认值是false
       immediate:true,
