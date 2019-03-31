@@ -1,5 +1,5 @@
 <template>
-  <section class="city container-fluid" >
+  <section class="container-fluid city" >
     <!--<nav class="nv navbar navbar-fixed-top">-->
       <!--<a href="###" class="pull-left">ele.me</a>-->
       <!--<div class="pull-right">-->
@@ -105,11 +105,12 @@ export default {
 
 <style scoped>
   .city{
-    font-size: .16rem;
-    overflow: hidden;
+    /*font-size: .16rem;*/
+    /*overflow: hidden;*/
     width: 100%;
+    height: 100%;
     padding: 0;
-    background-color: #f5f5f5;
+    /*background-color: #f5f5f5;*/
   }
   /*.nv>a{*/
     /*color: #fff;*/
