@@ -1,6 +1,6 @@
 <template>
   <section class="container-fluid" >
-    <!--第一个头部-->
+    <!--第一个头部 初始界面-->
     <nav class="nv navbar navbar-fixed-top firstHead" v-if="isFirst">
       <router-link class="pull-left" :to="{}">ele.me</router-link>
       <div class="pull-right">
@@ -9,13 +9,13 @@
         <span><router-link :to="{name:'login'}">注册</router-link></span>
       </div>
     </nav>
-    <!--第二个头部-->
+    <!--第二个头部 当前城市-->
     <nav class="nv navbar navbar-fixed-top firstHead"  v-show="isShow">
-      <i class="pull-left iconfont" @click="back">&#xe682</i>
+      <i class="pull-left iconfont" @click="back">&#xe682;</i>
       <router-link :to="{}" class="centerContent">郑州</router-link>
       <span class="pull-right" v-show="isHide" @click="back">切换城市</span>
     </nav>
-    <!--第三个头部-->
+    <!--第三个头部 当前区域-->
     <nav class="nv navbar navbar-fixed-top firstHead" v-if="isThree">
       <router-link class="glyphicon glyphicon-search pull-left" :to="{name:'search'}"></router-link>
       <router-link class="centerContent" :to="{}">千山区</router-link>
@@ -25,7 +25,7 @@
         <span><router-link :to="{name:'login'}">注册</router-link></span>
       </div>
     </nav>
-    <!--第四个头部-->
+    <!--第四个头部 商家界面-->
     <nav class="nv navbar navbar-fixed-top bg-warning fourModule" :style="{}" v-if="isFour">
       <i class="iconfont toLeft">&#xe682</i>
       <img src="../../assets/logo.png" alt="" class="pull-left" style="width: 0.8rem; height: 1rem">
@@ -75,6 +75,7 @@ export default {
   watch:{
     $route(now,old){     //监控路由变换，控制返回按钮的显示
       if(now.path==="/home"){
+        this.isFirst=true;
         this.isShow=false;
         this.isThree = false;
         this.isFour = false;
