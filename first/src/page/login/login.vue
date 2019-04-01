@@ -45,6 +45,10 @@ export default {
     },
     // 登录
     goLogin () {
+      //懒加载
+      this.$store.commit({
+        type:'amendDataLoad'
+      });
       this.$http({
         method: 'post',
         url: 'https://elm.cangdu.org/v2/login',
@@ -55,6 +59,10 @@ export default {
           username: this.mindUsername
         },
       }).then(res => {
+        //懒加载
+        this.$store.commit({
+          type:'amendDataLoad'
+        });
         console.log('---', res);
         if (res.data.message) {
           MessageBox.alert(res.data.message);
