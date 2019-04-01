@@ -11,7 +11,7 @@
       <p>{{item.address}}</p>
     </div>
     <p class="listTitle" v-if="historyTitle">搜索历史</p>
-    <div class="searchHistory" v-for="item in historyList" v-if="history" @click="research">
+    <div class="searchHistory" v-for="item in historyList" v-if="history" @click="research(item)">
       <p>{{item.name}}</p>
       <p>{{item.address}}</p>
     </div>
@@ -56,12 +56,16 @@ export default {
     selectShop(i){
       this.historyInfo.push(i);
       console.log(i);
+      console.log('historyRecord本次',i)
+      this.$store.commit({type:'getRegion', region:i})
       this.$router.push({name:'msite'});
       // 把数据传到store
       this.$store.commit('HISTORYRECORD',i)
     },
     // 在历史记录中点击重新搜索
-    research(){
+    research(i){
+      console.log('historyRecord历史',i)
+      this.$store.commit({type:'getRegion', region:i})
       this.$router.push({name:'msite'});
     },
     // 清空历史记录(view层和数据都要消除)
