@@ -23,7 +23,7 @@
         </router-link>
       </div>
       <div class="col-xs-4 middle">
-        <router-link :to="{name:'benefit'}">
+        <router-link :to="{name:'benefit',query:{id:$store.state.dome.loggingStatus}}">
           <p><span>0</span>个</p>
           <p>我的优惠</p>
         </router-link>

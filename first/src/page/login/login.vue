@@ -59,12 +59,14 @@ export default {
         if (res.data.message) {
           MessageBox.alert(res.data.message);
           this.gainAuthCode()
+          this.$store.commit({type:'getLoggingStatus',loggingStatus:false})
           return
         }
-        // 给vuex保存用户信息
         this.$router.push({
           name: "profile"
         });
+        // 给vuex保存用户信息
+        this.$store.commit({type:'getLoggingStatus',loggingStatus:true})
         this.$store.state.ghc.accountData = res.data
         console.log('ghc',this.$store)
       });

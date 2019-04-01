@@ -57,6 +57,8 @@ const moduleD = {
     foodTitle: '',
     // 请求到的数组
     dataList: [],
+    // 登录状态
+    loggingStatus: '',
     // 请求到的评星
     value1: [],
     // 纬度
@@ -81,7 +83,10 @@ const moduleD = {
     singleStore: {}
   },
   mutations: {
-
+    // 检查登录状态
+    getLoggingStatus (state, payload) {
+        state.loggingStatus = payload.loggingStatus
+    },
     // 单个商铺信息对象赋值
     getSingleStore (state, payload) {
       state.singleStore = payload.data
@@ -95,6 +100,11 @@ const moduleD = {
        // 新店吗
         state.is_new = payload.is_new
         console.log('是新店')
+      // 头部是
+      if (payload.classifyOne) {
+        state.foodTitle = payload.classifyOne
+        console.log('修改头部')
+      }
       // 支持线上支付吗
         state.is_premium = payload.is_premium
         console.log('支持线上支付')
