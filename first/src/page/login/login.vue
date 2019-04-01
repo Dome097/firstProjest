@@ -17,6 +17,7 @@
 
 <script>
 import Vue from 'vue'
+import { MessageBox } from 'mint-ui';
 // 登录注册页
 export default {
   name: "login",
@@ -47,6 +48,11 @@ export default {
         },
       }).then(res => {
         console.log('---', res)
+        if (res.data.message) {
+          MessageBox.alert(res.data.message);
+          this.gainAuthCode()
+          return
+        }
         // 给vuex保存用户信息
         this.$router.push({
           name: "profile"

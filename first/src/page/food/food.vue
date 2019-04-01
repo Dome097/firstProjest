@@ -97,11 +97,11 @@
             <!--配送方式-->
             <div class="dome-screen-distribution">
               <p>配送方式</p>
-              <p @click="screenHummingbird?screenAmount++:screenAmount--;screenHummingbird = !screenHummingbird">
+              <p @click="screenHummingbird ?screenAmount--:screenAmount++; !screenHummingbird ? screenHummingbird = 1 :screenHummingbird = !screenHummingbird">
                 <!--蜂鸟字体图标-->
-                <i class="iconfont dome-screen-icon" v-if="screenHummingbird">&#xe631;</i>
+                <i class="iconfont dome-screen-icon" v-if="!screenHummingbird">&#xe631;</i>
                 <!--蜂鸟字体图标选中时变为对号-->
-                <i v-if="!screenHummingbird" class="iconfont dome-screen-icon">&#xe604;</i>
+                <i v-if="screenHummingbird" class="iconfont dome-screen-icon">&#xe604;</i>
                 蜂鸟配送
               </p>
             </div>
@@ -110,46 +110,46 @@
               <p>商家属性 (可以多选)</p>
               <!--p容器-->
               <div class="dome-screen-property-p">
-                <p @click="screenBrand?screenAmount++:screenAmount--;screenBrand = !screenBrand">
+                <p @click="screenBrand?screenAmount--:screenAmount++;screenBrand = !screenBrand">
                   <!--品牌商家字体图标-->
-                  <span v-if="screenBrand" class="dome-imitate dome-imitate-color1">品</span>
+                  <span v-if="!screenBrand" class="dome-imitate dome-imitate-color1">品</span>
                   <!--品牌商家字体图标选中时变为对号-->
-                  <i v-if="!screenBrand" class="iconfont dome-screen-icon">&#xe604;</i>
+                  <i v-if="screenBrand" class="iconfont dome-screen-icon">&#xe604;</i>
                   品牌商家
                 </p>
                 <!--外卖保字体图标-->
-                <p @click="screenGuarantee?screenAmount++:screenAmount--;screenGuarantee = !screenGuarantee">
-                  <span v-if="screenGuarantee" class="dome-imitate dome-imitate-color2">保</span>
+                <p @click="screenGuarantee  ? screenAmount-- : screenAmount++ ; !screenGuarantee ? screenGuarantee = 7 : screenGuarantee = !screenGuarantee ">
+                  <span v-if="!screenGuarantee" class="dome-imitate dome-imitate-color2">保</span>
                   <!--外卖保字体图标选中时变为对号-->
-                  <i v-if="!screenGuarantee" class="iconfont dome-screen-icon">&#xe604;</i>
+                  <i v-if="screenGuarantee" class="iconfont dome-screen-icon">&#xe604;</i>
                   外卖保
                 </p>
                 <!--准时达字体图标-->
-                <p @click="screenPunctuality?screenAmount++:screenAmount--;screenPunctuality = !screenPunctuality">
-                  <span v-if="screenPunctuality" class="dome-imitate dome-imitate-color3">准</span>
+                <p @click="screenPunctuality  ? screenAmount-- : screenAmount++; !screenPunctuality ? screenPunctuality = 9 : screenPunctuality = !screenPunctuality">
+                  <span v-if="!screenPunctuality" class="dome-imitate dome-imitate-color3">准</span>
                   <!--准时达字体图标选中时变为对号-->
-                  <i v-if="!screenPunctuality" class="iconfont dome-screen-icon">&#xe604;</i>
+                  <i v-if="screenPunctuality" class="iconfont dome-screen-icon">&#xe604;</i>
                   准时达
                 </p>
                 <!--新店字体图标-->
-                <p @click="screenNew?screenAmount++:screenAmount--;screenNew = !screenNew">
-                  <span v-if="screenNew" class="dome-imitate dome-imitate-color4">新</span>
+                <p @click="screenNew?screenAmount--:screenAmount++;screenNew = !screenNew">
+                  <span v-if="!screenNew" class="dome-imitate dome-imitate-color4">新</span>
                   <!--新店字体图标选中时变为对号-->
-                  <i v-if="!screenNew" class="iconfont dome-screen-icon">&#xe604;</i>
+                  <i v-if="screenNew" class="iconfont dome-screen-icon">&#xe604;</i>
                   新店
                 </p>
                 <!--在线支付字体图标-->
-                <p @click="screenOnLine?screenAmount++:screenAmount--;screenOnLine = !screenOnLine">
-                  <span v-if="screenOnLine" class="dome-imitate dome-imitate-color5">付</span>
+                <p @click="screenOnLine?screenAmount--:screenAmount++;screenOnLine = !screenOnLine">
+                  <span v-if="!screenOnLine" class="dome-imitate dome-imitate-color5">付</span>
                   <!--在线支付字体图标选中时变为对号-->
-                  <i v-if="!screenOnLine" class="iconfont dome-screen-icon">&#xe604;</i>
+                  <i v-if="screenOnLine" class="iconfont dome-screen-icon">&#xe604;</i>
                   在线支付
                 </p>
                 <!--开发票字体图标-->
-                <p @click="screenInvoice?screenAmount++:screenAmount--;screenInvoice = !screenInvoice">
-                  <span v-if="screenInvoice" class="dome-imitate dome-imitate-color6">票</span>
+                <p @click="screenInvoice  ?screenAmount--:screenAmount++; !screenInvoice? screenInvoice = 4 : screenInvoice = !screenInvoice">
+                  <span v-if="!screenInvoice" class="dome-imitate dome-imitate-color6">票</span>
                   <!--开发票字体图标选中时变为对号-->
-                  <i v-if="!screenInvoice" class="iconfont dome-screen-icon">&#xe604;</i>
+                  <i v-if="screenInvoice" class="iconfont dome-screen-icon">&#xe604;</i>
                   开发票
                 </p>
               </div>
@@ -205,19 +205,19 @@ export default {
       classifyLeft: '',
       // 筛选选中变量 7个
       // 控制蜂鸟配送
-      screenHummingbird: true,
+      screenHummingbird: false,
       // 控制品牌商家
-      screenBrand : true,
+      screenBrand : false,
       // 控制外卖保
-      screenGuarantee: true,
+      screenGuarantee: false,
       // 控制准时达
-      screenPunctuality: true,
+      screenPunctuality: false,
       // 控制新店
-      screenNew: true,
+      screenNew: false,
       // 控制在线支付
-      screenOnLine:true,
+      screenOnLine:false,
       // 控制开发票
-      screenInvoice: true,
+      screenInvoice: false,
       // 确定按钮的数量
       screenAmount:0
     }
@@ -225,7 +225,7 @@ export default {
   components: {Shoplist},
   methods: {
     // 排序函数 (公用代码,可写在外部)
-     domeUseSort (latitude, longitude, limit, order_by, delivery_mode, support_ids, restaurant_category_ids){
+     domeUseSort (latitude, longitude, limit, order_by, delivery_mode, support_ids, restaurant_category_ids, is_new, is_premium){
       this.$store.commit({
         type:'getShop',
         latitude:latitude, // 纬度
@@ -234,7 +234,9 @@ export default {
         order_by:order_by, // 排序方式id
         delivery_mode:delivery_mode, // 配送方式id
         support_ids:support_ids, // 餐馆支持特权的id
-        restaurant_category_ids:restaurant_category_ids // 餐馆分类id
+        restaurant_category_ids:restaurant_category_ids, // 餐馆分类id
+        is_new:is_new, // 是新店吗 (布尔值)
+        is_premium:is_premium // 支持线上支付吗 (布尔值)
       })
     },
     // 控制下拉框显隐
@@ -267,7 +269,7 @@ export default {
     },
     goSort (i) {
       this.sortFocus = i-1
-      this.domeUseSort(0, '', false, i)
+      this.domeUseSort('', '', false, i, this.screenHummingbird,[this.screenGuarantee, this.screenPunctuality, this.screenInvoice], '', this.screenNew, this.screenOnLine)
     },
     //  餐馆分类请求
     classifyReq (arr,item, index) {
@@ -276,24 +278,25 @@ export default {
       this.classifyFocus = index
       this.classifyOne = item.name
       // 调用计算属性 操作vuex
-      this.domeUseSort('', '', '', '', '', '', item.id)
+      this.domeUseSort('', '', '', '', this.screenHummingbird,[this.screenGuarantee, this.screenPunctuality, this.screenInvoice], item.id, this.screenNew, this.screenOnLine)
       // this.$store.commit({type: 'getShop',restaurant_category_ids:item.id})
     },
     // 清空按钮
     screenEmpty () {
-      this.screenHummingbird = true,
+        // 控制蜂鸟配送
+      this.screenHummingbird = false,
         // 控制品牌商家
-      this.screenBrand = true,
+      this.screenBrand = false,
         // 控制外卖保
-      this.screenGuarantee = true,
+      this.screenGuarantee = false,
         // 控制准时达
-      this.screenPunctuality = true,
+      this.screenPunctuality = false,
         // 控制新店
-      this.screenNew = true,
+      this.screenNew = false,
         // 控制在线支付
-      this.screenOnLine = true,
+      this.screenOnLine = false,
         // 控制开发票
-      this.screenInvoice = true,
+      this.screenInvoice = false,
         // 确定按钮的数量
       this.screenAmount = 0
     },
@@ -301,7 +304,8 @@ export default {
     screenAffirm () {
       // 点击上拉
       this.controlIf = false
-      //
+      // 按照选中项请求商铺列表
+      this.domeUseSort('','','','',this.screenHummingbird,[this.screenGuarantee, this.screenPunctuality, this.screenInvoice], '', this.screenNew, this.screenOnLine)
     }
   },
   computed:{
@@ -316,6 +320,10 @@ export default {
     // 排序请求
     domeSort () {
       return this.$store.state.dome.order_by
+    },
+    // 确认筛选
+    domeScreen () {
+      return this.$store.state.dome.support_ids
     }
   },
   watch: {
@@ -345,6 +353,10 @@ export default {
       },
       immediate:true,
       deep:true
+    },
+    // 确认筛选
+    domeScreen () {
+      this.$store.commit('getRes',this.$store.state.dome.dataList)
     }
   },
   mounted () {
