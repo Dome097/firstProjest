@@ -225,7 +225,7 @@ export default {
   components: {Shoplist},
   methods: {
     // 排序函数 (公用代码,可写在外部)
-     domeUseSort (latitude, longitude, limit, order_by, delivery_mode, support_ids, restaurant_category_ids, is_new, is_premium){
+     domeUseSort (latitude, longitude, limit, order_by, delivery_mode, support_ids, restaurant_category_ids, is_new, is_premium, classifyOne){
       this.$store.commit({
         type:'getShop',
         latitude:latitude, // 纬度
@@ -236,7 +236,8 @@ export default {
         support_ids:support_ids, // 餐馆支持特权的id
         restaurant_category_ids:restaurant_category_ids, // 餐馆分类id
         is_new:is_new, // 是新店吗 (布尔值)
-        is_premium:is_premium // 支持线上支付吗 (布尔值)
+        is_premium:is_premium, // 支持线上支付吗 (布尔值)
+        classifyOne:classifyOne // 分类名
       })
     },
     // 控制下拉框显隐
@@ -269,7 +270,7 @@ export default {
     },
     goSort (i) {
       this.sortFocus = i-1
-      this.domeUseSort('', '', false, i, this.screenHummingbird,[this.screenGuarantee, this.screenPunctuality, this.screenInvoice], '', this.screenNew, this.screenOnLine)
+      this.domeUseSort('', '', false, i, this.screenHummingbird,[this.screenGuarantee, this.screenPunctuality, this.screenInvoice], '', this.screenNew, this.screenOnLine,'')
     },
     //  餐馆分类请求
     classifyReq (arr,item, index) {
@@ -278,7 +279,7 @@ export default {
       this.classifyFocus = index
       this.classifyOne = item.name
       // 调用计算属性 操作vuex
-      this.domeUseSort('', '', '', '', this.screenHummingbird,[this.screenGuarantee, this.screenPunctuality, this.screenInvoice], item.id, this.screenNew, this.screenOnLine)
+      this.domeUseSort('', '', '', '', this.screenHummingbird,[this.screenGuarantee, this.screenPunctuality, this.screenInvoice], item.id, this.screenNew, this.screenOnLine,this.classifyOne)
       // this.$store.commit({type: 'getShop',restaurant_category_ids:item.id})
     },
     // 清空按钮
@@ -305,7 +306,7 @@ export default {
       // 点击上拉
       this.controlIf = false
       // 按照选中项请求商铺列表
-      this.domeUseSort('','','','',this.screenHummingbird,[this.screenGuarantee, this.screenPunctuality, this.screenInvoice], '', this.screenNew, this.screenOnLine)
+      this.domeUseSort('','','','',this.screenHummingbird,[this.screenGuarantee, this.screenPunctuality, this.screenInvoice], '', this.screenNew, this.screenOnLine,'')
     }
   },
   computed:{

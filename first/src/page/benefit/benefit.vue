@@ -58,7 +58,7 @@ export default {
   data () {
     return {
       isIf: '红包',
-      id: 24444,
+      // id: 24444,
       hBarr:[],
       hbDes: '红包说明',
       hbHis: '历史红包',
@@ -81,6 +81,26 @@ export default {
       this.isIf = '推荐有奖'
       this.$router.push({name:'commend',params:{move:'推荐有奖'}})
     }
+  },
+  computed: {
+    id () {
+      return this.$store.state.ghc.accountData
+    }
+  },
+  beforeRouteEnter (to, from, next) {
+    // 在该时机里可以做权限配置,发起网络请求等提前需要做的操作
+    // 在渲染该组件的对应路由被 confirm 前调用
+    // 不！能！获取组件实例 `this`
+    // 因为当守卫执行前，组件实例还没被创建
+    // confirm('将要进入商品界面确定吗?') ? next() : null
+    // console.log('this红包',Vue)
+      next(vm => {
+        if (vm.$store.state.dome.loggingStatus) {
+          return
+        }
+      })
+  },
+  watch: {
   },
   mounted () {
     // 进入时请求红包

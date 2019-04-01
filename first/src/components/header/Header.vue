@@ -3,10 +3,13 @@
     <!--第一个头部 初始界面-->
     <nav class="nv navbar navbar-fixed-top firstHead" v-if="isFirst">
       <router-link class="pull-left" :to="{}">ele.me</router-link>
-      <div class="pull-right">
+      <div class="pull-right" v-if="!loggingStatus">
         <span><router-link :to="{name:'login'}">登录</router-link></span>
         <span>|</span>
         <span><router-link :to="{name:'login'}">注册</router-link></span>
+      </div>
+      <div class="pull-right" v-if="loggingStatus">
+        <span><router-link :to="{name:'profile'}"><i class="iconfont">&#xe71d;</i></router-link></span>
       </div>
     </nav>
     <!--第二个头部 当前城市-->
@@ -19,10 +22,13 @@
     <nav class="nv navbar navbar-fixed-top firstHead" v-if="isThree">
       <router-link class="glyphicon glyphicon-search pull-left" :to="{name:'search'}"></router-link>
       <router-link class="centerContent" :to="{}">千山区</router-link>
-      <div class="pull-right">
+      <div class="pull-right" v-if="!loggingStatus">
         <span><router-link :to="{name:'login'}">登录</router-link></span>
         <span>|</span>
         <span><router-link :to="{name:'login'}">注册</router-link></span>
+      </div>
+      <div class="pull-right" v-if="loggingStatus">
+        <span><router-link :to="{name:'profile'}"><i class="iconfont">&#xe71d;</i></router-link></span>
       </div>
     </nav>
     <!--第四个头部 商家界面-->
@@ -47,6 +53,11 @@
         <i class="iconfont pull-right bottomContent">1个活动 &#xe634 </i>
       </div>
     </nav>
+    <!--第五个头部food的头部-->
+    <nav class="nv navbar navbar-fixed-top firstHead"  v-if="isFive">
+      <i class="pull-left iconfont" @click="back">&#xe682;</i>
+      <router-link :to="{}" class="centerContent">{{foodTitle}}</router-link>
+    </nav>
   </section >
 </template>
 
@@ -61,6 +72,7 @@ export default {
       isFour:false,
       isShow:false,
       isHide:true,
+      isFive:false,
     }
   },
   computed: {
@@ -70,7 +82,21 @@ export default {
         return this.$store.state.ghc.currentCity.name
       },
       set () {}
-      }
+      },
+    // food 标题
+    foodTitle: {
+      get () {
+        return this.$store.state.dome.foodTitle
+      },
+      set () {}
+    },
+    // 登录状态
+    loggingStatus: {
+      get () {
+        return this.$store.state.dome.loggingStatus
+      },
+      set () {}
+    }
   },
   methods:{
     back(){
@@ -89,6 +115,7 @@ export default {
         this.isShow=false;
         this.isThree = false;
         this.isFour = false;
+        this.isFive = false
       } else if(now.path==="/city"){
         console.log('this.$store.state.ghc.currentCity.name',this.$store.state.ghc.currentCity.name)
 
@@ -97,16 +124,32 @@ export default {
         this.isFirst=false;
         this.isThree = false;
         this.isFour = false;
+        this.isFive = false
       }else if(now.path === "/msite"){
         this.isThree = true;
         this.isFirst=false;
         this.isShow=false;
         this.isFour = false;
+        this.isFive = false
       }else if(now.path === "/shop/shopDetail"){
         this.isFour = true;
         this.isFirst=false;
         this.isShow=false;
         this.isThree = false;
+        this.isFive = false
+      }else if(now.path === "/food"){
+        this.isFour = false;
+        this.isFirst=false;
+        this.isShow=false;
+        this.isThree = false;
+        this.isFive = true
+      }else if(now.path === "/profile/mind"){
+        this.$store.state.dome.foodTitle = '我的'
+        this.isFour = false;
+        this.isFirst=false;
+        this.isShow=false;
+        this.isThree = false;
+        this.isFive = true
       }
     }
   }
