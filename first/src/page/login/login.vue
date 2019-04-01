@@ -1,8 +1,8 @@
 <template>
-  <section>
+  <section class="container-fluid login">
       <input type="text" placeholder="账号" v-model="mindUsername"/>
-      <input type="text" placeholder="密码" v-model="mindPassword"/>
-      <div @click="da = !da" :class="{div1:da,div01:!da}">
+      <input :type="pwdType" placeholder="密码" v-model="mindPassword"/>
+      <div @click="changeType" :class="{div1:da,div01:!da}">
         <div :class="{div2:da,div02:!da}"></div>
       </div>
       <input type="text" placeholder="验证码" v-model="mindCaptcha_code"/>
@@ -23,14 +23,22 @@ export default {
   name: "login",
   data () {
     return {
+      // 存储密码可见状态
       da: true,
+      //
       src: '',
       mindUsername: '',
       mindPassword: '',
-      mindCaptcha_code: ''
+      mindCaptcha_code: '',
+      pwdType:''
     }
   },
   methods: {
+    // 输入密码是否可见
+    changeType(){
+      this.da = !this.da;
+      this.pwdType = this.pwdType === 'password'?'text':'password'
+    },
     // 重置密码
     changePassword () {
 
@@ -97,31 +105,36 @@ export default {
 </script>
 
 <style scoped>
+  .login{
+    width: 100%;
+    padding: 0;
+    margin-top: 0.16rem;
+  }
   input {
     width: 100%;
     outline: medium;
-    height: .33rem;
+    height: .4rem;
     border-bottom: #b2b2b2 solid .01rem;
-    border-top: #b2b2b2 solid .01rem;
+    padding-left: 0.1rem;
   }
   p {
-    margin: .05rem;
+    margin: .1rem;
     color: darkred;
     font-size: .12rem;
   }
   a {
-    margin: 0.05rem;
+    margin: 0.1rem;
   }
   img {
     position: absolute;
-    top: 1.15rem;
+    top: 1.47rem;
     right: .5rem;
     width: .4rem;
     height: .2rem;
   }
   .a1 {
     position: absolute;
-    top: 1.15rem;
+    top: 1.4rem;
     right: 0;
     width: .4rem;
     height: .2rem;
@@ -130,10 +143,11 @@ export default {
   button {
     margin: 2%;
     width: 95%;
+    background-color: limegreen;
   }
   .div1 {
     position: absolute;
-    top: 0.85rem;
+    top: 1.1rem;
     right: .1rem;
     width: .4rem;
     height: .2rem;
@@ -143,7 +157,7 @@ export default {
   }
   .div01 {
     position: absolute;
-    top: 0.85rem;
+    top: 1.1rem;
     right: .1rem;
     width: .4rem;
     height: .2rem;
