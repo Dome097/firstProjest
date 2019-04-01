@@ -4,7 +4,7 @@
     <aside ref="l_list" class="l_list">
       <ul>
         <li ref="l_item" :class="{'act':index === actli}"
-            @click="change(index)" v-for="(item,index) in shopGoodsArr">
+            @click="change(index)" v-for="(item,index) in shopGoodsArr" :key="index">
           <p>
             {{item.name}}
           </p>
@@ -15,22 +15,21 @@
     <section class="r_list " ref="r_list">
       <div>
         <!--在需要跳转到的区块上添加ref属性用于标识-->
-        <div v-for="(it,index) in shopGoodsArr" :key="index" ref="good">
+        <div v-for="(it,index) in shopGoodsArr" :key="index"  ref="productArr">
           <p class="title">
             <span class="title_name">{{it.name}}</span>
             <span>{{it.description}}</span>
             <span class="pull-right">...</span>
           </p>
           <ul>
-            <li class="list" v-for="(item,index) in it.foods" :key="index" @click="getDetails(item)">
-              <div class="list_name flex">
+            <li class="list" v-for="(item,index) in it.foods" :key="index">
+              <div class="flex">
                 <p ><img :src="http+item.image_path"  alt=""></p>
                 <div>
                   <p class="name">{{item.name}}</p>
                   <p class="nameDes">{{item.description}}</p>
                   <p class="sale">月售{{item.month_sales}}份   好评率{{item.satisfy_rate}}%</p>
-                  <span class="mark">{{item.activity?item.activity.image_text:''}}</span>
-                  
+                  <span class="mark" v-if="item.activity">{{item.activity.image_text}}</span>
                   <p class="price">
                     <span class="priceP">¥{{item.specfoods[0].price}}</span>
                     <span>起</span>
@@ -56,13 +55,15 @@ export default {
     return {
       actli:0,
       scrollY: 0,
+      // 初始化一个数组用于存储小列表距离顶部的距离：
       arr: [0],
       flag:true,
-      obj:null,
       show:false,
       shopGoods:'',
       shopGoodsArr:[],
-      http:'//elm.cangdu.org/img/'
+      http:'//elm.cangdu.org/img/',
+      rgt:'',
+      left:''
     }
   },
   computed:{
@@ -81,35 +82,24 @@ export default {
       deep:true
     }
   },
-  methods:{
-    change(index){
-      this.flag = false
-      this.actli = index
-      this.rgt.scrollToElement(this.$refs.good[index],100,0,0)
-      setTimeout(()=>{
-        this.flag = true
-      },100)
-    },
-    getDetails(it){
-      this.show = !this.show
-      this.obj = it
-    }
-  },
-  created(){
+  mounted() {
     Vue.axios.get(`https://elm.cangdu.org/shopping/v2/menu?restaurant_id=${this.shopGoods}`, null).then((res) => {
-     // console.log(res.data)
+      // console.log(res.data)
       this.shopGoodsArr = res.data
       console.log(this.shopGoodsArr[0].foods[0].specfoods[0].specs[0].name)
     });
-    setTimeout(() => {
+    this.$nextTick(() => {
+     // 左侧滚动栏的better-scroll对象要开启点击事件
          this.left = new Better(this.$refs.l_list, {
               click: true //开启点击事件
          })
-          this.rgt = new Better(this.$refs.r_list, {
+      // 右联左
+      this.rgt = new Better(this.$refs.r_list, {
              click: true,
              probeType: 3 // scroll事件实时分发
            })
-           this.$refs.good.forEach((el, index) => {//计算每个列表相对于顶部的距离，存到数组arr中
+          console.log("this.$refs.productArr",this.$refs.productArr)
+           this.$refs.productArr.forEach((el, index) => {//计算每个列表相对于顶部的距离，存到数组arr中
               this.arr.push(el.offsetHeight + this.arr[index])
              })
            this.rgt.on('scroll', (res) => { //监听滚动事件
@@ -130,6 +120,15 @@ export default {
                }
           })
       })
+  }, methods:{
+    change(index){
+      this.flag = false
+      this.actli = index
+      this.rgt.scrollToElement(this.$refs.productArr[index],100,0,0)
+      setTimeout(()=>{
+        this.flag = true
+      },100)
+    },
   }
 }
 </script>
@@ -252,167 +251,4 @@ export default {
     -webkit-border-radius: 40%;
     padding: 0.02rem;
   }
-
-  /*
- 88      .last{
- 89        border-bottom: none;
- 90      }
- 91    }
- 92  }
- 93  .detail{
- 94    background-color: white;
- 95    position: fixed;
- 96    z-index: 299;
- 97    left: 0;
- 98    right: 0;
- 99    top:0;
-100    bottom: 1.04rem;
-101    overflow: hidden;
-102    .bg{
-103      img{
-104        height: 7.5rem;
-105      }
-106    }
-107    .tit{
-108      &>div{
-109        &:nth-of-type(1){
-110          padding: 0.36rem;
-111          p{
-112            &:nth-of-type(1){
-113              font: 700 0.28rem/0.28rem '';
-114              margin-bottom: 0.16rem;
-115            }
-116            &:nth-of-type(2){
-117              font: 0.2rem '';
-118              color: rgb(147,153,159);
-119              margin-bottom: 0.36rem;
-120            }
-121            &:nth-of-type(3){
-122              font:700 0.28rem/0.48rem '';
-123              color: rgb(240,20,20);
-124            }
-125          }
-126        }
-127        &:nth-of-type(2){
-128          float: right;
-129          margin-right: 0.36rem;
-130          margin-top: -0.9rem;
-131          font: 0.2rem/0.48rem '';
-132          color: white;
-133          background-color: rgb(0,160,220);
-134          border-radius: 0.24rem;
-135          width: 1.48rem;
-136          height: 0.48rem;
-137          text-align: center;
-138        }
-139      }
-140    }
-141    .b_line{
-142      height: 0.36rem;
-143      background-color: #f3f5f7;
-144      border-bottom: 1px solid rgba(0,0,0,0.1);
-145      border-top: 1px solid rgba(0,0,0,0.1);
-146    }
-147    .intr{
-148      padding: 0.36rem;
-149      p{
-150        &:nth-of-type(1){
-151          font: 0.28rem '';
-152          margin-bottom: 0.12rem;
-153        }
-154        &:nth-of-type(2){
-155          font:200 0.24rem/0.48rem '';
-156          color: rgba(77,85,93);
-157          min-height: 1rem;
-158        }
-159      }
-160    }
-161    .flex{
-162      display: flex;
-163      justify-content: flex-start;
-164      align-items: center;
-165    }
-166    .esit{
-167      &>div{
-168        &:nth-of-type(1){
-169          padding: 0.36rem 0.36rem 0 0.36rem;
-170          &>p{
-171            font: 0.28rem '';
-172            &:nth-of-type(1){
-173              margin-bottom: 0.36rem;
-174            }
-175          }
-176          .count {
-177            padding:0 0 0.36rem 0;
-178            border-bottom:1px solid rgba(7, 17, 27, 0.1) ;
-179            p {
-180              text-align: center;
-181              font: 0.24rem/0.48rem '';
-182              padding: 0.12rem;
-183              border-radius: 0.02rem;
-184              margin-right: 0.12rem;
-185              &:nth-of-type(1) {
-186                background-color: #00A0DC;
-187              }
-188              &:nth-of-type(2) {
-189                background-color: #CCECF8;
-190              }
-191              &:nth-of-type(3) {
-192                background-color: #E9EBEC;
-193              }
-194            }
-195            .choosen{
-196              transform: scale(1.1);
-197            }
-198          }
-199        }
-200        &:nth-of-type(2){
-201          font-size: 0;
-202          padding: 0.24rem 0.36rem;
-203          border-bottom:1px solid rgba(7, 17, 27, 0.1) ;
-204          i{
-205            color: rgb(147,153,159);
-206            font-size: 0.48rem;
-207            margin-right: 0.08rem;
-208          }
-209          span{
-210            font: 0.24rem '';
-211            color: rgb(147,153,159);
-212          }
-213        }
-214      }
-215      &>ul{
-216        li{
-217          padding: 0 0.36rem;
-218          &>div{
-219            padding: 0.32rem 0;
-220            border-bottom:1px solid rgba(7, 17, 27, 0.1) ;
-221            &>div{
-222              span{
-223                font: 0.2rem/0.24rem '';
-224                color: rgb(147,153,159);
-225                &:nth-of-type(2){
-226                  margin-left: 55%;
-227                  margin-right: 0.12rem;
-228                }
-229              }
-230              em{
-231                font-size: 0;
-232                img {
-233                  width: 0.48rem;
-234                  border-radius: 50%;
-235                }
-236              }
-237            }
-238            p{
-239              &:nth-of-type(1){
-240                font: 0.24rem/0.32rem '';
-241              }
-242            }
-243          }
-244        }
-245      }
-246    }
-247  }
-*/
 </style>
