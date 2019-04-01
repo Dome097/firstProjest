@@ -64,7 +64,8 @@ export default {
     },
     remindClose(){
       // 点击退出登录按钮时,使弹框显示
-      this.popupVisible2 = true
+      this.popupVisible2 = true;
+
     },
     sureSet(){
       // 点击弹框上的确认按钮,使该弹框消失
@@ -75,13 +76,15 @@ export default {
       this.popupVisible2 = false
     },
     closeIt(){
-      // 点击弹框上的退出按钮,使该弹框消失
-      this.popupVisible2 = false;
-      // 退出登录,并回到个人中心
-      this.$router.push({name:'mind'});
       // 退出登录,发起请求
       Vue.axios.get('https://elm.cangdu.org/v2/signout',null).then(res => {
         console.log(res.data);
+        // 点击弹框上的退出按钮,使该弹框消失
+        this.popupVisible2 = false;
+        // 退出登录,并回到个人中心
+        this.$router.push({name:'mind'});
+        // 将登录状态的数据置空
+        this.$store.commit({type:'getLoggingStatus',loggingStatus:false})
       }).catch((error) => {
         console.log(error)
       })

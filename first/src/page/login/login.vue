@@ -62,7 +62,7 @@ export default {
           this.$store.commit({type:'getLoggingStatus',loggingStatus:false});
           return
         }
-        // 账户信息匹配正确,跳转到登录状态
+        // 账户信息匹配正确,跳转到登录状态,并把用户名传到新页面
         this.$router.push({name: "profile",query:{name:this.mindUsername}});
         // 给vuex保存用户信息
         this.$store.commit({type:'getLoggingStatus',loggingStatus:true})

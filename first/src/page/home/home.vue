@@ -15,7 +15,7 @@
       </div>
       <div class="selectCity row">
         <router-link :to="{name:'city'}" class="col-xs-10" @click.native="selectThis(currentCity)">{{currentCity.name}}</router-link>
-        <router-link :to="{name:'city'}" class="col-xs-2">></router-link>
+        <router-link :to="{name:'city'}" class="col-xs-2"><i class="iconfont">&#xe634;</i></router-link>
       </div>
       <div class="hotCity container-fluid">
         <p>热门城市</p>
@@ -172,5 +172,8 @@ export default {
     border-bottom: 0.005rem solid lightgray;
     height: 0.4rem;
     line-height: 0.4rem;
+  }
+  .citys>a{
+    color: black;
   }
 </style>
