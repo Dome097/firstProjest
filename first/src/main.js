@@ -53,6 +53,12 @@ const moduleJ = {
 }
 const moduleD = {
   state:{
+    // 数据加载成功
+    endOfDataLoad:false,
+    // 倒计时分
+    minute:15,
+    // 倒计时秒
+    second:0,
     // msite向food传值
     foodTitle: '',
     // 请求到的数组
@@ -85,6 +91,33 @@ const moduleD = {
     region:{}
   },
   mutations: {
+    // 加载动画
+    amendDataLoad (state, pyload) {
+      state.endOfDataLoad = !state.endOfDataLoad
+    },
+    // 倒计时
+    getComputeTime (state, payload) {
+      console.log('倒计时')
+      if (state.minute === 15 && state.second === 0){
+        console.log('倒计时开始')
+        var myTimer = setInterval(function () {
+          if (state.second === 0) {
+            state.minute--
+            state.second = 59
+          }else {
+            state.second--
+          }
+          if (state.minute === 0 && state.second === 0) {
+            clearInterval(myTimer)
+          }
+        },1000)
+      }
+
+      // 倒计时分
+      //   minute:15,
+        // 倒计时秒
+        // second:60,
+    },
     // 检查选中区域
     getRegion (state, payload) {
       state.region = payload.region.address
@@ -150,8 +183,12 @@ const moduleD = {
         state.restaurant_category_ids = payload.restaurant_category_ids
         console.log('产来了餐馆分类的id')
       }
+      // 开始请求 动画进行
+      state.endOfDataLoad = true
       Vue.axios.get(`https://elm.cangdu.org/shopping/restaurants?latitude=${state.latitude}&longitude=${state.longitude}&limit=${state.limit?state.limit:''}&order_by=${state.order_by?state.order_by:''}&delivery_mode[]=${state.delivery_mode}${state.support_ids[0]?'&support_ids[]='+state.support_ids[0]:''}${state.support_ids[1]?'&support_ids[]='+state.support_ids[1]:''}${state.support_ids[2]?'&support_ids[]='+state.support_ids[2]:''}&restaurant_category_ids[]=${state.restaurant_category_ids}`,null).then((res) => {
         state.dataList = res.data;
+        // 请求结束 动画结束
+        state.endOfDataLoad = false
         res.data.map((n)=>{
           state.value1.push(n.rating);
         })
