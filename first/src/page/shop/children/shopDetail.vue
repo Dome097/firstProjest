@@ -1,31 +1,42 @@
 <template>
-  <div  class="shopDetailBox">
+  <div  class="shopDetailBox" >
    <!--左侧部分,左列表点击调用-->
-    <aside ref="l_list">
+    <aside ref="l_list" class="l_list">
       <ul>
         <li ref="l_item" :class="{'act':index === actli}"
-            @click="change(index)">
-          <p></p>
+            @click="change(index)" v-for="(item,index) in shopGoodsArr">
+          <p>
+            {{item.name}}
+          </p>
         </li>
       </ul>
     </aside>
     <!--右侧部分-->
-    <section class="r_list" ref="r_list">
+    <section class="r_list " ref="r_list">
       <div>
         <!--在需要跳转到的区块上添加ref属性用于标识-->
-        <div>
-          <p class="title">热销榜</p>
+        <div v-for="(it,index) in shopGoodsArr" :key="index" ref="good">
+          <p class="title">
+            <span class="title_name">{{it.name}}</span>
+            <span>{{it.description}}</span>
+            <span class="pull-right">...</span>
+          </p>
           <ul>
-            <li class="list">
+            <li class="list" v-for="(item,index) in it.foods" :key="index" @click="getDetails(item)">
               <div class="list_name flex">
-                <p><img src="" alt=""></p>
+                <p ><img :src="http+item.image_path"  alt=""></p>
                 <div>
-                  <p class="name"></p>
-                  <p class="repeat_name"></p>
-                  <p class="sale">月售份   好评率12%</p>
-                  <p class="mark">123</p>
-                  <p class="price">¥35</p>
-                  <div class="add"></div>
+                  <p class="name">{{item.name}}</p>
+                  <p class="nameDes">{{item.description}}</p>
+                  <p class="sale">月售{{item.month_sales}}份   好评率{{item.satisfy_rate}}%</p>
+                  <span class="mark">{{item.activity?item.activity.image_text:''}}</span>
+                  
+                  <p class="price">
+                    <span class="priceP">¥{{item.specfoods[0].price}}</span>
+                    <span>起</span>
+                  </p>
+                  <div class="add pull-right" v-if="item.specfoods[0].specs[0]">规格</div>
+                  <div class="add" v-else>+</div>
                 </div>
               </div>
             </li>
@@ -37,6 +48,7 @@
 </template>
 <script>
   import Better from 'better-scroll'
+  import Vue from 'vue'
 // 单个商铺信息页
 export default {
   name: "shopDetail",
@@ -47,7 +59,10 @@ export default {
       arr: [0],
       flag:true,
       obj:null,
-      show:false
+      show:false,
+      shopGoods:'',
+      shopGoodsArr:[],
+      http:'//elm.cangdu.org/img/'
     }
   },
   computed:{
@@ -58,122 +73,187 @@ export default {
   watch:{
     goods: {
       handler(){
-        console.log('this.$store.state.dome.singleStore',this.$store.state.dome.singleStore)
+        this.shopGoods = this.$store.state.dome.singleStore.id;
+      //  console.log(this.shopGoods)
       },
       //是否在页面刷新时调用回调函数,默认值是false
       immediate:true,
       deep:true
     }
   },
-  // methods:{
-  //   change(index){
-  //     this.flag = false
-  //     this.actli = index
-  //     this.rgt.scrollToElement(this.$refs.shopDetail[index],100,0,0)
-  //     setTimeout(()=>{
-  //       this.flag = true
-  //     },100)
-  //   },
-  //   getDetails(it){
-  //     this.show = !this.show
-  //     this.obj = it
-  //   }
-  // },
-  // mounted(){
-  //
-  // }
+  methods:{
+    change(index){
+      this.flag = false
+      this.actli = index
+      this.rgt.scrollToElement(this.$refs.good[index],100,0,0)
+      setTimeout(()=>{
+        this.flag = true
+      },100)
+    },
+    getDetails(it){
+      this.show = !this.show
+      this.obj = it
+    }
+  },
+  created(){
+    Vue.axios.get(`https://elm.cangdu.org/shopping/v2/menu?restaurant_id=${this.shopGoods}`, null).then((res) => {
+     // console.log(res.data)
+      this.shopGoodsArr = res.data
+      console.log(this.shopGoodsArr[0].foods[0].specfoods[0].specs[0].name)
+    });
+    setTimeout(() => {
+         this.left = new Better(this.$refs.l_list, {
+              click: true //开启点击事件
+         })
+          this.rgt = new Better(this.$refs.r_list, {
+             click: true,
+             probeType: 3 // scroll事件实时分发
+           })
+           this.$refs.good.forEach((el, index) => {//计算每个列表相对于顶部的距离，存到数组arr中
+              this.arr.push(el.offsetHeight + this.arr[index])
+             })
+           this.rgt.on('scroll', (res) => { //监听滚动事件
+            if (this.flag) {
+                 console.log(res)
+                 this.scrollY = Math.abs(res.y)
+                 for (let i = 0; i < this.arr.length; i++) {
+                   if (this.scrollY > this.arr[i] && this.scrollY < this.arr[i + 1]) {
+                     this.actli = i
+                     if (i === this.$refs.l_item.length - 2) { //当滚动到倒数第2个位置时左侧列表向上滚动一个距离
+                     this.left.scrollToElement(this.$refs.l_item[1], 100, 0, 0)
+                         }
+                      if (i === 2) { //当滚动到倒数第3个位置时左侧列表向上下滚动一个距离
+                      this.left.scrollToElement(this.$refs.l_item[0], 100, 0, 0)
+                           }
+                       }
+                   }
+               }
+          })
+      })
+  }
 }
 </script>
 
 <style scoped>
   .shopDetailBox{
     width: 100%;
+    position: relative;
+    height: 100%;
   }
-  aside{
+  .l_list{
     width: 20%;
   }
-  aside>ul>li{
-    height: 0.2rem;
+  .r_list{
+    width: 80%;
+    position: absolute;
+    top: 0;
+    right:0;
+  }
+  .l_list>ul{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-style: normal;
+    text-decoration: none;
+    border: none;
+    color: #333;
+  }
+  .l_list>ul>li{
+    height: 0.5rem;
+    width: 100%;
     display: table;
     background-color: #E3E3E3;
     padding:0.02rem ;
+    font-size: 0.16rem;
+    text-align: center;
+    line-height: 0.4rem;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    overflow: hidden;
+  }
+  .l_list>ul>li>p{
+    display: table-cell;
+    vertical-align: middle;
+    border-bottom: 0.01rem solid rgba(7,17,27,.1);
+  }
+  .r_list ul{
+    text-decoration: none;
+    border: none;
+    color: #333;
+    font-weight: 400;
+    font-family: Microsoft Yahei;
     box-sizing: border-box;
+    background-color: white;
+  }
+  .title{
+    height: 0.45rem;
+    width: 100%;
+    padding: 0.03rem;
+    background-color: #E3E3E3;
+    line-height: 0.45rem;
+  }
+  .title_name{
+    font-size: 0.2rem;
+    font-weight: bold;
+  }
+  .list{
+    padding: 0.1rem 0.1rem 0 0.1rem;
+  }
+  .flex>p>img{
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 0.02rem;
+    margin-top: -0.8rem;
+  }
+  .flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: 0.01rem solid rgba(7,17,27,0.1);
+    padding-bottom: 0.1rem;
+    position: relative;
+  }
+  .flex>div{
+    margin-left: 0.2rem;
+  }
+  .name{
+    font-weight: bold;
+    font-size: 0.16rem;
+  }
+  .nameDes{
+    font-size: 0.12rem;
+    color: gray;
+  }
+  .sale{
+    margin-bottom: 0;
+  }
+  .mark{
+    background-color: white;
+    color: rgb(241, 136, 79);
+    font-size: 0.08rem;
+    border:0.01rem solid rgb(240, 115, 115);
+    -webkit-border-radius: 0.2rem;
+  }
+  .priceP{
+    color:red;
+    font-weight: bolder;
+    font-size: 0.2rem;
+  }
+  .add{
+    position: absolute;
+    right: 0;
+    bottom:0.2rem;
+    color:white;
+    background-color: blue;
+    border:0.01rem solid blue;
+    -webkit-border-radius: 40%;
+    padding: 0.02rem;
   }
 
   /*
-    ul{
-     p{
-         display: table-cell;
-        font:200 0.24rem/0.28rem '';
- 19        vertical-align: middle;
- 20        border-bottom: 1px solid rgba(7,17,27,.1);
- 21      }
- 22    }
- 23    .act{
- 24      background-color: deepskyblue;
- 25    }
- 26
- 27}
- 28.r_list{
- 29    position: fixed;
- 30    left: 1.6rem;
- 31    right: 0;
- 32    top: 3.48rem;
- 33    bottom: 1.04rem;
- 34    overflow: hidden;
- 35    .title{
- 36      border-left: 3px solid #d9dde1;
- 37      height: 0.52rem;
- 38      font: 0.24rem/0.52rem '';
- 39      color: rgb(147,153,159);
- 40      background-color:#f3f5f7;
- 41      padding-left: 0.28rem;
- 42    }
- 43    .flex{
- 44      display: flex;
- 45      justify-content: center;
- 46      align-items: center;
- 47    }
- 48    .list{
- 49      padding: 0.36rem 0.36rem 0 0.36rem;
- 50      img{
- 51        width: 1.28rem;
- 52        border-radius: 0.04rem;
- 53      }
- 54      .list_item{
- 55        justify-content: flex-start;
- 56        border-bottom: 1px solid rgba(7,17,27,0.1);
- 57        padding-bottom: 0.36rem;
- 58        position: relative;
- 59        &>div{
- 60          margin-left: 0.2rem;
- 61          .name{
- 62            font: 0.28rem/0.28rem '';
- 63            color: rgb(7,17,27);
- 64            margin-bottom: 0.16rem;
- 65          }
- 66          .des,.sale{
- 67            font: 0.2rem/0.2rem '';
- 68            color: rgb(147,153,159);
- 69            margin-bottom: 0.16rem;
- 70          }
- 71          .sale{
- 72            margin-bottom: 0;
- 73            span{
- 74              margin-left: 0.24rem;
- 75            }
- 76          }
- 77          .price{
- 78            font:700 0.2rem/0.48rem '';
- 79            color: red;
- 80          }
- 81          .add{
- 82            position: absolute;
- 83            right: 0;
- 84            bottom: 0.28rem;
- 85          }
- 86        }
- 87      }
  88      .last{
  89        border-bottom: none;
  90      }
