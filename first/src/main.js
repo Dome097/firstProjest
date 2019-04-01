@@ -24,7 +24,7 @@ Vue.use(storage)
 const moduleG = {
   state:{
 // 当前所选城市信息
-    currentCity:[]
+    currentCity:{}
   },
   mutations: {
     // 接收

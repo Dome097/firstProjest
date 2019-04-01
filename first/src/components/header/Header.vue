@@ -12,7 +12,7 @@
     <!--第二个头部 当前城市-->
     <nav class="nv navbar navbar-fixed-top firstHead"  v-show="isShow">
       <i class="pull-left iconfont" @click="back">&#xe682;</i>
-      <router-link :to="{}" class="centerContent">郑州</router-link>
+      <router-link :to="{}" class="centerContent">{{nowCity}}</router-link>
       <span class="pull-right" v-show="isHide" @click="back">切换城市</span>
     </nav>
     <!--第三个头部 当前区域-->
@@ -60,8 +60,17 @@ export default {
       isThree:false,
       isFour:false,
       isShow:false,
-      isHide:true
+      isHide:true,
     }
+  },
+  computed: {
+    // 储存当前城市名
+    nowCity:{
+      get () {
+        return this.$store.state.ghc.currentCity.name
+      },
+      set () {}
+      }
   },
   methods:{
     back(){
@@ -75,11 +84,15 @@ export default {
   watch:{
     $route(now,old){     //监控路由变换，控制返回按钮的显示
       if(now.path==="/home"){
+        this.nowCity = ''
         this.isFirst=true;
         this.isShow=false;
         this.isThree = false;
         this.isFour = false;
       } else if(now.path==="/city"){
+        console.log('this.$store.state.ghc.currentCity.name',this.$store.state.ghc.currentCity.name)
+
+        this.nowCity = this.$store.state.ghc.currentCity.name
         this.isShow = true;
         this.isFirst=false;
         this.isThree = false;
