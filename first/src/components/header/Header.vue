@@ -21,7 +21,9 @@
     <!--第三个头部 当前区域-->
     <nav class="nv navbar navbar-fixed-top firstHead" v-if="isThree">
       <router-link class="glyphicon glyphicon-search pull-left" :to="{name:'search'}"></router-link>
-      <router-link class="centerContent" :to="{}">{{}}</router-link>
+      <span class="dome-span">
+              <router-link :to="{}">{{domeRegion}}</router-link>
+      </span>
       <div class="pull-right" v-if="!loggingStatus">
         <span><router-link :to="{name:'login'}">登录</router-link></span>
         <span>|</span>
@@ -94,6 +96,13 @@ export default {
     loggingStatus: {
       get () {
         return this.$store.state.dome.loggingStatus
+      },
+      set () {}
+    },
+    // msite头部
+    domeRegion: {
+      get () {
+        return this.$store.state.dome.region
       },
       set () {}
     }
@@ -173,6 +182,7 @@ export default {
     bottom:0.05rem;
   }
   .firstHead{
+    width: 100%;
     background-color: #008de1;
     text-align: center;
   }
@@ -202,6 +212,16 @@ export default {
     height: 0.4rem;
     font-family: initial;
     font-weight: bold;
+  }
+  .dome-span {
+    position: absolute;
+    text-align: center;
+    left: 0.7rem;
+    width: 2.0rem;
+    word-break:keep-all;/* 不换行 */
+    white-space:nowrap;/* 不换行 */
+    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用*/
   }
 
 </style>

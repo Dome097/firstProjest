@@ -80,9 +80,15 @@ const moduleD = {
     // 是否支持线上支付
     is_premium:false,
     // 单个商铺信息对象
-    singleStore: {}
+    singleStore: {},
+    // 选中区域
+    region:{}
   },
   mutations: {
+    // 检查选中区域
+    getRegion (state, payload) {
+      state.region = payload.region.address
+    },
     // 检查登录状态
     getLoggingStatus (state, payload) {
         state.loggingStatus = payload.loggingStatus
