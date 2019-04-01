@@ -108,9 +108,9 @@ export default {
       this.value = res.data.service_score.toFixed(1)-0;
       this.val = res.data.food_score.toFixed(1)-0;
       this.over = (this.rateData.compare_rating)*100+'%';
-      console.log('val',this.val)
-      console.log('value',this.value)
-      console.log(this.over)
+    //  console.log('val',this.val)
+    //  console.log('value',this.value)
+   //   console.log(this.over)
     });
     Vue.axios.get("https://elm.cangdu.org/ugc/v2/restaurants/1/ratings/tags",null).then((res)=>{
      // console.log(res.data)
