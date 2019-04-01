@@ -58,7 +58,7 @@ export default {
   data () {
     return {
       isIf: '红包',
-      // id: 24444,
+      id: false,
       hBarr:[],
       hbDes: '红包说明',
       hbHis: '历史红包',
@@ -83,27 +83,32 @@ export default {
     }
   },
   computed: {
-    id () {
+    getID () {
       return this.$store.state.ghc.accountData
     }
   },
-  beforeRouteEnter (to, from, next) {
-    // 在该时机里可以做权限配置,发起网络请求等提前需要做的操作
-    // 在渲染该组件的对应路由被 confirm 前调用
-    // 不！能！获取组件实例 `this`
-    // 因为当守卫执行前，组件实例还没被创建
-    // confirm('将要进入商品界面确定吗?') ? next() : null
-    // console.log('this红包',Vue)
-      next(vm => {
-        if (vm.$store.state.dome.loggingStatus) {
-          return
-        }
-      })
-  },
   watch: {
+    getID: {
+      //回调函数,会在计算属性发生变化时触发
+      handler(){
+        this.id = this.$store.state.ghc.accountData.id
+        console.log('走了改行')
+      },
+      //是否在页面刷新时调用回调函数,默认值是false
+      immediate:true,
+      //深度监听
+      deep:true
+}
+  },
+  beforeRouteEnter (to, from, next) {
+    console.log('from',to)
+    if (to.query.id) {
+      next()
+    }
   },
   mounted () {
     // 进入时请求红包
+    console.log('获取到的id',this.id)
     this.$http({
       method: 'get',
       url: `https://elm.cangdu.org/promotion/v2/users/${this.id}/hongbaos`,

@@ -21,7 +21,7 @@
     <!--第三个头部 当前区域-->
     <nav class="nv navbar navbar-fixed-top firstHead" v-if="isThree">
       <router-link class="glyphicon glyphicon-search pull-left" :to="{name:'search'}"></router-link>
-      <router-link class="centerContent" :to="{}">千山区</router-link>
+      <router-link class="centerContent" :to="{}">{{}}</router-link>
       <div class="pull-right" v-if="!loggingStatus">
         <span><router-link :to="{name:'login'}">登录</router-link></span>
         <span>|</span>
