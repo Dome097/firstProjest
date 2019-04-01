@@ -24,7 +24,7 @@ export default {
   data () {
     return {
       // 存储密码可见状态
-      da: true,
+      da:false,
       //
       src: '',
       mindUsername: '',
@@ -55,16 +55,15 @@ export default {
           username: this.mindUsername
         },
       }).then(res => {
-        console.log('---', res)
+        console.log('---', res);
         if (res.data.message) {
           MessageBox.alert(res.data.message);
-          this.gainAuthCode()
-          this.$store.commit({type:'getLoggingStatus',loggingStatus:false})
+          this.gainAuthCode();
+          this.$store.commit({type:'getLoggingStatus',loggingStatus:false});
           return
         }
-        this.$router.push({
-          name: "profile"
-        });
+        // 账户信息匹配正确,跳转到登录状态
+        this.$router.push({name: "profile",query:{name:this.mindUsername}});
         // 给vuex保存用户信息
         this.$store.commit({type:'getLoggingStatus',loggingStatus:true})
         this.$store.state.ghc.accountData = res.data
