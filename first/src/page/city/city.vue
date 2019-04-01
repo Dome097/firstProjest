@@ -27,7 +27,7 @@ export default {
     searchCity(i){
       // 点击提交按钮时,传入用户输入的参数,发起请求
       this.inputValue = i
-      Vue.axios.get('https://elm.cangdu.org/v1/pois?city_id=1&keyword='+i+'&type=search',null).then(res => {
+      Vue.axios.get(`https://elm.cangdu.org/v1/pois?city_id=${this.$store.state.ghc.currentCity.id}&keyword=${i}&type=search`,null).then(res => {
         console.log(res.data)
         this.addrList = res.data
       }).catch((error) => {
