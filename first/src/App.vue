@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Header></Header>
+    <loading v-if="amendEndOfDataLoad"></loading>
     <router-view></router-view>
     <FootGuide></FootGuide>
   </div>
@@ -10,9 +11,16 @@
 import {} from './config/rem'
 import Header from "./components/header/Header";
 import FootGuide from "./components/footer/footGuide";
+import Loading from "./components/common/loading";
 export default {
   name: 'App',
-  components: {Header, FootGuide}
+  components: {Loading, Header, FootGuide},
+  computed: {
+    amendEndOfDataLoad () {
+      console.log('this.$store.state.dome.endOfDataLoad',this.$store.state.dome.endOfDataLoad)
+      return this.$store.state.dome.endOfDataLoad
+    }
+  }
 }
 </script>
 
