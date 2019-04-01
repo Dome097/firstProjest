@@ -1,5 +1,5 @@
 <template>
-  <section class="city container-fluid" >
+  <section class="container-fluid city" >
     <!--<nav class="nv navbar navbar-fixed-top">-->
       <!--<a href="###" class="pull-left">ele.me</a>-->
       <!--<div class="pull-right">-->
@@ -14,13 +14,13 @@
         <span class="ps col-xs-7">定位不准时,请在城市列表选择</span>
       </div>
       <div class="selectCity row">
-        <router-link :to="{name:'city'}" class="col-xs-10">{{currentCity}}</router-link>
+        <router-link :to="{name:'city'}" class="col-xs-10" @click.native="selectThis(currentCity)">{{currentCity.name}}</router-link>
         <router-link :to="{name:'city'}" class="col-xs-2">></router-link>
       </div>
       <div class="hotCity container-fluid">
         <p>热门城市</p>
         <ul class="row">
-          <td v-for="(item , index) in hot_city"  class="col-xs-3"><router-link :to="{name:'city'}">{{item}}</router-link></td>
+          <td v-for="(item , index) in hot_city"  class="col-xs-3" @click="selectThis(item)"><router-link :to="{name:'city'}">{{item.name}}</router-link></td>
         </ul>
       </div>
       <div class="hotCity container-fluid row" v-for="item in allCity" >
@@ -66,7 +66,7 @@ export default {
   mounted(){
     // 当前定位城市
     Vue.axios.get('https://elm.cangdu.org/v1/cities?type=guess',null).then((res)=>{
-      this.currentCity = res.data.name
+      this.currentCity = res.data
       // console.log(this.currentCity);
     }).catch((error)=>{
       console.log(error)
@@ -74,7 +74,7 @@ export default {
     // 在创建之前请求hot_city数据
     Vue.axios.get('https://elm.cangdu.org/v1/cities?type=hot',null).then((res)=>{
       // 把请求到的数据遍历一下,获取城市对应的name,存入hot_city数组
-      this.hot_city = res.data.map((item)=>{return item.name})
+      this.hot_city = res.data.map((item)=>{return item})
       // 把请求到的数据遍历一下,获取城市对应的id,存入cityNum数组
       this.hot_cityNum = res.data.map((item)=>{return item.id})
       console.log(this.hot_cityNum);
@@ -105,11 +105,12 @@ export default {
 
 <style scoped>
   .city{
-    font-size: .16rem;
-    overflow: hidden;
+    /*font-size: .16rem;*/
+    /*overflow: hidden;*/
     width: 100%;
+    height: 100%;
     padding: 0;
-    background-color: #f5f5f5;
+    /*background-color: #f5f5f5;*/
   }
   /*.nv>a{*/
     /*color: #fff;*/

@@ -1,11 +1,11 @@
 <template>
   <section class="container-fluid resetName">
     <div>
-      <input placeholder="输入用户名" @focus="inputInfo" v-model="isValue" :class="{changeColor:isChange} "></input>
+      <input placeholder="输入用户名"  v-model="isValue" :style="changeBorderColor"></input>
     </div>
-    <p :class="{changeTextColor:isChange}">用户名只能修改一次(5-24字符之间)</p>
+    <p :style="changeColor">用户名只能修改一次(5-24字符之间)</p>
     <div class="btn">
-      <button :class="{changeBtnColor:isChange}" @click="resetThat">确认修改</button>
+      <button :style="changeBtnColor" @click="resetThat">确认修改</button>
     </div>
   </section>
 </template>
@@ -17,16 +17,29 @@ export default {
   data(){
     return{
       isChange:false,
-      isValue:""
+      isValue:"",
+      changeColor:'',
+      changeBtnColor:'',
+      changeBorderColor:''
     }
   },
   methods:{
-    // 输入框状态改变时,修改input的边框颜色,p标签颜色
-    inputInfo(){
-      this.isChange = true
-    },
     resetThat(){
       this.$router.push({name:'info',query:{name:this.isValue}})
+    },
+},
+  watch:{
+    // 输入框状态改变时,修改input的边框颜色,p标签颜色
+    "isValue"(){
+      if((this.isValue.length<5 && this.isValue.length>0)||this.isValue.length>24){
+        this.changeColor = {color:'red'};
+        this.changeBtnColor = {color:'darkgrey'};
+        this.changeBorderColor = {border: '0.01rem solid red'};
+      }else{
+        this.changeColor = null;
+        this.changeBtnColor = null;
+        this.changeBorderColor = null
+      }
     }
   }
 }
@@ -68,14 +81,5 @@ export default {
     color: #ffffff;
     border: 0;
     border-radius: 0;
-  }
-  .changeBorderColor{
-    border: 0.01rem solid red;
-  }
-  .changeTextColor{
-    color: red;
-  }
-  .changeBtnColor{
-    color: darkgrey;
   }
 </style>

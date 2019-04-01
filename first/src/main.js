@@ -24,12 +24,18 @@ Vue.use(storage)
 const moduleG = {
   state:{
 // 当前所选城市信息
-    currentCity:[]
+    currentCity:{},
+    // 搜索商家历史记录
+    historyRecord:[]
   },
   mutations: {
-    // 接收
+    // 接收所选城市信息
     "CITY": function(state, currentCity) {
       state.currentCity = currentCity
+    },
+    // 接收所选商家的历史记录
+    "HISTORYRECORD"(state,historyRecord){
+      state.historyRecord.push(historyRecord)
     }
   },
   actions: {}
@@ -51,6 +57,8 @@ const moduleD = {
     foodTitle: '',
     // 请求到的数组
     dataList: [],
+    // 登录状态
+    loggingStatus: '',
     // 请求到的评星
     value1: [],
     // 纬度
@@ -67,11 +75,24 @@ const moduleD = {
     support_ids: [],
     // 餐馆分类id
     restaurant_category_ids: [],
+    // 是否为新店
+    is_new:false,
+    // 是否支持线上支付
+    is_premium:false,
     // 单个商铺信息对象
-    singleStore: {}
+    singleStore: {},
+    // 选中区域
+    region:{}
   },
   mutations: {
-
+    // 检查选中区域
+    getRegion (state, payload) {
+      state.region = payload.region.address
+    },
+    // 检查登录状态
+    getLoggingStatus (state, payload) {
+        state.loggingStatus = payload.loggingStatus
+    },
     // 单个商铺信息对象赋值
     getSingleStore (state, payload) {
       state.singleStore = payload.data
@@ -82,6 +103,17 @@ const moduleD = {
     },
     // 请求商铺
     getShop (state, payload) {
+       // 新店吗
+        state.is_new = payload.is_new
+        console.log('是新店')
+      // 头部是
+      if (payload.classifyOne) {
+        state.foodTitle = payload.classifyOne
+        console.log('修改头部')
+      }
+      // 支持线上支付吗
+        state.is_premium = payload.is_premium
+        console.log('支持线上支付')
       // 纬度
       if (payload.latitude) {
         state.latitude = payload.latitude
@@ -101,6 +133,7 @@ const moduleD = {
       if (payload.order_by) {
         state.order_by = payload.order_by
         console.log('传来了排序方式id')
+        console.log(state.support_ids, '111')
       }
       // 配送方式id
       if (payload.delivery_mode) {
@@ -108,16 +141,16 @@ const moduleD = {
         console.log('传来了配送方式id')
       }
       // 餐馆支持特权的id
-      if (payload.support_ids) {
+      if (payload.support_ids[0]||payload.support_ids[1]||payload.support_ids[2]) {
         state.support_ids = payload.support_ids
-        console.log('传来了餐馆支持特权的id')
+        console.log('传来了餐馆支持特权的id',state.support_ids)
       }
        // 餐馆分类id
       if (payload.restaurant_category_ids) {
         state.restaurant_category_ids = payload.restaurant_category_ids
         console.log('产来了餐馆分类的id')
       }
-      Vue.axios.get(`https://elm.cangdu.org/shopping/restaurants?latitude=${state.latitude}&longitude=${state.longitude}&limit=${state.limit?state.limit:''}&order_by=${state.order_by?state.order_by:''}&delivery_mode[]=${state.delivery_mode}&support_ids[]=${state.support_ids}&restaurant_category_ids[]=${state.restaurant_category_ids}`,null).then((res) => {
+      Vue.axios.get(`https://elm.cangdu.org/shopping/restaurants?latitude=${state.latitude}&longitude=${state.longitude}&limit=${state.limit?state.limit:''}&order_by=${state.order_by?state.order_by:''}&delivery_mode[]=${state.delivery_mode}${state.support_ids[0]?'&support_ids[]='+state.support_ids[0]:''}${state.support_ids[1]?'&support_ids[]='+state.support_ids[1]:''}${state.support_ids[2]?'&support_ids[]='+state.support_ids[2]:''}&restaurant_category_ids[]=${state.restaurant_category_ids}`,null).then((res) => {
         state.dataList = res.data;
         res.data.map((n)=>{
           state.value1.push(n.rating);

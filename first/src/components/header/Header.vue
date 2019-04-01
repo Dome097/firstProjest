@@ -1,31 +1,39 @@
 <template>
   <section class="container-fluid" >
-    <!--第一个头部-->
+    <!--第一个头部 初始界面-->
     <nav class="nv navbar navbar-fixed-top firstHead" v-if="isFirst">
       <router-link class="pull-left" :to="{}">ele.me</router-link>
-      <div class="pull-right">
+      <div class="pull-right" v-if="!loggingStatus">
         <span><router-link :to="{name:'login'}">登录</router-link></span>
         <span>|</span>
         <span><router-link :to="{name:'login'}">注册</router-link></span>
       </div>
+      <div class="pull-right" v-if="loggingStatus">
+        <span><router-link :to="{name:'profile'}"><i class="iconfont">&#xe71d;</i></router-link></span>
+      </div>
     </nav>
-    <!--第二个头部-->
+    <!--第二个头部 当前城市-->
     <nav class="nv navbar navbar-fixed-top firstHead"  v-show="isShow">
-      <i class="pull-left iconfont" @click="back">&#xe682</i>
-      <router-link :to="{}" class="centerContent">郑州</router-link>
+      <i class="pull-left iconfont" @click="back">&#xe682;</i>
+      <router-link :to="{}" class="centerContent">{{nowCity}}</router-link>
       <span class="pull-right" v-show="isHide" @click="back">切换城市</span>
     </nav>
-    <!--第三个头部-->
+    <!--第三个头部 当前区域-->
     <nav class="nv navbar navbar-fixed-top firstHead" v-if="isThree">
       <router-link class="glyphicon glyphicon-search pull-left" :to="{name:'search'}"></router-link>
-      <router-link class="centerContent" :to="{}">千山区</router-link>
-      <div class="pull-right">
+      <span class="dome-span">
+              <router-link :to="{}">{{domeRegion}}</router-link>
+      </span>
+      <div class="pull-right" v-if="!loggingStatus">
         <span><router-link :to="{name:'login'}">登录</router-link></span>
         <span>|</span>
         <span><router-link :to="{name:'login'}">注册</router-link></span>
       </div>
+      <div class="pull-right" v-if="loggingStatus">
+        <span><router-link :to="{name:'profile'}"><i class="iconfont">&#xe71d;</i></router-link></span>
+      </div>
     </nav>
-    <!--第四个头部-->
+    <!--第四个头部 商家界面-->
     <nav class="nv navbar navbar-fixed-top bg-warning fourModule" :style="{}" v-if="isFour">
       <i class="iconfont toLeft">&#xe682</i>
       <img src="../../assets/logo.png" alt="" class="pull-left" style="width: 0.8rem; height: 1rem">
@@ -47,6 +55,11 @@
         <i class="iconfont pull-right bottomContent">1个活动 &#xe634 </i>
       </div>
     </nav>
+    <!--第五个头部food的头部-->
+    <nav class="nv navbar navbar-fixed-top firstHead"  v-if="isFive">
+      <i class="pull-left iconfont" @click="back">&#xe682;</i>
+      <router-link :to="{}" class="centerContent">{{foodTitle}}</router-link>
+    </nav>
   </section >
 </template>
 
@@ -60,7 +73,38 @@ export default {
       isThree:false,
       isFour:false,
       isShow:false,
-      isHide:true
+      isHide:true,
+      isFive:false,
+    }
+  },
+  computed: {
+    // 储存当前城市名
+    nowCity:{
+      get () {
+        return this.$store.state.ghc.currentCity.name
+      },
+      set () {}
+      },
+    // food 标题
+    foodTitle: {
+      get () {
+        return this.$store.state.dome.foodTitle
+      },
+      set () {}
+    },
+    // 登录状态
+    loggingStatus: {
+      get () {
+        return this.$store.state.dome.loggingStatus
+      },
+      set () {}
+    },
+    // msite头部
+    domeRegion: {
+      get () {
+        return this.$store.state.dome.region
+      },
+      set () {}
     }
   },
   methods:{
@@ -75,24 +119,46 @@ export default {
   watch:{
     $route(now,old){     //监控路由变换，控制返回按钮的显示
       if(now.path==="/home"){
+        this.nowCity = ''
+        this.isFirst=true;
         this.isShow=false;
         this.isThree = false;
         this.isFour = false;
+        this.isFive = false
       } else if(now.path==="/city"){
+        console.log('this.$store.state.ghc.currentCity.name',this.$store.state.ghc.currentCity.name)
+
+        this.nowCity = this.$store.state.ghc.currentCity.name
         this.isShow = true;
         this.isFirst=false;
         this.isThree = false;
         this.isFour = false;
+        this.isFive = false
       }else if(now.path === "/msite"){
         this.isThree = true;
         this.isFirst=false;
         this.isShow=false;
         this.isFour = false;
+        this.isFive = false
       }else if(now.path === "/shop/shopDetail"){
         this.isFour = true;
         this.isFirst=false;
         this.isShow=false;
         this.isThree = false;
+        this.isFive = false
+      }else if(now.path === "/food"){
+        this.isFour = false;
+        this.isFirst=false;
+        this.isShow=false;
+        this.isThree = false;
+        this.isFive = true
+      }else if(now.path === "/profile/mind"){
+        this.$store.state.dome.foodTitle = '我的'
+        this.isFour = false;
+        this.isFirst=false;
+        this.isShow=false;
+        this.isThree = false;
+        this.isFive = true
       }
     }
   }
@@ -116,6 +182,7 @@ export default {
     bottom:0.05rem;
   }
   .firstHead{
+    width: 100%;
     background-color: #008de1;
     text-align: center;
   }
@@ -145,6 +212,16 @@ export default {
     height: 0.4rem;
     font-family: initial;
     font-weight: bold;
+  }
+  .dome-span {
+    position: absolute;
+    text-align: center;
+    left: 0.7rem;
+    width: 2.0rem;
+    word-break:keep-all;/* 不换行 */
+    white-space:nowrap;/* 不换行 */
+    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用*/
   }
 
 </style>

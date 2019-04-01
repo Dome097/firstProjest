@@ -6,9 +6,10 @@
           <i class="iconfont">&#xe677;</i>
         </div>
         <div class="col-xs-6 login">
-          <span>登录</span>
-          <span>/</span>
-          <span>注册</span><br>
+          <span>{{userName}}</span>
+          <span v-if="noUser">登录</span>
+          <span v-if="noUser">/</span>
+          <span v-if="noUser">注册</span><br>
           <i class="iconfont">&#xe633;</i>
           <span class="number">暂无绑定手机号</span>
         </div>
@@ -23,7 +24,7 @@
         </router-link>
       </div>
       <div class="col-xs-4 middle">
-        <router-link :to="{name:'benefit'}">
+        <router-link :to="{name:'benefit',query:{id:$store.state.dome.loggingStatus}}">
           <p><span>0</span>个</p>
           <p>我的优惠</p>
         </router-link>
@@ -78,7 +79,22 @@
 <script>
   // 个人中心
   export default {
-    name: "mind"
+    name: "mind",
+    data(){
+      return{
+        // 未登录显示状态
+        noUser:true,
+        // 登录成功状态显示
+        hasUser:false,
+        userName:this.$route.query.name
+      }
+    },
+    beforeRouteEnter(to,from,next){
+      next((vm)=>{
+        vm.hasUser = true;
+        vm.noUser = false
+      })
+    }
   }
 </script>
 
