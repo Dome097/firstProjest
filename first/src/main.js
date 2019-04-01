@@ -24,12 +24,18 @@ Vue.use(storage)
 const moduleG = {
   state:{
 // 当前所选城市信息
-    currentCity:{}
+    currentCity:{},
+    // 搜索商家历史记录
+    historyRecord:[]
   },
   mutations: {
-    // 接收
+    // 接收所选城市信息
     "CITY": function(state, currentCity) {
       state.currentCity = currentCity
+    },
+    // 接收所选商家的历史记录
+    "HISTORYRECORD"(state,historyRecord){
+      state.historyRecord.push(historyRecord)
     }
   },
   actions: {}
