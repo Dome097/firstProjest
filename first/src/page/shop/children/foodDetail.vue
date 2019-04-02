@@ -60,6 +60,29 @@
 // 商铺信息页
 export default {
   name: "foodDetail",
+  data(){
+    return{
+      // 当前选中的商家
+      nowStoreDetail:'',
+      http:'//elm.cangdu.org/img/',
+    }
+  },
+  computed:{
+    // 存储当前选中的食商家数据
+    nowStore(){
+      return this.$store.state.dome.singleStore
+    }
+  },
+  watch:{
+    nowStore:{
+      handler() {
+        console.log(this.nowStoreDetail)
+        this.nowStoreDetail = this.$store.state.dome.singleStore
+      },
+      immediate:true,
+      deep:true
+    }
+  },
   methods:{
     toShopSafe(){
       this.$router.push({name:'shopSafe'})

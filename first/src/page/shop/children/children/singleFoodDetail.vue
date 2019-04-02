@@ -52,7 +52,7 @@
       watch:{
         nowFood:{
           handler() {
-          //  console.log("接收到的当前的单个食物信息", this.$store.state.dome.singleFood)
+           console.log("接收到的当前的单个食物信息", this.$store.state.dome.singleFood)
             this.nowFoodDetail = this.$store.state.dome.singleFood
             this.value = this.$store.state.dome.singleFood.rating
             this.specfoodsArr = this.$store.state.dome.singleFood.specfoods

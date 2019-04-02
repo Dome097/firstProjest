@@ -29,6 +29,7 @@
           <ul>
             <li class="list" v-for="(item,index) in it.foods" :key="index" @click="toSingleFoodDetail(item)">
                 <div class="flex">
+                  <div class="newP" v-if="item.attributes[0]">新品</div>
                 <p ><img :src="http+item.image_path"  alt=""></p>
                 <div>
                   <p class="name">{{item.name}}</p>
@@ -249,6 +250,7 @@ export default {
     border-bottom: 0.01rem solid rgba(7,17,27,0.1);
     padding-bottom: 0.1rem;
     position: relative;
+    transform-style: preserve-3d;
   }
   .flex>div{
     margin-left: 0.2rem;
@@ -318,4 +320,18 @@ export default {
     top:-0.1rem;
     right: 0.1rem;
   }
+  .newP{
+    width: 0;
+    height: 0;
+    border-width: 0 0.3rem 0.3rem;
+    border-style: solid;
+    border-color: transparent transparent rgb(94, 196, 82);
+    font-size: 0.08rem;
+    position: absolute;
+    top: -0.15rem;
+    left:-0.5rem;
+    transform: rotate(-45deg);
+    color: white;
+  }
+
 </style>
