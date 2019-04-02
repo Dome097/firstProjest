@@ -83,7 +83,15 @@ export default {
     }
   },
   mounted() {
+    //懒加载
+    this.$store.commit({
+      type:'amendDataLoad'
+    });
     Vue.axios.get(`https://elm.cangdu.org/shopping/v2/menu?restaurant_id=${this.shopGoods}`, null).then((res) => {
+      //懒加载
+      this.$store.commit({
+        type:'amendDataLoad'
+      });
       // console.log(res.data)
       this.shopGoodsArr = res.data
       console.log(this.shopGoodsArr[0].foods[0].specfoods[0].specs[0].name)

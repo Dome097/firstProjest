@@ -109,6 +109,7 @@ export default {
   mounted () {
     // 进入时请求红包
     console.log('获取到的id',this.id);
+    //懒加载
     this.$store.commit({
       type:'amendDataLoad'
     });

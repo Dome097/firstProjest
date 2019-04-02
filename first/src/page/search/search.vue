@@ -79,8 +79,16 @@ export default {
       console.log(i);
       // 调用添加历史记录的函数
       this.doAdd(i);
+      //懒加载
+      this.$store.commit({
+        type:'amendDataLoad'
+      });
       // 点击提交按钮时,传入用户输入的参数,发起请求
       Vue.axios.get('https://elm.cangdu.org/v4/restaurants?geohash=31.22967,121.4762&keyword='+i,null).then(res => {
+        //懒加载
+        this.$store.commit({
+          type:'amendDataLoad'
+        });
         console.log(res.data);
         // 请求到数据后让内容显示
         this.isAnswer = true;

@@ -76,8 +76,16 @@ export default {
       this.popupVisible2 = false
     },
     closeIt(){
+      //懒加载
+      this.$store.commit({
+        type:'amendDataLoad'
+      });
       // 退出登录,发起请求
       Vue.axios.get('https://elm.cangdu.org/v2/signout',null).then(res => {
+        //懒加载
+        this.$store.commit({
+          type:'amendDataLoad'
+        });
         console.log(res.data);
         // 点击弹框上的退出按钮,使该弹框消失
         this.popupVisible2 = false;
