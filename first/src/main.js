@@ -56,7 +56,7 @@ const moduleD = {
     // 单个食物详情
     singleFood:{},
     // 购物车中的食物
-    cartSingleFood:[{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20}],
+    cartSingleFood:[{attrs:[],extra:{},id:食品id,name:食品名称,packing_fee:打包费,price:价格,quantity:数量,sku_id:规格id,specs:规格,stock:存量,}],
     // 数据加载成功
     endOfDataLoad:false,
     // 倒计时分

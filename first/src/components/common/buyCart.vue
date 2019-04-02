@@ -2,9 +2,9 @@
   <div id="domeShoppingCartComponent">
     <!--遮罩淡入淡出动画-->
     <transition name="dome3">
-      <div class="dome-shade" v-if="false"></div>
+      <div class="dome-shade" v-if="draw" @click.self="arr[0]?draw=!draw:null"></div>
     </transition>
-    <div id="domeBuyCart" @click="arr[0]?draw=!draw:null">
+    <div id="domeBuyCart">
       <!--上拉下拉动画-->
       <transition name="dome2">
         <!--购物车,商品容器-->
@@ -14,7 +14,7 @@
             <!--购物车-->
             <span class="dome-cart-text left">购物车</span>
             <!--清空-->
-            <span class="dome-empty right" @click="domeEmpty"><i class="iconfont">&#xe626;</i> 清空</span>
+            <span class="dome-empty right" @click="domeEmpty"><i class="iconfont" @click="arr[0]?draw=!draw:null">&#xe626;</i> 清空</span>
           </div>
           <!--当前商品容器-->
           <div class="dome-commodity-box" v-for="(item, index) in arr" :key="index">
@@ -38,20 +38,24 @@
           </div>
         </div>
       </transition>
-      <!--购物车容器-->
-      <div class="dome-cart left">
-        <!--购物车i标签-->
-        <i class="iconfont dome-cart-i">&#xe64f;</i>
+      <!--底部容器-->
+      <div class="dome-foot" @click.self="arr[0]?draw=!draw:null">
+        <!--购物车容器-->
+        <div class="dome-cart left" :class="{domeBackgroundColor:arr[0]}"@click="arr[0]?draw=!draw:null">
+          <!--购物车i标签-->
+          <i class="iconfont dome-cart-i" >&#xe64f;</i>
+        </div>
+        <!--价格与配送费容器-->
+        <div class="dome-price-freight" @click="arr[0]?draw=!draw:null">
+          <!--当前金额-->
+          <p class="dome-price">¥ {{"0.00"}}</p>
+          <!--配送费-->
+          <p class="dome-freight">配送费¥{{5}}</p>
+        </div>
+        <!--结算容器-->
+        <span class="dome-affirm" :class="{domeBackgroundColorRight:arr[0]}" @click="goPayment">{{arr[0]?`去结算`:`还差¥${'20'}元起送`}}</span>
       </div>
-      <!--价格与配送费容器-->
-      <div class="dome-price-freight">
-        <!--当前金额-->
-        <p class="dome-price">¥ {{"0.00"}}</p>
-        <!--配送费-->
-        <p class="dome-freight">配送费¥{{5}}</p>
-      </div>
-      <!--结算容器-->
-      <span class="dome-affirm" @click="goPayment">{{a?`去结算`:`还差¥${'20'}元起送`}}</span>
+
     </div>
   </div>
 
@@ -89,7 +93,7 @@ export default {
     goPayment () {
       if (this.arr[0]) {
         this.$router.push({name:'payment'})
-      } 
+      }
     }
   }
 }
@@ -109,6 +113,17 @@ export default {
   bottom: 0;
   width: 100%;
   height: 0.50rem;
+  /*background-color: black;*/
+  /*z-index: 55;*/
+}
+/*底部容器*/
+.dome-foot {
+  width: 100%;
+  height: 0.50rem;
+  color: white;
+  display: flex;
+  position: fixed;
+  bottom: 0;
   background-color: black;
 }
 /*购物车容器*/
@@ -124,8 +139,11 @@ export default {
   text-align: center;
 }
 /*购物车有商品时*/
-.dome-background-color {
+.domeBackgroundColor {
   background-color: #008de1;
+}
+.domeBackgroundColorRight {
+  background-color: #18ff21 !important;
 }
 /*当前价格*/
 .dome-price {
@@ -166,6 +184,7 @@ export default {
   position: fixed;
   bottom: 0.5rem;
   overflow-y: scroll;
+  /*z-index: 3;*/
 }
 /*购物车容器*/
 .dome-cart-box {
@@ -174,7 +193,7 @@ export default {
   height: 0.5rem;
   background-color: #ddd;
   line-height: 0.5rem;
-  z-index: 3;
+  /*z-index: 66;*/
 }
 /*仅仅是购物车三个字*/
 .dome-cart-text {
@@ -197,6 +216,7 @@ export default {
   height: 0.5rem;
   line-height: 0.5rem;
   display: flex;
+  /*z-index: 4;*/
 }
 /*商品名*/
 .dome-commodity {
@@ -234,11 +254,18 @@ export default {
   bottom: 0;
   background-color: rgba(33,33,33,0.5);
 }
+/*下拉上拉动画*/
+.dome2-enter-active, .dome2-leave-active {
+  transition: bottom 1s;
+}
+.dome2-enter, .dome2-leave-to/* .fade-leave-active below version 2.1.8 */ {
+  bottom: -5rem;
+}
 /*!*遮罩淡入淡出动画*!*/
-/*.dome3-enter-active, .dome3-leave-active {*/
-  /*transition: background-color 1s;*/
-/*}*/
-/*.dome3-enter, .dome3-leave-to {*/
-  /*background-color:  rgba(33,33,33,0);*/
-/*}*/
+.dome3-enter-active, .dome3-leave-active {
+  transition: background-color 1s;
+}
+.dome3-enter, .dome3-leave-to {
+  background-color:  rgba(33,33,33,0);
+}
 </style>
