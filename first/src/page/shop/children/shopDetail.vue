@@ -35,7 +35,7 @@
                     <span>起</span>
                   </p>
                   <div class="add pull-right" v-if="item.specfoods[0].specs[0]">规格</div>
-                  <div class="add" v-else>+</div>
+                  <div  class="add" v-else><i class="iconfont" >&#xe635</i></div>
                 </div>
               </div>
             </li>
@@ -83,12 +83,18 @@ export default {
     }
   },
   mounted() {
+    this.$store.commit({
+      type:"amendDataLoad"
+    })
     Vue.axios.get(`https://elm.cangdu.org/shopping/v2/menu?restaurant_id=${this.shopGoods}`, null).then((res) => {
+      this.$store.commit({
+        type:"amendDataLoad"
+      })
       // console.log(res.data)
       this.shopGoodsArr = res.data
       console.log(this.shopGoodsArr[0].foods[0].specfoods[0].specs[0].name)
     });
-    this.$nextTick(() => {
+   this.$nextTick(() => {
      // 左侧滚动栏的better-scroll对象要开启点击事件
          this.left = new Better(this.$refs.l_list, {
               click: true //开启点击事件
@@ -119,8 +125,9 @@ export default {
                    }
                }
           })
-      })
-  }, methods:{
+     })
+  },
+  methods:{
     change(index){
       this.flag = false
       this.actli = index
@@ -138,6 +145,7 @@ export default {
     width: 100%;
     position: relative;
     height: 100%;
+
   }
   .l_list{
     width: 20%;
@@ -250,5 +258,8 @@ export default {
     border:0.01rem solid blue;
     -webkit-border-radius: 40%;
     padding: 0.02rem;
+  }
+  .add>a{
+    font-size: 0.2rem;
   }
 </style>

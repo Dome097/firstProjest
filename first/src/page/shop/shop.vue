@@ -33,9 +33,6 @@ export default {
     return {
       pStyle:true
     }
-  },
-  methods:{
-
   }
 }
 </script>

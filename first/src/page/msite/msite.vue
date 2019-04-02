@@ -45,8 +45,14 @@
       }
     },
     mounted(){
+      this.$store.commit({
+        type:"amendDataLoad"
+      })
       var this1 = this;
       Vue.axios.get("https://elm.cangdu.org/v2/index_entry", null).then((res) => {
+        this.$store.commit({
+          type:"amendDataLoad"
+        })
        // console.log(res.data)
         for (let i = 0; i < res.data.length/2; i++) {
           this1.arr1.push(res.data[i])
