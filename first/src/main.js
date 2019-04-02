@@ -149,6 +149,7 @@ const moduleD = {
     // 单个商铺信息对象赋值
     getSingleStore (state, payload) {
       state.singleStore = payload.data
+      console.log("state.singleStore是", state.singleStore)
     },
     // 给food的title赋值
     goMsite (state, title) {

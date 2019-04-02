@@ -55,7 +55,13 @@ export default {
     }
   },
   mounted(){
+    this.$store.commit({
+      type:"amendDataLoad"
+    })
     Vue.axios.get('https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762',null).then((res) => {
+      this.$store.commit({
+        type:"amendDataLoad"
+      })
       this.dataList = res.data;
    //   console.log(this.dataList);
       res.data.map((n)=>{

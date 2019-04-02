@@ -88,6 +88,8 @@ import shop from '../page/shop/shop'
 import foodDetail from '../page/shop/children/foodDetail'
 // 单个商铺信息页
 import shopDetail from '../page/shop/children/shopDetail'
+//单个食品详情页
+import singleFoodDetail from '../page/shop/children/children/singleFoodDetail'
 // 商品认证信息页
 import shopSafe from '../page/shop/children/children/shopSafe'
 // 会员卡办理页
@@ -366,6 +368,11 @@ export default new Router({
       path: '/shopDetail',
       component: shopDetail,
       name: 'shopDetail',
+    },
+    { // 单个食物信息页 一级路由
+      path: '/singleFoodDetail',
+      component: singleFoodDetail,
+      name: 'singleFoodDetail',
     },
     { // 商铺认证信息页 一级路由
       path: '/shopSafe',

@@ -102,7 +102,13 @@ export default {
     }
   },
   created() {
+    this.$store.commit({
+      type:"amendDataLoad"
+    })
     Vue.axios.get("https://elm.cangdu.org/ugc/v2/restaurants/1/ratings/scores", null).then((res) => {
+      this.$store.commit({
+        type:"amendDataLoad"
+      })
       this.rateData = res.data;
      console.log( this.rateData);
       this.value = res.data.service_score.toFixed(1)-0;
