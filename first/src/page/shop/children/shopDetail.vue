@@ -40,7 +40,7 @@
                     <span>起</span>
                   </p>
                   <div class="add" v-if="item.specfoods[0].specs[0]">规格</div>
-                  <div class="add1" v-else @click="toShopCart(item)">
+                  <div class="add1" v-else @click.stop="toShopCart(item)">
                     <i class="iconfont" @click="deleteShopCart(item)" >&#xe7f4</i>
                     <span>
                       <i class="iconfont">&#xe605</i>
