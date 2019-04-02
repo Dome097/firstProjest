@@ -1,49 +1,56 @@
 <template>
-  <div id="domeBuyCart">
-    <!--上拉下拉动画-->
-    <transition name="dome2">
-      <!--购物车,商品容器-->
-      <div class="dome-box">
-        <!--购物车容器-->
-        <div class="dome-empty">
-          <!--购物车-->
-          <span>购物车</span>
-          <!--清空-->
-          <span><i></i>清空</span>
-        </div>
-        <!--当前商品容器-->
-        <div>
-          <!--商品名-->
-          <span></span>
-          <!--单价-->
-          <span></span>
-          <!--添加删除容器-->
-          <span>
+  <div id="domeShoppingCartComponent">
+    <!--遮罩淡入淡出动画-->
+    <transition name="dome3">
+      <div class="dome-shade"></div>
+    </transition>
+    <div id="domeBuyCart">
+      <!--上拉下拉动画-->
+      <transition name="dome2">
+        <!--购物车,商品容器-->
+        <div class="dome-box">
+          <!--购物车容器-->
+          <div class="dome-empty">
+            <!--购物车-->
+            <span>购物车</span>
+            <!--清空-->
+            <span><i></i>清空</span>
+          </div>
+          <!--当前商品容器-->
+          <div>
+            <!--商品名-->
+            <span></span>
+            <!--单价-->
+            <span></span>
+            <!--添加删除容器-->
+            <span>
           <!--减少一件-->
           <i></i>
-            <!--当前数量-->
+              <!--当前数量-->
           <span>{{1}}</span>
-            <!--添加一件-->
+              <!--添加一件-->
           <i></i>
         </span>
+          </div>
         </div>
+      </transition>
+      <!--购物车容器-->
+      <div class="dome-cart left">
+        <!--购物车i标签-->
+        <i class="iconfont dome-cart-i">&#xe64f;</i>
       </div>
-    </transition>
-    <!--购物车容器-->
-    <div class="dome-cart left">
-      <!--购物车i标签-->
-      <i class="iconfont dome-cart-i">&#xe64f;</i>
+      <!--价格与配送费容器-->
+      <div class="dome-price-freight">
+        <!--当前金额-->
+        <p class="dome-price">¥ {{"0.00"}}</p>
+        <!--配送费-->
+        <p class="dome-freight">配送费¥{{5}}</p>
+      </div>
+      <!--结算容器-->
+      <span class="dome-affirm">{{a?`去结算`:`还差¥${'20'}元起送`}}</span>
     </div>
-    <!--价格与配送费容器-->
-    <div class="dome-price-freight">
-      <!--当前金额-->
-      <p class="dome-price">¥ {{"0.00"}}</p>
-      <!--配送费-->
-      <p class="dome-freight">配送费¥{{5}}</p>
-    </div>
-    <!--结算容器-->
-    <span class="dome-affirm">{{a?`去结算`:`还差¥${'20'}元起送`}}</span>
   </div>
+
 </template>
 
 <script>
@@ -60,6 +67,11 @@ export default {
 
 <style scoped>
 /*根标签*/
+#domeShoppingCartComponent {
+  width: 100%;
+  height: 100%;
+}
+/*购物车组件容器*/
 #domeBuyCart {
   color: white;
   display: flex;
@@ -119,9 +131,25 @@ export default {
 /*购物车,商品容器*/
 .dome-box {
   width: 100%;
+  /*height: 6rem;*/
   max-height: 5rem;
   background-color: chartreuse;
   position: fixed;
   bottom: 0.5rem;
 }
+/*遮罩*/
+.dome-shade {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: rgba(33,33,33,0.5);
+}
+/*!*遮罩淡入淡出动画*!*/
+/*.dome3-enter-active, .dome3-leave-active {*/
+  /*transition: background-color 1s;*/
+/*}*/
+/*.dome3-enter, .dome3-leave-to {*/
+  /*background-color:  rgba(33,33,33,0);*/
+/*}*/
 </style>

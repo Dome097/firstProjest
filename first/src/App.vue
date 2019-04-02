@@ -3,7 +3,6 @@
     <Header></Header>
     <loading v-if="amendEndOfDataLoad"></loading>
     <router-view></router-view>
-    <buy-cart></buy-cart>
     <!--<FootGuide></FootGuide>-->
   </div>
 </template>
@@ -13,10 +12,9 @@ import {} from './config/rem'
 import Header from "./components/header/Header";
 import FootGuide from "./components/footer/footGuide";
 import Loading from "./components/common/loading";
-import BuyCart from "./components/common/buyCart";
 export default {
   name: 'App',
-  components: {BuyCart, Loading, Header, FootGuide},
+  components: {Loading, Header, FootGuide},
   computed: {
     amendEndOfDataLoad () {
       console.log('this.$store.state.dome.endOfDataLoad',this.$store.state.dome.endOfDataLoad)
