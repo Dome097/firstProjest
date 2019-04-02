@@ -18,6 +18,7 @@
         <rating-star></rating-star>
       </div>
     </div>
+    <buy-cart></buy-cart>
   </div>
 </template>
 
@@ -25,10 +26,11 @@
 // 商品筛选页
 import RatingStar from "../../components/common/ratingStar";
 import ShopDetail from "./children/shopDetail";
+import BuyCart from "../../components/common/buyCart";
 
 export default {
   name: "shop",
-  components: {ShopDetail, RatingStar},
+  components: {BuyCart, ShopDetail, RatingStar},
   data(){
     return {
       pStyle:true

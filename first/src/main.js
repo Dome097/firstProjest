@@ -53,6 +53,10 @@ const moduleJ = {
 }
 const moduleD = {
   state:{
+    // 单个食物详情
+    singleFood:{},
+    // 购物车中的食物
+    cartSingleFood:[],
     // 数据加载成功
     endOfDataLoad:false,
     // 倒计时分
@@ -91,6 +95,22 @@ const moduleD = {
     region:{}
   },
   mutations: {
+    // 向购物车添加食物
+    addSingleFood(state, pyload) {
+      console.log(p)
+    },
+    // 删除一个食物
+    deleteSingleFood (state, pyload) {
+
+    },
+    // 清空购物车
+    emptySingleFood  (state, pyload) {
+      state.cartSingleFood = []
+    },
+    // 修改单个食物详情
+    getSingleFood (state, pyload) {
+      state.singleFood = pyload.data
+    },
     // 加载动画
     amendDataLoad (state, pyload) {
       state.endOfDataLoad = !state.endOfDataLoad

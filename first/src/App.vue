@@ -3,7 +3,7 @@
     <Header></Header>
     <loading v-if="amendEndOfDataLoad"></loading>
     <router-view></router-view>
-    <FootGuide></FootGuide>
+    <!--<FootGuide></FootGuide>-->
   </div>
 </template>
 
