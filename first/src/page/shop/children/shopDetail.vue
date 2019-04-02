@@ -40,7 +40,7 @@
                     <span>起</span>
                   </p>
                   <div class="add" v-if="item.specfoods[0].specs[0]">规格</div>
-                  <div class="add1" v-else><i class="iconfont" >&#xe7f4;</i></div>
+                  <div class="add1" v-else @click="toShopCart(item)"><i class="iconfont" >&#xe7f4;</i></div>
                 </div>
               </div>
             </li>
@@ -96,7 +96,7 @@ export default {
       this.$store.commit({
         type:"amendDataLoad"
       })
-       console.log("shopDetail接收到的信息",res.data)
+      // console.log("shopDetail接收到的信息",res.data)
       this.shopGoodsArr = res.data
       console.log(this.shopGoodsArr[0].foods[0].specfoods[0].specs[0].name)
     });
@@ -143,10 +143,13 @@ export default {
       },100)
     },
     toSingleFoodDetail(n){
+      this.$store.commit({type:'getSingleFood',data:n})
       this.$router.push({name:'singleFoodDetail'})
-      console.log("选中的当前食物",n)
-      this.$store.commit({type:'addSingleFood',data:n})
-      this.$store.commit({type:'deleteSingleFood',data:n})
+    //  console.log("选中的当前食物",n)
+     // this.$store.commit({type:'deleteSingleFood',data:n})
+    },
+    toShopCart(m){
+       this.$store.commit({type:'addSingleFood',data:n})
     }
   }
 }
