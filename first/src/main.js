@@ -56,7 +56,21 @@ const moduleD = {
     // 单个食物详情
     singleFood:{},
     // 购物车中的食物
-    cartSingleFood:[{attrs:[],extra:{},id:食品id,name:食品名称,packing_fee:打包费,price:价格,quantity:数量,sku_id:规格id,specs:规格,stock:存量,}],
+    // {attrs:[],extra:{},id:食品id,name:食品名称,packing_fee:打包费,price:价格,quantity:数量,sku_id:规格id,specs:规格,stock:存量,}
+    cartSingleFood:[
+      {
+        quantity:1,
+        entities:{
+          id: 5894,
+          name: '123',
+          packing_fee: 0,
+          price: 20,
+          sku_id: 5894,
+          specs:[],
+          stock: 1000
+        }
+      }
+      ],
     // 数据加载成功
     endOfDataLoad:false,
     // 倒计时分
@@ -96,12 +110,21 @@ const moduleD = {
   },
   mutations: {
     // 向购物车添加食物
-    addSingleFood(state, pyload) {
-      console.log(p)
+    addSingleFood (state, pyload) {
+      console.log('添加到购物车的对象',pyload.data)
+    },
+    // 在购物车添加食物
+    cartAddSingleFood (state, pyload) {
+      state.
+      console.log('要添加的对象',pyload.data)
     },
     // 删除一个食物
     deleteSingleFood (state, pyload) {
 
+    },
+    // 在购物车删除食物
+    cartDeleteSingleFood (state, pyload) {
+      console.log('要删除的对象',pyload.data)
     },
     // 清空购物车
     emptySingleFood  (state, pyload) {

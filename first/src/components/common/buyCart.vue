@@ -14,26 +14,29 @@
             <!--购物车-->
             <span class="dome-cart-text left">购物车</span>
             <!--清空-->
-            <span class="dome-empty right" @click="domeEmpty"><i class="iconfont" @click="arr[0]?draw=!draw:null">&#xe626;</i> 清空</span>
+            <span class="dome-empty right" @click="domeEmpty"><i class="iconfont">&#xe626;</i> 清空</span>
           </div>
+          <div></div>
           <!--当前商品容器-->
-          <div class="dome-commodity-box" v-for="(item, index) in arr" :key="index">
-            <!--商品名-->
-            <div class="dome-commodity">
-              <span>{{item.name}}</span>
-            </div>
-            <!--单价-->
-            <div class="dome-univalence">
-              <span>¥{{item.univalence}}</span>
-            </div>
-            <!--添加删除容器-->
-            <div class="dome-plus-minus">
-            <!--减少一件-->
-              <i class="iconfont" @click="domeDelete(item)">&#xe605;</i>
-              <!--当前数量-->
-              <span>{{1}}</span>
-              <!--添加一件-->
-              <i class="iconfont" @click="domeAdd(item)">&#xe635;</i>
+          <div>
+            <div class="dome-commodity-box" v-for="(item, index) in arr" :key="index">
+              <!--商品名-->
+              <div class="dome-commodity">
+                <span>{{item.entities.name}}</span>
+              </div>
+              <!--单价-->
+              <div class="dome-univalence">
+                <span>¥{{item.entities.price}}</span>
+              </div>
+              <!--添加删除容器-->
+              <div class="dome-plus-minus">
+                <!--减少一件-->
+                <i class="iconfont" @click="domeDelete(item)">&#xe605;</i>
+                <!--当前数量-->
+                <span>{{item.quantity}}</span>
+                <!--添加一件-->
+                <i class="iconfont" @click="domeAdd(item)">&#xe635;</i>
+              </div>
             </div>
           </div>
         </div>
@@ -48,17 +51,15 @@
         <!--价格与配送费容器-->
         <div class="dome-price-freight" @click="arr[0]?draw=!draw:null">
           <!--当前金额-->
-          <p class="dome-price">¥ {{"0.00"}}</p>
+          <p class="dome-price">¥ {{totalPrices?totalPrices:'00'}}.00</p>
           <!--配送费-->
           <p class="dome-freight">配送费¥{{5}}</p>
         </div>
         <!--结算容器-->
         <span class="dome-affirm" :class="{domeBackgroundColorRight:arr[0]}" @click="goPayment">{{arr[0]?`去结算`:`还差¥${'20'}元起送`}}</span>
       </div>
-
     </div>
   </div>
-
 </template>
 
 <script>
@@ -68,7 +69,8 @@ export default {
   data () {
     return {
       // 控制上拉下拉
-      draw:false
+      draw:false,
+      totalPrices:0
     }
   },
   computed: {
@@ -76,18 +78,33 @@ export default {
       return this.$store.state.dome.cartSingleFood
     }
   },
+  watch:{
+    arr: {
+      handler() {
+        for (let prices of this.$store.state.dome.cartSingleFood) {
+          this.totalPrices += prices.entities.price * prices.quantity
+        }
+      },
+      //是否在页面刷新时调用回调函数,默认值是false
+      immediate:true,
+      //深度监听
+      deep:true
+    }
+  },
   methods: {
     // 清空购物车
     domeEmpty () {
+      this.draw = false
       this.$store.commit({type:'emptySingleFood'})
+      this.totalPrices = '00'
     },
     // 向购物车添加一件
     domeAdd (i) {
-      this.$store.commit({type:'addSingleFood',data:i})
+      this.$store.commit({type:'cartAddSingleFood',data:i})
     },
     // 向购物车删除一件
     domeDelete (i) {
-      this.$store.commit({type:'addSingleFood',data:i})
+      this.$store.commit({type:'cartDeleteSingleFood',data:i})
     },
     // 去订单结算
     goPayment () {
@@ -193,7 +210,12 @@ export default {
   height: 0.5rem;
   background-color: #ddd;
   line-height: 0.5rem;
-  /*z-index: 66;*/
+  z-index: 66;
+}
+/*填充体*/
+.dome-cart-box+div {
+  width:100%;
+  height: 0.5rem;
 }
 /*仅仅是购物车三个字*/
 .dome-cart-text {
@@ -210,8 +232,8 @@ export default {
 }
 /*当前商品容器*/
 .dome-commodity-box {
-  position: relative;
-  top: 0.5rem;
+  /*position: relative;*/
+  /*top: 0.5rem;*/
   width: 100%;
   height: 0.5rem;
   line-height: 0.5rem;
