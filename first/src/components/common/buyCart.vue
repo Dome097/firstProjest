@@ -4,11 +4,11 @@
     <transition name="dome3">
       <div class="dome-shade" v-if="false"></div>
     </transition>
-    <div id="domeBuyCart">
+    <div id="domeBuyCart" @click="arr[0]?draw=!draw:null">
       <!--上拉下拉动画-->
       <transition name="dome2">
         <!--购物车,商品容器-->
-        <div class="dome-box">
+        <div class="dome-box" v-if="draw" >
           <!--购物车容器-->
           <div class="dome-cart-box">
             <!--购物车-->
@@ -51,7 +51,7 @@
         <p class="dome-freight">配送费¥{{5}}</p>
       </div>
       <!--结算容器-->
-      <span class="dome-affirm">{{a?`去结算`:`还差¥${'20'}元起送`}}</span>
+      <span class="dome-affirm" @click="goPayment">{{a?`去结算`:`还差¥${'20'}元起送`}}</span>
     </div>
   </div>
 
@@ -63,7 +63,13 @@ export default {
   name: "buyCart",
   data () {
     return {
-      arr:[{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20}]
+      // 控制上拉下拉
+      draw:false
+    }
+  },
+  computed: {
+    arr () {
+      return this.$store.state.dome.cartSingleFood
     }
   },
   methods: {
@@ -78,6 +84,12 @@ export default {
     // 向购物车删除一件
     domeDelete (i) {
       this.$store.commit({type:'addSingleFood',data:i})
+    },
+    // 去订单结算
+    goPayment () {
+      if (this.arr[0]) {
+        this.$router.push({name:'payment'})
+      } 
     }
   }
 }
