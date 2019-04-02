@@ -2,7 +2,7 @@
   <div id="domeShoppingCartComponent">
     <!--遮罩淡入淡出动画-->
     <transition name="dome3">
-      <div class="dome-shade"></div>
+      <div class="dome-shade" v-if="false"></div>
     </transition>
     <div id="domeBuyCart">
       <!--上拉下拉动画-->
@@ -10,27 +10,31 @@
         <!--购物车,商品容器-->
         <div class="dome-box">
           <!--购物车容器-->
-          <div class="dome-empty">
+          <div class="dome-cart-box">
             <!--购物车-->
-            <span>购物车</span>
+            <span class="dome-cart-text left">购物车</span>
             <!--清空-->
-            <span><i></i>清空</span>
+            <span class="dome-empty right" @click="domeEmpty"><i class="iconfont">&#xe626;</i> 清空</span>
           </div>
           <!--当前商品容器-->
-          <div>
+          <div class="dome-commodity-box" v-for="(item, index) in arr" :key="index">
             <!--商品名-->
-            <span></span>
+            <div class="dome-commodity">
+              <span>{{item.name}}</span>
+            </div>
             <!--单价-->
-            <span></span>
+            <div class="dome-univalence">
+              <span>¥{{item.univalence}}</span>
+            </div>
             <!--添加删除容器-->
-            <span>
-          <!--减少一件-->
-          <i></i>
+            <div class="dome-plus-minus">
+            <!--减少一件-->
+              <i class="iconfont" @click="domeDelete(item)">&#xe605;</i>
               <!--当前数量-->
-          <span>{{1}}</span>
+              <span>{{1}}</span>
               <!--添加一件-->
-          <i></i>
-        </span>
+              <i class="iconfont" @click="domeAdd(item)">&#xe635;</i>
+            </div>
           </div>
         </div>
       </transition>
@@ -59,7 +63,21 @@ export default {
   name: "buyCart",
   data () {
     return {
-      arr:[]
+      arr:[{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20},{name:'111',univalence:20}]
+    }
+  },
+  methods: {
+    // 清空购物车
+    domeEmpty () {
+      this.$store.commit({type:'emptySingleFood'})
+    },
+    // 向购物车添加一件
+    domeAdd (i) {
+      this.$store.commit({type:'addSingleFood',data:i})
+    },
+    // 向购物车删除一件
+    domeDelete (i) {
+      this.$store.commit({type:'addSingleFood',data:i})
     }
   }
 }
@@ -131,11 +149,70 @@ export default {
 /*购物车,商品容器*/
 .dome-box {
   width: 100%;
-  /*height: 6rem;*/
-  max-height: 5rem;
-  background-color: chartreuse;
+  max-height: 4.5rem;
+  background-color: white;
   position: fixed;
   bottom: 0.5rem;
+  overflow-y: scroll;
+}
+/*购物车容器*/
+.dome-cart-box {
+  position: fixed;
+  width:100%;
+  height: 0.5rem;
+  background-color: #ddd;
+  line-height: 0.5rem;
+  z-index: 3;
+}
+/*仅仅是购物车三个字*/
+.dome-cart-text {
+  width: 1rem;
+  text-align: center;
+  height: 0.5rem;
+  color: black;
+}
+/*清空*/
+.dome-empty {
+  color: black;
+  width: 1rem;
+  line-height: 0.5rem;
+}
+/*当前商品容器*/
+.dome-commodity-box {
+  position: relative;
+  top: 0.5rem;
+  width: 100%;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  display: flex;
+}
+/*商品名*/
+.dome-commodity {
+  position: absolute;
+  left: 0rem;
+  width: 1rem;
+  text-align: center;
+  color: black;
+}
+/*单价*/
+.dome-univalence {
+  position: absolute;
+  right: 0.5rem;
+  width: 1rem;
+  text-align: center;
+  color: red;
+}
+/*添加或删除*/
+.dome-plus-minus {
+  position: absolute;
+  right: 0.1rem;
+  width: 0.5rem;
+  text-align: center;
+  color: black;
+}
+/*添加或删除中的i*/
+.dome-plus-minus>i {
+  color: blue;
 }
 /*遮罩*/
 .dome-shade {
