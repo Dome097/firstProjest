@@ -40,7 +40,12 @@
                     <span>起</span>
                   </p>
                   <div class="add" v-if="item.specfoods[0].specs[0]">规格</div>
-                  <div class="add1" v-else @click="toShopCart(item)"><i class="iconfont" >&#xe7f4;</i></div>
+                  <div class="add1" v-else @click="toShopCart(item)">
+                    <i class="iconfont" @click="deleteShopCart(item)" >&#xe7f4</i>
+                    <span>
+                      <i class="iconfont">&#xe605</i>
+                    </span>
+                  </div>
                 </div>
               </div>
             </li>
@@ -143,13 +148,18 @@ export default {
       },100)
     },
     toSingleFoodDetail(n){
+      // 点击单个食品信息,出现食品信息页
       this.$store.commit({type:'getSingleFood',data:n})
       this.$router.push({name:'singleFoodDetail'})
     //  console.log("选中的当前食物",n)
-     // this.$store.commit({type:'deleteSingleFood',data:n})
     },
+    // 购物车,点击+
     toShopCart(m){
        this.$store.commit({type:'addSingleFood',data:n})
+    },
+    // 购物车,点击-
+    deleteShopCart(f){
+     this.$store.commit({type:'deleteSingleFood',data:n})
     }
   }
 }

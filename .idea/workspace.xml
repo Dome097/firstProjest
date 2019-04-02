@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b800a755-6c11-4dff-b2c2-b5063f2a0a7a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/src/page/shop/children/children/singleFoodDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/page/shop/children/children/singleFoodDetail.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first/src/page/shop/children/shopDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/page/shop/children/shopDetail.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,13 +45,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="js" value="200" />
-          <entry key="vue" value="15102" />
+          <entry key="vue" value="15210" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="200" />
-          <entry key="Vue.js" value="15102" />
+          <entry key="Vue.js" value="15210" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -85,8 +83,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/first/src/page/shop/children/shopDetail.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="153" column="3" lean-forward="true" selection-start-line="153" selection-start-column="3" selection-end-line="153" selection-end-column="3" />
+            <state relative-caret-position="391">
+              <caret line="159" column="14" lean-forward="true" selection-start-line="159" selection-start-column="14" selection-end-line="159" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -373,12 +371,12 @@
       <workItem from="1554110978959" duration="6888000" />
       <workItem from="1554122685035" duration="4419000" />
       <workItem from="1554166665984" duration="17608000" />
-      <workItem from="1554192822128" duration="6927000" />
+      <workItem from="1554192822128" duration="7320000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="227434000" />
+    <option name="totallyTimeSpent" value="227827000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
@@ -424,7 +422,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/first/src/page/shop/children/shopDetail.vue</url>
-          <line>53</line>
+          <line>58</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -434,7 +432,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/first/src/page/shop/children/shopDetail.vue</url>
-          <line>211</line>
+          <line>221</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
@@ -596,8 +594,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/first/src/page/shop/children/shopDetail.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="153" column="3" lean-forward="true" selection-start-line="153" selection-start-column="3" selection-end-line="153" selection-end-column="3" />
+        <state relative-caret-position="391">
+          <caret line="159" column="14" lean-forward="true" selection-start-line="159" selection-start-column="14" selection-end-line="159" selection-end-column="14" />
         </state>
       </provider>
     </entry>
