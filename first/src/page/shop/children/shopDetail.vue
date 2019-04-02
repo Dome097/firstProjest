@@ -41,11 +41,12 @@
                   </p>
                   <div class="add" v-if="item.specfoods[0].specs[0]">规格</div>
                   <div class="add1" v-else @click.stop="toShopCart(item)">
-                    <i class="iconfont" @click="deleteShopCart(item)" >&#xe7f4</i>
-                    <span>
-                      <i class="iconfont">&#xe605</i>
-                    </span>
+                    <i class="iconfont" >&#xe7f4</i>
                   </div>
+                  <span >
+                    <i class="iconfont" @click="deleteShopCart(item)" >&#xe605</i>
+                    <span>1</span>
+                  </span>
                 </div>
               </div>
             </li>
@@ -155,11 +156,11 @@ export default {
     },
     // 购物车,点击+
     toShopCart(m){
-       this.$store.commit({type:'addSingleFood',data:n})
+       this.$store.commit({type:'addSingleFood',data:m})
     },
     // 购物车,点击-
     deleteShopCart(f){
-     this.$store.commit({type:'deleteSingleFood',data:n})
+     this.$store.commit({type:'deleteSingleFood',data:f})
     }
   }
 }
