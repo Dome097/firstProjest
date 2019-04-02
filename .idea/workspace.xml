@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b800a755-6c11-4dff-b2c2-b5063f2a0a7a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/first/src/assets/icon.css" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/assets/icon.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/src/page/benefit/benefit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/page/benefit/benefit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/src/page/city/city.vue" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/page/city/city.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/src/page/confirmOrder/confirmOrder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/page/confirmOrder/confirmOrder.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/src/page/food/food.vue" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/page/food/food.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/src/page/forget/forget.vue" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/page/forget/forget.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/src/page/home/home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/page/home/home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/src/page/login/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/page/login/login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/src/page/msite/msite.vue" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/page/msite/msite.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/src/page/profile/children/children/children/children/addDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/page/profile/children/children/children/children/addDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/src/page/profile/children/info.vue" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/page/profile/children/info.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/src/page/profile/children/mind.vue" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/page/profile/children/mind.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first/src/page/search/search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/page/search/search.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/first/src/page/shop/children/children/singleFoodDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first/src/page/shop/children/shopDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/page/shop/children/shopDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/first/src/router/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,33 +29,33 @@
         <counts>
           <entry key="css" value="4" />
           <entry key="jpeg" value="1" />
-          <entry key="js" value="6" />
+          <entry key="js" value="10" />
           <entry key="png" value="2" />
           <entry key="scss" value="2" />
           <entry key="svg" value="1" />
-          <entry key="vue" value="24" />
+          <entry key="vue" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="4" />
           <entry key="Image" value="3" />
-          <entry key="JavaScript" value="6" />
+          <entry key="JavaScript" value="10" />
           <entry key="SCSS" value="2" />
           <entry key="SVG" value="1" />
-          <entry key="Vue.js" value="24" />
+          <entry key="Vue.js" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="121" />
-          <entry key="vue" value="13976" />
+          <entry key="js" value="200" />
+          <entry key="vue" value="14537" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="121" />
-          <entry key="Vue.js" value="13976" />
+          <entry key="JavaScript" value="200" />
+          <entry key="Vue.js" value="14537" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -84,31 +76,61 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/first/src/components/common/ratingStar.vue">
+        <entry file="file://$PROJECT_DIR$/first/src/components/common/shoplist.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2700">
-              <caret line="110" column="8" selection-start-line="110" selection-start-column="8" selection-end-line="110" selection-end-column="8" />
+            <state relative-caret-position="150">
+              <caret line="119" column="59" selection-start-line="119" selection-start-column="6" selection-end-line="119" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/first/src/page/shop/children/shopDetail.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="150" column="3" lean-forward="true" selection-start-line="150" selection-start-column="3" selection-end-line="150" selection-end-column="3" />
               <folding>
-                <element signature="n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="e#4408#4472#0" />
+                <element signature="e#4482#4503#0" />
+                <element signature="e#4513#4583#0" />
+                <element signature="e#4596#4785#0" />
+                <element signature="e#4801#5068#0" />
+                <element signature="e#5086#5195#0" />
+                <element signature="e#5208#5388#0" />
+                <element signature="e#5397#5519#0" />
+                <element signature="e#5533#5584#0" />
+                <element signature="e#5592#5634#0" />
+                <element signature="e#5648#5745#0" />
+                <element signature="e#5753#5968#0" />
+                <element signature="e#5980#6010#0" />
+                <element signature="e#6018#6070#0" />
+                <element signature="e#6081#6127#0" />
+                <element signature="e#6135#6162#0" />
+                <element signature="e#6170#6338#0" />
+                <element signature="e#6348#6416#0" />
+                <element signature="e#6423#6615#0" />
+                <element signature="e#6640#6650#0" />
+                <element signature="e#7069#7079#0" />
+                <element signature="e#6844#6854#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/first/src/components/common/shoplist.vue">
+        <entry file="file://$PROJECT_DIR$/first/src/page/food/food.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="121" column="3" selection-start-line="121" selection-start-column="3" selection-end-line="121" selection-end-column="3" />
+            <state relative-caret-position="-7400">
+              <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/first/src/page/shop/children/shopDetail.vue">
+        <entry file="file://$PROJECT_DIR$/first/src/page/shop/children/children/singleFoodDetail.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2450">
-              <caret line="37" column="71" selection-start-line="37" selection-start-column="71" selection-end-line="37" selection-end-column="71" />
+            <state relative-caret-position="175">
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
             </state>
           </provider>
         </entry>
@@ -116,8 +138,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/first/src/page/shop/shop.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="65" column="19" lean-forward="true" selection-start-line="65" selection-start-column="19" selection-end-line="65" selection-end-column="19" />
+            <state relative-caret-position="-62">
+              <caret line="3" column="74" selection-start-line="3" selection-start-column="74" selection-end-line="3" selection-end-column="74" />
               <folding>
                 <element signature="e#638#698#0" expanded="true" />
               </folding>
@@ -128,20 +150,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/first/src/components/header/Header.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1825">
+            <state relative-caret-position="-1625">
               <caret line="73" column="19" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/first/src/page/msite/msite.vue">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/first/src/page/home/home.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1400">
-              <caret line="56" column="11" selection-start-line="56" selection-start-column="11" selection-end-line="56" selection-end-column="11" />
-              <folding>
-                <element signature="e#542#582#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-325">
+              <caret line="56" column="35" lean-forward="true" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -149,7 +168,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/first/src/page/shop/children/foodDetail.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2625">
+            <state relative-caret-position="-87">
               <caret line="125" column="19" selection-start-line="125" selection-start-column="19" selection-end-line="125" selection-end-column="19" />
               <folding>
                 <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
@@ -159,22 +178,23 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/first/src/page/shop/children/children/shopSafe.vue">
+        <entry file="file://$PROJECT_DIR$/first/src/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2725">
-              <caret line="109" column="29" selection-start-line="109" selection-start-column="21" selection-end-line="109" selection-end-column="29" />
+            <state relative-caret-position="-3">
+              <caret line="130" column="38" lean-forward="true" selection-start-line="130" selection-start-column="38" selection-end-line="130" selection-end-column="38" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#140#161#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/first/src/main.js">
+        <entry file="file://$PROJECT_DIR$/first/src/router/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+            <state relative-caret-position="188">
+              <caret line="90" column="9" lean-forward="true" selection-start-line="90" selection-start-column="9" selection-end-line="90" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -198,16 +218,18 @@
         <option value="$PROJECT_DIR$/first/src/components/header/head.vue" />
         <option value="$PROJECT_DIR$/first/src/components/common/buyCart.vue" />
         <option value="$PROJECT_DIR$/first/src/App.vue" />
-        <option value="$PROJECT_DIR$/first/src/router/index.js" />
         <option value="$PROJECT_DIR$/first/src/components/header/Header.vue" />
         <option value="$PROJECT_DIR$/first/src/page/food/food.vue" />
         <option value="$PROJECT_DIR$/first/src/page/shop/children/foodDetail.vue" />
         <option value="$PROJECT_DIR$/first/src/page/shop/children/children/shopSafe.vue" />
-        <option value="$PROJECT_DIR$/first/src/main.js" />
         <option value="$PROJECT_DIR$/first/src/page/msite/msite.vue" />
         <option value="$PROJECT_DIR$/first/src/components/common/shoplist.vue" />
         <option value="$PROJECT_DIR$/first/src/components/common/ratingStar.vue" />
         <option value="$PROJECT_DIR$/first/src/page/shop/shop.vue" />
+        <option value="$PROJECT_DIR$/first/src/page/shop/children/children/singleShopDetail.vue" />
+        <option value="$PROJECT_DIR$/first/src/router/index.js" />
+        <option value="$PROJECT_DIR$/first/src/main.js" />
+        <option value="$PROJECT_DIR$/first/src/page/shop/children/children/singleFoodDetail.vue" />
         <option value="$PROJECT_DIR$/first/src/page/shop/children/shopDetail.vue" />
       </list>
     </option>
@@ -226,10 +248,10 @@
       <path value="$PROJECT_DIR$/first/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="50" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-4" />
     <option name="y" value="9" />
-    <option name="width" value="1323" />
+    <option name="width" value="991" />
     <option name="height" value="728" />
   </component>
   <component name="ProjectView">
@@ -308,6 +330,14 @@
               <item name="first" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="firstProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="firstProject" type="462c0819:PsiDirectoryNode" />
+              <item name="first" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
               <item name="shop" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -346,6 +376,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lanou\Desktop\Vue\firstProject\first\src\page\shop\children\children" />
+      <recent name="C:\Users\lanou\Desktop\Vue\firstProject\first\src\page\shop\children" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -379,18 +415,18 @@
       <workItem from="1554012991087" duration="16533000" />
       <workItem from="1554110978959" duration="6888000" />
       <workItem from="1554122685035" duration="4419000" />
-      <workItem from="1554166665984" duration="3148000" />
+      <workItem from="1554166665984" duration="17130000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206047000" />
+    <option name="totallyTimeSpent" value="220029000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="50" y="9" width="1323" height="728" extended-state="1" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.014007783" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19568452" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -402,7 +438,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49718308" visible="true" weight="0.2003367" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49718308" visible="true" weight="0.19508196" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5028169" side_tool="true" weight="0.34965035" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -430,13 +466,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/first/src/page/shop/children/shopDetail.vue</url>
-          <line>48</line>
+          <line>53</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/first/src/page/shop/shop.vue</url>
           <line>25</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/first/src/page/shop/children/shopDetail.vue</url>
+          <line>208</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -460,13 +502,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/first/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/first/node_modules/element-ui/lib/theme-chalk/index.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -477,44 +512,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/first/src/router/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="361" column="4" selection-start-line="361" selection-start-column="4" selection-end-line="361" selection-end-column="4" />
-          <folding>
-            <element signature="e#3275#3324#0" />
-            <element signature="e#3330#3412#0" />
-            <element signature="e#3418#3833#0" />
-            <element signature="e#3839#4634#0" />
-            <element signature="e#4640#5910#0" />
-            <element signature="e#5916#6012#0" />
-            <element signature="e#6018#6100#0" />
-            <element signature="e#6106#6192#0" />
-            <element signature="e#6198#6292#0" />
-            <element signature="e#6298#6379#0" />
-            <element signature="e#6385#6472#0" />
-            <element signature="e#6478#6565#0" />
-            <element signature="e#6571#6817#0" />
-            <element signature="e#6823#7232#0" />
-            <element signature="e#7238#8138#0" />
-            <element signature="e#8144#8235#0" />
-            <element signature="e#8241#8500#0" />
-            <element signature="e#8506#8591#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/first/src/components/common/MySelf.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="142">
           <caret line="123" column="29" selection-start-line="123" selection-start-column="22" selection-end-line="123" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/first/src/page/food/food.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4050">
-          <caret line="175" column="8" lean-forward="true" selection-start-line="175" selection-start-column="8" selection-end-line="175" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -537,16 +538,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/first/src/components/header/Header.vue">
+    <entry file="file://$PROJECT_DIR$/first/src/page/shop/children/children/shopSafe.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1825">
-          <caret line="73" column="19" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="19" />
+        <state relative-caret-position="388">
+          <caret line="109" column="29" selection-start-line="109" selection-start-column="21" selection-end-line="109" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first/src/page/msite/msite.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="56" column="11" selection-start-line="56" selection-start-column="11" selection-end-line="56" selection-end-column="11" />
+          <folding>
+            <element signature="e#542#582#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first/src/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="90" column="9" lean-forward="true" selection-start-line="90" selection-start-column="9" selection-end-line="90" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first/src/page/shop/shop.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-62">
+          <caret line="3" column="74" selection-start-line="3" selection-start-column="74" selection-end-line="3" selection-end-column="74" />
+          <folding>
+            <element signature="e#638#698#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first/src/page/food/food.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7400">
+          <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/first/src/page/shop/children/foodDetail.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2625">
+        <state relative-caret-position="-87">
           <caret line="125" column="19" selection-start-line="125" selection-start-column="19" selection-end-line="125" selection-end-column="19" />
           <folding>
             <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
@@ -554,53 +596,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/first/src/page/shop/children/children/shopSafe.vue">
+    <entry file="file://$PROJECT_DIR$/first/src/page/home/home.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2725">
-          <caret line="109" column="29" selection-start-line="109" selection-start-column="21" selection-end-line="109" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/first/src/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state relative-caret-position="-325">
+          <caret line="56" column="35" lean-forward="true" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/first/src/components/common/shoplist.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="121" column="3" selection-start-line="121" selection-start-column="3" selection-end-line="121" selection-end-column="3" />
+        <state relative-caret-position="150">
+          <caret line="119" column="59" selection-start-line="119" selection-start-column="6" selection-end-line="119" selection-end-column="59" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/first/src/page/shop/shop.vue">
+    <entry file="file://$PROJECT_DIR$/first/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="65" column="19" lean-forward="true" selection-start-line="65" selection-start-column="19" selection-end-line="65" selection-end-column="19" />
+        <state relative-caret-position="-3">
+          <caret line="130" column="38" lean-forward="true" selection-start-line="130" selection-start-column="38" selection-end-line="130" selection-end-column="38" />
           <folding>
-            <element signature="e#638#698#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#140#161#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first/src/components/header/Header.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1625">
+          <caret line="73" column="19" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first/src/page/shop/children/children/singleFoodDetail.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/first/src/page/shop/children/shopDetail.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2450">
-          <caret line="37" column="71" selection-start-line="37" selection-start-column="71" selection-end-line="37" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/first/src/page/msite/msite.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1400">
-          <caret line="56" column="11" selection-start-line="56" selection-start-column="11" selection-end-line="56" selection-end-column="11" />
+        <state relative-caret-position="313">
+          <caret line="150" column="3" lean-forward="true" selection-start-line="150" selection-start-column="3" selection-end-line="150" selection-end-column="3" />
           <folding>
-            <element signature="e#542#582#0" expanded="true" />
+            <element signature="e#4408#4472#0" />
+            <element signature="e#4482#4503#0" />
+            <element signature="e#4513#4583#0" />
+            <element signature="e#4596#4785#0" />
+            <element signature="e#4801#5068#0" />
+            <element signature="e#5086#5195#0" />
+            <element signature="e#5208#5388#0" />
+            <element signature="e#5397#5519#0" />
+            <element signature="e#5533#5584#0" />
+            <element signature="e#5592#5634#0" />
+            <element signature="e#5648#5745#0" />
+            <element signature="e#5753#5968#0" />
+            <element signature="e#5980#6010#0" />
+            <element signature="e#6018#6070#0" />
+            <element signature="e#6081#6127#0" />
+            <element signature="e#6135#6162#0" />
+            <element signature="e#6170#6338#0" />
+            <element signature="e#6348#6416#0" />
+            <element signature="e#6423#6615#0" />
+            <element signature="e#6640#6650#0" />
+            <element signature="e#7069#7079#0" />
+            <element signature="e#6844#6854#0" />
           </folding>
         </state>
       </provider>
