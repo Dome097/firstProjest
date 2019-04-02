@@ -108,7 +108,11 @@ export default {
   },
   mounted () {
     // 进入时请求红包
-    console.log('获取到的id',this.id)
+    console.log('获取到的id',this.id);
+    //懒加载
+    this.$store.commit({
+      type:'amendDataLoad'
+    });
     this.$http({
       method: 'get',
       url: `https://elm.cangdu.org/promotion/v2/users/${this.id}/hongbaos`,

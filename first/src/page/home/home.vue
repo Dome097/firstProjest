@@ -15,7 +15,7 @@
       </div>
       <div class="selectCity row">
         <router-link :to="{name:'city'}" class="col-xs-10" @click.native="selectThis(currentCity)">{{currentCity.name}}</router-link>
-        <router-link :to="{name:'city'}" class="col-xs-2">></router-link>
+        <router-link :to="{name:'city'}" class="col-xs-2"><i class="iconfont">&#xe634;</i></router-link>
       </div>
       <div class="hotCity container-fluid">
         <p>热门城市</p>
@@ -64,8 +64,16 @@ export default {
   },
   computed:{},
   mounted(){
+    //懒加载
+    this.$store.commit({
+      type:'amendDataLoad'
+    });
     // 当前定位城市
     Vue.axios.get('https://elm.cangdu.org/v1/cities?type=guess',null).then((res)=>{
+      //懒加载
+      this.$store.commit({
+        type:'amendDataLoad'
+      });
       this.currentCity = res.data
       // console.log(this.currentCity);
     }).catch((error)=>{
@@ -73,6 +81,10 @@ export default {
     })
     // 在创建之前请求hot_city数据
     Vue.axios.get('https://elm.cangdu.org/v1/cities?type=hot',null).then((res)=>{
+      //懒加载
+      this.$store.commit({
+        type:'amendDataLoad'
+      });
       // 把请求到的数据遍历一下,获取城市对应的name,存入hot_city数组
       this.hot_city = res.data.map((item)=>{return item})
       // 把请求到的数据遍历一下,获取城市对应的id,存入cityNum数组
@@ -83,6 +95,10 @@ export default {
     })
     // 在创建之前请求groupCity数据
     Vue.axios.get('https://elm.cangdu.org/v1/cities?type=group',null).then((res)=>{
+      //懒加载
+      this.$store.commit({
+        type:'amendDataLoad'
+      });
       // 把请求到所有城市的数据遍历一下,存入数组
       let arr = Object.keys(res.data).sort();
       for (let i = 0; i < arr.length; i++) {
@@ -172,5 +188,8 @@ export default {
     border-bottom: 0.005rem solid lightgray;
     height: 0.4rem;
     line-height: 0.4rem;
+  }
+  .citys>a{
+    color: black;
   }
 </style>

@@ -30,6 +30,10 @@ export default {
   methods: {
     // 换一张验证码
     gainAuthCode () {
+      //懒加载
+      this.$store.commit({
+        type:'amendDataLoad'
+      });
       this.$http({
         method: 'post',
         url: 'https://elm.cangdu.org/v1/captchas',
@@ -37,12 +41,20 @@ export default {
         //用于表示用户代理是否应该在跨域请求的情况下从其他域发送cookies。
         withCredentials: true, // 默认false
       }).then((res) => {
+        //懒加载
+        this.$store.commit({
+          type:'amendDataLoad'
+        });
         console.log('tap', res);
         this.src = res.data.code
       })
     },
     // 确认修改密码
     affirmAmend () {
+      //懒加载
+      this.$store.commit({
+        type:'amendDataLoad'
+      });
         this.$http({
           method: 'post',
           url: 'https://elm.cangdu.org/v2/changepassword',
@@ -57,6 +69,10 @@ export default {
           //用于表示用户代理是否应该在跨域请求的情况下从其他域发送cookies。
           withCredentials: true, // 默认false
         }).then((res) => {
+          //懒加载
+          this.$store.commit({
+            type:'amendDataLoad'
+          });
           console.log('tap', res);
           this.src = res.data.code
           if (res.data.success === '密码修改成功') {

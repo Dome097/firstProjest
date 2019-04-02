@@ -39,7 +39,15 @@ export default {
   },
   methods:{
     searchAdds(){
+      //懒加载
+      this.$store.commit({
+        type:'amendDataLoad'
+      });
       Vue.axios.get('https://elm.cangdu.org/v1/pois?city_id=1&keyword='+this.input+'&type=search',null).then((res)=>{
+        //懒加载
+        this.$store.commit({
+          type:'amendDataLoad'
+        });
         console.log(res.data)
       }).catch((error)=>{
         console.log(error)

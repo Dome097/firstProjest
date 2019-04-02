@@ -364,11 +364,19 @@ export default {
     console.log('this',this)
   },
   created () {
+    //懒加载
+    this.$store.commit({
+      type:'amendDataLoad'
+    });
     // 请求所有商铺分类列表
     this.$http({
       method: 'get',
       url:'https://elm.cangdu.org/shopping/v2/restaurant/category'
     }).then((res)=> {
+      //懒加载
+      this.$store.commit({
+        type:'amendDataLoad'
+      });
       this.classify = res.data
       console.log('this.classify', this.classify)
       for (let i of res.data) {

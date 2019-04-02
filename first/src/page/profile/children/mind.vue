@@ -1,12 +1,12 @@
 <template>
   <section class="container-fluid profile">
     <div class="header">
-      <router-link :to="{name:'login'}" class="row">
+      <div @click="changeRoute" class="row">
         <div class="photo col-xs-3">
           <i class="iconfont">&#xe677;</i>
         </div>
         <div class="col-xs-6 login">
-          <span>{{userName}}</span>
+          <span v-if="hasUser">{{userName}}</span>
           <span v-if="noUser">登录</span>
           <span v-if="noUser">/</span>
           <span v-if="noUser">注册</span><br>
@@ -14,7 +14,7 @@
           <span class="number">暂无绑定手机号</span>
         </div>
         <i class="iconfont col-xs-1">&#xe634;</i>
-      </router-link>
+      </div>
     </div>
     <div class="content">
       <div class="col-xs-4 left">
@@ -83,16 +83,37 @@
     data(){
       return{
         // 未登录显示状态
-        noUser:true,
+        noUser:'',
         // 登录成功状态显示
-        hasUser:false,
-        userName:this.$route.query.name
+        hasUser:'',
+        userName:''
       }
     },
+    methods:{
+      changeRoute(){
+        // 判断是否已登录
+        if(this.$store.state.dome.loggingStatus){
+          console.log(111)
+          // 已登录过,跳转到我的信息
+          this.$router.push({name:'info'})
+        }else{
+          // 未登录,跳转到登录页
+          this.$router.push({name:'login'})
+        }
+      }
+    },
+    // 采用路由守卫在进入之前
     beforeRouteEnter(to,from,next){
       next((vm)=>{
-        vm.hasUser = true;
-        vm.noUser = false
+          if(vm.$store.state.dome.loggingStatus){
+            // 已登录过,跳转到我的信息
+            vm.hasUser = true;
+            vm.noUser = false;
+            vm.userName = vm.$route.query.name
+          }else {
+            vm.hasUser = false;
+            vm.noUser = true
+          }
       })
     }
   }
@@ -112,8 +133,18 @@
     height: 1rem;
     background-color: #008de1;
   }
-  .header>a{
+  .header>div{
+    margin: 0 auto;
+    padding: 0.1rem;
     color: #fff;
+  }
+  .header>div>div+div{
+    padding-top: 0.06rem;
+  }
+  .header>div>i{
+    padding-top: 0.2rem;
+    padding-right: 0.22rem;
+    float: right;
   }
   .photo{
     display: inline-block;
