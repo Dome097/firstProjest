@@ -1,5 +1,6 @@
 <template>
   <section>
+    <shoplist></shoplist>
     <!--下拉整体容器-->
     <div class="dome-food">
       <!--头部-->
@@ -169,7 +170,6 @@
         </div>
       </transition>
     </div>
-    <shoplist></shoplist>
   </section>
 </template>
 

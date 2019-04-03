@@ -19,11 +19,17 @@
           <p class="title">
             <span class="title_name">{{it.name}}</span>
             <span>{{it.description}}</span>
-            <span class="pull-right">...</span>
+            <span class="pull-right " @click="pStyle=!pStyle" :class="{style:pStyle}">...</span>
+            <span v-if="pStyle" class="right-hide">
+              <span class="trigon"></span>
+              <span class="title_name">{{it.name}}</span>
+              <span>{{it.description}}</span>
+            </span>
           </p>
           <ul>
-            <li class="list" v-for="(item,index) in it.foods" :key="index">
-              <div class="flex">
+            <li class="list" v-for="(item,index) in it.foods" :key="index" @click="toSingleFoodDetail(item)">
+                <div class="flex">
+                  <div class="newP" v-if="item.attributes[0]">新品</div>
                 <p ><img :src="http+item.image_path"  alt=""></p>
                 <div>
                   <p class="name">{{item.name}}</p>
@@ -34,8 +40,14 @@
                     <span class="priceP">¥{{item.specfoods[0].price}}</span>
                     <span>起</span>
                   </p>
-                  <div class="add pull-right" v-if="item.specfoods[0].specs[0]">规格</div>
-                  <div class="add" v-else>+</div>
+                  <div class="add" v-if="item.specfoods[0].specs[0]">规格</div>
+                  <div class="add1" v-else @click.stop="toShopCart(item)">
+                    <i class="iconfont" >&#xe7f4</i>
+                  </div>
+                  <span >
+                    <i class="iconfont" @click="deleteShopCart(item)" >&#xe605</i>
+                    <span>1</span>
+                  </span>
                 </div>
               </div>
             </li>
@@ -63,7 +75,8 @@ export default {
       shopGoodsArr:[],
       http:'//elm.cangdu.org/img/',
       rgt:'',
-      left:''
+      left:'',
+      pStyle:false
     }
   },
   computed:{
@@ -83,20 +96,18 @@ export default {
     }
   },
   mounted() {
-    //懒加载
     this.$store.commit({
-      type:'amendDataLoad'
-    });
+      type:"amendDataLoad"
+    })
     Vue.axios.get(`https://elm.cangdu.org/shopping/v2/menu?restaurant_id=${this.shopGoods}`, null).then((res) => {
-      //懒加载
       this.$store.commit({
-        type:'amendDataLoad'
-      });
-      // console.log(res.data)
+        type:"amendDataLoad"
+      })
+      // console.log("shopDetail接收到的信息",res.data)
       this.shopGoodsArr = res.data
       console.log(this.shopGoodsArr[0].foods[0].specfoods[0].specs[0].name)
     });
-    this.$nextTick(() => {
+   this.$nextTick(() => {
      // 左侧滚动栏的better-scroll对象要开启点击事件
          this.left = new Better(this.$refs.l_list, {
               click: true //开启点击事件
@@ -127,8 +138,9 @@ export default {
                    }
                }
           })
-      })
-  }, methods:{
+     })
+  },
+  methods:{
     change(index){
       this.flag = false
       this.actli = index
@@ -137,6 +149,20 @@ export default {
         this.flag = true
       },100)
     },
+    toSingleFoodDetail(n){
+      // 点击单个食品信息,出现食品信息页
+      this.$store.commit({type:'getSingleFood',data:n})
+      this.$router.push({name:'singleFoodDetail'})
+    //  console.log("选中的当前食物",n)
+    },
+    // 购物车,点击+
+    toShopCart(m){
+       this.$store.commit({type:'addSingleFood',data:m})
+    },
+    // 购物车,点击-
+    deleteShopCart(f){
+     this.$store.commit({type:'deleteSingleFood',data:f})
+    }
   }
 }
 </script>
@@ -146,6 +172,7 @@ export default {
     width: 100%;
     position: relative;
     height: 100%;
+
   }
   .l_list{
     width: 20%;
@@ -200,6 +227,7 @@ export default {
     padding: 0.03rem;
     background-color: #E3E3E3;
     line-height: 0.45rem;
+    position: relative;
   }
   .title_name{
     font-size: 0.2rem;
@@ -222,6 +250,7 @@ export default {
     border-bottom: 0.01rem solid rgba(7,17,27,0.1);
     padding-bottom: 0.1rem;
     position: relative;
+    transform-style: preserve-3d;
   }
   .flex>div{
     margin-left: 0.2rem;
@@ -256,7 +285,53 @@ export default {
     color:white;
     background-color: blue;
     border:0.01rem solid blue;
-    -webkit-border-radius: 40%;
-    padding: 0.02rem;
+    border-radius: 0.1rem;
+    padding: 0.03em;
   }
+  .add1{
+    position: absolute;
+    right: 0;
+    bottom:0.2rem;
+    color:white;
+    background-color: blue;
+    border-radius: 50%;
+  }
+  .right-hide{
+    width: 70%;
+    height: 0.4rem;
+    background-color: black;
+    opacity: 0.7;
+    position:absolute;
+    right: 0.05rem;
+    top:0.4rem;
+    color:white;
+    line-height: 0.4rem;
+    padding-left: 0.1rem;
+    z-index: 2;
+    border-radius: 0.05rem;
+  }
+  .trigon{
+    width: 0;
+    height: 0;
+    border-width: 0 0.1rem 0.1rem;
+    border-style: solid;
+    border-color: transparent transparent black;
+    position: absolute;
+    top:-0.1rem;
+    right: 0.1rem;
+  }
+  .newP{
+    width: 0;
+    height: 0;
+    border-width: 0 0.3rem 0.3rem;
+    border-style: solid;
+    border-color: transparent transparent rgb(94, 196, 82);
+    font-size: 0.08rem;
+    position: absolute;
+    top: -0.15rem;
+    left:-0.5rem;
+    transform: rotate(-45deg);
+    color: white;
+  }
+
 </style>
