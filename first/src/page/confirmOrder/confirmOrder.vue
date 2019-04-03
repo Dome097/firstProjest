@@ -1,18 +1,16 @@
 <template>
   <section class="container-fluid confirmOrder">
     <div class="deliveryAddres">
-      <router-link :to="{}">
+      <router-link :to="{name:'chooseAddress'}">
         <div class="addressLeft">
           <i class="iconfont">&#xe636;</i>
-          <p>
-            <span>{{'name'}}</span>
+          <div>
+            <span>{{'姓名'}}</span>
             <span>{{'sex'}}</span>
-            <span>{{'telephonenumber'}}</span>
-          </p>
-          <p>
+            <span>{{'telephonenumber'}}</span><br>
             <span>{{'company'}}</span>
             <span>{{'adds'}}</span>
-          </p>
+          </div>
         </div>
         <div class="addressRight">
           <i class="iconfont">&#xe634;</i>
@@ -28,40 +26,308 @@
         <p>蜂鸟专送</p>
       </div>
     </div>
-    <div>
-      <div>
+    <div class="payStyle">
+      <router-link :to="{}">
         <span>支付方式</span>
         <span>{{'在线支付'}} <i class="iconfont">&#xe634;</i> </span>
-      </div>
+      </router-link>
       <div><span>红包</span><span>暂时只在饿了么APP中支持</span></div>
     </div>
-    <div>
-      <div><img src="" alt=""><span>效果展示</span></div>
+    <div class="orderInfo">
+      <div>
+        <img src="../../assets/logo.png"/>
+        <span>{{'效果展示'}}</span>
+      </div>
       <ul>
-        <li><span>{{"kkk"}}</span><span>x{{'6'}}</span><span>¥{{'20'}}</span></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <el-row :gutter="10">
+          <el-col :xs="16"><div class="grid-content bg-purple">鸡腿堡</div></el-col>
+          <el-col :xs="4"><div class="grid-content bg-purple-light special">x{{'1'}}</div></el-col>
+          <el-col :xs="4"><div class="grid-content bg-purple-light">¥{{'20'}}</div></el-col>
+        </el-row>
+        <el-row :gutter="10">
+          <el-col :xs="12"><div class="grid-content bg-purple">餐盒</div></el-col>
+          <el-col :xs="12"><div class="grid-content bg-purple-light">¥{{'20'}}</div></el-col>
+        </el-row>
+        <el-row :gutter="10">
+          <el-col :xs="12"><div class="grid-content bg-purple">配送费</div></el-col>
+          <el-col :xs="12"><div class="grid-content bg-purple-light">¥{{'20'}}</div></el-col>
+        </el-row>
       </ul>
+      <div class="pay">
+        <el-row :gutter="10">
+          <el-col :xs="12"><div class="grid-content bg-purple">订单  ¥{{'41205'}}</div></el-col>
+          <el-col :xs="12"><div class="grid-content bg-purple-light special">待支付</div></el-col>
+        </el-row>
+        <el-row :gutter="10">
+          <el-col :xs="24"><div class="grid-content bg-purple-light special">¥{{'41205'}}</div></el-col>
+        </el-row>
+      </div>
     </div>
-    <div></div>
+    <div class="remarks">
+      <router-link :to="{}">
+        <span>订单备注</span>
+        <span>{{'口味偏好等'}}<i class="iconfont">&#xe634;</i> </span>
+      </router-link>
+      <router-link :to="{}">
+        <span>发票抬头</span>
+        <span>{{'不需要开发票'}}<i class="iconfont">&#xe634;</i></span>
+      </router-link>
+    </div>
+    <div class="foot">
+      <span>待支付 ¥{{'41205'}} </span>
+      <button>确认下单</button>
+    </div>
   </section>
 </template>
 
 <script>
 // 确认订单页
 export default {
-  name: "confirmOrder"
+  name: "confirmOrder",
+  beforeRouteEnter(to,from,next){
+    next(vm=>{
+      // 该页面不显示footer
+      vm.$store.state.ghc.showOrHidden = false
+    })
+  },
+  beforeRouteLeave(to,from,next){
+    next(
+      // 离开该页面时显示footer
+      this.$store.state.ghc.showOrHidden = true
+    )
+  },
 }
 </script>
 
 <style scoped>
 .confirmOrder{
   width: 100%;
-  height: 100%;
+  /*height: 100%;*/
   padding: 0;
-  background-color: #e4e4e4;
+  background-color: whitesmoke;
   list-style: none;
 }
+.confirmOrder>div{
+  padding: 0 0.16rem;
+  width: 100%;
+}
+  .deliveryAddres{
+    display: inline-block;
+    width: 100%;
+    height: 1rem;
+    border-bottom: 0.02rem dashed orange;
+    padding: 0 0.1rem;
+  }
+.deliveryAddres>a{
+  text-decoration: none;
+  color: #000;
+}
+  .addressLeft{
+    float: left;
+    padding: 0.2rem 0;
+  }
+.addressLeft>i{
+  display: inline-block;
+  color: #008de1;
+  font-size: x-large;
+}
+.addressLeft>div{
+  display: inline-block;
+}
+.addressLeft>div>span{
+  margin: 0 0.02rem;
+}
+.addressLeft>div>span:nth-child(1){
+  font-size: 0.16rem;
+  font-weight: bolder;
+}
+.addressLeft>div>span:nth-child(5){
+  width: 0.6rem;
+  height: 0.2rem;
+  background-color: limegreen;
+  border-radius: 0.04rem;
+  color: white;
+  font-size: 0.12rem;
+}
+.addressLeft>div>span:nth-child(6){
+  color: darkgrey;
+  font-size: 0.14rem;
+}
+  .addressRight{
+    float: right;
+    line-height: 1rem;
+  }
+  .arriveTime{
+    margin-top: 0.04rem;
+    height: 0.8rem;
+    background-color: white;
+    border-left: 0.06rem solid #008de1;
+    display: inline-block;
+  }
+.arriveTime>p{
+  display: inline-block;
+  float: left;
+  line-height: 0.8rem;
+  font-size: 0.16rem;
+  font-weight: bolder;
+}
+.arriveTime>div{
+  display: inline-block;
+  float: right;
+  position: relative;
+  padding: 0.14rem 0;
+}
+.arriveTime>div>span{
+  font-size: 0.14rem;
+  color: #008de1;
+  margin: 0 0.02rem;
+}
+.arriveTime>div>p{
+  font-size: 0.12rem;
+  color: #fff;
+  background-color: #008de1;
+  border-radius: 0.04rem;
+  width: 0.6rem;
+  text-align: center;
+  margin-bottom: 0;
+  position: absolute;
+  right: 0;
+  top: 0.4rem;
+}
+  .payStyle{
+    margin-top: 0.04rem;
+    height: 0.8rem;
+    background-color: white;
+  }
+.payStyle>a{
+  height: 0.4rem;
+  line-height: 0.4rem;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  border-bottom: 0.01rem solid #e4e4e4;
+}
+.payStyle>a>span{
+  color: grey;
+  font-size: 0.14rem;
+  float: left;
+}
+.payStyle>a>span+span{
+  color: lightgray;
+  font-size: 0.12rem;
+  float: right;
+}
+.payStyle>div{
+  height: 0.3rem;
+  line-height: 0.3rem;
+  width: 100%;
+  display: inline-block;
+}
+.payStyle>div>span{
+  color: lightgray;
+  font-size: 0.12rem;
+  float: left;
+}
+.payStyle>div>span+span{
+  float: right;
+}
+.confirmOrder>.orderInfo{
+  margin-top: 0.1rem;
+  background-color: white;
+  padding: 0;
+}
+.orderInfo>div:nth-child(1){
+  padding: 0 0.16rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  border-bottom: 0.01rem solid #e4e4e4;
+}
+.orderInfo>div:nth-child(1)>img{
+  width: 0.2rem;
+  height: 0.2rem;
+  background-color: #008de1;
+}
+.orderInfo>div:nth-child(1)>span{
+  font-size: 0.16rem;
+  padding: 0 0.1rem;
+}
+.orderInfo>ul{
+  padding: 0 0.16rem;
+  border-bottom: 0.01rem solid #e4e4e4;
+}
+.orderInfo>div:nth-child(3){
+  padding: 0 0.16rem;
+  border-bottom: 0.01rem solid #e4e4e4;
+}
+.bg-purple {
+  text-align: left;
+}
+.bg-purple-light {
+  text-align: right;
+}
+.grid-content {
+  min-height: 0.4rem;
+  margin: 0.02rem 0;
+  line-height: 0.4rem;
+  color: grey;
+}
+  .special{
+    color: orangered;
+  }
+  .pay{
+    border-bottom:none;
+  }
+.remarks{
+  margin-top: 0.1rem;
+  height: 0.9rem;
+  background-color: white;
+  margin-bottom: 0.7rem;
+}
+.remarks>a{
+  height: 0.4rem;
+  line-height: 0.4rem;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  border-bottom: 0.01rem solid #e4e4e4;
+}
+.remarks>a>span{
+  color: grey;
+  font-size: 0.14rem;
+  float: left;
+}
+.remarks>a>span+span{
+  float: right;
+  color: lightgray;
+}
+.remarks>a:last-child{
+  border-bottom: none;
+}
+.confirmOrder>.foot{
+    padding: 0;
+    width:100%;
+    height: 0.5rem;
+    background-color: #000;
+    line-height: 0.5rem;
+    color: #fff;
+    font-size: 0.16rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+  }
+.confirmOrder>.foot>span{
+  padding: 0 0.16rem;
+}
+.confirmOrder>.foot>button{
+  display: inline-block;
+  float: right;
+  background-color: limegreen;
+  outline-style: none;
+  border: none;
+  width: 1rem;
+}
+
 </style>

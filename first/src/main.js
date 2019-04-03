@@ -26,7 +26,9 @@ const moduleG = {
 // 当前所选城市信息
     currentCity:{},
     // 搜索商家历史记录
-    historyRecord:[]
+    historyRecord:[],
+    // 是否显示footer
+    showOrHidden:true
   },
   mutations: {
     // 接收所选城市信息
@@ -36,6 +38,10 @@ const moduleG = {
     // 接收所选商家的历史记录
     "HISTORYRECORD"(state,historyRecord){
       state.historyRecord.push(historyRecord)
+    },
+    // 调用函数使footer,根据hidThat的值决定显隐
+    showOrHidden(state,hidThat){
+      state.showOrHidden = hidThat
     }
   },
   actions: {}

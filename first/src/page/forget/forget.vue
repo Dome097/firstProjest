@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="container-fluid resetPassword">
       <input type="text" placeholder="账号" v-model="mindUsername">
       <input type="text" placeholder="旧密码" v-model="oldPassword">
       <input type="text" placeholder="请输入新密码" v-model="newPassword">
@@ -7,7 +7,7 @@
       <input type="text" placeholder="验证码" v-model="mindCaptcha_code">
       <img class="verificationCode" :src="src" alt="">
       <a href="###" class="retubing" @click="gainAuthCode">换一张</a>
-      <button @click="affirmAmend" class="btn btn-success">确认修改</button>
+      <button @click="affirmAmend" class="btn">确认修改</button>
   </section>
 </template>
 
@@ -99,25 +99,32 @@ export default {
 }
 </script>
 
-<style scoped>````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
-  input {
+<style scoped>
+  .resetPassword{
+    width: 100%;
+    padding: 0;
+  }
+  .resetPassword>input {
     width: 100%;
     outline: medium;
-    height: .33rem;
-    border-bottom: #b2b2b2 solid .01rem;
-    border-top: #b2b2b2 solid .01rem;
+    height: .4rem;
+    border-bottom: #e4e4e4 solid .01rem;
+    padding:0 0.14rem;
+  }
+  .resetPassword>input:nth-child(1){
+    margin-top: 0.2rem;
   }
   .verificationCode {
     position: absolute;
-    top: 1.85rem;
+    top: 2.3rem;
     right: .5rem;
     width: .4rem;
     height: .2rem;
   }
   .retubing {
     position: absolute;
-    top: 1.85rem;
-    right: 0;
+    top: 2.3rem;
+    right: 0.04rem;
     width: .4rem;
     height: .2rem;
     font-size: .12rem;
@@ -125,5 +132,7 @@ export default {
   button {
     margin: 2%;
     width: 95%;
+    background-color: limegreen;
+    color: #fff;
   }
 </style>
