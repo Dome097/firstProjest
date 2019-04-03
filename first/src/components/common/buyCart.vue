@@ -70,7 +70,8 @@ export default {
     return {
       // 控制上拉下拉
       draw:false,
-      totalPrices:0
+      totalPrices:0,
+      foodsArr:[]
     }
   },
   computed: {
@@ -81,6 +82,7 @@ export default {
   watch:{
     arr: {
       handler() {
+        this.totalPrices = 0
         for (let prices of this.$store.state.dome.cartSingleFood) {
           this.totalPrices += prices.entities.price * prices.quantity
         }
@@ -105,6 +107,11 @@ export default {
     // 向购物车删除一件
     domeDelete (i) {
       this.$store.commit({type:'cartDeleteSingleFood',data:i})
+      if (!this.$store.state.dome.cartSingleFood[0]) {
+        console.log('没了没了')
+        this.draw = false
+        this.totalPrices = '00'
+      }
     },
     // 去订单结算
     goPayment () {
@@ -260,7 +267,7 @@ export default {
 .dome-plus-minus {
   position: absolute;
   right: 0.1rem;
-  width: 0.5rem;
+  width: 0.7rem;
   text-align: center;
   color: black;
 }
@@ -285,7 +292,7 @@ export default {
 }
 /*!*遮罩淡入淡出动画*!*/
 .dome3-enter-active, .dome3-leave-active {
-  transition: background-color 1s;
+  transition: background-color 0.5s;
 }
 .dome3-enter, .dome3-leave-to {
   background-color:  rgba(33,33,33,0);

@@ -58,19 +58,21 @@ const moduleD = {
     // 购物车中的食物
     // {attrs:[],extra:{},id:食品id,name:食品名称,packing_fee:打包费,price:价格,quantity:数量,sku_id:规格id,specs:规格,stock:存量,}
     cartSingleFood:[
-      {
-        quantity:1,
-        entities:{
-          id: 5894,
-          name: '123',
-          packing_fee: 0,
-          price: 20,
-          sku_id: 5894,
-          specs:[],
-          stock: 1000
-        }
-      }
+      // {
+      //   quantity:1,
+      //   entities:{
+      //     id: 5894,
+      //     name: '123',
+      //     packing_fee: 0,
+      //     price: 20,
+      //     sku_id: 5894,
+      //     specs:[],
+      //     stock: 1000
+      //   }
+      // }
       ],
+    // 返回到购物车的数组
+    domeChe: [],
     // 数据加载成功
     endOfDataLoad:false,
     // 倒计时分
@@ -108,22 +110,91 @@ const moduleD = {
     // 选中区域
     region:{}
   },
+  getters: {
+    // 操作购物车
+  },
   mutations: {
+    // 全部填加到购物车
+    // allFood (state, pyload) {
+    //   state.cartSingleFood = pyload.data
+    // },
     // 向购物车添加食物
     addSingleFood (state, pyload) {
-      console.log('添加到购物车的对象',pyload.data)
+      pyload.data.dome++
+      // 把传来的数据提取,放到一个对象里
+      let obj = {
+        id: pyload.data.specfoods[0].food_id,
+        name: pyload.data.specfoods[0].name,
+        packing_fee: pyload.data.specfoods[0].packing_fee,
+        price: pyload.data.specfoods[0].price,
+        sku_id: pyload.data.specfoods[0].sku_id,
+        specs: pyload.data.specfoods[0].specs,
+        stock: pyload.data.specfoods[0].stock
+      }
+      // 储存下标
+      let index = 0
+      // 存储是否已存在
+      let buer = true
+      console.log('state.cartSingleFood是',state.cartSingleFood)
+      for (let eachObj of state.cartSingleFood){
+        if (eachObj.entities.id == obj.id) {
+          console.log('已经存在了')
+          state.cartSingleFood[index].quantity = state.cartSingleFood[index].quantity+1
+          console.log('处理后的state.cartSingleFood',state.cartSingleFood)
+          buer = false
+        }
+        index++
+      }
+      if (buer) {
+        state.cartSingleFood = [...state.cartSingleFood,{quantity:1,entities:obj,dome:pyload.data.dome}]
+      }
+      // console.log('添加到购物车的对象',pyload.data.specfoods[0])
     },
     // 在购物车添加食物
     cartAddSingleFood (state, pyload) {
-      state.
+      state.cartSingleFood[state.cartSingleFood.indexOf(pyload.data)].quantity++
       console.log('要添加的对象',pyload.data)
     },
     // 删除一个食物
     deleteSingleFood (state, pyload) {
-
+      pyload.data.dome--
+      // 把传来的数据提取,放到一个对象里
+      let obj = {
+        id: pyload.data.specfoods[0].food_id,
+        name: pyload.data.specfoods[0].name,
+        packing_fee: pyload.data.specfoods[0].packing_fee,
+        price: pyload.data.specfoods[0].price,
+        sku_id: pyload.data.specfoods[0].sku_id,
+        specs: pyload.data.specfoods[0].specs,
+        stock: pyload.data.specfoods[0].stock
+      }
+      // 储存下标
+      let index = 0
+      // 存储是否已存在
+      let buer = true
+      console.log('state.cartSingleFood是',state.cartSingleFood)
+      for (let eachObj of state.cartSingleFood){
+        if (eachObj.entities.id == obj.id) {
+          state.cartSingleFood[index].quantity = state.cartSingleFood[index].quantity-1
+          state.cartSingleFood[index].quantity = state.cartSingleFood[index].dome-1
+          if (state.cartSingleFood[index].quantity === 0) {
+            state.cartSingleFood.splice(index,1)
+          }
+          console.log('处理后的state.cartSingleFood',state.cartSingleFood)
+        }
+        index++
+      }
     },
     // 在购物车删除食物
     cartDeleteSingleFood (state, pyload) {
+      if (state.cartSingleFood.length === 1 && state.cartSingleFood[0].quantity === 1) {
+        state.cartSingleFood = []
+      }else {
+        state.cartSingleFood[state.cartSingleFood.indexOf(pyload.data)].quantity--
+        if (state.cartSingleFood[state.cartSingleFood.indexOf(pyload.data)].quantity === 0){
+          state.cartSingleFood.splice(state.cartSingleFood.indexOf(pyload.data),1)
+        }
+      }
       console.log('要删除的对象',pyload.data)
     },
     // 清空购物车
