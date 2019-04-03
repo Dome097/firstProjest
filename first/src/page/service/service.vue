@@ -33,127 +33,127 @@
       <div class="questionTitle">
         <p>热门问题</p>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'超级会员权益说明'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'超级会员权益说明',quesTitle:questionTitle[0]}}">
             <p>超级会员权益说明</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'签到规则'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'签到规则',quesTitle:questionTitle[2]}}">
             <p>签到规则</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'用户等级说明'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'用户等级说明',quesTitle:questionTitle[4]}}">
             <p>用户等级说明</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'积分问题'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'积分问题',quesTitle:questionTitle[6]}}">
             <p>积分问题</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'教我拍大片'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'教我拍大片',quesTitle:questionTitle[8]}}">
             <p>教我拍大片</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'支付问题'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'支付问题',quesTitle:questionTitle[10]}}">
             <p>支付问题</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'其它问题'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'其它问题',quesTitle:questionTitle[12]}}">
             <p>其它问题</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'准时达问题'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'准时达问题',quesTitle:questionTitle[14]}}">
             <p>准时达问题</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'会员说明'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'会员说明',quesTitle:questionTitle[16]}}">
             <p>会员说明</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'会员问题'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'会员问题',quesTitle:questionTitle[22]}}">
             <p>会员问题</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'红包问题'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'红包问题',quesTitle:questionTitle[25]}}">
             <p>红包问题</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'活动细则'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'活动细则',quesTitle:questionTitle[27]}}">
             <p>活动细则</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'补签规则'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'补签规则',quesTitle:questionTitle[29]}}">
             <p>补签规则</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'优惠说明'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'优惠说明',quesTitle:questionTitle[31]}}">
             <p>优惠说明</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'免责声明'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'免责声明',quesTitle:questionTitle[33]}}">
             <p>免责声明</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'代金券说明'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'代金券说明',quesTitle:questionTitle[35]}}">
             <p>代金券说明</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'商务合作'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'商务合作',quesTitle:questionTitle[37]}}">
             <p>商务合作</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'余额问题'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'余额问题',quesTitle:questionTitle[39]}}">
             <p>余额问题</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'超赞商家'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'超赞商家',quesTitle:questionTitle[41]}}">
             <p>超赞商家</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'匿名购买'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'匿名购买',quesTitle:questionTitle[43]}}">
             <p>匿名购买</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
         </div>
         <div @click="isIf = false">
-          <router-link :to="{name:'questionDetail',query:{title:'活动问题'}}">
+          <router-link :to="{name:'questionDetail',params:{title:'活动问题',quesTitle:questionTitle[45]}}">
             <p>活动问题</p>
             <i class="iconfont">&#xe634;</i>
           </router-link>
@@ -179,7 +179,9 @@ export default {
       popupVisible1:false,
       popupVisible2:false,
       // 声明变量存储显隐状态
-      isIf:true
+      isIf:true,
+      // 存储服务的内容
+      questionTitle:[]
     }
   },
   methods:{
@@ -193,7 +195,20 @@ export default {
     }
   },
   mounted(){
-
+    //懒加载
+    this.$store.commit({
+      type:'amendDataLoad'
+    });
+    Vue.axios.get(`https://elm.cangdu.org/v3/profile/explain`,null).then(res => {
+      // 懒加载
+      this.$store.commit({
+        type:'amendDataLoad'
+      });
+      // 将请求到的数据,取键值对放入数组
+      this.questionTitle = Object.entries(res.data);
+    }).catch((error) => {
+      console.log(error)
+    })
   }
 }
 </script>

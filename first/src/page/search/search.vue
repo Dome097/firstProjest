@@ -13,18 +13,21 @@
       ><i slot="suffix" class="el-input__icon el-icon-close" @click="clearInput" v-if="isIcon"></i></el-input>
     <el-button
       type="primary"
-      @click="searchInfo(input)">提交</el-button>
+      @click="searchInfo(input)" :disabled="!input">提交</el-button>
   </div>
   <ul class="recordList" v-if="record">
     <li>搜索历史</li>
-    <li v-for = "(item ,key) in list" v-if = "!item.checked" class="records" @click="searchInRecord(item.title)">{{item.title}}<i class="iconfont" @click="removeData(key)" >&#xe62a;</i></li>
+    <li v-for = "(item ,key) in list" class="records" @click.self="searchInRecord(item)">{{item}}<i class="iconfont" @click.self="removeData(key)">&#xe62a;</i></li>
     <li @click="clearAllRecord">清空搜索历史</li>
   </ul>
   <ul class="searchFail" v-if="noAnswer">
     <li>很抱歉!无搜索结果</li>
   </ul>
   <ul class="searchFail" v-if="isAnswer">
-    <li>{{'结果'}}</li>
+    <li v-for="(item ,key) in arrData">
+      <p>{{item.name}}</p>
+      <p>{{item.description}}</p>
+    </li>
   </ul>
 </section>
 </template>
@@ -48,7 +51,9 @@ export default {
       // 存储历史记录
       list:[],
       // 从store中获取当前城市信息
-      curCity:this.$store.state.currentCity
+      curCity:{},
+      // 搜索到的返回数据
+      arrData:[]
     }
   },
   methods: {
@@ -61,22 +66,24 @@ export default {
     showIcon(){
       this.isIcon = true
     },
-    // 点击close图标,删除当前记录
-    closeIcon(){
-
-    },
     // 点击清空历史,清空所有记录
     clearAllRecord(){
-
+      this.storage.set("list", []);
+      this.record = false
+    },
+    // 点击删除图标,删除当前行
+    removeData(key){
+      this.list.splice(key,1);
+      this.storage.set("list",this.list);
+      this.list.checked = false;
     },
     // 在记录中发起搜索
     searchInRecord(i){
       this.searchInfo(i)
     },
     searchInfo(i){
-      console.log(this.curCity);
+      //传入参数
       this.input = i;
-      console.log(i);
       // 调用添加历史记录的函数
       this.doAdd(i);
       //懒加载
@@ -84,15 +91,19 @@ export default {
         type:'amendDataLoad'
       });
       // 点击提交按钮时,传入用户输入的参数,发起请求
-      Vue.axios.get('https://elm.cangdu.org/v4/restaurants?geohash=31.22967,121.4762&keyword='+i,null).then(res => {
+      Vue.axios.get(`https://elm.cangdu.org/v4/restaurants?geohash=${this.curCity.latitude},${this.curCity.longitude}&keyword=${i}`,null).then(res => {
         //懒加载
         this.$store.commit({
           type:'amendDataLoad'
         });
-        console.log(res.data);
         // 请求到数据后让内容显示
         this.isAnswer = true;
-        if(res.data=[]){
+        this.record = false;
+        this.noAnswer = false;
+        console.log(res.data);
+        this.arrData = res.data;
+        // 如果没有请求到数据
+        if(res.data === []){
           this.record = false;
           this.noAnswer = true;
           this.isAnswer = false
@@ -106,59 +117,31 @@ export default {
       })
     },
     doAdd() {
-      // 判断输入框内容为空,禁用触发点击事件
-
-        // 将输入框的值去除空格
+       // 将输入框的值去除空格
         this.input = this.input.trim();
         // 判断list中是否有数据
         if (this.list.length>0){//有数据
           // 判断是否有重复
-          if(this.list.some(item => {if(item.title === this.input){return true}})){
-            // 删除原数组中重复的内容,再添加新的成员
-            console.log(this.list.some(item => {if(item.title === this.input){return true}}))
-            this.list.splice(this.list.item.title = this.input,1);
-            // 一定用unshift(),加在数组中的开头,历史记录显示的顺序是最近输入到以前输入
-            // this.list.unshift(this.input)
-            this.list.unshift({
-              title: this.input,
-              checked: false
-            });
+          if(this.list.includes(this.input)){
+            // 删除原数组中重复的内容,并在原来位置上添加本次输入的内容
+            this.list.splice(this.list.indexOf(this.input),1,this.input);
           }else{
             // 如果没有重复,直接添加
             // this.list.unshift(this.input)
-            this.list.unshift({
-              title: this.input,
-              checked: false
-            });
+            this.list.unshift(this.input);
           }
         }else{
           // 如果没有数据,直接加入
-          // this.list.unshift(this.input)
-          this.list.unshift({
-            title: this.input,
-            checked: false
-          });
+          this.list.unshift(this.input);
         }
 
       // 如果记录超过6条,删除最后一条
       if(this.list.length>7){
         this.list.pop()
       }
-      // this.list.unshift({
-      //   title: this.input,
-      //   checked: false
-      // });
-      console.log(this.list);
       this.storage.set("list", this.list)
     },
-    removeData(key){
-      this.list.splice(key,1);
-      this.storage.set("list",this.list);
-      this.list.checked = false;
-    },
-    // saveData(){
-    //   this.storage.set("list",this.list);
-    // }
+
   },
   mounted(){
     /*生命周期函数， vue页面刷新就会触发的方法*/
@@ -166,7 +149,11 @@ export default {
     if (list){
      this.list = list;
     }
-
+  },
+  beforeRouteEnter(to,from,next){
+    next(vm=>{
+      vm.curCity = vm.$store.state.ghc.currentCity
+    })
   }
 }
 </script>
@@ -222,11 +209,14 @@ export default {
     float: right;
   }
   .searchFail>li{
-    text-align: center;
+    text-align: left;
+    padding: 0 0.1rem;
     color: #000;
-    height: 0.4rem;
-    line-height: 0.4rem;
+    height: 0.6rem;
     background-color: white;
     margin-top: 0.02rem;
+  }
+  .searchFail>li>p{
+    height: 0.2rem;
   }
 </style>

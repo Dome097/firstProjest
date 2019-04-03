@@ -3,7 +3,7 @@
     <Header></Header>
     <loading v-if="amendEndOfDataLoad"></loading>
     <router-view></router-view>
-    <FootGuide></FootGuide>
+    <FootGuide v-if="showOrHidden"></FootGuide>
   </div>
 </template>
 
@@ -19,6 +19,9 @@ export default {
     amendEndOfDataLoad () {
       console.log('this.$store.state.dome.endOfDataLoad',this.$store.state.dome.endOfDataLoad)
       return this.$store.state.dome.endOfDataLoad
+    },
+    showOrHidden(){
+      return this.$store.state.ghc.showOrHidden
     }
   }
 }
