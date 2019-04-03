@@ -2,9 +2,9 @@
   <section class="container-fluid city">
     <div class="searchAddress">
       <div class="input-group input-group-lg inValue">
-        <input type="text" class="form-control" placeholder="输入学校、商务楼、地址" aria-describedby="sizing-addon1" v-model="inputValue">
+        <input type="text" class="form-control" placeholder="输入学校、商务楼、地址" aria-describedby="sizing-addon1" v-model="inputValue" >
       </div>
-      <div class="btn-group btn-group-lg btns" @click="searchCity(inputValue)">提交</div>
+      <button class="btns" :disabled="!inputValue" @click="searchCity(inputValue)">提交</button>
     </div>
     <div class="adds" v-for="item in addrList" @click="selectShop(item )">
       <p>{{item.name}}</p>
@@ -44,6 +44,8 @@ export default {
       this.$store.commit({
         type:'amendDataLoad'
       });
+      // 若输入框为空,禁用搜索
+
       // 点击提交按钮时,传入用户输入的参数,发起请求
       this.inputValue = i;
       Vue.axios.get(`https://elm.cangdu.org/v1/pois?city_id=${this.$store.state.ghc.currentCity.id}&keyword=${i}&type=search`,null).then(res => {
@@ -148,6 +150,7 @@ export default {
     text-align: center;
     border-radius: 0.03rem;
     font-size: 0.14rem;
+    border: none;
   }
   .adds{
     height: 0.8rem;

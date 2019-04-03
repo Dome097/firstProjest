@@ -25,19 +25,19 @@ import BenefitHbHistory from '../page/benefit/children/hbHistory'
 // 确认订单页
 import confirmOrder from '../page/confirmOrder/confirmOrder'
 // 选择地址页
-import chooseAddress from '../page/confirmOrder/children/chooseAddress'
+import chooseAddress from '../page/confirmOrder/chooseAddress'
 // 选择发票页
-import invoice from '../page/confirmOrder/children/invoice'
+import invoice from '../page/confirmOrder/invoice'
 // 付款页
-import payment from '../page/confirmOrder/children/payment'
+import payment from '../page/confirmOrder/payment'
 // 订单备注页
-import remark from '../page/confirmOrder/children/remark'
+import remark from '../page/confirmOrder/remark'
 // 用户验证页
-import userValidation from '../page/confirmOrder/children/useValidation'
+import userValidation from '../page/confirmOrder/useValidation'
 // 添加地址页
-import addAddress from '../page/confirmOrder/children/children/addAddress'
+import addAddress from '../page/confirmOrder/addAddress'
 // 搜索地址页
-import searchAddress from '../page/confirmOrder/children/children/children/searchAddress'
+import searchAddress from '../page/confirmOrder/searchAddress'
 // 下载App
 import download from '../page/download/downLoad'
 // 发现页
@@ -95,11 +95,13 @@ import shopSafe from '../page/shop/children/children/shopSafe'
 // 会员卡办理页
 import vipcard from '../page/vipcard/vipcard'
 // 购买记录
-import invoiceRecord from '../page/vipcard/children/invoiceRecord'
+import invoiceRecord from '../page/vipcard/invoiceRecord'
 // 使用卡号购买
-import useCart from '../page/vipcard/children/useCart'
+import useCart from '../page/vipcard/useCart'
 // 会员说明
-import vipDescription from '../page/vipcard/children/vipDescription'
+import vipDescription from '../page/vipcard/vipDescription'
+//计时器
+import computeTime from '../components/common/computeTime'
 Vue.use(Router)
 
 export default new Router({
@@ -175,58 +177,54 @@ export default new Router({
       path: '/confirmOrder',
       component: confirmOrder,
       name: 'confirmOrder',
-      children: [ // 二级路由
-        {
-          // 选择地址页
-          path: 'chooseAddress',
-          component:chooseAddress,
-          name: 'chooseAddress'
-        },
-        {
-          // 选择地址页
-          path: 'chooseAddress',
-          component: chooseAddress,
-          name: 'chooseAddress'
-        },
-        {
-          // 选择发票页
-          path: 'invoice',
-          component: invoice,
-          name: 'invoice'
-        },
-        {
-          // 付款页
-          path: 'payment',
-          component: payment,
-          name: 'payment'
-        },
-        {
-          // 订单备注页
-          path: 'remark',
-          component: remark,
-          name: 'remark'
-        },
-        {
-          // 用户验证页
-          path: 'userValidation',
-          component: userValidation,
-          name: 'userValidation'
-        },
-        {
-          // 添加地址页
-          path: 'addAddress',
-          component: addAddress,
-          name: 'addAddress',
-          children: [ // 三级路由
-            {
-              // 搜索地址页
-              path: 'searchAddress',
-              component: searchAddress,
-              name: 'searchAddress'
-            }
-          ]
-        }
-      ]
+    },
+    {
+      // 选择地址页
+      path: 'chooseAddress',
+      component:chooseAddress,
+      name: 'chooseAddress'
+    },
+    {
+      // 选择地址页
+      path: 'chooseAddress',
+      component: chooseAddress,
+      name: 'chooseAddress'
+    },
+    {
+      // 选择发票页
+      path: 'invoice',
+      component: invoice,
+      name: 'invoice'
+    },
+    {
+      // 付款页
+      path: 'payment',
+      component: payment,
+      name: 'payment'
+    },
+    {
+      // 订单备注页
+      path: 'remark',
+      component: remark,
+      name: 'remark'
+    },
+    {
+      // 用户验证页
+      path: 'userValidation',
+      component: userValidation,
+      name: 'userValidation'
+    },
+    {
+      // 添加地址页
+      path: 'addAddress',
+      component: addAddress,
+      name: 'addAddress',
+    },
+    {
+      // 搜索地址页
+      path: 'searchAddress',
+      component: searchAddress,
+      name: 'searchAddress'
     },
     { // 下载App 一级路由
       path: '/download',
@@ -262,6 +260,11 @@ export default new Router({
       path: '/msite',
       component: msite,
       name: 'msite'
+    },
+    { // 会员卡充值计时器页 一级路由
+      path: '/computeTime',
+      component: computeTime,
+      name: 'computeTime'
     },
     { // 订单列表页 一级路由
       path: '/order',
@@ -383,23 +386,21 @@ export default new Router({
       path: '/vipcard',
       component: vipcard,
       name: 'vipcard',
-      children: [ // 二级路由
-        { // 购买记录
-          path: 'invoiceRecord',
-          component: invoiceRecord,
-          name: 'invoiceRecord'
-        },
-        { // 使用卡号购买
-          path: 'useCart',
-          component: useCart,
-          name: 'useCart'
-        },
-        { // 会员说明
-          path: 'vipDescription',
-          component: vipDescription,
-          name: 'vipDescription'
-        }
-      ]
+    },
+    { // 购买记录 一级路由
+      path: '/invoiceRecord',
+      component: invoiceRecord,
+      name: 'invoiceRecord'
+     },
+    { // 使用卡号购买 一级路由
+      path: '/useCart',
+      component: useCart,
+      name: 'useCart'
+    },
+    { // 会员说明 一级路由
+      path: '/vipDescription',
+      component: vipDescription,
+      name: 'vipDescription'
     }
   ]
 })

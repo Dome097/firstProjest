@@ -75,7 +75,7 @@ export default {
         type:'amendDataLoad'
       });
       this.currentCity = res.data
-      // console.log(this.currentCity);
+      console.log(this.currentCity);
     }).catch((error)=>{
       console.log(error)
     })
@@ -105,13 +105,6 @@ export default {
         const obj = {cityNum: arr[i], city: res.data[arr[i]]};
         this.allCity.push(obj);
       }
-      // console.log(this.allCity)
-      // for (let item of this.allCity) {
-      //   console.log(item.city)
-      //   for (let i of item.city) {
-      //     console.log(i.id)
-      //   }
-      // }
     }).catch((error)=>{
       console.log(error)
     })
