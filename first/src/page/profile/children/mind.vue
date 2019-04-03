@@ -93,7 +93,6 @@
       changeRoute(){
         // 判断是否已登录
         if(this.$store.state.dome.loggingStatus){
-          console.log(111);
           // 已登录过,跳转到我的信息
           this.$router.push({name:'info'})
         }else{
