@@ -99,7 +99,10 @@
           // 未登录,跳转到登录页
           this.$router.push({name:'login'})
         }
-      }
+      },
+      // sendVipCenter(){
+      //   this.$store.commit({type:'sendvipCenterInfo',data:'会员中心'})
+      // }
     },
     // 采用路由守卫在进入之前
     beforeRouteEnter(to,from,next){

@@ -1,5 +1,7 @@
 <template>
-  <div class="wrap">
+  <div class="wrap" v-infinite-scroll="loadMore"
+       infinite-scroll-disabled="loading"
+       infinite-scroll-distance="10" >
     <div class="box" v-for="(item,index) in dataList" @click="toShop(item)">
       <div class="leftImg pull-left">
         <img :src="'https://elm.cangdu.org/img/'+item.image_path" alt="">
@@ -40,6 +42,7 @@
         </p>
       </div>
     </div>
+    <p v-if="domeFoot" class="domeP">没有更多了</p>
   </div>
 </template>
 
@@ -51,7 +54,11 @@ export default {
   data(){
     return {
       dataList:[],
-      value:[]
+      value:[],
+      loading:false,
+      // 跳过多少条数据
+      offset:0,
+      domeFoot:false
     }
   },
   mounted(){
@@ -63,11 +70,11 @@ export default {
         type:"amendDataLoad"
       })
       this.dataList = res.data;
-   //   console.log(this.dataList);
       res.data.map((n)=>{
         this.value.push(n.rating);
-      //  console.log(this.value);
       })
+      this.offset += 20
+      console.log(this.offset)
     });
   },
   computed:{
@@ -118,6 +125,39 @@ export default {
       this.$router.push({name:'shop'})
       console.log('item', item)
       this.$store.commit({type:'getSingleStore',data:item})
+    },
+    loadMore() {
+      if (!this.domeFoot) {
+        this.loading = true;
+        setTimeout(() => {
+          this.$store.commit({
+            type:"amendDataLoad"
+          })
+          Vue.axios.get(`https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762&offset=${this.offset}`,null).then((res) => {
+            this.$store.commit({
+              type:"amendDataLoad"
+            })
+            console.log(res.data)
+            for (let arr of res.data) {
+              this.dataList.push(arr)
+            }
+            // this.dataList.push()
+            //   console.log(this.dataList);
+            res.data.map((n)=>{
+              this.value.push(n.rating);
+              //  console.log(this.value);
+            })
+            this.offset += 20
+            this.loading = false;
+            // 没有数据的时候
+            if (!res.data[19]){
+              this.domeFoot = true
+            }
+          });
+          console.log(this.offset)
+        }, 2500);
+      }
+
     }
   }
 }
@@ -204,6 +244,10 @@ export default {
   }
   .star{
     width: 1.5rem;
+  }
+  .domeP {
+    width: 100%;
+    text-align: center;
   }
 </style>
 <style>

@@ -88,7 +88,8 @@ export default {
     // food 标题
     foodTitle: {
       get () {
-        return this.$store.state.dome.foodTitle
+       return this.$store.state.dome.foodTitle
+      //   this.$store.state.dome.foodTitle;
       },
       set () {}
     },
@@ -118,6 +119,7 @@ export default {
   },
   watch:{
     $route(now,old){     //监控路由变换，控制返回按钮的显示
+      console.log('now',now)
       if(now.path==="/home"){
         this.nowCity = ''
         this.isFirst=true;
@@ -152,8 +154,37 @@ export default {
         this.isShow=false;
         this.isThree = false;
         this.isFive = true
-      }else if(now.path === "/profile/mind"){
-        this.$store.state.dome.foodTitle = '我的'
+      }else if(now.path==="/profile/mind") {
+        this.$store.commit({type:'goMsite',name:'我的'})
+      // this.$store.state.dome.foodTitle = '我的'
+        this.isFour = false;
+        this.isFirst=false;
+        this.isShow=false;
+        this.isThree = false;
+        this.isFive = true
+      }else if(now.path==="/vipcard"){
+        this.$store.commit({type:'goMsite',name:'会员中心'})
+        this.isFour = false;
+        this.isFirst=false;
+        this.isShow=false;
+        this.isThree = false;
+        this.isFive = true
+      }else if(now.path==="/order"){
+        this.$store.commit({type:'goMsite',name:'订单列表'})
+        this.isFour = false;
+        this.isFirst=false;
+        this.isShow=false;
+        this.isThree = false;
+        this.isFive = true
+      }else if(now.path==="/service"){
+        this.$store.commit({type:'goMsite',name:'服务中心'})
+        this.isFour = false;
+        this.isFirst=false;
+        this.isShow=false;
+        this.isThree = false;
+        this.isFive = true
+      }else if(now.path==="/download"){
+        this.$store.commit({type:'goMsite',name:'下载'})
         this.isFour = false;
         this.isFirst=false;
         this.isShow=false;

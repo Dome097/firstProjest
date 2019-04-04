@@ -95,11 +95,13 @@ import shopSafe from '../page/shop/children/children/shopSafe'
 // 会员卡办理页
 import vipcard from '../page/vipcard/vipcard'
 // 购买记录
-import invoiceRecord from '../page/vipcard/children/invoiceRecord'
+import invoiceRecord from '../page/vipcard/invoiceRecord'
 // 使用卡号购买
-import useCart from '../page/vipcard/children/useCart'
+import useCart from '../page/vipcard/useCart'
 // 会员说明
-import vipDescription from '../page/vipcard/children/vipDescription'
+import vipDescription from '../page/vipcard/vipDescription'
+//计时器
+import computeTime from '../components/common/computeTime'
 Vue.use(Router)
 
 export default new Router({
@@ -259,6 +261,11 @@ export default new Router({
       component: msite,
       name: 'msite'
     },
+    { // 会员卡充值计时器页 一级路由
+      path: '/computeTime',
+      component: computeTime,
+      name: 'computeTime'
+    },
     { // 订单列表页 一级路由
       path: '/order',
       component: order,
@@ -379,23 +386,21 @@ export default new Router({
       path: '/vipcard',
       component: vipcard,
       name: 'vipcard',
-      children: [ // 二级路由
-        { // 购买记录
-          path: 'invoiceRecord',
-          component: invoiceRecord,
-          name: 'invoiceRecord'
-        },
-        { // 使用卡号购买
-          path: 'useCart',
-          component: useCart,
-          name: 'useCart'
-        },
-        { // 会员说明
-          path: 'vipDescription',
-          component: vipDescription,
-          name: 'vipDescription'
-        }
-      ]
+    },
+    { // 购买记录 一级路由
+      path: '/invoiceRecord',
+      component: invoiceRecord,
+      name: 'invoiceRecord'
+     },
+    { // 使用卡号购买 一级路由
+      path: '/useCart',
+      component: useCart,
+      name: 'useCart'
+    },
+    { // 会员说明 一级路由
+      path: '/vipDescription',
+      component: vipDescription,
+      name: 'vipDescription'
     }
   ]
 })

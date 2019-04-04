@@ -452,9 +452,9 @@ export default {
 .dome-spinner {
   position: fixed;
   width: 100%;
-  height: 100%;
+  /*height: 100%;*/
   top: 0.9rem;
-  z-index: 3;
+  /*z-index: 3;*/
   /*background-color: rgba(22,22,22,0.1)*/
 }
 /*分类容器*/
@@ -464,7 +464,7 @@ export default {
   /*height: 100%;*/
   height: 4.5rem;
   display: flex;
-  z-index: 4;
+  z-index: 9;
   top: 0;
   /*background-color: rgba(22,22,22,0.1);*/
 }
@@ -537,7 +537,7 @@ export default {
   width: 100%;
   height: 3rem;
   background-color: white;
-  z-index: 4;
+  z-index: 9;
   top:0;
 }
 /*排序循环每行*/
@@ -560,7 +560,8 @@ export default {
   height: 0.5rem;
   line-height: 0.5rem;
   border-bottom: #a4a4a4 solid 0.01rem;
-  top:0
+  top:0;
+  z-index: 9;
 }
 /*选中对号容器*/
 .dome-sort-true {
@@ -718,7 +719,7 @@ export default {
   width: 100%;
   height: 100%;
   position: fixed;
-  z-index: 2;
+  z-index: 9;
   background-color: rgba(33,33,33,0.5);
 }
 /*下拉上拉动画*/

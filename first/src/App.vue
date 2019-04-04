@@ -3,7 +3,7 @@
     <Header></Header>
     <loading v-if="amendEndOfDataLoad"></loading>
     <router-view></router-view>
-    <FootGuide v-if="showOrHidden"></FootGuide>
+    <!--<FootGuide v-if="showOrHidden"></FootGuide>-->
   </div>
 </template>
 
@@ -37,7 +37,7 @@ export default {
 }
 #app,html,body{
   width: 100%;
-  height: 100%;
+  /*height: 100%;*/
 }
 #app {
   margin-top: 0.44rem;
