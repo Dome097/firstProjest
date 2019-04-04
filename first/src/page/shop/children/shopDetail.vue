@@ -15,7 +15,7 @@
     <section class="r_list " ref="r_list">
       <div>
         <!--在需要跳转到的区块上添加ref属性用于标识-->
-        <div v-for="(it,index) in shopGoodsArr" :key="index"  ref="productArr">
+        <div v-for="(it,i) in shopGoodsArr" :key="i"  ref="productArr">
           <p class="title">
             <span class="title_name">{{it.name}}</span>
             <span>{{it.description}}</span>
@@ -41,12 +41,13 @@
                     <span>起</span>
                   </p>
                   <div class="add" v-if="item.specfoods[0].specs[0]">规格</div>
-                  <div class="add1" v-else @click.stop="toShopCart(item)">
+                  <div class="add1" v-else @click.stop="toShopCart(item,index)">
                     <i class="iconfont" >&#xe7f4</i>
                   </div>
                   <span >
-                    <i class="iconfont" @click="deleteShopCart(item)" >&#xe605</i>
-                    <span>1</span>
+                    <i class="iconfont" @click.stop="deleteShopCart(item,index)" >&#xe605</i>
+                    <!--给对象添加一个属性-->
+                    <span>{{item.dome?item.dome:null}}</span>
                   </span>
                 </div>
               </div>
@@ -82,9 +83,31 @@ export default {
   computed:{
    goods () {
        return this.$store.state.dome.singleStore
+    },
+    // 所有对象
+    allShopGoodsArr () {
+      return this.$store.state.dome.allCartSingleFood
     }
+    // 提取购物车中的数量
+    // domeQuantity (vue1,m,a) {
+    //   console.log('计算属性的vue1',vue1)
+    //   console.log('计算属性的m',m)
+    //   console.log('计算属性的a',a)
+    //       Vue.set(m,'dome',this.$store.state.dome.cartSingleFood[a].quantity)
+    //   console.log('加上了吗?',m.dome)
+    //  return this.$store.state.dome.cartSingleFood
+    // }
   },
   watch:{
+    allShopGoodsArr: {
+      handler(){
+        this.shopGoodsArr = this.$store.state.dome.allCartSingleFood
+        console.log('this.shopGoodsArr是这个东西,从vuex来的:',this.shopGoodsArr)
+      },
+      //是否在页面刷新时调用回调函数,默认值是false
+      immediate:true,
+      deep:true
+    },
     goods: {
       handler(){
         this.shopGoods = this.$store.state.dome.singleStore.id;
@@ -94,6 +117,15 @@ export default {
       immediate:true,
       deep:true
     }
+    // domeQuantity: {
+    //   handler(m,a){
+    //     console.log('监听',m)
+    //     Vue.set(m,'dome',this.$store.state.dome.cartSingleFood[a].quantity)
+    //   },
+    //   //是否在页面刷新时调用回调函数,默认值是false
+    //   immediate:true,
+    //   deep:true
+    // }
   },
   mounted() {
     this.$store.commit({
@@ -104,8 +136,12 @@ export default {
         type:"amendDataLoad"
       })
       // console.log("shopDetail接收到的信息",res.data)
-      this.shopGoodsArr = res.data
-      console.log(this.shopGoodsArr[0].foods[0].specfoods[0].specs[0].name)
+      for (let foods of res.data) {
+        for (let specfoods of foods.foods) {
+          Vue.set(specfoods, 'dome',0)
+        }
+      }
+      this.$store.commit({type:'allFood',data:res.data})
     });
    this.$nextTick(() => {
      // 左侧滚动栏的better-scroll对象要开启点击事件
@@ -153,14 +189,14 @@ export default {
       // 点击单个食品信息,出现食品信息页
       this.$store.commit({type:'getSingleFood',data:n})
       this.$router.push({name:'singleFoodDetail'})
-    //  console.log("选中的当前食物",n)
     },
     // 购物车,点击+
-    toShopCart(m){
+    toShopCart(m,index){
        this.$store.commit({type:'addSingleFood',data:m})
+      console.log('this.$store.state.cartSingleFood',this.$store.state.dome.cartSingleFood)
     },
     // 购物车,点击-
-    deleteShopCart(f){
+    deleteShopCart(f,index){
      this.$store.commit({type:'deleteSingleFood',data:f})
     }
   }
