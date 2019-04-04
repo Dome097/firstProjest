@@ -88,7 +88,8 @@ export default {
     // food 标题
     foodTitle: {
       get () {
-        return this.$store.state.dome.foodTitle
+      //  return this.$store.state.dome.foodTitle
+         this.$store.commit('getRes',this.$store.state.dome.foodTitle);
       },
       set () {}
     },
@@ -153,7 +154,8 @@ export default {
         this.isThree = false;
         this.isFive = true
       }else if(now.path === "/profile/mind"){
-        this.$store.state.dome.foodTitle = '我的'
+        this.$store.commit({type:'goMsite',data:'我的'})
+       // this.$store.state.dome.foodTitle = '我的'
         this.isFour = false;
         this.isFirst=false;
         this.isShow=false;
