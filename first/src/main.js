@@ -30,14 +30,13 @@ const moduleG = {
     // 搜索商家历史记录
     historyRecord:[],
     // 是否显示footer
-    showOrHidden:true,
+    showOrHidden:false,
     // 保存用户信息
     userInfo:{},
     // 暂存增加的新收货地址
     newAddres:{},
     // 选定的收货地址
-    selectInfo:{}
-
+    selectInfo:{},
   },
   mutations: {
     // 接收所选城市信息
