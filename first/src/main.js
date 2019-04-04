@@ -30,7 +30,7 @@ const moduleG = {
     // 搜索商家历史记录
     historyRecord:[],
     // 是否显示footer
-    showOrHidden:true
+    showOrHidden:true,
   },
   mutations: {
     // 接收所选城市信息
@@ -117,7 +117,9 @@ const moduleD = {
     // 单个商铺信息对象
     singleStore: {},
     // 选中区域
-    region:{}
+    region:{},
+    // 点击会员卡时传递会员中心过去
+    sendvipCenterInfo:''
   },
   getters: {
     // 操作购物车
@@ -274,7 +276,7 @@ const moduleD = {
     },
     // 给food的title赋值
     goMsite (state, title) {
-      state.foodTitle = title.name
+      state.foodTitle = title.data
     },
     // 请求商铺
     getShop (state, payload) {

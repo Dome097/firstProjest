@@ -55,7 +55,7 @@
         <router-link :to="{name:'vipcard'}">
           <i class="iconfont">&#xe73a;</i>
           <p>饿了么会员卡</p>
-          <i class="iconfont">&#xe634;</i>
+          <i class="iconfont" @click="sendVipCenter">&#xe634;</i>
         </router-link>
       </div>
       <div class="lists">
@@ -99,6 +99,9 @@
           // 未登录,跳转到登录页
           this.$router.push({name:'login'})
         }
+      },
+      sendVipCenter(){
+        this.$store.commit({type:'sendvipCenterInfo',data:'会员中心'})
       }
     },
     // 采用路由守卫在进入之前
