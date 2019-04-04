@@ -361,16 +361,19 @@ export default new Router({
       path: '/shop',
       component: shop,
       name: 'shop',
+      redirect:'/shop/shopDetail',
+      children: [ // 二级路由
+        { // 单个商铺信息页 一级路由
+          path: 'shopDetail',
+          component: shopDetail,
+          name: 'shopDetail',
+        }
+      ]
     },
     {// 商家详情页 一级路由
     path: '/foodDetail',
     component: foodDetail,
     name: 'foodDetail',
-    },
-    { // 单个商铺信息页 一级路由
-      path: '/shopDetail',
-      component: shopDetail,
-      name: 'shopDetail',
     },
     { // 单个食物信息页 一级路由
       path: '/singleFoodDetail',

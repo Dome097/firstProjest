@@ -11,12 +11,15 @@
       </div>
     </div>
     <div class="content">
-      <div class="leftScroll" v-if="pStyle">
-        <shop-detail></shop-detail>
-      </div>
-      <div class="rightScroll" v-if="!pStyle">
-        <rating-star></rating-star>
-      </div>
+      <router-view></router-view>
+      <!--<div class="leftScroll" v-if="pStyle">-->
+        <!--&lt;!&ndash;商品&ndash;&gt;-->
+        <!--<shop-detail></shop-detail>-->
+      <!--</div>-->
+      <!--<div class="rightScroll" v-if="!pStyle">-->
+        <!--&lt;!&ndash;评价&ndash;&gt;-->
+        <!--<rating-star></rating-star>-->
+      <!--</div>-->
     </div>
     <buy-cart></buy-cart>
   </div>
