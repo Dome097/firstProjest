@@ -1,15 +1,15 @@
 <template>
   <section class="container-fluid confirmOrder">
     <div class="deliveryAddres">
-      <router-link :to="{name:'chooseAddress'}">
+      <router-link :to="{name:'chooseAddress'}" @click.native="requestAddres">
         <div class="addressLeft">
           <i class="iconfont">&#xe636;</i>
           <div>
-            <span>{{'姓名'}}</span>
+            <span>{{selectAds.name}}</span>
             <span>{{'sex'}}</span>
-            <span>{{'telephonenumber'}}</span><br>
-            <span>{{'company'}}</span>
-            <span>{{'adds'}}</span>
+            <span>{{selectAds.yourNumber}}</span><br>
+            <span>{{selectAds.yourTag}}</span>
+            <span>{{selectAds.yourAddres}}</span>
           </div>
         </div>
         <div class="addressRight">
@@ -81,9 +81,29 @@
 </template>
 
 <script>
+  import Vue from 'vue'
 // 确认订单页
 export default {
   name: "confirmOrder",
+  data(){
+    return{
+      // 声明变量存储已选地址
+      selectAds:{}
+    }
+  },
+  methods:{
+    requestAddres(){
+      Vue.axios.get(`https://elm.cangdu.org/v1/users/:user_id/addresses`).then(res=>{
+      console.log(res.data)
+      }).catch(error=>{
+        console.log(error)
+      })
+    }
+  },
+  mounted(){
+    //获取选定的地址
+    this.selectAds = this.$store.state.ghc.selectInfo
+  },
   beforeRouteEnter(to,from,next){
     next(vm=>{
       // 该页面不显示footer

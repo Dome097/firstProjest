@@ -74,8 +74,8 @@ export default {
         this.$router.push({name: "profile",query:{name:this.mindUsername}});
         // 给vuex保存用户信息
         this.$store.commit({type:'getLoggingStatus',loggingStatus:true})
-        this.$store.state.ghc.accountData = res.data
-        console.log('ghc',this.$store)
+        this.$store.commit('accountData ',res.data)
+        console.log(res.data);
       });
       // Vue.axios.post('https://elm.cangdu.org/v2/login',{username: this.mindUsername,Password: this.mindPassword,captcha_code: this.mindCaptcha_code},{withCredentials:true}).then((res)=>{
       //   console.log('登录的返回值',res)

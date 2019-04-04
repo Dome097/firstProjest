@@ -28,7 +28,13 @@ const moduleG = {
     // 搜索商家历史记录
     historyRecord:[],
     // 是否显示footer
-    showOrHidden:true
+    showOrHidden:true,
+    // 保存用户信息
+    userInfo:{},
+    // 暂存增加的新收货地址
+    newAddres:{},
+    // 选定的收货地址
+    selectInfo:{}
   },
   mutations: {
     // 接收所选城市信息
@@ -42,6 +48,18 @@ const moduleG = {
     // 调用函数使footer,根据hidThat的值决定显隐
     showOrHidden(state,hidThat){
       state.showOrHidden = hidThat
+    },
+    // 保存用户信息
+    accountData(state,userInfo){
+      state.userInfo = userInfo
+    },
+    // 添加新的收货地址信息
+    NewAds(state,newAddres){
+      state.newAddres = newAddres
+    },
+    // 选定的收货地址信息
+    selectAdrs(state,selectInfo){
+      state.selectInfo = selectInfo
     }
   },
   actions: {}

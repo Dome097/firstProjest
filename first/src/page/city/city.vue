@@ -44,8 +44,6 @@ export default {
       this.$store.commit({
         type:'amendDataLoad'
       });
-      // 若输入框为空,禁用搜索
-
       // 点击提交按钮时,传入用户输入的参数,发起请求
       this.inputValue = i;
       Vue.axios.get(`https://elm.cangdu.org/v1/pois?city_id=${this.$store.state.ghc.currentCity.id}&keyword=${i}&type=search`,null).then(res => {
@@ -120,7 +118,6 @@ export default {
   }
   .searchAddress{
     width: 100%;
-    /*height: 100%;*/
     padding: 0.16rem 0;
     margin-top:  0.16rem;
     border-top: 0.01rem solid #e4e4e4;
