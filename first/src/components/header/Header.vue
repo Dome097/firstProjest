@@ -36,23 +36,25 @@
     <!--第四个头部 商家界面-->
     <nav class="nv navbar navbar-fixed-top bg-warning fourModule" :style="{}" v-if="isFour">
       <i class="iconfont toLeft">&#xe682</i>
-      <img src="../../assets/logo.png" alt="" class="pull-left" style="width: 0.8rem; height: 1rem">
+      <img :src="http+singleStoreData.image_path" alt="" class="pull-left" style="width: 0.8rem; height: 1rem">
       <div class="introduce">
-        <p>效果演示</p>
+        <p>{{singleStoreData.name}}</p>
         <p>
           <span>商家配送</span>
           <span>/</span>
-          <span>分钟送达</span>
+          <span>{{singleStoreData.order_lead_time}}送达</span>
           <span>/</span>
-          <span>配送费¥5</span>
+          <span>配送费¥{{singleStoreData.float_minimum_order_amount}}</span>
         </p>
         <i class="iconfont pull-right goFoodDetail" @click="toFoodDetail">&#xe634</i>
-        <p>公告:欢迎光临,用餐高峰请提前下单,谢谢</p>
-        <span class="pull-left leftSmallImg">
-          <img src="../../assets/logo.png" alt="" style="width: 0.3rem">
-          <span>满30减5,满60减8 (APP专享) </span>
-        </span>
-        <i class="iconfont pull-right bottomContent">1个活动 &#xe634 </i>
+        <p>公告:{{singleStoreData.promotion_info}}</p>
+        <div  class="leftSmallImg">
+          <span class="pull-left">
+            <span>{{singleStoreData.activities[0].icon_name}}</span>
+            <span>{{singleStoreData.activities[0].description}}(APP专享) </span>
+          </span>
+          <i class="iconfont pull-right bottomContent">1个活动 &#xe634 </i>
+        </div>
       </div>
     </nav>
     <!--第五个头部food的头部-->
@@ -75,6 +77,8 @@ export default {
       isShow:false,
       isHide:true,
       isFive:false,
+      singleStoreData:'',
+      http:'//elm.cangdu.org/img/'
     }
   },
   computed: {
@@ -85,10 +89,6 @@ export default {
       },
       set () {}
       },
-    // shop 头部
-    shopHead:{
-
-    },
     // food 标题
     foodTitle: {
       get () {
@@ -110,7 +110,15 @@ export default {
         return this.$store.state.dome.region
       },
       set () {}
-    }
+    },
+    // shop 头部
+    shopHead:{
+      get(){
+        return this.$store.state.dome.singleStore
+      },
+      set(){
+      }
+    },
   },
   methods:{
     back(){
@@ -146,7 +154,7 @@ export default {
         this.isShow=false;
         this.isFour = false;
         this.isFive = false
-      }else if(now.path === "/shop"){
+      }else if(now.path === "/shop/shopDetail"){
         this.isFour = true;
         this.isFirst=false;
         this.isShow=false;
@@ -195,7 +203,16 @@ export default {
         this.isThree = false;
         this.isFive = true
       }
-    }
+    },
+    shopHead: {
+      handler() {
+        console.log('接收到的值',this.singleStoreData)
+        this.singleStoreData = this.$store.state.dome.singleStore
+      },
+      //是否在页面刷新时调用回调函数,默认值是false
+      immediate: true,
+      deep: true
+    },
   }
 }
 </script>
