@@ -142,7 +142,7 @@ export default {
         this.isShow=false;
         this.isFour = false;
         this.isFive = false
-      }else if(now.path === "/shop/shopDetail"){
+      }else if(now.path === "/shop"){
         this.isFour = true;
         this.isFirst=false;
         this.isShow=false;
@@ -228,7 +228,8 @@ export default {
   .fourModule{
     height: 1.5rem;
     background:#BBBBBB;
-    opacity:0.4
+    opacity:0.8;
+    z-index:5;
   }
   .toLeft{
     color:white;

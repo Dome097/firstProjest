@@ -45,7 +45,7 @@ export default {
     background-color: white;
     height: 0.5rem;
     border-bottom: 0.01rem solid #E4E4E4;
-    margin-top: 0.9rem;
+    margin-top: 1rem;
     line-height: 0.5rem;
   }
   .productBtn, .rateBtn{
@@ -63,7 +63,7 @@ export default {
   }
   .smallBorder{
     width: 0.5rem;
-    height: 0.02rem;
+    height: 0.03rem;
     background-color: blue;
     margin: 0 auto;
   }

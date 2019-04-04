@@ -216,7 +216,7 @@ export default {
   .r_list{
     width: 80%;
     position: absolute;
-    top: 0;
+    top: 0.03rem;
     right:0;
   }
   .l_list>ul{
@@ -264,6 +264,7 @@ export default {
     background-color: #E3E3E3;
     line-height: 0.45rem;
     position: relative;
+    margin: 0;
   }
   .title_name{
     font-size: 0.2rem;
