@@ -142,7 +142,7 @@ export default {
         this.isShow=false;
         this.isFour = false;
         this.isFive = false
-      }else if(now.path === "/shop"){
+      }else if(now.path === "/shop/shopDetail"){
         this.isFour = true;
         this.isFirst=false;
         this.isShow=false;

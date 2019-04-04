@@ -23,6 +23,21 @@ export default {
     showOrHidden(){
       return this.$store.state.ghc.showOrHidden
     }
+  },
+  data(){
+    return {
+      showOrHidden:false
+    }
+  },
+  watch:{
+    // 监视路由变化
+    $route(now,old){
+      if(now.path==="/msite"|| now.path==="/search"|| now.path==="/order" || now.path==="/profile"){
+          this.showOrHidden == true
+      }else{
+        this.showOrHidden == false
+      }
+    }
   }
 }
 </script>
