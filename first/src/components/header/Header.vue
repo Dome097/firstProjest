@@ -85,6 +85,10 @@ export default {
       },
       set () {}
       },
+    // shop 头部
+    shopHead:{
+
+    },
     // food 标题
     foodTitle: {
       get () {
@@ -142,7 +146,7 @@ export default {
         this.isShow=false;
         this.isFour = false;
         this.isFive = false
-      }else if(now.path === "/shop/shopDetail"){
+      }else if(now.path === "/shop"){
         this.isFour = true;
         this.isFirst=false;
         this.isShow=false;
