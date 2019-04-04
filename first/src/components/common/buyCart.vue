@@ -116,7 +116,7 @@ export default {
     // 去订单结算
     goPayment () {
       if (this.arr[0]) {
-        this.$router.push({name:'payment'})
+        this.$router.push({name:'confirmOrder'})
       }
     }
   }
