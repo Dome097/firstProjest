@@ -13,6 +13,7 @@ import VueX from 'vuex'
 import storage from './config/storage'
 import '../node_modules/element-ui/lib/theme-chalk/index.css'
 import animate from 'animate.css'
+import { InfiniteScroll } from 'mint-ui';
 
 Vue.use(VueAxios, axios)
 Vue.use(VueX)
@@ -21,6 +22,7 @@ Vue.use(ElementUI)
 Vue.config.productionTip = false
 Vue.use(animate)
 Vue.use(storage)
+Vue.use(InfiniteScroll);
 const moduleG = {
   state:{
 // 当前所选城市信息
