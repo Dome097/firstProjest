@@ -274,8 +274,12 @@ const moduleD = {
     },
     // 给food的title赋值
     goMsite (state, title) {
-      state.foodTitle = title.data
+      state.foodTitle = title.name
     },
+    // 个人中心的title的值
+    // sendvipCenterInfo(state, title){
+    //   state.foodTitle = title.name
+    // },
     // 请求商铺
     getShop (state, payload) {
        // 新店吗
