@@ -254,6 +254,8 @@ export default {
   width: 1rem;
   text-align: center;
   color: black;
+  overflow: hidden;
+  text-overflow:ellipsis
 }
 /*单价*/
 .dome-univalence {
