@@ -208,7 +208,6 @@ export default {
     width: 100%;
     position: relative;
     height: 100%;
-
   }
   .l_list{
     width: 20%;
@@ -271,7 +270,9 @@ export default {
     font-weight: bold;
   }
   .list{
+    overflow: hidden;
     padding: 0.1rem 0.1rem 0 0.1rem;
+    height: 1.7rem;
   }
   .flex>p>img{
     width: 0.5rem;
@@ -288,6 +289,7 @@ export default {
     padding-bottom: 0.1rem;
     position: relative;
     transform-style: preserve-3d;
+    height: 1.7rem;
   }
   .flex>div{
     margin-left: 0.2rem;
@@ -358,17 +360,17 @@ export default {
     right: 0.1rem;
   }
   .newP{
-    width: 0;
-    height: 0;
-    border-width: 0 0.3rem 0.3rem;
-    border-style: solid;
-    border-color: transparent transparent rgb(94, 196, 82);
+    width: 0.5rem;
+    height: 0.3rem;
     font-size: 0.08rem;
+    background-color: forestgreen;
     position: absolute;
-    top: -0.15rem;
-    left:-0.5rem;
+    top: -0.2rem;
+    left: -0.5rem;
     transform: rotate(-45deg);
     color: white;
+    text-align: center;
+    line-height: 0.4rem;
   }
 
 </style>
