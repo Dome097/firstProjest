@@ -37,7 +37,7 @@ export default {
 }
 #app,html,body{
   width: 100%;
-  height: 100%;
+  /*height: 100%;*/
 }
 #app {
   margin-top: 0.44rem;
