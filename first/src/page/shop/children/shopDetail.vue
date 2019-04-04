@@ -289,6 +289,7 @@ export default {
     padding-bottom: 0.1rem;
     position: relative;
     transform-style: preserve-3d;
+    height: 1.7rem;
   }
   .flex>div{
     margin-left: 0.2rem;
@@ -362,7 +363,7 @@ export default {
     width: 0.5rem;
     height: 0.3rem;
     font-size: 0.08rem;
-    background-color: #31de31;
+    background-color: forestgreen;
     position: absolute;
     top: -0.2rem;
     left: -0.5rem;

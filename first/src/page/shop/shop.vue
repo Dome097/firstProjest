@@ -11,15 +11,15 @@
       </div>
     </div>
     <div class="content">
+      <div class="leftScroll" v-if="pStyle">
+        <!--商品-->
       <router-view></router-view>
-      <!--<div class="leftScroll" v-if="pStyle">-->
-        <!--&lt;!&ndash;商品&ndash;&gt;-->
-        <!--<shop-detail></shop-detail>-->
-      <!--</div>-->
-      <!--<div class="rightScroll" v-if="!pStyle">-->
-        <!--&lt;!&ndash;评价&ndash;&gt;-->
-        <!--<rating-star></rating-star>-->
-      <!--</div>-->
+      <!--<shop-detail></shop-detail>-->
+      </div>
+      <div class="rightScroll" v-if="!pStyle">
+        <!--评价-->
+        <rating-star></rating-star>
+      </div>
     </div>
     <buy-cart></buy-cart>
   </div>
@@ -64,6 +64,15 @@ export default {
   .style{
     color:blue;
   }
+  .content {
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+  }
+  .content::-webkit-scrollbar{
+    display: none;
+  }
+
   .smallBorder{
     width: 0.5rem;
     height: 0.03rem;
