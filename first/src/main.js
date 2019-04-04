@@ -30,7 +30,7 @@ const moduleG = {
     // 搜索商家历史记录
     historyRecord:[],
     // 是否显示footer
-    showOrHidden:true,
+    showOrHidden:false,
   },
   mutations: {
     // 接收所选城市信息
