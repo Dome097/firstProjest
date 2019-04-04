@@ -84,6 +84,10 @@ export default {
    goods () {
        return this.$store.state.dome.singleStore
     },
+    // 所有对象
+    allShopGoodsArr () {
+      return this.$store.state.dome.allCartSingleFood
+    }
     // 提取购物车中的数量
     // domeQuantity (vue1,m,a) {
     //   console.log('计算属性的vue1',vue1)
@@ -95,10 +99,10 @@ export default {
     // }
   },
   watch:{
-    shopGoodsArr:{
+    allShopGoodsArr: {
       handler(){
-        this.shopGoodsArr
-        //  console.log(this.shopGoods)
+        this.shopGoodsArr = this.$store.state.dome.allCartSingleFood
+        console.log('this.shopGoodsArr是这个东西,从vuex来的:',this.shopGoodsArr)
       },
       //是否在页面刷新时调用回调函数,默认值是false
       immediate:true,
@@ -132,13 +136,12 @@ export default {
         type:"amendDataLoad"
       })
       // console.log("shopDetail接收到的信息",res.data)
-      this.shopGoodsArr = res.data
-      for (let foods of this.shopGoodsArr) {
+      for (let foods of res.data) {
         for (let specfoods of foods.foods) {
           Vue.set(specfoods, 'dome',0)
         }
       }
-      console.log('this.shopGoodsArr',this.shopGoodsArr)
+      this.$store.commit({type:'allFood',data:res.data})
     });
    this.$nextTick(() => {
      // 左侧滚动栏的better-scroll对象要开启点击事件
@@ -186,27 +189,15 @@ export default {
       // 点击单个食品信息,出现食品信息页
       this.$store.commit({type:'getSingleFood',data:n})
       this.$router.push({name:'singleFoodDetail'})
-    //  console.log("选中的当前食物",n)
     },
     // 购物车,点击+
     toShopCart(m,index){
        this.$store.commit({type:'addSingleFood',data:m})
-      console.log('m',m)
       console.log('this.$store.state.cartSingleFood',this.$store.state.dome.cartSingleFood)
-      for (let obj of this.$store.state.dome.cartSingleFood){
-          if (obj.entities.id === m.specfoods[0].food_id){
-            // m.dome++
-          }
-        }
     },
     // 购物车,点击-
     deleteShopCart(f,index){
      this.$store.commit({type:'deleteSingleFood',data:f})
-      for (let obj of this.$store.state.dome.cartSingleFood){
-        if (obj.entities.id === m.specfoods[0].food_id){
-          // f.dome--
-        }
-      }
     }
   }
 }

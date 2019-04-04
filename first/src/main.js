@@ -63,6 +63,7 @@ const moduleD = {
     singleFood:{},
     // 购物车中的食物
     // {attrs:[],extra:{},id:食品id,name:食品名称,packing_fee:打包费,price:价格,quantity:数量,sku_id:规格id,specs:规格,stock:存量,}
+    allCartSingleFood:[],
     cartSingleFood:[
       // {
       //   quantity:1,
@@ -121,9 +122,9 @@ const moduleD = {
   },
   mutations: {
     // 全部填加到购物车
-    // allFood (state, pyload) {
-    //   state.cartSingleFood = pyload.data
-    // },
+    allFood (state, pyload) {
+      state.allCartSingleFood = pyload.data
+    },
     // 向购物车添加食物
     addSingleFood (state, pyload) {
       pyload.data.dome++
@@ -141,24 +142,31 @@ const moduleD = {
       let index = 0
       // 存储是否已存在
       let buer = true
-      console.log('state.cartSingleFood是',state.cartSingleFood)
+      // console.log('state.cartSingleFood是',state.cartSingleFood)
       for (let eachObj of state.cartSingleFood){
         if (eachObj.entities.id == obj.id) {
-          console.log('已经存在了')
+          // console.log('已经存在了')
           state.cartSingleFood[index].quantity = state.cartSingleFood[index].quantity+1
-          console.log('处理后的state.cartSingleFood',state.cartSingleFood)
+          // console.log('处理后的state.cartSingleFood',state.cartSingleFood)
           buer = false
         }
         index++
       }
       if (buer) {
-        state.cartSingleFood = [...state.cartSingleFood,{quantity:1,entities:obj,dome:pyload.data.dome}]
+        state.cartSingleFood = [...state.cartSingleFood,{quantity:1,entities:obj}]
       }
       // console.log('添加到购物车的对象',pyload.data.specfoods[0])
     },
     // 在购物车添加食物
     cartAddSingleFood (state, pyload) {
       state.cartSingleFood[state.cartSingleFood.indexOf(pyload.data)].quantity++
+      for (let foods of state.allCartSingleFood) {
+        for (let specfoods of foods.foods) {
+          if (specfoods.specfoods[0].food_id === pyload.data.entities.id) {
+            specfoods.dome++
+          }
+        }
+      }
       console.log('要添加的对象',pyload.data)
     },
     // 删除一个食物
@@ -182,7 +190,6 @@ const moduleD = {
       for (let eachObj of state.cartSingleFood){
         if (eachObj.entities.id == obj.id) {
           state.cartSingleFood[index].quantity = state.cartSingleFood[index].quantity-1
-          state.cartSingleFood[index].quantity = state.cartSingleFood[index].dome-1
           if (state.cartSingleFood[index].quantity === 0) {
             state.cartSingleFood.splice(index,1)
           }
@@ -201,11 +208,23 @@ const moduleD = {
           state.cartSingleFood.splice(state.cartSingleFood.indexOf(pyload.data),1)
         }
       }
+      for (let foods of state.allCartSingleFood) {
+        for (let specfoods of foods.foods) {
+          if (specfoods.specfoods[0].food_id === pyload.data.entities.id) {
+            specfoods.dome--
+          }
+        }
+      }
       console.log('要删除的对象',pyload.data)
     },
     // 清空购物车
     emptySingleFood  (state, pyload) {
       state.cartSingleFood = []
+      for (let foods of state.allCartSingleFood) {
+        for (let specfoods of foods.foods) {
+          specfoods.dome = 0
+        }
+      }
     },
     // 修改单个食物详情
     getSingleFood (state, pyload) {
