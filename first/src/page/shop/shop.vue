@@ -67,12 +67,16 @@ export default {
   .content {
     width: 100%;
     height: 100%;
-    overflow: scroll;
+    overflow: hidden;
   }
   .content::-webkit-scrollbar{
     display: none;
   }
-
+.leftScroll{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
   .smallBorder{
     width: 0.5rem;
     height: 0.03rem;

@@ -115,7 +115,11 @@ export default {
     },
     // 去订单结算
     goPayment () {
+      // console.log(this.$store.state.dome.)
       if (this.arr[0]) {
+        this.$http({
+
+        })
         this.$router.push({name:'confirmOrder'})
       }
     }
