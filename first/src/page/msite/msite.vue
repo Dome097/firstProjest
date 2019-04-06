@@ -11,8 +11,8 @@
     <div class="shopHead">
       <i class="iconfont">&#xe647</i>
       <span>附近商家</span>
+      <shoplist></shoplist>
     </div>
-    <shoplist></shoplist>
   </section>
 </template>
 
@@ -97,6 +97,7 @@
     width: 100%;
     padding: 0.2rem;
     background-color: white;
+    margin-top: 0.1rem;
   }
 </style>
 

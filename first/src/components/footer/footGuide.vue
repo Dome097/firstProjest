@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="isFoot" class="footD">
     <nav class="navbar navbar-default navbar-fixed-bottom">
       <div class="container-fluid nav_icons">
         <router-link :to="{name:'msite'}">
@@ -32,7 +32,8 @@ export default {
       isChoose1:false,
       isChoose2:false,
       isChoose3:false,
-      isChoose4:false
+      isChoose4:false,
+      isFoot:false
     }
   },
   methods:{
@@ -60,6 +61,20 @@ export default {
       this.isChoose3 = false;
       this.isChoose4 = true;
     }
+  },
+  watch: {
+    $route(now, old) {     //监控路由变换，控制返回按钮的显示
+      console.log('now', now)
+      if (now.path === "/msite") {
+        this.isFoot = true;
+      }else if(now.path === "/search"){
+        this.isFoot = true;
+      }else if(now.path === "/order"){
+        this.isFoot = true;
+      }else if(now.path === "/profile"){
+        this.isFoot = true;
+      }
+    }
   }
 }
 </script>
@@ -67,16 +82,19 @@ export default {
 <style scoped>
   .fonc{
     color: #008de1 !important;
+
   }
   .nav_icons{
     display: flex;
     justify-content: space-between;
+    background-color: white;
   }
   .nav_icons>a{
     text-align: center;
     /*line-height: 0.16px;*/
     display: inline-block;
     text-decoration: none;
+    margin-top: 0.1rem;
   }
   .nav_icons>a>i{
     color: #000;
@@ -84,5 +102,11 @@ export default {
   .nav_icons p{
     color: #000;
   }
-
+  .footD {
+    width: 100%;
+    z-index: 100;
+    position: absolute;
+    bottom: 0;
+    height: 0.36rem;
+  }
 </style>

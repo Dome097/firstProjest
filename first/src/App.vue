@@ -3,7 +3,7 @@
     <Header></Header>
     <loading v-if="amendEndOfDataLoad"></loading>
     <router-view></router-view>
-    <FootGuide v-if="showOrHidden"></FootGuide>
+    <FootGuide></FootGuide>
   </div>
 </template>
 
@@ -26,19 +26,9 @@ export default {
   },
   data(){
     return {
-      showOrHidden:false
+      // showOrHidden:false
     }
   },
-  watch:{
-    // 监视路由变化
-    $route(now,old){
-      if(now.path==="/msite"|| now.path==="/search"|| now.path==="/order" || now.path==="/profile"){
-          this.showOrHidden == true
-      }else{
-        this.showOrHidden == false
-      }
-    }
-  }
 }
 </script>
 
