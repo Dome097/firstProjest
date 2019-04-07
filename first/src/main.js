@@ -137,7 +137,9 @@ const moduleD = {
     // 选中区域
     region:{},
     // 点击会员卡时传递会员中心过去
-    sendvipCenterInfo:''
+    sendvipCenterInfo:'',
+    // 控制加入购物车动画
+    addZ:false
   },
   getters: {
     // 操作购物车
@@ -300,6 +302,10 @@ const moduleD = {
     // sendvipCenterInfo(state, title){
     //   state.foodTitle = title.name
     // },
+    // 控制动画
+    goAddZ (state, payload) {
+      state.addZ = payload.is_new
+    },
     // 请求商铺
     getShop (state, payload) {
        // 新店吗

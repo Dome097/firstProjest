@@ -21,7 +21,7 @@
         <rating-star></rating-star>
       </div>
     </div>
-    <buy-cart></buy-cart>
+      <buy-cart></buy-cart>
   </div>
 </template>
 

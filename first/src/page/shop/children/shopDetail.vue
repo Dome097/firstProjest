@@ -4,7 +4,9 @@
     <aside ref="l_list" class="l_list">
       <ul>
         <li ref="l_item" :class="{act:index === actli}"
-            @click="change(index)" v-for="(item,index) in shopGoodsArr" :key="index">
+            @click="change(index, item)" v-for="(item,index) in shopGoodsArr" :key="index">
+          <!--分类选中数量-->
+          <span v-if="classifyPitch[index] !== 0" class="classifyCount">{{classifyPitch[index]}}</span>
           <p>
             {{item.name}}
           </p>
@@ -40,19 +42,22 @@
                     <span class="priceP">¥{{item.specfoods[0].price}}</span>
                     <span>起</span>
                   </p>
-                  <div class="addVessel" v-if="item.specfoods[0].specs[0]">
+                  <div class="addVesse2" v-if="item.specfoods[0].specs[0]">
                     <div class="add" @click.stop="domeSpecification(item)">规格</div>
                     <span>
-                    <i class="iconfont minus1" v-if="item.dome" @click.stop="deleteShopCart(item,index)" >&#xe605;</i>
+                    <i class="iconfont" v-if="item.dome">&#xe605;</i>
                       <!--给对象添加一个属性-->
-                    <span class="domeSpanCount ">{{item.dome?item.dome:null}}</span>
+                    <span>{{item.dome?item.dome:null}}</span>
                   </span>
                   </div>
                   <!--添加容器-->
                   <div v-else class="addVessel">
-                      <i class="iconfont add1" @click.stop="toShopCart(item,index)">&#xe635;</i>
+                      <i class="iconfont add1" :class="{addZ: addZ}" @click.stop="toShopCart(item,index, $event)">&#xe635;</i>
                     <span>
-                    <i class="iconfont minus1" v-if="item.dome" @click.stop="deleteShopCart(item,index)" >&#xe605;</i>
+                      <transition name="dome">
+                                            <i class="iconfont minus1" v-if="item.dome" @click.stop="deleteShopCart(item,index)" >&#xe605;</i>
+                      </transition>
+
                       <!--给对象添加一个属性-->
                     <span class="domeSpanCount ">{{item.dome?item.dome:null}}</span>
                   </span>
@@ -70,7 +75,7 @@
       <div class="domeTitle">
         <span class="domeTitleText">{{title}}
           <!--点击隐藏事件-->
-          <span class="iconfont right" @click="guige = false">&#xe676;</span>
+          <span class="iconfont right" @click="guige = false;pitchOn=0">&#xe676;</span>
         </span>
       </div>
       <!--属性容器-->
@@ -81,10 +86,13 @@
       <!--价钱和加入购物车容器-->
       <div class="priceAndCart">
         <!--价格-->
-        <span class="left domePrice"><span>¥</span> {{domePrice}}</span>
+        <span class="left domePrice"><span>¥</span> {{guigeObj.specfoods[pitchOn].price}}</span>
         <!--加入购物车-->
         <span @click="joinCart" class="right domeCart">{{'加入购物车'}}</span>
       </div>
+    </div>
+    <div id="ball">
+      <i class="iconfont add1">&#xe635;</i>
     </div>
   </div>
 </template>
@@ -116,8 +124,10 @@ export default {
       guigeObj: {},
       // 选中规格
       pitchOn: 0,
-      // price
-      domePrice:0
+      // 单个分类选中数量
+      classifyPitch:[],
+      // 控制加号层级
+      addZ:false
     }
   },
   computed:{
@@ -142,6 +152,17 @@ export default {
     allShopGoodsArr: {
       handler(){
         this.shopGoodsArr = this.$store.state.dome.allCartSingleFood
+        console.log('this.shopGoodsArr是',this.shopGoodsArr)
+        let domeArr = []
+        for (let obj of this.$store.state.dome.allCartSingleFood) {
+          let count = 0
+          for (let foodsObj of obj.foods) {
+            count += foodsObj.dome
+          }
+          domeArr.push(count)
+        }
+        this.classifyPitch = domeArr
+        console.log('this.classifyPitch是',this.classifyPitch)
         // console.log('this.shopGoodsArr是这个东西,从vuex来的:',this.shopGoodsArr)
       },
       //是否在页面刷新时调用回调函数,默认值是false
@@ -177,21 +198,24 @@ export default {
     // }
   },
   mounted() {
-    this.$store.commit({
-      type:"amendDataLoad"
-    })
-    Vue.axios.get(`https://elm.cangdu.org/shopping/v2/menu?restaurant_id=${this.shopGoods}`, null).then((res) => {
+    if (!this.$store.state.dome.allCartSingleFood[0]) {
       this.$store.commit({
         type:"amendDataLoad"
       })
-      // console.log("shopDetail接收到的信息",res.data)
-      for (let foods of res.data) {
-        for (let specfoods of foods.foods) {
-          Vue.set(specfoods, 'dome',0)
+      Vue.axios.get(`https://elm.cangdu.org/shopping/v2/menu?restaurant_id=${this.shopGoods}`, null).then((res) => {
+        this.$store.commit({
+          type:"amendDataLoad"
+        })
+        // console.log("shopDetail接收到的信息",res.data)
+        for (let foods of res.data) {
+          for (let specfoods of foods.foods) {
+            Vue.set(specfoods, 'dome',0)
+          }
         }
-      }
-      this.$store.commit({type:'allFood',data:res.data})
-    });
+        this.$store.commit({type:'allFood',data:res.data})
+      });
+    }
+
     // new Better(wrpper)
     // new Better(this.$refs.list)
    // this.$nextTick(() => {
@@ -248,16 +272,11 @@ export default {
       this.title = i.name
       // 内容赋值
       this.guigeObj = i
-      // 价格赋值
-      this.domePrice = i.specfoods[0].price
       // 控制显隐
       this.guige = true
     },
-    // 选择规格时加入购物车
-    joinCart () {
-
-    },
-    change(index){
+    change(index, item){
+      console.log('左侧item',item)
       this.flag = false
       this.actli = index
       this.rgt.scrollToElement(this.$refs.productArr[index],100,0,0)
@@ -270,8 +289,30 @@ export default {
       this.$store.commit({type:'getSingleFood',data:n})
       this.$router.push({name:'singleFoodDetail'})
     },
+    // 规格内的加入购物车
+    joinCart() {
+      this.$store.commit({type:'addSingleFood',data:this.guigeObj, index:this.pitchOn})
+    },
     // 购物车,点击+
-    toShopCart(m,index){
+    toShopCart(m,index,evt){
+      this.addZ = true
+      setTimeout(()=>{
+        this.$store.commit({type:'goAddZ',is_new:true})
+        this.addZ =false
+      },900)
+      setTimeout(()=>{
+        this.$store.commit({type:'goAddZ',is_new:false})
+      },1800)
+      let $ball = document.getElementById('ball');
+        console.log(evt.pageX,evt.pageY)
+        $ball.style.top = evt.pageY+'px';
+        $ball.style.left = evt.pageX+'px';
+        $ball.style.transition = 'left 0s, top 0s';
+        setTimeout(()=>{
+          $ball.style.top = window.innerHeight-40+'px';
+          $ball.style.left = '30px';
+          $ball.style.transition = 'left 1s linear, top 1s ease-in';
+        }, 20)
       console.log('这是点击单个加号的数据',m)
        this.$store.commit({type:'addSingleFood',data:m, index:0})
       // console.log('this.$store.state.cartSingleFood',this.$store.state.dome.cartSingleFood)
@@ -414,11 +455,11 @@ export default {
   .add{
     position: absolute;
     right: 0;
-    bottom:0.2rem;
+    /*bottom:0.2rem;*/
     color:white;
     background-color: blue;
     border:0.01rem solid blue;
-    border-radius: 0.1rem;
+    border-radius: 0.05rem;
     padding: 0.03em;
   }
   /*加号添加*/
@@ -574,5 +615,55 @@ export default {
     text-align: center;
     border-radius: 0.06rem;
     line-height: 0.3rem;
+  }
+  /*规格容器样式*/
+  .addVesse2 {
+    position: absolute;
+    display: flex;
+    width: 0.6rem;
+    right: 0;
+    height: 0.3rem;
+    bottom:0.2rem;
+    color:black;
+    font-size: 0.16rem;
+    /*background-color: blue;*/
+    border-radius: 50%;
+  }
+  /*规格中的数量*/
+  .addVesse2>span>span {
+    position: absolute;
+    top: 0;
+    right: 0.4rem !important;
+  }
+  .addVesse2>span>i {
+    position: absolute;
+    right: 0.7rem;
+  }
+  /*分类选中数量*/
+  .classifyCount {
+    /*display: inline-block;*/
+    background-color: red;
+    position: absolute;
+    right: 0;
+    color: white;
+    height: 0.16rem;
+    line-height: 0.16rem;
+    text-align: center;
+    font-size: 0.12rem;
+    padding:0 5%;
+    border-radius: 50%;
+  }
+  #ball {
+    position: fixed;
+    transition: left 1s linear, top 1s ease-in;
+  }
+  .addZ {
+    z-index: -999;
+  }
+  .dome-enter-active, .dome-leave-active {
+    transition: opacity .5s;
+  }
+  .dome-enter, .dome-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
   }
 </style>
