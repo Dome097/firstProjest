@@ -93,6 +93,7 @@ export default {
       http:'//elm.cangdu.org/img/',
       isThis:false,
     //  nowFoodDetailTitle:''
+
     }
   },
   computed: {
@@ -230,15 +231,22 @@ export default {
         this.isShow = false;
         this.isThree = false;
         this.isFive = true
+      } else if (now.path === "/search") {
+        this.$store.commit({type: 'goMsite', name: '搜索'})
+        this.isFour = false;
+        this.isFirst = false;
+        this.isShow = false;
+        this.isThree = false;
+        this.isFive = true
+      } else if (now.path === "/singleFoodDetail") {
+        console.log('8888888888888888',this.$store.state.dome.singleFood.name)
+       // this.foodTitle = this.$store.state.dome.singleFood.name
+        this.isFour = false;
+        this.isFirst = false;
+        this.isShow = false;
+        this.isThree = false;
+        this.isFive = true
       }
-      // else if (now.path === "/singleFoodDetail") {
-      //   this.nowFoodDetailTitle = this.$store.state.dome.singleFood.name
-      //   this.isFour = false;
-      //   this.isFirst = false;
-      //   this.isShow = false;
-      //   this.isThree = false;
-      //   this.isFive = true
-      // }
     },
     shopHead: {
       handler() {

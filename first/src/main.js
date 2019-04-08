@@ -241,6 +241,7 @@ const moduleD = {
     // 修改单个食物详情
     getSingleFood (state, pyload) {
       state.singleFood = pyload.data
+      state.foodTitle = pyload.data.name
     },
     // 加载动画
     amendDataLoad (state, pyload) {

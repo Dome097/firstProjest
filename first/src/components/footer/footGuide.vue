@@ -71,7 +71,7 @@ export default {
         this.isFoot = true;
       }else if(now.path === "/order"){
         this.isFoot = true;
-      }else if(now.path === "/profile"){
+      }else if(now.path === "/profile/mind"){
         this.isFoot = true;
       }else{
         this.isFoot = false;
