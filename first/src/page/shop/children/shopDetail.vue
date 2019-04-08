@@ -94,6 +94,9 @@
     <div id="ball">
       <i class="iconfont add1">&#xe635;</i>
     </div>
+    <div class="domeStick">
+      <i class="iconfont" @click="domeStick">&#xe64e;</i>
+    </div>
   </div>
 </template>
 <script>
@@ -130,7 +133,9 @@ export default {
       // 控制加号层级
       addZ:false,
       // 控制删减提示p标签
-      domeP:false
+      domeP:false,
+      // 阻止连续点击
+      continuous:1
     }
   },
   computed:{
@@ -250,6 +255,9 @@ export default {
               if (i >= 8 ){
                   this.left.scrollToElement(this.$refs.l_item[i-6], 100, 0, 0)
               }
+              if (i <=1 ) {
+                this.left.scrollToElement(this.$refs.l_item[0], 100, 0, 0)
+              }
               // if (i === this.$refs.l_item.length - 2) { //当滚动到倒数第2个位置时左侧列表向上滚动一个距离
               //   this.left.scrollToElement(this.$refs.l_item[1], 100, 0, 0)
               // }
@@ -269,6 +277,15 @@ export default {
      // })
   },
   methods:{
+    // 置顶
+    domeStick () {
+      this.flag = false
+      this.actli = 0
+      this.rgt.scrollToElement(this.$refs.productArr[0],100,0,0)
+      setTimeout(()=>{
+        this.flag = true
+      },100)
+    },
     // 选择规格
     domeSpecification (i) {
       console.log('item是',i)
@@ -306,8 +323,15 @@ export default {
     },
     // 购物车,点击+
     toShopCart(m,index,evt){
+      if (this.continuous !== 1){
+        return
+      }
+      setTimeout(()=>{
+        this.continuous--
+      },0)
       setTimeout(()=>{
         this.$store.commit({type:'goAddZ',is_new:true})
+        this.continuous = 1
       },900)
       setTimeout(()=>{
         this.$store.commit({type:'goAddZ',is_new:false})
@@ -320,10 +344,11 @@ export default {
         setTimeout(()=>{
           $ball.style.top = window.innerHeight-40+'px';
           $ball.style.left = '30px';
-          $ball.style.transition = 'left 0.5s linear, top 0.5s ease-in';
+          $ball.style.transition = 'left 1s linear, top 1s ease-in';
         }, 20)
       console.log('这是点击单个加号的数据',m)
-       this.$store.commit({type:'addSingleFood',data:m, index:0})
+      let shopID = this.$store.state.dome.singleStore.id
+       this.$store.commit({type:'addSingleFood',data:m, index:0, id:shopID})
       // console.log('this.$store.state.cartSingleFood',this.$store.state.dome.cartSingleFood)
     },
     // 购物车,点击-
@@ -540,6 +565,7 @@ export default {
   }
   /*左侧点击变白*/
   .act {
+    border-left: blue solid 0.02rem;
     background-color: white;
   }
   /*规格容器*/
@@ -670,6 +696,16 @@ export default {
     font-size: 0.12rem;
     padding:0 5%;
     border-radius: 50%;
+  }
+  /*置顶箭头*/
+  .domeStick {
+    position: absolute;
+    top: 75%;
+    left: 80%;
+    /*z-index: 1;*/
+  }
+  .domeStick>i {
+    font-size: 0.5rem;
   }
   #ball {
     position: fixed;

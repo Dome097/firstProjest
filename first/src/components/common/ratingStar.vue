@@ -98,7 +98,6 @@ export default {
       buttomData:[],
       http: 'https://fuss10.elemecdn.com/',
       value1:5,
-
     }
   },
   created() {
