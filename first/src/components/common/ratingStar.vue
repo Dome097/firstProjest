@@ -69,11 +69,11 @@
 ">
             </span>
           </div>
-          <span v-for="(m,f) in item.item_ratings" class="imgD">
-             <span class="imgDes">
+          <div v-for="(m,f) in item.item_ratings" class="imgD">
+             <div class="imgDes">
               <span>{{m.food_name}}</span>
-            </span>
-          </span>
+            </div>
+          </div>
         </div>
         <div class="rightBS pull-right">
           <span>{{item.rated_at}}</span>
@@ -252,7 +252,6 @@ export default {
     width: 1rem;
   }
   .imgDes{
-    display: inline-block;
     border: 0.01rem solid gray;
     width: 0.5rem;
     height: 0.3rem;
@@ -265,7 +264,6 @@ export default {
     margin-right: 0.2rem;
     border-radius: 10%;
     float: left;
-    clear: both;
   }
 </style>
 <style>

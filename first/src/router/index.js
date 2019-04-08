@@ -180,49 +180,49 @@ export default new Router({
     },
     {
       // 选择地址页
-      path: 'chooseAddress',
+      path: '/chooseAddress',
       component:chooseAddress,
       name: 'chooseAddress'
     },
     {
       // 选择地址页
-      path: 'chooseAddress',
+      path: '/chooseAddress',
       component: chooseAddress,
       name: 'chooseAddress'
     },
     {
       // 选择发票页
-      path: 'invoice',
+      path: '/invoice',
       component: invoice,
       name: 'invoice'
     },
     {
       // 付款页
-      path: 'payment',
+      path: '/payment',
       component: payment,
       name: 'payment'
     },
     {
       // 订单备注页
-      path: 'remark',
+      path: '/remark',
       component: remark,
       name: 'remark'
     },
     {
       // 用户验证页
-      path: 'userValidation',
+      path: '/userValidation',
       component: userValidation,
       name: 'userValidation'
     },
     {
       // 添加地址页
-      path: 'addAddress',
+      path: '/addAddress',
       component: addAddress,
       name: 'addAddress',
     },
     {
       // 搜索地址页
-      path: 'searchAddress',
+      path: '/searchAddress',
       component: searchAddress,
       name: 'searchAddress'
     },

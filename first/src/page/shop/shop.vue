@@ -51,7 +51,7 @@ export default {
     margin-top: 1rem;
     line-height: 0.5rem;
   }
-  .productBtn, .rateBtn{
+  .productBtn,.rateBtn{
     width: 50%;
     text-align: center;
     float: left;

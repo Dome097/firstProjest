@@ -246,6 +246,20 @@ export default {
         this.isShow = false;
         this.isThree = false;
         this.isFive = true
+      } else if (now.path === "/confirmOrder") {
+        this.$store.commit({type: 'goMsite', name: '确认订单'})
+        this.isFour = false;
+        this.isFirst = false;
+        this.isShow = false;
+        this.isThree = false;
+        this.isFive = true
+      }else if (now.path === "/payment") {
+        this.$store.commit({type: 'goMsite', name: '在线支付'})
+        this.isFour = false;
+        this.isFirst = false;
+        this.isShow = false;
+        this.isThree = false;
+        this.isFive = true
       }
     },
     shopHead: {
