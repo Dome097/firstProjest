@@ -165,7 +165,7 @@ const moduleD = {
         index++
       }
       if (buer) {
-        state.cartSingleFood = [...state.cartSingleFood,{quantity:1,entities:obj}]
+        state.cartSingleFood = [...state.cartSingleFood,{quantity:1,entities:obj,shopID:pyload.id}]
       }
       // console.log('添加到购物车的对象',pyload.data.specfoods[0])
     },
