@@ -73,6 +73,8 @@ export default {
         this.isFoot = true;
       }else if(now.path === "/profile"){
         this.isFoot = true;
+      }else{
+        this.isFoot = false;
       }
     }
   }

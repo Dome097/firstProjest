@@ -35,7 +35,7 @@
     </nav>
     <!--第四个头部 商家界面-->
     <nav class="nv navbar navbar-fixed-top bg-warning fourModule"  v-if="isFour" :style="{background: 'url('+http+singleStoreData.image_path+')',backgroundSize:'cover'}" style="box-shadow: 2rem 2rem 5rem lightgray inset">
-      <i class="iconfont toLeft">&#xe682</i>
+      <i class="iconfont toLeft" @click="back">&#xe682</i>
       <img :src="http+singleStoreData.image_path" alt="" class="pull-left fourModuleImg" style="">
       <div class="introduce">
         <p class="introduce_name">{{singleStoreData.name}}</p>
@@ -72,7 +72,7 @@
         </span>
         <span class="activityPageC">商家公告</span>
         <span class="activityPageD">{{singleStoreData.promotion_info}}</span>
-      <i class="iconfont goBackShop" @click="isThis=false;isFour=true">&#xe62a</i>
+      <i class="iconfont goBackShop" @click="isThis=false;isFour=true">&#xe618</i>
     </div>
   </section >
 </template>
@@ -91,7 +91,8 @@ export default {
       isFive:false,
       singleStoreData:'',
       http:'//elm.cangdu.org/img/',
-      isThis:false
+      isThis:false,
+    //  nowFoodDetailTitle:''
     }
   },
   computed: {
@@ -142,97 +143,112 @@ export default {
       this.$router.push({name:'foodDetail'});
     }
   },
-  watch:{
-    $route(now,old){     //监控路由变换，控制返回按钮的显示
-      console.log('now',now)
-      if(now.path==="/home"){
+  // computed:{
+  //   // 存储当前选中的食物数据
+  //   nowFood(){
+  //     // console.log("接收到的当前的单个食物信息",this.$store.state.dome.singleFood)
+  //     return this.$store.state.dome.singleFood
+  //   }
+  // },
+  watch: {
+    $route(now, old) {     //监控路由变换，控制返回按钮的显示
+      console.log('now', now)
+      if (now.path === "/home") {
         this.nowCity = ''
-        this.isFirst=true;
-        this.isShow=false;
+        this.isFirst = true;
+        this.isShow = false;
         this.isThree = false;
         this.isFour = false;
         this.isFive = false
-      } else if(now.path==="/city"){
-        console.log('this.$store.state.ghc.currentCity.name',this.$store.state.ghc.currentCity.name)
+      } else if (now.path === "/city") {
+        console.log('this.$store.state.ghc.currentCity.name', this.$store.state.ghc.currentCity.name)
 
         this.nowCity = this.$store.state.ghc.currentCity.name
         this.isShow = true;
-        this.isFirst=false;
+        this.isFirst = false;
         this.isThree = false;
         this.isFour = false;
         this.isFive = false
-      }else if(now.path === "/msite"){
+      } else if (now.path === "/msite") {
         this.isThree = true;
-        this.isFirst=false;
-        this.isShow=false;
+        this.isFirst = false;
+        this.isShow = false;
         this.isFour = false;
         this.isFive = false
-      }else if(now.path === "/shop/shopDetail"){
+      } else if (now.path === "/shop/shopDetail") {
         this.isFour = true;
-        this.isFirst=false;
-        this.isShow=false;
+        this.isFirst = false;
+        this.isShow = false;
         this.isThree = false;
         this.isFive = false
-      }else if(now.path === "/food"){
+      } else if (now.path === "/food") {
         this.isFour = false;
-        this.isFirst=false;
-        this.isShow=false;
+        this.isFirst = false;
+        this.isShow = false;
         this.isThree = false;
         this.isFive = true
-      }else if(now.path==="/profile/mind") {
-        this.$store.commit({type:'goMsite',name:'我的'})
-      // this.$store.state.dome.foodTitle = '我的'
+      } else if (now.path === "/profile/mind") {
+        this.$store.commit({type: 'goMsite', name: '我的'})
+        // this.$store.state.dome.foodTitle = '我的'
         this.isFour = false;
-        this.isFirst=false;
-        this.isShow=false;
+        this.isFirst = false;
+        this.isShow = false;
         this.isThree = false;
         this.isFive = true
-      }else if(now.path==="/vipcard"){
-        this.$store.commit({type:'goMsite',name:'会员中心'})
+      } else if (now.path === "/vipcard") {
+        this.$store.commit({type: 'goMsite', name: '会员中心'})
         this.isFour = false;
-        this.isFirst=false;
-        this.isShow=false;
+        this.isFirst = false;
+        this.isShow = false;
         this.isThree = false;
         this.isFive = true
-      }else if(now.path==="/order"){
-        this.$store.commit({type:'goMsite',name:'订单列表'})
+      } else if (now.path === "/order") {
+        this.$store.commit({type: 'goMsite', name: '订单列表'})
         this.isFour = false;
-        this.isFirst=false;
-        this.isShow=false;
+        this.isFirst = false;
+        this.isShow = false;
         this.isThree = false;
         this.isFive = true
-      }else if(now.path==="/service"){
-        this.$store.commit({type:'goMsite',name:'服务中心'})
+      } else if (now.path === "/service") {
+        this.$store.commit({type: 'goMsite', name: '服务中心'})
         this.isFour = false;
-        this.isFirst=false;
-        this.isShow=false;
+        this.isFirst = false;
+        this.isShow = false;
         this.isThree = false;
         this.isFive = true
-      }else if(now.path==="/download"){
-        this.$store.commit({type:'goMsite',name:'下载'})
+      } else if (now.path === "/download") {
+        this.$store.commit({type: 'goMsite', name: '下载'})
         this.isFour = false;
-        this.isFirst=false;
-        this.isShow=false;
+        this.isFirst = false;
+        this.isShow = false;
         this.isThree = false;
         this.isFive = true
-      }else if(now.path==="/foodDetail"){
-        this.$store.commit({type:'goMsite',name:'商家详情'})
+      } else if (now.path === "/foodDetail") {
+        this.$store.commit({type: 'goMsite', name: '商家详情'})
         this.isFour = false;
-        this.isFirst=false;
-        this.isShow=false;
+        this.isFirst = false;
+        this.isShow = false;
         this.isThree = false;
         this.isFive = true
       }
+      // else if (now.path === "/singleFoodDetail") {
+      //   this.nowFoodDetailTitle = this.$store.state.dome.singleFood.name
+      //   this.isFour = false;
+      //   this.isFirst = false;
+      //   this.isShow = false;
+      //   this.isThree = false;
+      //   this.isFive = true
+      // }
     },
     shopHead: {
       handler() {
-        console.log('接收到的值',this.singleStoreData)
+        console.log('接收到的值', this.singleStoreData)
         this.singleStoreData = this.$store.state.dome.singleStore
       },
       //是否在页面刷新时调用回调函数,默认值是false
       immediate: true,
       deep: true
-    },
+    }
   }
 }
 </script>
@@ -304,7 +320,7 @@ export default {
   }
   .leftSmallLP{
     background-color: red;
-    padding: 0.03rem;
+    padding: 0.02rem;
     border-radius: 0.04rem;
   }
   .dome-span {
@@ -332,7 +348,8 @@ export default {
     position: absolute;
     bottom: 0.1rem;
     left: 45%;
-    border: 0.02rem solid white;
+    border: 0.02rem solid #555;
+    color: #555;
     border-radius: 50%;
     width: 0.5rem;
     height: 0.5rem;
