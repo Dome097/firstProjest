@@ -34,25 +34,27 @@
       </div>
     </nav>
     <!--第四个头部 商家界面-->
-    <nav class="nv navbar navbar-fixed-top bg-warning fourModule" :style="{}" v-if="isFour">
+    <nav class="nv navbar navbar-fixed-top bg-warning fourModule"  v-if="isFour" :style="{background: 'url('+http+singleStoreData.image_path+')',backgroundSize:'cover'}" style="box-shadow: 2rem 2rem 5rem lightgray inset">
       <i class="iconfont toLeft">&#xe682</i>
-      <img src="../../assets/logo.png" alt="" class="pull-left" style="width: 0.8rem; height: 1rem">
+      <img :src="http+singleStoreData.image_path" alt="" class="pull-left fourModuleImg" style="">
       <div class="introduce">
-        <p>效果演示</p>
-        <p>
+        <p class="introduce_name">{{singleStoreData.name}}</p>
+        <p class="introduceC">
           <span>商家配送</span>
           <span>/</span>
-          <span>分钟送达</span>
+          <span>{{singleStoreData.order_lead_time}}送达</span>
           <span>/</span>
-          <span>配送费¥5</span>
+          <span>配送费¥{{singleStoreData.float_minimum_order_amount}}</span>
         </p>
-        <i class="iconfont pull-right goFoodDetail" @click="toFoodDetail">&#xe634</i>
-        <p>公告:欢迎光临,用餐高峰请提前下单,谢谢</p>
-        <span class="pull-left leftSmallImg">
-          <img src="../../assets/logo.png" alt="" style="width: 0.3rem">
-          <span>满30减5,满60减8 (APP专享) </span>
-        </span>
-        <i class="iconfont pull-right bottomContent">1个活动 &#xe634 </i>
+        <p class="introduceC">公告:{{singleStoreData.promotion_info}}</p>
+      </div>
+      <i class="iconfont goFoodDetail" @click="toFoodDetail">&#xe634</i>
+      <div  class="leftSmall" v-if="singleStoreData.activities[0]" @click="isThis=true;isFour=false">
+          <span class="pull-left leftSmallL">
+            <span class="leftSmallLP">{{singleStoreData.activities[0].icon_name}}</span>
+            <span>{{singleStoreData.activities[0].description}}(APP专享) </span>
+          </span>
+          <i class="iconfont leftSmallR pull-right">1个活动 &#xe634 </i>
       </div>
     </nav>
     <!--第五个头部food的头部-->
@@ -60,6 +62,18 @@
       <i class="pull-left iconfont" @click="back">&#xe682;</i>
       <router-link :to="{}" class="centerContent">{{foodTitle}}</router-link>
     </nav>
+    <!--点击活动页面出现活动页面-->
+    <div class="activityPage" v-if="isThis">
+      <p class="activityPageTitle">{{singleStoreData.name}}</p>
+        <span class="activityPageC">优惠信息</span>
+        <span class="activityPageD">
+          <span class="leftSmallLP">{{singleStoreData.activities[0].icon_name}}</span>
+          <span>{{singleStoreData.activities[0].description}}(APP专享)</span>
+        </span>
+        <span class="activityPageC">商家公告</span>
+        <span class="activityPageD">{{singleStoreData.promotion_info}}</span>
+      <i class="iconfont goBackShop" @click="isThis=false;isFour=true">&#xe62a</i>
+    </div>
   </section >
 </template>
 
@@ -75,6 +89,9 @@ export default {
       isShow:false,
       isHide:true,
       isFive:false,
+      singleStoreData:'',
+      http:'//elm.cangdu.org/img/',
+      isThis:false
     }
   },
   computed: {
@@ -106,7 +123,15 @@ export default {
         return this.$store.state.dome.region
       },
       set () {}
-    }
+    },
+    // shop 头部
+    shopHead:{
+      get(){
+        return this.$store.state.dome.singleStore
+      },
+      set(){
+      }
+    },
   },
   methods:{
     back(){
@@ -142,7 +167,7 @@ export default {
         this.isShow=false;
         this.isFour = false;
         this.isFive = false
-      }else if(now.path === "/shop"){
+      }else if(now.path === "/shop/shopDetail"){
         this.isFour = true;
         this.isFirst=false;
         this.isShow=false;
@@ -190,8 +215,24 @@ export default {
         this.isShow=false;
         this.isThree = false;
         this.isFive = true
+      }else if(now.path==="/foodDetail"){
+        this.$store.commit({type:'goMsite',name:'商家详情'})
+        this.isFour = false;
+        this.isFirst=false;
+        this.isShow=false;
+        this.isThree = false;
+        this.isFive = true
       }
-    }
+    },
+    shopHead: {
+      handler() {
+        console.log('接收到的值',this.singleStoreData)
+        this.singleStoreData = this.$store.state.dome.singleStore
+      },
+      //是否在页面刷新时调用回调函数,默认值是false
+      immediate: true,
+      deep: true
+    },
   }
 }
 </script>
@@ -222,28 +263,49 @@ export default {
     right:0;
     bottom:0.1rem;
   }
-  .introduce{
-    margin-left:0.06rem;
-  }
   .fourModule{
+    width: 100%;
     height: 1.5rem;
     background:#BBBBBB;
-    opacity:0.8;
-    z-index:5;
+    opacity:0.9;
+    padding:0.1rem 0.2rem;
   }
   .toLeft{
     color:white;
     position: absolute;
-    left:0.05rem;
+    left:0;
+  }
+  .fourModuleImg{
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 0.1rem;
+    margin-right: 0.1rem;
+  }
+  .introduce_name{
+    font-size: 0.2rem;
+    font-weight: bold;
+  }
+  .introduceC{
+    font-size: 0.12rem;
   }
   .goFoodDetail{
     position: absolute;
     right:0.05rem;
+    bottom:0.5rem;
     z-index: 5;
-    margin-left: 0.2rem;
+    margin-left: 0.1rem;
     height: 0.4rem;
     font-family: initial;
     font-weight: bold;
+  }
+  .leftSmall{
+    width: 100%;
+    padding-top: 0.1rem;
+  }
+  .leftSmallLP{
+    background-color: red;
+    padding: 0.03rem;
+    border-radius: 0.04rem;
   }
   .dome-span {
     position: absolute;
@@ -255,5 +317,42 @@ export default {
     overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
     text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用*/
   }
-
+  .activityPage{
+    width: 100%;
+    height: 100%;
+    background: black;
+    position: absolute;
+    z-index:100 ;
+    top:0;
+    left:0;
+    color:white;
+  }
+  .goBackShop{
+    font-size: 0.3rem;
+    position: absolute;
+    bottom: 0.1rem;
+    left: 45%;
+    border: 0.02rem solid white;
+    border-radius: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    text-align: center;
+  }
+  .activityPageC{
+    display: inline-block;
+    font-size:0.12rem;
+    border: 0.02rem solid #555;
+    border-radius: 0.5rem;
+    padding:0.05rem 0.1rem;
+    margin:0.1rem 0 0.2rem 1.5rem;
+  }
+  .activityPageTitle{
+    text-align: center;
+    font-size: 0.25rem;
+    margin: 0.2rem 0 0.4rem 0;
+  }
+  .activityPageD{
+    display: inline-block;
+    margin: 0 0 0.2rem 0.3rem;
+  }
 </style>

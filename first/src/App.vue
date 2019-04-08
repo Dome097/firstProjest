@@ -3,7 +3,7 @@
     <Header></Header>
     <loading v-if="amendEndOfDataLoad"></loading>
     <router-view></router-view>
-    <FootGuide v-if="showOrHidden"></FootGuide>
+    <!--<FootGuide></FootGuide>-->
   </div>
 </template>
 
@@ -23,7 +23,12 @@ export default {
     showOrHidden(){
       return this.$store.state.ghc.showOrHidden
     }
-  }
+  },
+  data(){
+    return {
+      // showOrHidden:false
+    }
+  },
 }
 </script>
 

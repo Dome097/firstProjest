@@ -44,10 +44,14 @@
       <!--底部容器-->
       <div class="dome-foot" @click.self="arr[0]?draw=!draw:null">
         <!--购物车容器-->
-        <div class="dome-cart left" :class="{domeBackgroundColor:arr[0]}"@click="arr[0]?draw=!draw:null">
+        <!--<transition  name="dome">-->
+          <div class="dome-cart left" :class="{domeBackgroundColor:arr[0],suofang:addZ1}"@click="arr[0]?draw=!draw:null">
+          <!--购物车总数量-->
+          <span class="classifyCount" v-if="arr[0]">{{cartAmount}}</span>
           <!--购物车i标签-->
           <i class="iconfont dome-cart-i" >&#xe64f;</i>
         </div>
+        <!--</transition>-->
         <!--价格与配送费容器-->
         <div class="dome-price-freight" @click="arr[0]?draw=!draw:null">
           <!--当前金额-->
@@ -71,19 +75,35 @@ export default {
       // 控制上拉下拉
       draw:false,
       totalPrices:0,
-      foodsArr:[]
+      foodsArr:[],
+      cartAmount:0,
+      addZ1:''
     }
   },
   computed: {
     arr () {
       return this.$store.state.dome.cartSingleFood
+    },
+    addZ () {
+      return this.$store.state.dome.addZ
     }
   },
   watch:{
+    addZ: {
+      handler() {
+        this.addZ1 = this.$store.state.dome.addZ
+      },
+      //是否在页面刷新时调用回调函数,默认值是false
+      immediate:true,
+      //深度监听
+      deep:true
+    },
     arr: {
       handler() {
+        this.cartAmount = 0
         this.totalPrices = 0
         for (let prices of this.$store.state.dome.cartSingleFood) {
+          this.cartAmount += prices.quantity
           this.totalPrices += prices.entities.price * prices.quantity
         }
       },
@@ -115,7 +135,11 @@ export default {
     },
     // 去订单结算
     goPayment () {
+      // console.log(this.$store.state.dome.)
       if (this.arr[0]) {
+        this.$http({
+
+        })
         this.$router.push({name:'confirmOrder'})
       }
     }
@@ -285,6 +309,22 @@ export default {
   bottom: 0;
   background-color: rgba(33,33,33,0.5);
 }
+/*购物车总数量*/
+.classifyCount {
+  /*display: inline-block;*/
+  background-color: red;
+  position: absolute;
+  right: -0.05rem;
+  color: white;
+  top: -0.05rem;
+  height: 0.16rem;
+  line-height: 0.16rem;
+  text-align: center;
+  font-size: 0.12rem;
+  padding:0 10%;
+  border-radius: 50%;
+  z-index: 11;
+}
 /*下拉上拉动画*/
 .dome2-enter-active, .dome2-leave-active {
   transition: bottom 1s;
@@ -298,5 +338,20 @@ export default {
 }
 .dome3-enter, .dome3-leave-to {
   background-color:  rgba(33,33,33,0);
+}
+  /*缩放动画*/
+.suofang {
+  animation: dome 1s;
+}
+@keyframes dome {
+  0%{
+    transform:scale(1,1);
+  }
+  50%{
+    transform: scale(1.5,1.5);
+  }
+  100%{
+    transform: scale(1,1);
+  }
 }
 </style>
