@@ -63,11 +63,15 @@ export default {
     selectShop(i){
       this.historyInfo.push(i);
       console.log(i);
-      console.log('historyRecord本次',i)
-      this.$store.commit({type:'getRegion', region:i})
+      console.log('historyRecord本次',i);
+      this.$store.commit({type:'getRegion', region:i});
       this.$router.push({name:'msite'});
       // 把数据传到store
-      this.$store.commit('HISTORYRECORD',i)
+      this.$store.commit('HISTORYRECORD',i);
+      // 把所选商家具体地址上传到store
+      this.$store.commit("userLatitude",i.latitude);
+      this.$store.commit("userLongitude",i.longitude)
+
     },
     // 在历史记录中点击重新搜索
     research(i){

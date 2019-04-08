@@ -74,7 +74,7 @@ export default {
       this.$store.commit({
         type:'amendDataLoad'
       });
-      this.currentCity = res.data
+      this.currentCity = res.data;
       console.log(this.currentCity);
     }).catch((error)=>{
       console.log(error)

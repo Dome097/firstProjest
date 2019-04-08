@@ -67,11 +67,11 @@ export default {
     this.userInfomation = this.$store.state.ghc.userInfo;
     console.log(this.userInfomation);
     //请求地址信息
-  //   Vue.axios.get(`https://elm.cangdu.org/v1/users/${this.userInfomation.user_id}/addresses`).then(res=>{
-  //     console.log(res.data)
-  //   }).catch(error=>{
-  //     console.log(error)
-  //   })
+    Vue.axios.get(`https://elm.cangdu.org/v1/users/${this.userInfomation.user_id}/addresses`).then(res=>{
+      console.log(res.data)
+    }).catch(error=>{
+      console.log(error)
+    })
   },
   beforeRouteEnter(to,from,next){
     next(vm=>{
