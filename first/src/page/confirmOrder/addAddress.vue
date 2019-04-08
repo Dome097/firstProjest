@@ -47,7 +47,7 @@ export default {
       // 存储用户信息
       userInfomation:{},
       //性别选择
-      checked:'1',
+      checked:0,
       // 声明变量存储所填name
       yourName:'',
       // 声明变量存储所填电话
@@ -57,9 +57,9 @@ export default {
       // 声明变量存储所填详细地址
       yourDetailAddres:'',
       // 声明变量存储所填标签
-      yourTag:'',
+      yourTag:1,
       // 经纬度信息
-
+      geohash:'',
       // 声明对象存储所有信息
       newAddres:[]
     }
@@ -71,9 +71,30 @@ export default {
     },
     // 整理新增地址所填信息,并将信息传到vuex,同时切换路由
     addAddress(){
+      // 有空内容,提示用户
       if(this.yourNumber === ''|| this.yourName === ''||this.yourDetailAddres === ''){
         alert('请输入完整信息');
         return
+      }
+      if(this.checked === 1){
+        this.checked = 1;
+        console.log(222222222222222)
+      }else{
+        this.checked = 2;
+      }
+      switch (this.yourTag) {
+        case '':
+          this.yourTag = 1;
+          break;
+        case '家':
+          this.yourTag = 2;
+          break;
+        case '学校':
+          this.yourTag = 3;
+          break;
+        case '公司':
+          this.yourTag = 4;
+          break;
       }
       //发起网络请求,把信息添加到服务器地址
       this.$http({
@@ -83,14 +104,14 @@ export default {
         data:{
           address: this.yourAddres,
           address_detail: this.yourDetailAddres,
-          geohash: '',
+          geohash: this.geohash,
           name: this.yourName,
           phone: this.yourNumber,
-          tag: this.yourTag,
+          tag: '',
           sex: this.checked,
           poi_type:0,
           phone_bk:'',
-          tag_type:2
+          tag_type:this.yourTag
         }
       }).then(res => {
         // 路由切换到chooseAddress页面
@@ -107,7 +128,8 @@ export default {
     console.log(this.yourAddres);
     // 从vuex中接受用户信息,获得用户id,geohash值
     this.userInfomation = this.$store.state.ghc.userInfo;
-    console.log(this.userInfomation)
+    this.geohash = this.$store.state.ghc.localInfo.geohash;
+    console.log(this.userInfomation,this.geohash);
   }
 }
 </script>

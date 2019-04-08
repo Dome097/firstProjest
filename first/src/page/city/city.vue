@@ -70,8 +70,8 @@ export default {
       this.$store.commit('HISTORYRECORD',i);
       // 把所选商家具体地址上传到store
       this.$store.commit("userLatitude",i.latitude);
-      this.$store.commit("userLongitude",i.longitude)
-
+      this.$store.commit("userLongitude",i.longitude);
+      this.$store.commit("location",i);
     },
     // 在历史记录中点击重新搜索
     research(i){

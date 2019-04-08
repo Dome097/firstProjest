@@ -1,15 +1,15 @@
 <template>
   <section class="container-fluid confirmOrder">
     <div class="deliveryAddres">
-      <router-link :to="{name:'chooseAddress'}" @click.native="requestAddres">
+      <router-link :to="{name:'chooseAddress'}">
         <div class="addressLeft">
           <i class="iconfont">&#xe636;</i>
           <div>
             <span>{{selectAds.name}}</span>
-            <span>{{'sex'}}</span>
-            <span>{{selectAds.yourNumber}}</span><br>
-            <span>{{selectAds.yourTag}}</span>
-            <span>{{selectAds.yourAddres}}</span>
+            <span>{{selectAds.sex}}</span>
+            <span>{{selectAds.phone}}</span><br>
+            <span>{{selectAds.tag_type}}</span>
+            <span>{{selectAds.address}}</span>
           </div>
         </div>
         <div class="addressRight">
@@ -33,33 +33,33 @@
       </router-link>
       <div><span>红包</span><span>暂时只在饿了么APP中支持</span></div>
     </div>
-    <div class="orderInfo">
+    <div class="orderInfo"  v-for="(item,key) in cartGoods">
       <div>
         <img src="../../assets/logo.png"/>
         <span>{{'效果展示'}}</span>
       </div>
       <ul>
-        <el-row :gutter="10">
-          <el-col :xs="16"><div class="grid-content bg-purple">鸡腿堡</div></el-col>
-          <el-col :xs="4"><div class="grid-content bg-purple-light special">x{{'1'}}</div></el-col>
-          <el-col :xs="4"><div class="grid-content bg-purple-light">¥{{'20'}}</div></el-col>
+        <el-row :gutter="10" >
+          <el-col :xs="16"><div class="grid-content bg-purple">{{item.entities.name}}</div></el-col>
+          <el-col :xs="4"><div class="grid-content bg-purple-light special">x{{item.quantity}}</div></el-col>
+          <el-col :xs="4"><div class="grid-content bg-purple-light">¥ {{item.entities.price}}</div></el-col>
         </el-row>
         <el-row :gutter="10">
           <el-col :xs="12"><div class="grid-content bg-purple">餐盒</div></el-col>
-          <el-col :xs="12"><div class="grid-content bg-purple-light">¥{{'20'}}</div></el-col>
+          <el-col :xs="12"><div class="grid-content bg-purple-light">¥ {{item.entities.packing_fee*item.quantity}}</div></el-col>
         </el-row>
         <el-row :gutter="10">
           <el-col :xs="12"><div class="grid-content bg-purple">配送费</div></el-col>
-          <el-col :xs="12"><div class="grid-content bg-purple-light">¥{{'20'}}</div></el-col>
+          <el-col :xs="12"><div class="grid-content bg-purple-light">¥ {{item.entities.packing_fee*item.quantity}}</div></el-col>
         </el-row>
       </ul>
       <div class="pay">
         <el-row :gutter="10">
-          <el-col :xs="12"><div class="grid-content bg-purple">订单  ¥{{'41205'}}</div></el-col>
+          <el-col :xs="12"><div class="grid-content bg-purple">订单  ¥ {{item.quantity*item.entities.price+item.entities.packing_fee*item.quantity*2}}</div></el-col>
           <el-col :xs="12"><div class="grid-content bg-purple-light special">待支付</div></el-col>
         </el-row>
         <el-row :gutter="10">
-          <el-col :xs="24"><div class="grid-content bg-purple-light special">¥{{'41205'}}</div></el-col>
+          <el-col :xs="24"><div class="grid-content bg-purple-light special">¥ {{item.quantity*item.entities.price+item.entities.packing_fee*item.quantity*2}}</div></el-col>
         </el-row>
       </div>
     </div>
@@ -74,12 +74,11 @@
       </router-link>
     </div>
     <div class="foot">
-      <span>待支付 ¥{{'41205'}} </span>
+      <span>待支付 ¥{{totalPrices}} </span>
       <button @click="confirm">确认下单</button>
     </div>
     <!--上拉actionSheet-->
     <mt-actionsheet :actions="actions" cancelText ='' closeOnClickModal=true v-model="sheetVisible" class="actionSheet">
-
     </mt-actionsheet>
   </section>
 </template>
@@ -95,6 +94,10 @@ export default {
     return{
       // 声明变量存储已选地址
       selectAds:{},
+      // 获取购物车数据
+      cartGoods:[],
+      // 获取购物车商品总价
+      totalPrices: '',
       // 上拉actionSheet显示或隐藏
       sheetVisible:false,
       //上拉actionSheet显示的内容
@@ -113,25 +116,28 @@ export default {
     },
 
   methods:{
-    // 请求地址列表
-    requestAddres(){
-      Vue.axios.get(`https://elm.cangdu.org/v1/users/:user_id/addresses`).then(res=>{
-      console.log(res.data)
-      }).catch(error=>{
-        console.log(error)
-      })
-    },
     // 选择支付方式
     payStyle(){
       this.sheetVisible = true
     },
     confirm(){
+      // 路由切换到支付页
       this.$router.push({name:'payment'})
     }
   },
+  created(){
+// 获取购物车数据
+    this.cartGoods = this.$store.state.dome.cartSingleFood;
+    console.log(this.cartGoods);
+    // 获取总价和总数
+    this.totalPrices = 0;
+    for (let prices of this.cartGoods) {
+      this.totalPrices += prices.entities.price * prices.quantity
+    }
+  },
   mounted(){
-    //获取选定的地址
-    // this.selectAds = this.$store.state.ghc.selectInfo
+    // 获取选定的地址
+    this.selectAds = this.$store.state.ghc.useThisAds;
   },
   beforeRouteEnter(to,from,next){
     next(vm=>{
@@ -310,6 +316,9 @@ export default {
 .orderInfo>div:nth-child(3){
   padding: 0 0.16rem;
   border-bottom: 0.01rem solid #e4e4e4;
+}
+.orderInfo>.pay{
+  padding: 0 0.16rem;
 }
 .bg-purple {
   text-align: left;
