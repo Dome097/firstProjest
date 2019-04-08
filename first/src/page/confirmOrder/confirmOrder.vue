@@ -6,7 +6,7 @@
           <i class="iconfont">&#xe636;</i>
           <div>
             <span>{{selectAds.name}}</span>
-            <span>{{selectAds.sex}}</span>
+            <span>{{selectAds.sex === 1?'先生':'女士'}}</span>
             <span>{{selectAds.phone}}</span><br>
             <span>{{selectAds.tag_type}}</span>
             <span>{{selectAds.address}}</span>

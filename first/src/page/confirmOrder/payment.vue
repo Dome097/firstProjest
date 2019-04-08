@@ -43,8 +43,10 @@
 
 <script>
 // 付款页
+import ComputeTime from "../../components/common/computeTime";
 export default {
   name: "payment",
+  components: {ComputeTime},
   data(){
     return{
       alipay:false,
