@@ -260,6 +260,13 @@ export default {
         this.isShow = false;
         this.isThree = false;
         this.isFive = true
+      }else if (now.path === "/shopSafe") {
+        this.$store.commit({type: 'goMsite', name: '食品监督安全公示'})
+        this.isFour = false;
+        this.isFirst = false;
+        this.isShow = false;
+        this.isThree = false;
+        this.isFive = true
       }
     },
     shopHead: {

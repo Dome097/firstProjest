@@ -110,7 +110,7 @@ export default {
         type:"amendDataLoad"
       })
       this.rateData = res.data;
-     console.log( this.rateData);
+     //console.log("星级评价",res.data.food_score.toFixed(1)-0);
       this.value = res.data.service_score.toFixed(1)-0;
       this.val = res.data.food_score.toFixed(1)-0;
       this.over = (this.rateData.compare_rating)*100+'%';
@@ -129,6 +129,7 @@ export default {
   },
   filters:{
     number(data){
+    //  console.log("过滤器",data.toFixed(1))
       return data.toFixed(1)
     }
   }
