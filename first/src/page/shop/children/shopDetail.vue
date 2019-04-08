@@ -201,7 +201,7 @@ export default {
     // }
   },
   mounted() {
-    if (!this.$store.state.dome.allCartSingleFood[0]) {
+    // if (!this.$store.state.dome.allCartSingleFood[0]) {
       this.$store.commit({
         type:"amendDataLoad"
       })
@@ -215,9 +215,10 @@ export default {
             Vue.set(specfoods, 'dome',0)
           }
         }
+        console.log('res.data',res.data)
         this.$store.commit({type:'allFood',data:res.data})
       });
-    }
+    // }
 
     // new Better(wrpper)
     // new Better(this.$refs.list)
@@ -305,10 +306,8 @@ export default {
     },
     // 购物车,点击+
     toShopCart(m,index,evt){
-      this.addZ = true
       setTimeout(()=>{
         this.$store.commit({type:'goAddZ',is_new:true})
-        this.addZ =false
       },900)
       setTimeout(()=>{
         this.$store.commit({type:'goAddZ',is_new:false})
@@ -321,7 +320,7 @@ export default {
         setTimeout(()=>{
           $ball.style.top = window.innerHeight-40+'px';
           $ball.style.left = '30px';
-          $ball.style.transition = 'left 1s linear, top 1s ease-in';
+          $ball.style.transition = 'left 0.5s linear, top 0.5s ease-in';
         }, 20)
       console.log('这是点击单个加号的数据',m)
        this.$store.commit({type:'addSingleFood',data:m, index:0})

@@ -123,6 +123,7 @@ export default {
     // 向购物车添加一件
     domeAdd (i) {
       this.$store.commit({type:'cartAddSingleFood',data:i})
+      console.log('singleStore',this.$store.state.dome.singleStore)
     },
     // 向购物车删除一件
     domeDelete (i) {
@@ -135,10 +136,29 @@ export default {
     },
     // 去订单结算
     goPayment () {
+      let id = this.$store.state.dome.singleStore.id
+      let geohash = this.$store.state.dome.singleStore.location
+      console.log('id',typeof id)
       // console.log(this.$store.state.dome.)
       if (this.arr[0]) {
+        // 循环加入购物车
+        let arr = []
+        for (let obj of this.$store.state.dome.cartSingleFood){
+          let objCart = {attrs:[], extra:{}, id:obj.entities.id, name:obj.entities.name, packing_fee:obj.entities.packing_fee, price:obj.entities.price, quantity:obj.quantity, sku_id:obj.entities.sku_id, specs:obj.entities.specs, stock:obj.entities.stock}
+          arr.push(objCart)
+        }
+        console.log('arr1111111111111',arr)
         this.$http({
-
+          method:"POST",
+          url:'https://elm.cangdu.org/v1/carts/checkout',
+          withCredentials: true, // 默认的
+          data:{
+            restaurant_id:id,
+            geohash: geohash[0]+','+geohash[1],
+            entities: [{id:5234}]
+          }
+        }).then(res => {
+          console.log('加入购物车请求返回值',res)
         })
         this.$router.push({name:'confirmOrder'})
       }
