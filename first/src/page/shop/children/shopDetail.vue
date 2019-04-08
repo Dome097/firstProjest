@@ -43,9 +43,10 @@
                     <span>起</span>
                   </p>
                   <div class="addVesse2" v-if="item.specfoods[0].specs[0]">
+                    <p class="domeP" v-if="domeP">请在购物车内删除</p>
                     <div class="add" @click.stop="domeSpecification(item)">规格</div>
                     <span>
-                    <i class="iconfont" v-if="item.dome">&#xe605;</i>
+                    <i class="iconfont" @click.stop="guigeClick" v-if="item.dome">&#xe605;</i>
                       <!--给对象添加一个属性-->
                     <span>{{item.dome?item.dome:null}}</span>
                   </span>
@@ -57,7 +58,6 @@
                       <transition name="dome">
                                             <i class="iconfont minus1" v-if="item.dome" @click.stop="deleteShopCart(item,index)" >&#xe605;</i>
                       </transition>
-
                       <!--给对象添加一个属性-->
                     <span class="domeSpanCount ">{{item.dome?item.dome:null}}</span>
                   </span>
@@ -99,7 +99,8 @@
 <script>
   import Better from 'better-scroll'
   import Vue from 'vue'
-// 单个商铺信息页
+  import { MessageBox } from 'mint-ui';
+  // 单个商铺信息页
 export default {
   name: "shopDetail",
   data(){
@@ -127,7 +128,9 @@ export default {
       // 单个分类选中数量
       classifyPitch:[],
       // 控制加号层级
-      addZ:false
+      addZ:false,
+      // 控制删减提示p标签
+      domeP:false
     }
   },
   computed:{
@@ -292,6 +295,13 @@ export default {
     // 规格内的加入购物车
     joinCart() {
       this.$store.commit({type:'addSingleFood',data:this.guigeObj, index:this.pitchOn})
+    },
+    // 规格减号
+    guigeClick () {
+      this.domeP = true
+      setTimeout(()=>{
+        this.domeP = false
+      },500)
     },
     // 购物车,点击+
     toShopCart(m,index,evt){
@@ -638,6 +648,15 @@ export default {
   .addVesse2>span>i {
     position: absolute;
     right: 0.7rem;
+  }
+  /*删减p标签*/
+  .domeP {
+    position: absolute;
+    top: 0.25rem;
+    left: -0.5rem;
+    font-size: 0.12rem;
+    width: 1.2rem;
+    text-align: center;
   }
   /*分类选中数量*/
   .classifyCount {
