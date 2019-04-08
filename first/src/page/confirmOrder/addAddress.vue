@@ -58,6 +58,8 @@ export default {
       yourDetailAddres:'',
       // 声明变量存储所填标签
       yourTag:'',
+      // 经纬度信息
+
       // 声明对象存储所有信息
       newAddres:[]
     }
@@ -70,7 +72,8 @@ export default {
     // 整理新增地址所填信息,并将信息传到vuex,同时切换路由
     addAddress(){
       if(this.yourNumber === ''|| this.yourName === ''||this.yourDetailAddres === ''){
-        alert('请输入完整信息')
+        alert('请输入完整信息');
+        return
       }
       //发起网络请求,把信息添加到服务器地址
       this.$http({
@@ -92,14 +95,11 @@ export default {
       }).then(res => {
         // 路由切换到chooseAddress页面
         this.$router.push({name:'chooseAddress'});
-        console.log('添加地址成功')
+        console.log('添加地址成功',res.data)
       }).catch((error) => {
         console.log(error);
       });
-      // 传值到vuex
-      // this.$store.commit('NewAds',this.newAddres);
     }
-
   },
   created(){
     // 接收子页面传过来的地址参数

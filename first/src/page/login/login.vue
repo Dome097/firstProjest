@@ -73,8 +73,8 @@ export default {
         // 账户信息匹配正确,跳转到登录状态,并把用户名传到新页面
         this.$router.push({name: "profile",query:{name:this.mindUsername}});
         // 给vuex保存用户信息
-        this.$store.commit({type:'getLoggingStatus',loggingStatus:true})
-        this.$store.commit('accountData ',res.data)
+        this.$store.commit({type:'getLoggingStatus',loggingStatus:true});
+        this.$store.commit('accountData',res.data);
         console.log(res.data);
       });
       // Vue.axios.post('https://elm.cangdu.org/v2/login',{username: this.mindUsername,Password: this.mindPassword,captcha_code: this.mindCaptcha_code},{withCredentials:true}).then((res)=>{
