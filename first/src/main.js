@@ -298,10 +298,6 @@ const moduleD = {
     goMsite (state, title) {
       state.foodTitle = title.name
     },
-    // 个人中心的title的值
-    // sendvipCenterInfo(state, title){
-    //   state.foodTitle = title.name
-    // },
     // 控制动画
     goAddZ (state, payload) {
       state.addZ = payload.is_new
