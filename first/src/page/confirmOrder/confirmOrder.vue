@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="payStyle">
-      <router-link :to="{}">
+      <router-link :to="{}" @click.native="payStyle">
         <span>支付方式</span>
         <span>{{'在线支付'}} <i class="iconfont">&#xe634;</i> </span>
       </router-link>
@@ -64,45 +64,74 @@
       </div>
     </div>
     <div class="remarks">
-      <router-link :to="{}">
+      <router-link :to="{name:'remark'}">
         <span>订单备注</span>
         <span>{{'口味偏好等'}}<i class="iconfont">&#xe634;</i> </span>
       </router-link>
-      <router-link :to="{}">
+      <router-link :to="{name:'invoice'}">
         <span>发票抬头</span>
         <span>{{'不需要开发票'}}<i class="iconfont">&#xe634;</i></span>
       </router-link>
     </div>
     <div class="foot">
       <span>待支付 ¥{{'41205'}} </span>
-      <button>确认下单</button>
+      <button @click="confirm">确认下单</button>
     </div>
+    <!--上拉actionSheet-->
+    <mt-actionsheet :actions="actions" cancelText ='' closeOnClickModal=true v-model="sheetVisible" class="actionSheet">
+
+    </mt-actionsheet>
   </section>
 </template>
 
 <script>
   import Vue from 'vue'
+  import { Actionsheet } from 'mint-ui';
+  Vue.component(Actionsheet.name, Actionsheet);
 // 确认订单页
 export default {
   name: "confirmOrder",
   data(){
     return{
       // 声明变量存储已选地址
-      selectAds:{}
-    }
-  },
+      selectAds:{},
+      // 上拉actionSheet显示或隐藏
+      sheetVisible:false,
+      //上拉actionSheet显示的内容
+      actions:[
+        {
+        name:'支付方式',
+      },
+        {
+          name:'货到付款(商家不支持货到付款)',
+        },
+        {
+          name:'在线支付',
+        }
+      ]
+      }
+    },
+
   methods:{
+    // 请求地址列表
     requestAddres(){
       Vue.axios.get(`https://elm.cangdu.org/v1/users/:user_id/addresses`).then(res=>{
       console.log(res.data)
       }).catch(error=>{
         console.log(error)
       })
+    },
+    // 选择支付方式
+    payStyle(){
+      this.sheetVisible = true
+    },
+    confirm(){
+      this.$router.push({name:'payment'})
     }
   },
   mounted(){
     //获取选定的地址
-    this.selectAds = this.$store.state.ghc.selectInfo
+    // this.selectAds = this.$store.state.ghc.selectInfo
   },
   beforeRouteEnter(to,from,next){
     next(vm=>{
@@ -348,6 +377,12 @@ export default {
   outline-style: none;
   border: none;
   width: 1rem;
+}
+.mint-actionsheet{
+  width: 100%;
+  padding: 0;
+  height: 2rem;
+  background-color: white;
 }
 
 </style>

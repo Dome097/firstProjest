@@ -9,8 +9,8 @@
         <el-col :xs="8"><div class="grid-content bg-purple"></div></el-col>
         <el-col :xs="16">
           <div class="grid-content bg-purple-light">
-            <el-checkbox v-model="checked" label="1">先生</el-checkbox>
-            <el-checkbox v-model="checked" label="2">女士</el-checkbox>
+            <el-radio v-model="checked" label="1">先生</el-radio>
+            <el-radio v-model="checked" label="2">女士</el-radio>
           </div>
         </el-col>
       </el-row>
@@ -47,7 +47,7 @@ export default {
       // 存储用户信息
       userInfomation:{},
       //性别选择
-      checked:'',
+      checked:'1',
       // 声明变量存储所填name
       yourName:'',
       // 声明变量存储所填电话
@@ -75,7 +75,7 @@ export default {
       //发起网络请求,把信息添加到服务器地址
       this.$http({
         method:'post',
-        url:`https://elm.cangdu.org/v1/users/:${userInfomation.user_id}/addresses`,
+        url:`https://elm.cangdu.org/v1/users/${this.userInfomation.user_id}/addresses`,
         withCredentials:true,
         data:{
           address: this.yourAddres,
@@ -91,7 +91,7 @@ export default {
         }
       }).then(res => {
         // 路由切换到chooseAddress页面
-        this.$router.push({name:'chooseAddress'})
+        this.$router.push({name:'chooseAddress'});
         console.log('添加地址成功')
       }).catch((error) => {
         console.log(error);
@@ -116,6 +116,7 @@ export default {
 .addAddress{
   width: 100%;
   padding: 0;
+  background-color: #f5f5f5;
 }
 .content{
   padding: 0 0.16rem;

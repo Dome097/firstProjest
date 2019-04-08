@@ -33,10 +33,6 @@ const moduleG = {
     showOrHidden:false,
     // 保存用户信息
     userInfo:{},
-    // 暂存增加的新收货地址
-    newAddres:{},
-    // 选定的收货地址
-    selectInfo:{},
   },
   mutations: {
     // 接收所选城市信息
@@ -54,14 +50,6 @@ const moduleG = {
     // 保存用户信息
     accountData(state,userInfo){
       state.userInfo = userInfo
-    },
-    // 添加新的收货地址信息
-    NewAds(state,newAddres){
-      state.newAddres = newAddres
-    },
-    // 选定的收货地址信息
-    selectAdrs(state,selectInfo){
-      state.selectInfo = selectInfo
     }
   },
   actions: {}
