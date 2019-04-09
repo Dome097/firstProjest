@@ -100,10 +100,10 @@ export default {
       buttomData:[],
       http: 'https://fuss10.elemecdn.com/',
       value1:5,
-      pStyle:'',
+      pStyle:0,
       loading:false,
       offset:0,
-      domeFoot:false
+      domeFoot:false,
     }
   },
   created() {
@@ -243,12 +243,15 @@ export default {
   }
   .satisfied{
     background-color: aliceblue;
+    color: gray;
   }
   .unsatisfied{
     background-color: #dddddd;
+    color: gray;
   }
   .style{
     background-color:blue;
+    color: white;
   }
   .buttomStar{
     width: 100%;
@@ -302,9 +305,9 @@ export default {
   }
   .imgD{
     width: 1rem;
-    height: 0.3rem;
-    display: flex;
-    flex-wrap: wrap;
+    /*height: 0.3rem;*/
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
   }
   .imgDes{
     border: 0.01rem solid gray;
@@ -319,7 +322,7 @@ export default {
     margin-right: 0.2rem;
     border-radius: 10%;
     /*float: left;*/
-
+    /*clear: both;*/
   }
 </style>
 <style>
