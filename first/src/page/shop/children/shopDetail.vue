@@ -3,7 +3,7 @@
    <!--左侧部分,左列表点击调用-->
     <aside ref="l_list" class="l_list">
       <ul>
-        <li ref="l_item" :class="{act:index === actli}"
+        <li ref="l_item" class="act1" :class="{act:index === actli}"
             @click="change(index, item)" v-for="(item,index) in shopGoodsArr" :key="index">
           <!--分类选中数量-->
           <span v-if="classifyPitch[index] !== 0" class="classifyCount">{{classifyPitch[index]}}</span>
@@ -418,7 +418,6 @@ export default {
     height: 0.5rem;
     width: 100%;
     display: table;
-    /*background-color: #E3E3E3;*/
     padding:0.02rem ;
     font-size: 0.16rem;
     text-align: center;
@@ -579,6 +578,9 @@ export default {
     color: white;
     text-align: center;
     line-height: 0.4rem;
+  }
+  .act1 {
+    background-color: #ececec;
   }
   /*左侧点击变白*/
   .act {

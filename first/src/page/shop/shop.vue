@@ -43,6 +43,9 @@ export default {
 </script>
 
 <style scoped>
+  #shop{
+    width: 100%;
+  }
   .wrap{
     width: 100%;
     background-color: white;
@@ -59,7 +62,6 @@ export default {
   }
   .productBtn>a, .rateBtn>a{
     color:gray;
-
   }
   .style{
     color:blue;
@@ -73,9 +75,16 @@ export default {
     display: none;
   }
 .leftScroll{
+  position: fixed;
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+.rightScroll{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
 }
   .smallBorder{
     width: 0.5rem;
