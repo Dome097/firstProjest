@@ -1,5 +1,5 @@
 <template>
-  <div class="rateBox">
+  <div>
     <div class="rateAll">
       <div class="leftPage">
         <p class="leftScore">{{rateData.overall_score | number}}</p>
@@ -39,9 +39,11 @@
         </p>
       </div>
     </div>
-    <div class="rateCateAll">
+    <div class="rateCateAll" v-infinite-scroll="loadMore"
+         infinite-scroll-disabled="loading"
+         infinite-scroll-distance="10">
       <div class="rateCate">
-        <span v-for="item in rateCateData">{{item.name}}({{item.count}})</span>
+        <span v-for="(item,index) in rateCateData" :class="{unsatisfied :item.name==='不满意',satisfied:item.name!=='不满意',style:pStyle===index}" @click="pStyle=index">{{item.name}}({{item.count}})</span>
       </div>
       <hr>
       <div class="buttomStar" v-for="(item, index) in buttomData">
@@ -98,6 +100,10 @@ export default {
       buttomData:[],
       http: 'https://fuss10.elemecdn.com/',
       value1:5,
+      pStyle:'',
+      loading:false,
+      offset:0,
+      domeFoot:false
     }
   },
   created() {
@@ -109,10 +115,10 @@ export default {
         type:"amendDataLoad"
       })
       this.rateData = res.data;
-     //console.log("星级评价",res.data.food_score.toFixed(1)-0);
+      console.log("星级评价",res.data.compare_rating);
       this.value = res.data.service_score.toFixed(1)-0;
       this.val = res.data.food_score.toFixed(1)-0;
-      this.over = (this.rateData.compare_rating)*100+'%';
+      this.over = ((res.data.compare_rating)*100).toFixed(1)+'%';
     //  console.log('val',this.val)
     //  console.log('value',this.value)
    //   console.log(this.over)
@@ -130,6 +136,45 @@ export default {
     number(data){
     //  console.log("过滤器",data.toFixed(1))
       return data.toFixed(1)
+    }
+  },
+  methods:{
+    loadMore(){
+      if (!this.domeFoot) {
+        this.loading = true;
+        setTimeout(() => {
+          this.$store.commit({
+            type:"amendDataLoad"
+          })
+          Vue.axios.get(`https://elm.cangdu.org/ugc/v2/restaurants/1/ratings?offset=${this.offset}&limit=10`,null).then((res) => {
+            this.$store.commit({
+              type:"amendDataLoad"
+            })
+           // console.log("res.data",res.data)
+            for (let arr of res.data) {
+            this.buttomData.push(arr)
+        //    console.log("this.buttomData.push(arr)",this.buttomData)
+            }
+            // res.data.map((n)=>{
+            //   this.value.push(n.rating);
+            //    console.log("this.value",this.value.push(n.rating));
+            // })
+            this.offset += 10
+            this.loading = false;
+            // 没有数据的时候
+            if (!res.data[9]){
+            //  console.log(12345678909876543213465879876543)
+              this.domeFoot = true
+            }
+          });
+        //  console.log("this.offset",this.offset)
+        }, 2500);
+      }
+   }
+  },
+  computed:{
+    watchDataList(){
+        return this.dataList
     }
   }
 }
@@ -192,10 +237,18 @@ export default {
   }
   .rateCate span{
     font-size: 0.17rem;
-    background-color: aliceblue;
     margin: 0.05rem;
     padding: 0.04rem;
     border-radius: 10%;
+  }
+  .satisfied{
+    background-color: aliceblue;
+  }
+  .unsatisfied{
+    background-color: #dddddd;
+  }
+  .style{
+    background-color:blue;
   }
   .buttomStar{
     width: 100%;
@@ -216,7 +269,6 @@ export default {
     width: 65%;
     float: left;
     margin-left: 0.2rem;
-
   }
   .rightBS{
     width: 18%;
@@ -250,6 +302,9 @@ export default {
   }
   .imgD{
     width: 1rem;
+    height: 0.3rem;
+    display: flex;
+    flex-wrap: wrap;
   }
   .imgDes{
     border: 0.01rem solid gray;
@@ -263,7 +318,8 @@ export default {
     text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;*/
     margin-right: 0.2rem;
     border-radius: 10%;
-    float: left;
+    /*float: left;*/
+
   }
 </style>
 <style>
