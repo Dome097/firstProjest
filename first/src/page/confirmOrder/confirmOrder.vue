@@ -8,7 +8,7 @@
             <span>{{selectAds.name}}</span>
             <span>{{selectAds.sex === 1?'先生':'女士'}}</span>
             <span>{{selectAds.phone}}</span><br>
-            <span>{{selectAds.tag_type}}</span>
+            <span :class="{colorRed:selectAds.tag === '无',colorRed:selectAds.tag === '家',colorBlue:selectAds.tag === '学校',colorGreen:selectAds.tag === '公司'}">{{selectAds.tag}}</span>
             <span>{{selectAds.address}}</span>
           </div>
         </div>
@@ -132,12 +132,13 @@ export default {
     // 获取总价和总数
     this.totalPrices = 0;
     for (let prices of this.cartGoods) {
-      this.totalPrices += prices.entities.price * prices.quantity
+      this.totalPrices += prices.entities.price * prices.quantity+prices.entities.packing_fee*prices.quantity*2
     }
   },
   mounted(){
     // 获取选定的地址
     this.selectAds = this.$store.state.ghc.useThisAds;
+    console.log(this.selectAds)
   },
   beforeRouteEnter(to,from,next){
     next(vm=>{
@@ -203,6 +204,17 @@ export default {
   border-radius: 0.04rem;
   color: white;
   font-size: 0.12rem;
+  text-align: center;
+  line-height: 0.2rem;
+}
+.deliveryAddres .addressLeft>div>.colorRed{
+  background-color: red;
+}
+.deliveryAddres .addressLeft>div>.colorBlue{
+  background-color: #008de1;
+}
+.deliveryAddres .addressLeft>div>.colorGreen{
+  background-color: limegreen;
 }
 .addressLeft>div>span:nth-child(6){
   color: darkgrey;

@@ -71,11 +71,11 @@ import info from '../page/profile/children/info'
 // 重置用户名
 import setusername from '../page/profile/children/setusername'
 // 地址
-import myaddress from '../page/profile/children/children/myaddress'
+import myaddress from '../page/profile/children/myaddress'
 // 新增地址
-import add from '../page/profile/children/children/children/add'
+import add from '../page/profile/children/add'
 // 搜索地址
-import addDetail from '../page/profile/children/children/children/children/addDetail'
+import addDetail from '../page/profile/children/addDetail'
 // 搜索页
 import search from '../page/search/search'
 // 服务中心
@@ -323,20 +323,16 @@ export default new Router({
           path: 'myaddress',
           component: myaddress,
           name: 'myaddress',
-          children: [ // 三级路由
-            { // 新增地址
-              path: 'add',
-              component: add,
-              name: 'add',
-              children: [ // 四级路由
-                { // 搜索地址
-                  path: 'addDetail',
-                  component: addDetail,
-                  name: 'addDetail',
-                }
-              ]
-            }
-          ]
+        },
+        { // 新增地址
+          path: 'add',
+          component: add,
+          name: 'add',
+        },
+        { // 搜索地址
+          path: 'addDetail',
+          component: addDetail,
+          name: 'addDetail',
         }
       ]
     },

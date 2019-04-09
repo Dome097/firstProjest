@@ -143,7 +143,7 @@ export default {
       }
 
       // 如果记录超过6条,删除最后一条
-      if(this.searchList.length>7){
+      if(this.searchList.length>20){
         this.searchList.pop()
       }
       this.storage.set("searchList", this.searchList)
