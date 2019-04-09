@@ -157,7 +157,7 @@ export default {
     // }
   },
   watch:{
-    allShopGoodsArr: {
+      allShopGoodsArr: {
       handler(){
         this.shopGoodsArr = this.$store.state.dome.allCartSingleFood
         console.log('this.shopGoodsArr是',this.shopGoodsArr)
@@ -205,8 +205,16 @@ export default {
     //   deep:true
     // }
   },
+  beforeDestroy(){
+    console.log('我要去死了')
+    this.storage.set(this.shopGoods,this.shopGoodsArr)
+  },
   mounted() {
-    // if (!this.$store.state.dome.allCartSingleFood[0]) {
+    // 是否持久化储存
+    console.log('this.storage.get(this.$store.state.dome.singleStore.id)',this.storage.get(this.$store.state.dome.singleStore.id))
+    if (this.storage.get(this.$store.state.dome.singleStore.id) === null) {
+      console.log('没储存 发起请求')
+      // 没储存 发起请求
       this.$store.commit({
         type:"amendDataLoad"
       })
@@ -217,12 +225,21 @@ export default {
         // console.log("shopDetail接收到的信息",res.data)
         for (let foods of res.data) {
           for (let specfoods of foods.foods) {
-            Vue.set(specfoods, 'dome',0)
+            Vue.set(specfoods, 'dome', 0)
+            for (let specfood of specfoods.specfoods){
+              Vue.set(specfood, 'dome', 0)
+            }
           }
         }
         console.log('res.data',res.data)
         this.$store.commit({type:'allFood',data:res.data})
       });
+    }else {
+      // 以储存,直接提取,存到vuex中
+      this.$store.commit({type:'allFood',data:this.storage.get(this.$store.state.dome.singleStore.id)})
+    }
+    // if (this.$store.state.dome.allCartSingleFood[0] === this) {
+
     // }
 
     // new Better(wrpper)
@@ -243,12 +260,11 @@ export default {
       })
       this.rgt.on('scroll', (res) => { //监听滚动事件
         if (this.flag) {
-          // console.log(res)
           this.scrollY = Math.abs(res.y)
           for (let i = 0; i < this.arr.length; i++) {
             if (this.scrollY > this.arr[i] && this.scrollY < this.arr[i + 1]) {
               this.actli = i
-              // console.log('i是',i)
+              console.log('i是',i)
               // console.log('this.$refs.l_item.length',this.$refs.l_item.length - 2)
               // console.log('this.left',this.left)
               // console.log('this.$refs.l_list',this.$refs.l_item[1])
@@ -348,6 +364,7 @@ export default {
         }, 20)
       console.log('这是点击单个加号的数据',m)
       let shopID = this.$store.state.dome.singleStore.id
+      console.log('shopID',this.$store.state.dome.singleStore)
        this.$store.commit({type:'addSingleFood',data:m, index:0, id:shopID})
       // console.log('this.$store.state.cartSingleFood',this.$store.state.dome.cartSingleFood)
     },
@@ -699,10 +716,9 @@ export default {
   }
   /*置顶箭头*/
   .domeStick {
-    position: absolute;
+    position: fixed;
     top: 75%;
     left: 80%;
-    /*z-index: 1;*/
   }
   .domeStick>i {
     font-size: 0.5rem;
