@@ -53,7 +53,11 @@ export default {
       // 从store中获取当前城市信息
       curCity:{},
       // 搜索到的返回数据
-      arrData:[]
+      arrData:[],
+      // 经纬度信息
+      geohash:'',
+      // 存储用户信息
+      userInfomation:{}
     }
   },
   methods: {
@@ -148,7 +152,11 @@ export default {
     let list = this.storage.get("list");
     if (list){
      this.list = list;
-    }
+    };
+    // 从vuex中接受用户信息,获得用户id,geohash值
+    this.userInfomation = this.$store.state.ghc.userInfo;
+    this.geohash = this.$store.state.ghc.localInfo.geohash;
+    console.log(this.userInfomation,this.geohash);
   },
   beforeRouteEnter(to,from,next){
     next(vm=>{
