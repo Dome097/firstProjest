@@ -5,7 +5,7 @@
         <p>{{item.address}}</p>
         <p>{{item.phone}}</p>
       </div>
-      <p @click="deleteThis(item)">x</p>
+      <p @click="deleteThis(item)" v-if="showIcon">x</p>
     </div>
     <router-link :to="{name:'add'}"><span>新增地址</span><i class="iconfont">&#xe634;</i></router-link>
   </section>
@@ -23,7 +23,9 @@ export default {
       // 获取地址列表
       addressList:[],
       // 控制要删除的地址信息
-      deleteAddress:true
+      deleteAddress:true,
+      // 展示或者隐藏删除图标
+      showIcon:''
     }
   },
   methods:{
@@ -48,7 +50,23 @@ export default {
   },
   created(){
     // 获取vuex里的用户信息
-    this.userInfo = this.$store.state.ghc.userInfo
+    this.userInfo = this.$store.state.ghc.userInfo;
+  },
+  // 计算属性是内容发生变化即刻触发
+  computed:{
+    showI(){
+      return this.$store.state.ghc.showIcon
+    }
+  },
+  watch:{
+    // 监听头部状态变化
+    showI:{
+      handler(){
+        this.showIcon = !this.showIcon
+      },
+      deep:true,
+      immediate:true
+    }
   }
 }
 </script>

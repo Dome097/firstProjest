@@ -36,7 +36,9 @@ const moduleG = {
     // 保存商家定位信息
     localInfo:{},
     // 选定使用的地址
-    useThisAds:{}
+    useThisAds:{},
+    // 展示或隐藏删除图标
+    showIcon:''
   },
   mutations: {
     // 接收所选城市信息
@@ -62,6 +64,10 @@ const moduleG = {
     // 选定使用的地址
     selectAdrs(state,useThisAds){
       state.useThisAds = useThisAds
+    },
+    // 展示删除图标
+    deleteIcon(state,showIcon){
+      state.showIcon = showIcon
     }
   },
   actions: {}

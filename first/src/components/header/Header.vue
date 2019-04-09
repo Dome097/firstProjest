@@ -61,7 +61,7 @@
     <nav class="nv navbar navbar-fixed-top firstHead"  v-if="isFive">
       <i class="pull-left iconfont" @click="back">&#xe682;</i>
       <router-link :to="{}" class="centerContent">{{foodTitle}}</router-link>
-      <span v-if="isSix" class="pull-right" @click="isFinish=!isFinish">
+      <span v-if="isSix" class="pull-right" @click="showThis">
         <span v-if="isFinish">编辑</span>
         <span v-else >完成</span>
       </span>
@@ -97,7 +97,9 @@ export default {
       http:'//elm.cangdu.org/img/',
       isThis:false,
       isFinish:false,
-      isSix:false
+      isSix:false,
+      // 点击头部编辑,显示隐藏删除收货地址中的删除图标
+      showIcon:true
     }
   },
   computed: {
@@ -146,6 +148,11 @@ export default {
     toFoodDetail(){
       console.log(11112345678)
       this.$router.push({name:'foodDetail'});
+    },
+    showThis(){
+      this.isFinish=!this.isFinish;
+      this.showIcon=!this.showIcon;
+      this.$store.commit('deleteIcon',this.showIcon)
     }
   },
   // computed:{
