@@ -268,7 +268,7 @@ export default {
 }
 /*购物车,商品容器*/
 .dome-box {
-  width: 100%;
+  width: 102%;
   max-height: 4.5rem;
   background-color: white;
   position: fixed;

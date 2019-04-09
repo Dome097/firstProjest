@@ -300,7 +300,7 @@ export default {
       this.rgt.scrollToElement(this.$refs.productArr[0],100,0,0)
       setTimeout(()=>{
         this.flag = true
-      },100)
+      },200)
     },
     // 选择规格
     domeSpecification (i) {
@@ -319,7 +319,7 @@ export default {
       this.rgt.scrollToElement(this.$refs.productArr[index],100,0,0)
       setTimeout(()=>{
         this.flag = true
-      },100)
+      },200)
     },
     toSingleFoodDetail(n){
       // 点击单个食品信息,出现食品信息页
@@ -335,7 +335,7 @@ export default {
       this.domeP = true
       setTimeout(()=>{
         this.domeP = false
-      },500)
+      },100)
     },
     // 购物车,点击+
     toShopCart(m,index,evt){
@@ -580,7 +580,7 @@ export default {
     line-height: 0.4rem;
   }
   .act1 {
-    background-color: #ececec;
+    background-color: #E3E3E3;
   }
   /*左侧点击变白*/
   .act {
