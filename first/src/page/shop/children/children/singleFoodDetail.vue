@@ -39,7 +39,7 @@
             nowFoodDetail:'',
             http:'//elm.cangdu.org/img/',
             value:'',
-            specfoodsArr:[]
+            specfoodsArr:[],
           }
         },
         computed:{

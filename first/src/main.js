@@ -33,6 +33,10 @@ const moduleG = {
     showOrHidden:false,
     // 保存用户信息
     userInfo:{},
+    // 保存商家定位信息
+    localInfo:{},
+    // 选定使用的地址
+    useThisAds:{}
   },
   mutations: {
     // 接收所选城市信息
@@ -50,6 +54,14 @@ const moduleG = {
     // 保存用户信息
     accountData(state,userInfo){
       state.userInfo = userInfo
+    },
+    // 保存商家定位信息
+    location(state,localInfo){
+      state.localInfo = localInfo
+    },
+    // 选定使用的地址
+    selectAdrs(state,useThisAds){
+      state.useThisAds = useThisAds
     }
   },
   actions: {}
@@ -103,9 +115,9 @@ const moduleD = {
     // 请求到的评星
     value1: [],
     // 纬度
-    latitude: '31.22967',
+    latitude: '',
     // 经度
-    longitude: '121.4762',
+    longitude: '',
     // 请求数据的数量，默认20
     limit: 0,
     // 排序方式id： 1：起送价、2：配送速度、3:评分、4: 智能排序(默认)、5:距离最近、6:销量最高
@@ -133,6 +145,13 @@ const moduleD = {
     // 操作购物车
   },
   mutations: {
+    // 选定的具体地址经纬度
+    userLatitude(state,latitude){
+      state.latitude = latitude
+    },
+    userLongitude(state,longitude){
+      state.longitude = longitude
+    },
     // 全部填加到购物车
     allFood (state, pyload) {
       state.allCartSingleFood = pyload.data

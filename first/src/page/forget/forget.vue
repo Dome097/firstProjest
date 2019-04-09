@@ -8,6 +8,16 @@
       <img class="verificationCode" :src="src" alt="">
       <a href="###" class="retubing" @click="gainAuthCode">换一张</a>
       <button @click="affirmAmend" class="btn">确认修改</button>
+    <!--提示在APP上设置,模态框-->
+    <div
+      v-if="popupVisible1"
+      :modal = false class="animated heartBeat alertBox1">
+      <div class="remindSet">
+        <i class="iconfont">&#xe632;</i>
+        <p>{{isAnswer}}</p>
+        <button @click="sureSet1">确认</button>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -24,7 +34,11 @@ export default {
       oldPassword: '',
       newPassword: '',
       verifyNewPassword: '',
-      mindCaptcha_code: ''
+      mindCaptcha_code: '',
+      // 修改失败提示框
+      popupVisible1:false,
+      // 未完善情况反馈
+      isAnswer:''
     }
   },
   methods: {
@@ -74,14 +88,19 @@ export default {
             type:'amendDataLoad'
           });
           console.log('tap', res);
-          this.src = res.data.code
+          this.src = res.data.code;
           if (res.data.success === '密码修改成功') {
             alert('密码修改成功')
           }else {
-            alert(res.data.message)
+            // alert(res.data.message);
+            this.isAnswer = res.data.message;
+            this.popupVisible1 = true;
             this.gainAuthCode ()
           }
         })
+    },
+    sureSet1(){
+      this.popupVisible1 = false
     }
   },
   mounted () {
@@ -134,5 +153,39 @@ export default {
     width: 95%;
     background-color: limegreen;
     color: #fff;
+  }
+  .alertBox1{
+    position: fixed;
+    left: 10%;
+    top: 25%;
+    width: 80%;
+    height: 2rem;
+    border-radius: 0.1rem;
+    background-color: white;
+  }
+  .remindSet{
+    text-align: center;
+    position: relative;
+    height: 2rem;
+  }
+  .remindSet>i{
+    font-size: 0.8rem;
+    color: orange;
+  }
+  .remindSet>p{
+    border: 0;
+  }
+  .remindSet>button{
+    width: 100%;
+    height: 0.4rem;
+    border: 0;
+    margin-bottom: 0;
+    padding: 0;
+    background-color: limegreen;
+    color: white;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-radius:0 0 0.1rem 0.1rem ;
   }
 </style>
