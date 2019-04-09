@@ -92,8 +92,8 @@ export default {
   name: "ratingStar",
   data() {
     return {
-      value: '',
-      val: '',
+      value: 0,
+      val: 0,
       rateData:'',
       over:'',
       rateCateData:[],
@@ -115,10 +115,10 @@ export default {
         type:"amendDataLoad"
       })
       this.rateData = res.data;
-      console.log("星级评价",res.data.compare_rating);
-      this.value = res.data.service_score.toFixed(1)-0;
-      this.val = res.data.food_score.toFixed(1)-0;
-      this.over = ((res.data.compare_rating)*100).toFixed(1)+'%';
+      console.log("星级评价",((res.data.compare_rating)*100).toFixed(1)+'%');
+      this.value = res.data.service_score?res.data.service_score.toFixed(1)-0:0;
+      this.val = res.data.food_score?res.data.food_score.toFixed(1)-0:null;
+      this.over = ((res.data.compare_rating)*100)?((res.data.compare_rating)*100).toFixed(1)+'%':null;
     //  console.log('val',this.val)
     //  console.log('value',this.value)
    //   console.log(this.over)
@@ -134,8 +134,8 @@ export default {
   },
   filters:{
     number(data){
-    //  console.log("过滤器",data.toFixed(1))
-      return data.toFixed(1)
+     // console.log("过滤器",data)
+      return data?data.toFixed(1)-0:null
     }
   },
   methods:{

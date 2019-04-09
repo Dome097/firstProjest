@@ -1,6 +1,6 @@
 <template>
   <div class="vipcardBox">
-    <p class="buyVip">为账户 <strong>dome</strong> 购买会员</p>
+    <p class="buyVip">为账户 <strong>{{nowUserName}}</strong> 购买会员</p>
     <div class="vipPower">
       <p class="vipPowerHead">
         <span>会员特权</span>
@@ -57,7 +57,23 @@ export default {
   name: "vipcard",
   data(){
     return {
-
+      nowUserName:''
+    }
+  },
+  computed:{
+    nowUser(){
+     // console.log("dome",this.$store.state.ghc.userInfo)
+      return this.$store.state.ghc.userInfo
+    }
+  },
+  watch:{
+    nowStore:{
+      handler() {
+       // console.log("dome",this.$store.state.ghc.userInfo.username)
+        this.nowUserName = this.$store.state.ghc.userInfo.username
+      },
+      immediate:true,
+      deep:true
     }
   },
   methods:{
