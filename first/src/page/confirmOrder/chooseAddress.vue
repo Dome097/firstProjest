@@ -4,9 +4,9 @@
       <i class="iconfont" :class="{select:selectT}">&#xe663;</i>
       <div>
         <span>{{item.name}}</span>
-        <span>{{item.sex}}</span>
+        <span>{{item.sex===1?'先生':'女士'}}</span>
         <span>{{item.phone}}</span><br>
-        <span>{{item.tag_type}}</span>
+        <span :class="{colorRed:item.tag === '无'||'家',colorBlue:item.tag === '学校',colorGreen:item.tag === '公司'}">{{item.tag}}</span>
         <span>{{item.address}}</span>
       </div>
     </div>
@@ -29,7 +29,7 @@ export default {
       // 存储用户信息
       userInfomation:{},
       // 所有增加的地址信息
-      addressesInfo:[]
+      addressesInfo:[],
     }
   },
   methods:{
@@ -155,4 +155,13 @@ export default {
   .addressLeft>.select{
   color: limegreen;
 }
+  .chooseAddres>.addressLeft>div>.colorRed{
+    background-color: red;
+  }
+  .chooseAddres>.addressLeft>div>.colorBlue{
+    background-color: #008de1;
+  }
+  .chooseAddres>.addressLeft>div>.colorGreen{
+    background-color: limegreen;
+  }
 </style>

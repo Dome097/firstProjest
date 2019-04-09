@@ -17,8 +17,15 @@
       <el-row :gutter="10">
         <el-col :xs="8"><div class="grid-content bg-purple"><span>联系电话</span></div></el-col>
         <el-col :xs="14"><div class="grid-content bg-purple-light"><input type="text" placeholder="你的手机号" v-model="yourNumber"></div></el-col>
-        <el-col :xs="2"><div class="grid-content bg-purple "><i class="iconfont add">&#xe601;</i></div></el-col>
-
+        <el-col :xs="2"><div class="grid-content bg-purple "><i class="iconfont add" @click="addPhone_bk">&#xe601;</i></div></el-col>
+      </el-row>
+      <el-row :gutter="10" v-if="addPhone">
+        <el-col :xs="8"><div class="grid-content bg-purple"></div></el-col>
+        <el-col :xs="16">
+          <div class="grid-content bg-purple-light">
+            <input type="text" placeholder = "备选电话" v-model="phone_bk">
+          </div>
+        </el-col>
       </el-row>
       <el-row :gutter="10">
         <el-col :xs="8"><div class="grid-content bg-purple"><span>送餐地址</span></div></el-col>
@@ -47,17 +54,21 @@ export default {
       // 存储用户信息
       userInfomation:{},
       //性别选择
-      checked:0,
+      checked:1,
       // 声明变量存储所填name
       yourName:'',
       // 声明变量存储所填电话
       yourNumber:'',
+      // 备用电话
+      phone_bk:'',
+      // 备用电话显隐
+      addPhone:false,
       // 声明变量存储所选地址
       yourAddres:'',
       // 声明变量存储所填详细地址
       yourDetailAddres:'',
       // 声明变量存储所填标签
-      yourTag:1,
+      yourTag:'',
       // 经纬度信息
       geohash:'',
       // 声明对象存储所有信息
@@ -69,6 +80,10 @@ export default {
     searchAds(){
       this.$router.push({name:'searchAddress'})
     },
+    // 备用电话显隐
+    addPhone_bk(){
+      this.addPhone = true
+    },
     // 整理新增地址所填信息,并将信息传到vuex,同时切换路由
     addAddress(){
       // 有空内容,提示用户
@@ -76,24 +91,18 @@ export default {
         alert('请输入完整信息');
         return
       }
-      if(this.checked === 1){
-        this.checked = 1;
-        console.log(222222222222222)
-      }else{
-        this.checked = 2;
-      }
       switch (this.yourTag) {
         case '':
-          this.yourTag = 1;
+          this.yourTag = '无';
           break;
         case '家':
-          this.yourTag = 2;
+          this.yourTag = '家';
           break;
         case '学校':
-          this.yourTag = 3;
+          this.yourTag = '学校';
           break;
         case '公司':
-          this.yourTag = 4;
+          this.yourTag = '公司';
           break;
       }
       //发起网络请求,把信息添加到服务器地址
@@ -107,11 +116,11 @@ export default {
           geohash: this.geohash,
           name: this.yourName,
           phone: this.yourNumber,
-          tag: '',
+          tag: this.yourTag,
           sex: this.checked,
           poi_type:0,
           phone_bk:'',
-          tag_type:this.yourTag
+          tag_type:2
         }
       }).then(res => {
         // 路由切换到chooseAddress页面
@@ -125,7 +134,6 @@ export default {
   created(){
     // 接收子页面传过来的地址参数
     this.yourAddres = this.$route.params.select;
-    console.log(this.yourAddres);
     // 从vuex中接受用户信息,获得用户id,geohash值
     this.userInfomation = this.$store.state.ghc.userInfo;
     this.geohash = this.$store.state.ghc.localInfo.geohash;

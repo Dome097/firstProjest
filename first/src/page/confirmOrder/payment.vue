@@ -2,7 +2,7 @@
   <section class="container-fluid payment">
     <div class="timer">
       <p>支付剩余时间</p>
-      <p>倒计时</p>
+      <p>{{compute}}</p>
     </div>
     <p>选择支付方式</p>
     <div class="alipay" @click="payStyleAli">
@@ -55,6 +55,29 @@ export default {
       popupVisible2:false
     }
   },
+  computed:{
+    compute:{
+      get () {
+        return `00:${this.$store.state.dome.minute/10<1?'0'+this.$store.state.dome.minute:this.$store.state.dome.minute}:${this.$store.state.dome.second/10<1?'0'+this.$store.state.dome.second:this.$store.state.dome.second}`
+      },
+      set () {
+        this.$store.commit({type:'getComputeTime'})
+      }
+    }
+  },
+  watch: {
+    compute: {
+      handler () {
+        if (this.$store.state.dome.minute===0&&this.$store.state.dome.second===0){
+          this.$router.push({name:'order'})
+        }
+      },
+      //是否在页面刷新时调用回调函数,默认值是false
+      immediate:true,
+      //深度监听
+      deep:true
+    }
+  },
   methods:{
     payStyleAli(){
       this.alipay = !this.alipay;
@@ -76,7 +99,7 @@ export default {
     }
   },
   mounted(){
-    this.popupVisible1 = true
+    this.popupVisible1 = true;
   }
 }
 </script>
@@ -202,5 +225,9 @@ export default {
   left: 0;
   bottom: 0;
   border-radius:0 0 0.1rem 0.1rem ;
+}
+.timeLimit{
+  font-size:0.4rem;
+  font-weight: bolder;
 }
 </style>
