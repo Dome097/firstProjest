@@ -2,7 +2,7 @@
   <div id="domeShoppingCartComponent">
     <!--遮罩淡入淡出动画-->
     <transition name="dome3">
-      <div class="dome-shade" v-if="draw" @click.self="arr[0]?draw=!draw:null"></div>
+      <div class="dome-shade" v-if="draw" @click.self="cartArr[0]?draw=!draw:null"></div>
     </transition>
     <div id="domeBuyCart">
       <!--上拉下拉动画-->
@@ -19,21 +19,21 @@
           <div></div>
           <!--当前商品容器-->
           <div>
-            <div class="dome-commodity-box" v-for="(item, index) in arr" :key="index">
+            <div class="dome-commodity-box" v-for="(item, index) in cartArr" :key="index">
               <!--商品名-->
               <div class="dome-commodity">
-                <span>{{item.entities.name}}</span>
+                <span>{{item.name}}</span>
               </div>
               <!--单价-->
               <div class="dome-univalence">
-                <span>¥{{item.entities.price}}</span>
+                <span>¥{{item.price}}</span>
               </div>
               <!--添加删除容器-->
               <div class="dome-plus-minus">
                 <!--减少一件-->
                 <i class="iconfont" @click="domeDelete(item)">&#xe605;</i>
                 <!--当前数量-->
-                <span>{{item.quantity}}</span>
+                <span>{{item.dome}}</span>
                 <!--添加一件-->
                 <i class="iconfont" @click="domeAdd(item)">&#xe635;</i>
               </div>
@@ -42,25 +42,25 @@
         </div>
       </transition>
       <!--底部容器-->
-      <div class="dome-foot" @click.self="arr[0]?draw=!draw:null">
+      <div class="dome-foot" @click.self="cartArr[0]?draw=!draw:null">
         <!--购物车容器-->
         <!--<transition  name="dome">-->
-          <div class="dome-cart left" :class="{domeBackgroundColor:arr[0],suofang:addZ1}"@click="arr[0]?draw=!draw:null">
+          <div class="dome-cart left" :class="{domeBackgroundColor:cartArr[0],suofang:addZ1}"@click="cartArr[0]?draw=!draw:null">
           <!--购物车总数量-->
-          <span class="classifyCount" v-if="arr[0]">{{cartAmount}}</span>
+          <span class="classifyCount" v-if="cartArr[0]">{{cartAmount}}</span>
           <!--购物车i标签-->
           <i class="iconfont dome-cart-i" >&#xe64f;</i>
         </div>
         <!--</transition>-->
         <!--价格与配送费容器-->
-        <div class="dome-price-freight" @click="arr[0]?draw=!draw:null">
+        <div class="dome-price-freight" @click="cartArr[0]?draw=!draw:null">
           <!--当前金额-->
           <p class="dome-price">¥ {{totalPrices?totalPrices:'00'}}.00</p>
           <!--配送费-->
-          <p class="dome-freight">配送费¥{{5}}</p>
+          <p class="dome-freight">配送费¥{{domeCarriage}}</p>
         </div>
         <!--结算容器-->
-        <span class="dome-affirm" :class="{domeBackgroundColorRight:arr[0]}" @click="goPayment">{{arr[0]?`去结算`:`还差¥${'20'}元起送`}}</span>
+        <span class="dome-affirm" :class="{domeBackgroundColorRight:cartArr[0]}" @click="goPayment">{{cartArr[0]?`去结算`:`还差¥${'20'}元起送`}}</span>
       </div>
     </div>
   </div>
@@ -77,12 +77,17 @@ export default {
       totalPrices:0,
       foodsArr:[],
       cartAmount:0,
-      addZ1:''
+      addZ1:'',
+      // 购物车中的数据
+      cartArr:[],
+      // 配送费
+      domeCarriage:0
     }
   },
   computed: {
     arr () {
-      return this.$store.state.dome.cartSingleFood
+      // 整体大对象
+      return this.$store.state.dome.allCartSingleFood
     },
     addZ () {
       return this.$store.state.dome.addZ
@@ -100,11 +105,24 @@ export default {
     },
     arr: {
       handler() {
+        let arr = []
+        for (let obj of this.$store.state.dome.allCartSingleFood) {
+          for (let obj1 of obj.foods) {
+            for (let obj2 of obj1.specfoods) {
+              if (obj2.dome !== 0){
+                arr.push(obj2)
+              }
+            }
+          }
+        }
+        this.cartArr = arr
+        console.log('this.cartArr',this.cartArr)
+        this.domeCarriage = this.$store.state.dome.singleStore.float_delivery_fee
         this.cartAmount = 0
         this.totalPrices = 0
-        for (let prices of this.$store.state.dome.cartSingleFood) {
-          this.cartAmount += prices.quantity
-          this.totalPrices += prices.entities.price * prices.quantity
+        for (let prices of this.cartArr) {
+          this.cartAmount += prices.dome
+          this.totalPrices += prices.price * prices.dome
         }
       },
       //是否在页面刷新时调用回调函数,默认值是false
@@ -122,13 +140,17 @@ export default {
     },
     // 向购物车添加一件
     domeAdd (i) {
+      console.log('向购物车添加的加号传来的参数i',i)
+      // i.dome++
       this.$store.commit({type:'cartAddSingleFood',data:i})
-      console.log('singleStore',this.$store.state.dome.singleStore)
+      // console.log('singleStore',this.$store.state.dome.singleStore)
     },
     // 向购物车删除一件
     domeDelete (i) {
+      // i.dome--
       this.$store.commit({type:'cartDeleteSingleFood',data:i})
-      if (!this.$store.state.dome.cartSingleFood[0]) {
+      console.log('this.cartArr[0]',this.cartArr)
+      if (this.cartArr.length === 1 && this.cartArr[0].dome === 0) {
         console.log('没了没了')
         this.draw = false
         this.totalPrices = '00'
@@ -140,7 +162,7 @@ export default {
       let geohash = this.$store.state.dome.singleStore.location
       console.log('id',typeof id)
       // console.log(this.$store.state.dome.)
-      if (this.arr[0]) {
+      if (this.cartArr[0]) {
         // 循环加入购物车
         let arr = []
         for (let obj of this.$store.state.dome.cartSingleFood){
@@ -300,6 +322,15 @@ export default {
   color: black;
   overflow: hidden;
   text-overflow:ellipsis
+}
+.dome-commodity>span {
+  display: inline-block;
+  height: 0.5rem;
+  width: 1rem;
+  word-break:keep-all;/* 不换行 */
+  white-space:nowrap;/* 不换行 */
+  overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用*/
 }
 /*单价*/
 .dome-univalence {

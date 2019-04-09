@@ -159,42 +159,46 @@ const moduleD = {
     // 向购物车添加食物
     addSingleFood (state, pyload) {
       pyload.data.dome++
+      pyload.data.specfoods[pyload.index].dome++
       // 把传来的数据提取,放到一个对象里
-      let obj = {
-        id: pyload.data.specfoods[pyload.index].food_id,
-        name: pyload.data.specfoods[pyload.index].name,
-        packing_fee: pyload.data.specfoods[pyload.index].packing_fee,
-        price: pyload.data.specfoods[pyload.index].price,
-        sku_id: pyload.data.specfoods[pyload.index].sku_id,
-        specs: pyload.data.specfoods[pyload.index].specs,
-        stock: pyload.data.specfoods[pyload.index].stock
-      }
+      // let obj = {
+      //   id: pyload.data.specfoods[pyload.index].food_id,
+      //   name: pyload.data.specfoods[pyload.index].name,
+      //   packing_fee: pyload.data.specfoods[pyload.index].packing_fee,
+      //   price: pyload.data.specfoods[pyload.index].price,
+      //   sku_id: pyload.data.specfoods[pyload.index].sku_id,
+      //   specs: pyload.data.specfoods[pyload.index].specs,
+      //   stock: pyload.data.specfoods[pyload.index].stock
+      // }
       // 储存下标
-      let index = 0
-      // 存储是否已存在
-      let buer = true
-      // console.log('state.cartSingleFood是',state.cartSingleFood)
-      for (let eachObj of state.cartSingleFood){
-        if (eachObj.entities.id == obj.id) {
-          // console.log('已经存在了')
-          state.cartSingleFood[index].quantity = state.cartSingleFood[index].quantity+1
-          // console.log('处理后的state.cartSingleFood',state.cartSingleFood)
-          buer = false
-        }
-        index++
-      }
-      if (buer) {
-        state.cartSingleFood = [...state.cartSingleFood,{quantity:1,entities:obj,shopID:pyload.id}]
-      }
+      // let index = 0
+      // // 存储是否已存在
+      // let buer = true
+      // // console.log('state.cartSingleFood是',state.cartSingleFood)
+      // for (let eachObj of state.cartSingleFood){
+      //   if (eachObj.entities.id == obj.id) {
+      //     // console.log('已经存在了')
+      //     state.cartSingleFood[index].quantity = state.cartSingleFood[index].quantity+1
+      //     // console.log('处理后的state.cartSingleFood',state.cartSingleFood)
+      //     buer = false
+      //   }
+      //   index++
+      // }
+      // if (buer) {
+      //   state.cartSingleFood = [...state.cartSingleFood,{shopID:pyload.id,foods:{quantity:1,entities:obj}}]
+      // }
       // console.log('添加到购物车的对象',pyload.data.specfoods[0])
     },
     // 在购物车添加食物
     cartAddSingleFood (state, pyload) {
-      state.cartSingleFood[state.cartSingleFood.indexOf(pyload.data)].quantity++
+      // state.cartSingleFood[state.cartSingleFood.indexOf(pyload.data)].quantity++
       for (let foods of state.allCartSingleFood) {
         for (let specfoods of foods.foods) {
-          if (specfoods.specfoods[0].food_id === pyload.data.entities.id) {
-            specfoods.dome++
+          for (let specfood of specfoods.specfoods){
+            if (specfood.food_id === pyload.data.food_id) {
+              specfoods.dome++
+              specfood.dome++
+            }
           }
         }
       }
@@ -203,49 +207,60 @@ const moduleD = {
     // 删除一个食物
     deleteSingleFood (state, pyload) {
       pyload.data.dome--
+      pyload.data.specfoods[pyload.index].dome--
       // 把传来的数据提取,放到一个对象里
-      let obj = {
-        id: pyload.data.specfoods[pyload.index].food_id,
-        name: pyload.data.specfoods[pyload.index].name,
-        packing_fee: pyload.data.specfoods[pyload.index].packing_fee,
-        price: pyload.data.specfoods[pyload.index].price,
-        sku_id: pyload.data.specfoods[pyload.index].sku_id,
-        specs: pyload.data.specfoods[pyload.index].specs,
-        stock: pyload.data.specfoods[pyload.index].stock
-      }
-      // 储存下标
-      let index = 0
-      // 存储是否已存在
-      let buer = true
-      console.log('state.cartSingleFood是',state.cartSingleFood)
-      for (let eachObj of state.cartSingleFood){
-        if (eachObj.entities.id == obj.id) {
-          state.cartSingleFood[index].quantity = state.cartSingleFood[index].quantity-1
-          if (state.cartSingleFood[index].quantity === 0) {
-            state.cartSingleFood.splice(index,1)
-          }
-          console.log('处理后的state.cartSingleFood',state.cartSingleFood)
-        }
-        index++
-      }
+      // let obj = {
+      //   id: pyload.data.specfoods[pyload.index].food_id,
+      //   name: pyload.data.specfoods[pyload.index].name,
+      //   packing_fee: pyload.data.specfoods[pyload.index].packing_fee,
+      //   price: pyload.data.specfoods[pyload.index].price,
+      //   sku_id: pyload.data.specfoods[pyload.index].sku_id,
+      //   specs: pyload.data.specfoods[pyload.index].specs,
+      //   stock: pyload.data.specfoods[pyload.index].stock
+      // }
+      // // 储存下标
+      // let index = 0
+      // // 存储是否已存在
+      // let buer = true
+      // console.log('state.cartSingleFood是',state.cartSingleFood)
+      // for (let eachObj of state.cartSingleFood){
+      //   if (eachObj.entities.id == obj.id) {
+      //     state.cartSingleFood[index].quantity = state.cartSingleFood[index].quantity-1
+      //     if (state.cartSingleFood[index].quantity === 0) {
+      //       state.cartSingleFood.splice(index,1)
+      //     }
+      //     console.log('处理后的state.cartSingleFood',state.cartSingleFood)
+      //   }
+      //   index++
+      // }
     },
     // 在购物车删除食物
     cartDeleteSingleFood (state, pyload) {
-      if (state.cartSingleFood.length === 1 && state.cartSingleFood[0].quantity === 1) {
-        state.cartSingleFood = []
-      }else {
-        state.cartSingleFood[state.cartSingleFood.indexOf(pyload.data)].quantity--
-        if (state.cartSingleFood[state.cartSingleFood.indexOf(pyload.data)].quantity === 0){
-          state.cartSingleFood.splice(state.cartSingleFood.indexOf(pyload.data),1)
-        }
-      }
       for (let foods of state.allCartSingleFood) {
         for (let specfoods of foods.foods) {
-          if (specfoods.specfoods[0].food_id === pyload.data.entities.id) {
-            specfoods.dome--
+          for (let specfood of specfoods.specfoods){
+            if (specfood.food_id === pyload.data.food_id) {
+              specfoods.dome--
+              specfood.dome--
+            }
           }
         }
       }
+      // if (state.cartSingleFood.length === 1 && state.cartSingleFood[0].quantity === 1) {
+      //   state.cartSingleFood = []
+      // }else {
+      //   state.cartSingleFood[state.cartSingleFood.indexOf(pyload.data)].quantity--
+      //   if (state.cartSingleFood[state.cartSingleFood.indexOf(pyload.data)].quantity === 0){
+      //     state.cartSingleFood.splice(state.cartSingleFood.indexOf(pyload.data),1)
+      //   }
+      // }
+      // for (let foods of state.allCartSingleFood) {
+      //   for (let specfoods of foods.foods) {
+      //     if (specfoods.specfoods[0].food_id === pyload.data.entities.id) {
+      //       specfoods.dome--
+      //     }
+      //   }
+      // }
       console.log('要删除的对象',pyload.data)
     },
     // 清空购物车
@@ -254,6 +269,9 @@ const moduleD = {
       for (let foods of state.allCartSingleFood) {
         for (let specfoods of foods.foods) {
           specfoods.dome = 0
+          for (let specfood of specfoods.specfoods) {
+            specfood.dome = 0
+          }
         }
       }
     },

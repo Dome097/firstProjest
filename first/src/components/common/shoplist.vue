@@ -157,7 +157,6 @@ export default {
           console.log(this.offset)
         }, 2500);
       }
-
     }
   }
 }
