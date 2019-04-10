@@ -416,7 +416,7 @@ export default {
 }
 /*点击时的颜色*/
 .domeFocusColor {
-  color: #3966d5;
+  color:#008de1;
 }
 /*箭头默认*/
 .el-icon-caret-bottom {
@@ -486,7 +486,7 @@ export default {
 /*后台缺失的*/
 .dome-merchant {
   font-size: 0.16rem;
-  color: #90B4FC;
+  color: #008de1;
 }
 /*左侧图片*/
 .dome-classifyLeft-img {
