@@ -262,7 +262,7 @@ export default {
 </style>
 <style>
   .el-rate__icon, .el-icon-star-on{
-    font-size: 0.02rem;
+    font-size: 0.02rem !important;
     width: 0.05rem ;
   }
   /*.el-rate__item{*/
