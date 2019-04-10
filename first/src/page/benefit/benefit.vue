@@ -84,7 +84,7 @@ export default {
   },
   computed: {
     getID () {
-      return this.$store.state.ghc.accountData
+      return this.$store.state.ghc.userInfo
     }
   },
   watch: {
@@ -92,7 +92,6 @@ export default {
       console.log('now是',now)
       console.log('lod是',lod)
       if (now.name === 'benefit') {
-        console.log('走了benefit')
         this.isIf = '红包'
         console.log(this.isIf)
       }
