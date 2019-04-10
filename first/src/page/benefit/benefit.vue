@@ -88,10 +88,19 @@ export default {
     }
   },
   watch: {
+    $route(now,lod){
+      console.log('now是',now)
+      console.log('lod是',lod)
+      if (now.name === 'benefit') {
+        console.log('走了benefit')
+        this.isIf = '红包'
+        console.log(this.isIf)
+      }
+    },
     getID: {
       //回调函数,会在计算属性发生变化时触发
       handler(){
-        this.id = this.$store.state.ghc.accountData.id
+        this.id = this.$store.state.ghc.userInfo.id
         console.log('走了改行')
       },
       //是否在页面刷新时调用回调函数,默认值是false
@@ -122,6 +131,9 @@ export default {
         offset:0
       }
     }).then((res) => {
+      this.$store.commit({
+        type:'amendDataLoad'
+      });
       console.log('tap', res);
       this.hBarr = res.data
     });
