@@ -416,7 +416,7 @@ export default {
 }
 /*点击时的颜色*/
 .domeFocusColor {
-  color: blue;
+  color: #3966d5;
 }
 /*箭头默认*/
 .el-icon-caret-bottom {
