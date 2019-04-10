@@ -4,11 +4,11 @@
       <router-link :to="{name:'chooseAddress'}">
         <div class="addressLeft">
           <i class="iconfont">&#xe636;</i>
-          <div>
+          <div class="personal">
             <span>{{selectAds.name}}</span>
             <span>{{selectAds.sex === 1?'先生':'女士'}}</span>
             <span>{{selectAds.phone}}</span><br>
-            <span :class="{colorRed:selectAds.tag === '无',colorRed:selectAds.tag === '家',colorBlue:selectAds.tag === '学校',colorGreen:selectAds.tag === '公司'}">{{selectAds.tag}}</span>
+            <span :class="{colorRed:selectAds.tag === '无'||'家',colorBlue:selectAds.tag === '学校',colorGreen:selectAds.tag === '公司'}">{{selectAds.tag}}</span>
             <span>{{selectAds.address}}</span>
           </div>
         </div>
@@ -158,7 +158,6 @@ export default {
 <style scoped>
 .confirmOrder{
   width: 100%;
-  /*height: 100%;*/
   padding: 0;
   background-color: whitesmoke;
   list-style: none;
@@ -175,12 +174,14 @@ export default {
     padding: 0 0.1rem;
   }
 .deliveryAddres>a{
+  width: 100%;
   text-decoration: none;
   color: #000;
 }
   .addressLeft{
+    width: 95%;
     float: left;
-    padding: 0.2rem 0;
+    padding: 0.3rem 0;
   }
 .addressLeft>i{
   display: inline-block;
@@ -192,6 +193,7 @@ export default {
 }
 .addressLeft>div>span{
   margin: 0 0.02rem;
+  display: inline-block;
 }
 .addressLeft>div>span:nth-child(1){
   font-size: 0.16rem;
@@ -206,6 +208,9 @@ export default {
   font-size: 0.12rem;
   text-align: center;
   line-height: 0.2rem;
+}
+.addressLeft>div>span:nth-child(6){
+  overflow: no-display;
 }
 .deliveryAddres .addressLeft>div>.colorRed{
   background-color: red;
