@@ -197,6 +197,9 @@ export default {
   .firstLine,.secondLine,.threeLine{
     position: relative;
   }
+  .firstLine{
+    margin-bottom: 0.15rem ;
+  }
   .secondLine{
     width: 98%;
     height: 0.3rem;
@@ -208,7 +211,7 @@ export default {
   .secondContent{
     position:absolute;
     top: 0.05rem;
-    left:0.9rem;
+    left:0.8rem;
   }
   .secondRight{
     position:absolute;
@@ -242,18 +245,17 @@ export default {
     background-color: #008de1;
     border-radius: 10%;
     padding: 0.03rem;
+    height: 0.2rem;
   }
   .go{
     color:#008de1;
     border-radius: 10%;
     border: 0.01rem solid #008de1;
     padding: 0.03rem;
+    height: 0.2rem;
   }
   .times{
     color:#008de1;
-  }
-  .star{
-    width: 1.5rem;
   }
   .domeP {
     width: 100%;
@@ -263,9 +265,9 @@ export default {
 <style>
   .el-rate__icon, .el-icon-star-on{
     font-size: 0.02rem !important;
-    width: 0.05rem ;
+    width: 0.07rem ;
   }
-  /*.el-rate__item{*/
-    /*width: 0.12rem;*/
-  /*}*/
+  .el-rate__item{
+    width: 0.12rem !important;
+  }
 </style>

@@ -7,7 +7,7 @@
         <p class="endScore">高于周边商家{{over}}</p>
       </div>
       <div class="rightPage">
-        <p>
+        <p class="rightPageP">
           <span class="firstService">服务态度</span>
           <span class="firstStar">
             <el-rate
@@ -20,7 +20,7 @@
             </el-rate>
           </span>
         </p>
-        <p>
+        <p class="rightPageP">
           <span class="secondFood">菜品评价</span>
           <span class="secondStar">
             <el-rate
@@ -203,9 +203,13 @@ export default {
   }
   .secondScore{
     font-size: 0.2rem;
+    margin-bottom: 0.3rem;
   }
   .endScore{
     font-size: 0.1rem;
+  }
+  .rightPageP{
+    margin-bottom: 0.15rem;
   }
   .rightPage{
     width: 60%;
@@ -274,8 +278,8 @@ export default {
     margin-left: 0.2rem;
   }
   .rightBS{
-    width: 18%;
-    font-size: 0.12rem;
+    width: 19%;
+    font-size: 0.1rem;
   }
   .middleBS img{
     width: 0.8rem;
