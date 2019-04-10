@@ -4,7 +4,7 @@
     <div v-for="(item, index) in hBarr" class="hbBox" :key="index" :class="{hbBoxEnd:index === hBarr.length-1}">
       <div class="hbTop">
         <div class="hbLeft ">
-          <p>¥{{item.amount}}</p>
+          <p><miyu>¥</miyu>{{item.amount%1===0?item.amount:item.amount-item.amount%1}}<miyu>{{item.amount%1===0?'.0':'.'+item.amount%1*10}}</miyu></p>
           <p>{{item.description_map.sum_condition}}</p>
         </div>
         <div class="hbRight">
@@ -115,6 +115,10 @@ export default {
   }
   p {
     margin: 0;
+  }
+  miyu {
+    font-size: 0.16rem;
+    color: #a4a4a4;
   }
   /*.hbCon {*/
     /*width: 100%;*/
