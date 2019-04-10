@@ -64,7 +64,7 @@ export default {
     color:gray;
   }
   .style{
-    color:blue;
+    color: #90B4FC;
   }
   .content {
     width: 100%;
@@ -89,7 +89,7 @@ export default {
   .smallBorder{
     width: 0.5rem;
     height: 0.03rem;
-    background-color: blue;
+    background-color:  #90B4FC;
     margin: 0 auto;
   }
 </style>

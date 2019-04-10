@@ -247,7 +247,7 @@ export default {
           for (let i = 0; i < this.arr.length; i++) {
             if (this.scrollY > this.arr[i] && this.scrollY < this.arr[i + 1]) {
               this.actli = i
-              console.log('i是',i)
+              // console.log('i是',i)
               // console.log('this.$refs.l_item.length',this.$refs.l_item.length - 2)
               // console.log('this.left',this.left)
               // console.log('this.$refs.l_list',this.$refs.l_item[1])
@@ -494,8 +494,8 @@ export default {
     right: 0;
     /*bottom:0.2rem;*/
     color:white;
-    background-color: blue;
-    border:0.01rem solid blue;
+    background-color:  #008de1;
+    border:0.01rem solid  #008de1;
     border-radius: 0.05rem;
     padding: 0.03em;
   }
@@ -503,7 +503,7 @@ export default {
   .add1 {
     position: absolute;
     right: 0;
-    color:blue;
+    color: #008de1;
   }
   /*减号删减*/
   .minus1 {
@@ -571,7 +571,7 @@ export default {
   }
   /*左侧点击变白*/
   .act {
-    border-left: blue solid 0.02rem;
+    border-left: #008de1 solid 0.02rem;
     background-color: white;
   }
   /*规格容器*/
@@ -642,8 +642,8 @@ export default {
   }
   /*选中时*/
   .domePitchOn {
-    color: #5e5bdd;
-    border: #5e5bdd 0.01rem solid;
+    color: #008de1;
+    border:#008de1 0.01rem solid;
   }
   /*加入购物车*/
   .domeCart {
