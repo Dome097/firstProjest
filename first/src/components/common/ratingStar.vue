@@ -278,8 +278,8 @@ export default {
     margin-left: 0.2rem;
   }
   .rightBS{
-    width: 18%;
-    font-size: 0.12rem;
+    width: 19%;
+    font-size: 0.1rem;
   }
   .middleBS img{
     width: 0.8rem;

@@ -197,6 +197,9 @@ export default {
   .firstLine,.secondLine,.threeLine{
     position: relative;
   }
+  .firstLine{
+    margin-bottom: 0.15rem ;
+  }
   .secondLine{
     width: 98%;
     height: 0.3rem;

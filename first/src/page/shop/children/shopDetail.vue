@@ -464,13 +464,16 @@ export default {
   .name{
     font-weight: bold;
     font-size: 0.16rem;
+    margin-bottom: 0.1rem;
   }
   .nameDes{
     font-size: 0.12rem;
     color: gray;
+    margin-bottom: 0.05rem;
   }
   .sale{
     margin-bottom: 0;
+    margin-bottom: 0.05rem;
   }
   .mark{
     background-color: white;
@@ -478,6 +481,7 @@ export default {
     font-size: 0.08rem;
     border:0.01rem solid rgb(240, 115, 115);
     -webkit-border-radius: 0.2rem;
+    margin-bottom: 0.1rem;
   }
   .priceP{
     color:red;
