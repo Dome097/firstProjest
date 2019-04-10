@@ -50,11 +50,10 @@ export default {
     return{
       popupVisible1:false,
       popupVisible2:false,
-      // 接收修改后的用户名
-      getName:this.$route.query.name,
+      // 从本地获取修改后的用户名
+      getName:this.storage.get('username'),
       // 动态图片地址
       pics:'../../../assets/logo.png',
-
     }
   },
   methods:{

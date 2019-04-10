@@ -25,7 +25,7 @@
       </div>
       <div class="col-xs-4 middle">
         <router-link :to="{name:'benefit',query:{id:$store.state.dome.loggingStatus}}">
-          <p><span>0</span>个</p>
+          <p><span>{{gift_amount}}</span>个</p>
           <p>我的优惠</p>
         </router-link>
       </div>
@@ -86,7 +86,10 @@
         noUser:'',
         // 登录成功状态显示
         hasUser:'',
-        userName:''
+        // 获取本地存储的用户名
+        userName:'',
+        // 获取优惠数量
+        gift_amount:''
       }
     },
     methods:{
@@ -100,9 +103,12 @@
           this.$router.push({name:'login'})
         }
       },
-      // sendVipCenter(){
-      //   this.$store.commit({type:'sendvipCenterInfo',data:'会员中心'})
-      // }
+    },
+    mounted(){
+      // 获取本地用户名
+      this.userName = this.storage.get('username');
+      // 获取优惠数量
+      this.gift_amount = this.$store.state.ghc.userInfo.gift_amount;
     },
     // 采用路由守卫在进入之前
     beforeRouteEnter(to,from,next){
@@ -111,7 +117,6 @@
             // 已登录过,跳转到我的信息
             vm.hasUser = true;
             vm.noUser = false;
-            vm.userName = vm.$route.query.name
           }else {
             vm.hasUser = false;
             vm.noUser = true
