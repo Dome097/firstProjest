@@ -1,19 +1,21 @@
 <template>
   <section>
     <div class="box" v-if="isIf === '红包'|| isIf === '商家代金券'">
-      <span class="hB" @click="isIf = '红包'">红包</span>
-      <span class="chit" @click="isIf = '商家代金券'">商家代金券</span>
+      <span class="domeHb" v-if="isIf === '红包'"></span>
+      <span class="domeVoucher" v-if="isIf === '商家代金券'"></span>
+      <span class="hB" :class="{pitchOn:isIf === '红包'}" @click="isIf = '红包'">红包</span>
+      <span class="chit" :class="{pitchOn:isIf === '商家代金券'}" @click="isIf = '商家代金券'">商家代金</span>
     </div>
     <div v-if="isIf === '红包'">
       <div class="hbDiv">
         <span @click="isIf = hbDes">
-          <router-link :to="{name: 'hbDescription', query:{move:hbDes}}" class="right">{{hbDes}}</router-link>
+          <router-link :to="{name: 'hbDescription', query:{move:hbDes}}" class="right"><i class="iconfont">&#xe63e;</i>{{hbDes}}</router-link>
         </span>
-        <p>有{{hBarr.length}}个红包即将到期</p>
+        <p>有<dome>{{hBarr.length}}</dome>个红包即将到期</p>
       </div>
       <div v-for="(item, index) in hBarr" class="hbBox" :key="index" :class="{hbBoxEnd:index === hBarr.length-1}">
         <div class="hbLeft ">
-          <p>¥{{item.amount}}</p>
+          <p><dome>¥</dome>{{item.amount%1===0?item.amount:item.amount-item.amount%1}}<dome>{{item.amount%1===0?'.0':'.'+item.amount%1*10}}</dome></p>
           <p>{{item.description_map.sum_condition}}</p>
         </div>
         <div class="hbRight">
@@ -147,7 +149,7 @@ export default {
   .box {
     width: 100%;
     background-color: white;
-    height: 0.4rem;
+    height: 0.5rem;
     display: flex;
     /*line-height: 0.4rem;*/
   }
@@ -160,7 +162,7 @@ export default {
   .hB {
     width: 50%;
     text-align: center;
-    line-height: 0.5rem;
+    line-height: 0.6rem;
   }
   .spanColor {
     color: #90B4FC;
@@ -171,7 +173,7 @@ export default {
   .chit {
     width: 50%;
     text-align: center;
-    line-height: 0.5rem;
+    line-height: 0.6rem;
   }
   .imgQuestionMark {
     width: .16rem;
@@ -204,6 +206,8 @@ export default {
   }
   .hbLeft {
     width: 30%;
+    box-sizing: border-box;
+    margin: 5% 0;
     border-right: #a4a4a4 0.01rem dotted;
     /*line-height: 0.5rem;*/
     text-align: center;
@@ -211,7 +215,6 @@ export default {
   .hbLeft>p:nth-child(1) {
     color: red;
     font-size: 0.3rem;
-    margin-top: 0.2rem;
   }
   .hbLeft>p {
     color: #a4a4a4;
@@ -224,7 +227,7 @@ export default {
     text-indent: 0.30rem;
   }
   .hbRight>p:nth-child(1) {
-    margin-top: 0.2rem;
+    margin: 0.2rem 0.2rem 0 0 ;
     color: red;
     font-size: 0.16rem;
   }
@@ -256,5 +259,33 @@ export default {
     width: 100%;
     margin: 0.2rem auto 0;
     text-align: center;
+  }
+  .lastHb a {
+    color: #bbbbbb;
+  }
+  .pitchOn {
+    color: #3966d5;
+  }
+  .domeHb {
+    position: absolute;
+    display: inline-block;
+    top: 0.85rem;
+    height: 0.03rem;
+    left: 0.79rem;
+    width: 0.3rem;
+    background-color: #3966d5;
+  }
+  .domeVoucher {
+    display: inline-block;
+    width: 0.57rem;
+    position: absolute;
+    top: 0.85rem;
+    left: 2.53rem;
+    height: 0.03rem;
+    background-color: #3966d5;
+  }
+  dome {
+    font-size: 0.16rem;
+    color: red;
   }
 </style>

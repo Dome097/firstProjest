@@ -21,8 +21,8 @@
           <p class="title">
             <span class="title_name">{{it.name}}</span>
             <span>{{it.description}}</span>
-            <span class="pull-right " @click="pStyle=!pStyle" :class="{style:pStyle}">...</span>
-            <span v-if="pStyle" class="right-hide">
+            <span class="pull-right " @click="pStyle===i?pStyle=false:pStyle=i" :class="{style:pStyle===i}">...</span>
+            <span v-if="pStyle===i" class="right-hide">
               <span class="trigon"></span>
               <span class="title_name">{{it.name}}</span>
               <span>{{it.description}}</span>
@@ -394,7 +394,7 @@ export default {
   .r_list{
     width: 80%;
     position: absolute;
-    top: 0.03rem;
+    top: 0;
     right:0;
     height: 100%;
     /*overflow: hidden;*/
