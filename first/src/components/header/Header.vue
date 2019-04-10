@@ -14,13 +14,13 @@
     </nav>
     <!--第二个头部 当前城市-->
     <nav class="nv navbar navbar-fixed-top firstHead"  v-show="isShow">
-      <i class="pull-left iconfont" @click="back">&#xe682;</i>
+      <i class="pull-left iconfont" @click="back">&#xe682</i>
       <router-link :to="{}" class="centerContent">{{nowCity}}</router-link>
       <span class="pull-right" v-show="isHide" @click="back">切换城市</span>
     </nav>
     <!--第三个头部 当前区域-->
     <nav class="nv navbar navbar-fixed-top firstHead" v-if="isThree">
-      <router-link class="glyphicon glyphicon-search pull-left" :to="{name:'search'}"></router-link>
+      <router-link class="pull-left" :to="{name:'search'}"><i class="iconfont">&#xe62c;</i></router-link>
       <span class="dome-span">
               <router-link :to="{}">{{domeRegion}}</router-link>
       </span>
