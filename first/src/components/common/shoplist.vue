@@ -14,23 +14,24 @@
             <span v-for="i in item.supports" class=" part">{{i.icon_name}}</span>
           </span>
         </p>
-        <p class="secondLine">
-          <el-rate
-            v-model="value[index]"
-            disabled
-            allow-half
-            show-score
-            color="#F7BA2A"
-            score-template="{value}"
-            class="star"
+        <div class="secondLine">
+          <div class="star">
+            <el-rate
+              v-model="value[index]"
+              disabled
+              allow-half
+              show-score
+              color="#F7BA2A"
+              score-template="{value}"
             >
-          </el-rate>
+            </el-rate>
+          </div>
           <span class="secondContent">月售{{item.recent_order_num}}单</span>
           <span class="secondRight">
             <span class="send">蜂鸟专送</span>
             <span class="go">准时达</span>
           </span>
-        </p>
+        </div>
         <p class="threeLine">
           <span>
             <span>¥ {{item.float_minimum_order_amount}}起送 / {{item.piecewise_agent_fee.tips}} </span>
@@ -197,20 +198,30 @@ export default {
     position: relative;
   }
   .secondLine{
-    font-size: 0.02rem;
+    width: 98%;
+    height: 0.3rem;
+    font-size: 0.12rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   .secondContent{
     position:absolute;
-    top: 0;
-    left:0.8rem;
+    top: 0.05rem;
+    left:0.9rem;
   }
   .secondRight{
     position:absolute;
     right: 0;
-    top:0
+    top:0.05rem;
   }
   .threeLine{
-    font-size: 0.04rem;
+    width: 98%;
+    height: 0.3rem;
+    font-size: 0.12rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   .bao{
     position:absolute;
@@ -218,7 +229,7 @@ export default {
   }
   .threeRight{
     position:absolute;
-    right: 0.2rem;
+    right: 0;
   }
   .three
   .part{
@@ -252,8 +263,9 @@ export default {
 <style>
   .el-rate__icon, .el-icon-star-on{
     font-size: 0.02rem;
+    width: 0.05rem ;
   }
-  .el-rate__item{
-    width: 0.12rem;
-  }
+  /*.el-rate__item{*/
+    /*width: 0.12rem;*/
+  /*}*/
 </style>

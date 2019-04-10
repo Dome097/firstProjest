@@ -462,9 +462,11 @@ export default {
   .introduce_name{
     font-size: 0.2rem;
     font-weight: bold;
+    margin-bottom: 0.15rem;
   }
   .introduceC{
     font-size: 0.12rem;
+    margin-bottom: 0.15rem;
   }
   .goFoodDetail{
     position: absolute;
