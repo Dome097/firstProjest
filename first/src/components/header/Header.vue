@@ -346,6 +346,60 @@ export default {
         this.isFive = true;
         this.isSix = true;
         this.isFinish = true
+      }else if (now.path === "/benefit") {
+        this.$store.commit({type: 'goMsite', name: '我的优惠'})
+        this.isFour = false;
+        this.isFirst = false;
+        this.isShow = false;
+        this.isThree = false;
+        this.isFive = true;
+        this.isSix = false;
+        this.isFinish = false
+      }else if (now.path === "/benefit/coupon") {
+        this.$store.commit({type: 'goMsite', name: '代金券说明'})
+        this.isFour = false;
+        this.isFirst = false;
+        this.isShow = false;
+        this.isThree = false;
+        this.isFive = true;
+        this.isSix = false;
+        this.isFinish = false
+      }else if (now.path === "/benefit/exchange") {
+        this.$store.commit({type: 'goMsite', name: '兑换红包'})
+        this.isFour = false;
+        this.isFirst = false;
+        this.isShow = false;
+        this.isThree = false;
+        this.isFive = true;
+        this.isSix = false;
+        this.isFinish = false
+      }else if (now.path === "/benefit/commend") {
+        this.$store.commit({type: 'goMsite', name: '推荐有奖'})
+        this.isFour = false;
+        this.isFirst = false;
+        this.isShow = false;
+        this.isThree = false;
+        this.isFive = true;
+        this.isSix = false;
+        this.isFinish = false
+      }else if (now.path === "/benefit/hbDescription") {
+        this.$store.commit({type: 'goMsite', name: '红包说明'})
+        this.isFour = false;
+        this.isFirst = false;
+        this.isShow = false;
+        this.isThree = false;
+        this.isFive = true;
+        this.isSix = false;
+        this.isFinish = false
+      }else if (now.path === "/benefit/hbHistory") {
+        this.$store.commit({type: 'goMsite', name: '历史红包'})
+        this.isFour = false;
+        this.isFirst = false;
+        this.isShow = false;
+        this.isThree = false;
+        this.isFive = true;
+        this.isSix = false;
+        this.isFinish = false
       }
     },
     shopHead: {
