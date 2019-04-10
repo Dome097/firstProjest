@@ -240,15 +240,18 @@ export default {
   font-size: 0.2rem;
   /*letter-spacing:0.1rem;*/
   margin: 0;
+  line-height: 0.25rem;
 }
 /*当前配送费*/
 .dome-freight {
   font-size: 0.12rem;
   margin: 0;
+  line-height: 0.25rem;
 }
 /*购物车i标签*/
 .dome-cart-i {
   font-size: 0.3rem;
+  line-height: 0.4rem;
 }
 /*价格与配送费容器*/
 .dome-price-freight {

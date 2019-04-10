@@ -570,11 +570,11 @@ export default {
   width: 5%;
   height: 0.5rem;
   line-height: 0.5rem;
-  color: blue;
+  color: #008de1;
 }
 /*字体图标颜色*/
 .domeIcon1 {
-  color: blue;
+  color: #008de1;
 }
 .domeIcon2 {
   color: #90B4FC;

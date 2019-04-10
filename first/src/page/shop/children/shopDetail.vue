@@ -146,15 +146,6 @@ export default {
     allShopGoodsArr () {
       return this.$store.state.dome.allCartSingleFood
     }
-    // 提取购物车中的数量
-    // domeQuantity (vue1,m,a) {
-    //   console.log('计算属性的vue1',vue1)
-    //   console.log('计算属性的m',m)
-    //   console.log('计算属性的a',a)
-    //       Vue.set(m,'dome',this.$store.state.dome.cartSingleFood[a].quantity)
-    //   console.log('加上了吗?',m.dome)
-    //  return this.$store.state.dome.cartSingleFood
-    // }
   },
   watch:{
       allShopGoodsArr: {
@@ -195,25 +186,15 @@ export default {
         })
       }
     }
-    // domeQuantity: {
-    //   handler(m,a){
-    //     console.log('监听',m)
-    //     Vue.set(m,'dome',this.$store.state.dome.cartSingleFood[a].quantity)
-    //   },
-    //   //是否在页面刷新时调用回调函数,默认值是false
-    //   immediate:true,
-    //   deep:true
-    // }
   },
   beforeDestroy(){
-    console.log('我要去死了')
     this.storage.set(this.shopGoods,this.shopGoodsArr)
   },
   mounted() {
     // 是否持久化储存
     console.log('this.storage.get(this.$store.state.dome.singleStore.id)',this.storage.get(this.$store.state.dome.singleStore.id))
     if (this.storage.get(this.$store.state.dome.singleStore.id) === null) {
-      console.log('没储存 发起请求')
+      // console.log('没储存 发起请求')
       // 没储存 发起请求
       this.$store.commit({
         type:"amendDataLoad"
@@ -248,11 +229,13 @@ export default {
     setTimeout(() => {
       // 左侧滚动栏的better-scroll对象要开启点击事件
       this.left = new Better(this.$refs.l_list, {
-        click: true //开启点击事件
+        click: true ,//开启点击事件
+        scrollY:true
       })
       // 右联左
       this.rgt = new Better(this.$refs.r_list, {
         click: true,
+        scrollY:true,
         probeType: 3 // scroll事件实时分发
       })
       this.$refs.productArr.forEach((el, index) => {//计算每个列表相对于顶部的距离，存到数组arr中
@@ -269,10 +252,10 @@ export default {
               // console.log('this.left',this.left)
               // console.log('this.$refs.l_list',this.$refs.l_item[1])
               if (i >= 8 ){
-                  this.left.scrollToElement(this.$refs.l_item[i-6], 100, 0, 0)
+                  this.left.scrollToElement(this.$refs.l_item[i], 100, 0, 0)
               }
-              if (i <=1 ) {
-                this.left.scrollToElement(this.$refs.l_item[0], 100, 0, 0)
+              if (i <=6 ) {
+                this.left.scrollToElement(this.$refs.l_item[i], 100, 0, 0)
               }
               // if (i === this.$refs.l_item.length - 2) { //当滚动到倒数第2个位置时左侧列表向上滚动一个距离
               //   this.left.scrollToElement(this.$refs.l_item[1], 100, 0, 0)
@@ -388,7 +371,7 @@ export default {
     left: 0;
     top: 0;
     width: 20%;
-    height: 5rem;
+    height: 4.15rem;
     /*overflow: hidden;*/
   }
   .r_list{
@@ -396,7 +379,7 @@ export default {
     position: absolute;
     top: 0;
     right:0;
-    height: 100%;
+    height: 4.15rem;
     /*overflow: hidden;*/
   }
   .l_list>ul{

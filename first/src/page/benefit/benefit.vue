@@ -264,7 +264,7 @@ export default {
     color: #bbbbbb;
   }
   .pitchOn {
-    color: #3966d5;
+    color: #008de1;
   }
   .domeHb {
     position: absolute;
@@ -273,7 +273,7 @@ export default {
     height: 0.03rem;
     left: 0.79rem;
     width: 0.3rem;
-    background-color: #3966d5;
+    background-color: #008de1;
   }
   .domeVoucher {
     display: inline-block;
@@ -282,7 +282,7 @@ export default {
     top: 0.85rem;
     left: 2.53rem;
     height: 0.03rem;
-    background-color: #3966d5;
+    background-color: #008de1;
   }
   dome {
     font-size: 0.16rem;
