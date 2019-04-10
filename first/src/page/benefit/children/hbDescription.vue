@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <div  id="hbDescription">
     <h4>Q1:怎么获得红包</h4>
     <p>通过邀请好友获得</p>
     <p>在下单返红包的商家下单获得</p>
@@ -15,7 +15,7 @@
     <p>{{'在个人中心>我的红包>兑换红包,输入兑换码进行兑换'}}</p>
     <h4>Q7: 邀请好友了，为什么没获得红包？</h4>
     <p>先检查下您是否在同一设备上进行的邀请？或者被邀请人是否通过您发给对方的链接进行注册？而非自己复制链接注册的。同一设备上邀请或没有按照点击发送的链接邀请都是无效邀请。如果您是正常邀请没获得红包，可以致电客服进行查实。</p>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -26,5 +26,13 @@ export default {
 </script>
 
 <style scoped>
-
+#hbDescription{
+  margin-top: 0.1rem;
+}
+#hbDescription>h4{
+  margin: 0.1rem !important;
+}
+#hbDescription>p {
+  margin: 0.1rem !important;
+}
 </style>
