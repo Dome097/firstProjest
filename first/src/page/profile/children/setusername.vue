@@ -25,7 +25,9 @@ export default {
   },
   methods:{
     resetThat(){
-      this.$router.push({name:'info',query:{name:this.isValue}})
+      this.$router.push({name:'info'});
+      // 把修改的用户名存到本地
+      this.storage.set("username",this.isValue)
     },
 },
   watch:{
