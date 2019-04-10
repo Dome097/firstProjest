@@ -49,7 +49,7 @@ export default {
   .wrap{
     width: 100%;
     background-color: white;
-    height: 0.5rem;
+    height: 0.6rem;
     border-bottom: 0.01rem solid #E4E4E4;
     margin-top: 1rem;
     line-height: 0.5rem;
