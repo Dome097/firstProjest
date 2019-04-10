@@ -6,7 +6,7 @@
           <i class="iconfont">&#xe677;</i>
         </div>
         <div class="col-xs-6 login">
-          <span v-if="hasUser">{{userName}}</span>
+          <span v-if="hasUser">{{userName?userName:'登录/注册'}}</span>
           <span v-if="noUser">登录</span>
           <span v-if="noUser">/</span>
           <span v-if="noUser">注册</span><br>
@@ -89,7 +89,7 @@
         // 获取本地存储的用户名
         userName:'',
         // 获取优惠数量
-        gift_amount:''
+        gift_amount:0
       }
     },
     methods:{
@@ -104,11 +104,12 @@
         }
       },
     },
-    mounted(){
+    created(){
       // 获取本地用户名
       this.userName = this.storage.get('username');
       // 获取优惠数量
       this.gift_amount = this.$store.state.ghc.userInfo.gift_amount;
+      console.log(this.gift_amount,'111111111111')
     },
     // 采用路由守卫在进入之前
     beforeRouteEnter(to,from,next){
