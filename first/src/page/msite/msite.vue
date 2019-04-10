@@ -95,7 +95,7 @@
   }
   .shopHead{
     width: 100%;
-    padding: 0.2rem;
+    padding: 0.1rem;
     background-color: white;
     margin-top: 0.1rem;
   }
