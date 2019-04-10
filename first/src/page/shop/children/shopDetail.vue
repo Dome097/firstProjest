@@ -43,10 +43,10 @@
                     <span>起</span>
                   </p>
                   <div class="addVesse2" v-if="item.specfoods[0].specs[0]">
-                    <p class="domeP" v-if="domeP">请在购物车内删除</p>
+                    <p class="domeP" v-if="domeP === index">请在购物车内删除</p>
                     <div class="add" @click.stop="domeSpecification(item)">规格</div>
                     <span>
-                    <i class="iconfont" @click.stop="guigeClick" v-if="item.dome">&#xe605;</i>
+                    <i class="iconfont" @click.stop="guigeClick(item,index)" v-if="item.dome">&#xe605;</i>
                       <!--给对象添加一个属性-->
                     <span>{{item.dome?item.dome:null}}</span>
                   </span>
@@ -331,11 +331,11 @@ export default {
       this.$store.commit({type:'addSingleFood',data:this.guigeObj, index:this.pitchOn})
     },
     // 规格减号
-    guigeClick () {
-      this.domeP = true
+    guigeClick (item, i ) {
+      this.domeP = i
       setTimeout(()=>{
         this.domeP = false
-      },100)
+      },500)
     },
     // 购物车,点击+
     toShopCart(m,index,evt){
