@@ -230,5 +230,9 @@ export default {
   }
   .searchFail>li>p{
     height: 0.2rem;
+    /*word-break: keep-all;*/
+    /*white-space: nowrap;*/
+    overflow: hidden;
+    /*text-overflow: ellipsis;*/
   }
 </style>
