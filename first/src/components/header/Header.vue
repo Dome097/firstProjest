@@ -563,6 +563,7 @@ export default {
     width: 0.5rem;
     height: 0.5rem;
     text-align: center;
+    padding-top: 0.02rem;
   }
   .activityPageC{
     display: inline-block;
