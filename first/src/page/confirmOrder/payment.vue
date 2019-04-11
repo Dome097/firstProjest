@@ -100,6 +100,7 @@ export default {
   },
   mounted(){
     this.popupVisible1 = true;
+    this.$store.commit({type:'getComputeTime'})
   }
 }
 </script>
