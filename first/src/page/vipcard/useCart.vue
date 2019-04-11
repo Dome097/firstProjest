@@ -1,6 +1,6 @@
 <template>
   <div class="exchangeBox">
-    <p class="exchangeHead">成功兑换后将关联到当前账号: <strong>dome</strong></p>
+    <p class="exchangeHead">成功兑换后将关联到当前账号: <strong>{{nowUserName}}</strong></p>
     <input type="text" placeholder="请输入10位卡号" oninput="if(value.length > 10)value = value.slice(0, 10)" v-model="input1" class="input1">
     <input type="text" placeholder="请输入6位卡密" oninput="if(value.length > 6)value = value.slice(0, 6)" v-model="input2" class="input2" >
     <button  @click="exchangeVip" :disabled="input1.length == 10 && input2.length == 6 ? false : true"  :class="{sb:input1.length == 10 && input2.length == 6 ? true : false}">兑换</button>
@@ -33,6 +33,7 @@ export default {
       input1:'',
       input2:'',
       show:true,
+      nowUserName:''
     }
   },
   methods:{
@@ -42,7 +43,23 @@ export default {
     sureSet(){
       this.show = true
     },
-  }
+  },
+  computed:{
+    nowUser(){
+      // console.log("dome",this.$store.state.ghc.userInfo)
+      return this.$store.state.ghc.userInfo
+    }
+  },
+  watch:{
+    nowStore:{
+      handler() {
+        // console.log("dome",this.$store.state.ghc.userInfo.username)
+        this.nowUserName = this.$store.state.ghc.userInfo.username
+      },
+      immediate:true,
+      deep:true
+    }
+  },
 }
 </script>
 
