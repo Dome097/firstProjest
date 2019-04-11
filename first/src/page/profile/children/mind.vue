@@ -104,11 +104,9 @@
         }
       },
     },
-    created(){
+    mounted(){
       // 获取服务器上的用户名
-      this.userName = this.$store.state.ghc.userInfo.name;
-      // 获取本地用户名
-      // this.localName = this.storage.get('username');
+      this.userName = this.$store.state.ghc.userInfo.username;
       // 获取优惠数量
       this.gift_amount = this.$store.state.ghc.userInfo.gift_amount;
     },
