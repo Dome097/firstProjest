@@ -41,7 +41,9 @@ export default {
       // 选定要使用的地址,并将地址信息传到vuex,同时切换路由
       this.$store.commit("selectAdrs",i);
       this.selectT = !this.selectT;
-      this.$router.push({name:'confirmOrder'})
+      this.$router.push({name:'confirmOrder'});
+      // 把选取的地址存放到本地
+      this.storage.set("thisAdrs",i)
     }
   },
   created(){

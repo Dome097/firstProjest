@@ -94,6 +94,8 @@ export default {
     return{
       // 声明变量存储已选地址
       selectAds:{},
+      // 本地存储的确定收货地址
+      thisAdrs:{},
       // 获取购物车数据
       cartGoods:[],
       // 获取购物车商品总价
@@ -136,8 +138,10 @@ export default {
     }
   },
   mounted(){
+    // 获取本地存储的收货地址
+    this.thisAdrs = this.storage.get("thisAdrs");
     // 获取选定的地址
-    this.selectAds = this.$store.state.ghc.useThisAds;
+    this.selectAds = this.$store.state.ghc.useThisAds?this.$store.state.ghc.useThisAds:this.thisAdrs;
     console.log(this.selectAds)
   },
   beforeRouteEnter(to,from,next){
