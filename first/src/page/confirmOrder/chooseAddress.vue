@@ -10,6 +10,7 @@
         <span>{{item.address}}</span>
       </div>
     </div>
+    <div class="emptyElement"></div>
     <div class="addNewAddress" @click="addNewAddress">
       <i class="iconfont">&#xe627;</i>
       <span>新增收货地址</span>
@@ -40,27 +41,13 @@ export default {
       // 选定要使用的地址,并将地址信息传到vuex,同时切换路由
       this.$store.commit("selectAdrs",i);
       this.selectT = !this.selectT;
-      this.$router.push({name:'confirmOrder'})
+      this.$router.push({name:'confirmOrder'});
+      // 把选取的地址存放到本地
+      this.storage.set("thisAdrs",i)
     }
   },
   created(){
-    // 从vuex中取出新增的收货地址信息
-    // this.newAds = this.$store.state.ghc.newAddres;
-    // console.log(this.newAds);
-    // 把每次新增的收货地址信息存到localStorage
-    // if(this.storage.get("addresses")!= null){
-    //   this.storage.get("addresses").push(this.newAds);
-    //   console.log(1111111111111111)
-    // }else{
-    //   this.storage.set("addresses",[])
-    //   console.log(2222222222)
-    // }
-    // 获取localstorage中存储的所有收货地址信息
-    // this.addressesInfo = this.storage.get("addresses");
-    // console.log(this.addressesInfo);
-
-
-    // 从vuex中接受用户信息,获得用户id,geohash值
+       // 从vuex中接受用户信息,获得用户id,geohash值
     this.userInfomation = this.$store.state.ghc.userInfo;
     console.log(this.userInfomation);
 
@@ -90,9 +77,9 @@ export default {
 <style scoped>
   .chooseAddres{
     width: 100%;
-    height: 100%;
     padding: 0;
     background-color: white;
+    position: relative;
   }
   .addressLeft{
     display: inline-block;
@@ -137,12 +124,13 @@ export default {
   }
   .addNewAddress{
     width: 100%;
-    height: 0.4rem;
-    line-height: 0.4rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
     text-align: center;
     position: fixed;
     left: 0;
-    bottom: 0.2rem;
+    bottom: 0;
+    background-color: white;
   }
 .addNewAddress>i,span{
   display: inline-block;
@@ -164,4 +152,8 @@ export default {
   .chooseAddres>.addressLeft>div>.colorGreen{
     background-color: limegreen;
   }
+.emptyElement{
+  width: 100%;
+  height: 0.8rem;
+}
 </style>

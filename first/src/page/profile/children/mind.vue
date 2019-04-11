@@ -109,7 +109,6 @@
       this.userName = this.storage.get('username');
       // 获取优惠数量
       this.gift_amount = this.$store.state.ghc.userInfo.gift_amount;
-      console.log(this.gift_amount,'111111111111')
     },
     // 采用路由守卫在进入之前
     beforeRouteEnter(to,from,next){
@@ -120,7 +119,8 @@
             vm.noUser = false;
           }else {
             vm.hasUser = false;
-            vm.noUser = true
+            vm.noUser = true;
+            vm.gift_amount = 0
           }
       })
     }

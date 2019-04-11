@@ -38,7 +38,7 @@ const moduleG = {
     // 选定使用的地址
     useThisAds:{},
     // 展示或隐藏删除图标
-    showIcon:''
+    showIcon:'',
   },
   mutations: {
     // 接收所选城市信息
