@@ -4,7 +4,7 @@
       <p class="paymentTime">支付剩余时间</p>
       <p class="timeLimit">{{compute}}</p>
     </div>
-    <div v-if="popupVisible1" :modal = false class="animated heartBeat alertBox1">
+    <div v-if="popupVisible1" class="animated heartBeat alertBox1">
       <div class="remindSet">
         <i class="iconfont">&#xe632;</i>
         <p>支付超时</p>
@@ -24,9 +24,24 @@
           <i class="iconfont pull-right confirm1" @click="pStyle=!pStyle" :class="{style:!pStyle}">&#xe604;</i>
         </p>
       </div>
-      <div class="confirmPayment">确认支付</div>
+      <div class="confirmPayment" @click="convert">确认支付</div>
+    <!--提示在APP上设置,模态框-->
+    <div v-if="popupVisible2"  class="animated heartBeat alertBox1">
+      <div class="remindSet">
+        <i class="iconfont">&#xe632;</i>
+        <p>暂不开放支付功能</p>
+        <button @click="sureSet1">确认</button>
+      </div>
     </div>
-
+    <!--确认付款时提示-->
+    <div v-if="popupVisible3"  class="animated heartBeat alertBox1">
+      <div class="remindSet">
+        <i class="iconfont">&#xe632;</i>
+        <p>当前环境无法支付,请打开官方APP进行付款</p>
+        <button @click="sureSet2">确认</button>
+      </div>
+    </div>
+    </div>
 </template>
 
 <script>
@@ -38,7 +53,9 @@ export default {
   data(){
     return {
       pStyle:true,
-      popupVisible1:false
+      popupVisible1:false,
+      popupVisible2:false,
+      popupVisible3:false
     }
   },
   computed:{
@@ -66,12 +83,24 @@ export default {
   methods: {
     sureSet(){
       this.popupVisible1 = false
+    },
+    convert(){
+      this.popupVisible3 = true
+    },
+    sureSet1(){
+      this.popupVisible2 = false
+    },
+    sureSet2(){
+      this.popupVisible3 = false;
+      this.$router.push({name:'order'})
     }
   },
   mounted () {
-      this.$store.commit({type:'getComputeTime'})
-  }
+    this.$store.commit({type:'getComputeTime'})
+    this.popupVisible2 = true;
+  },
 }
+
 </script>
 
 <style scoped>

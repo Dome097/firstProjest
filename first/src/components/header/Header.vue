@@ -228,6 +228,42 @@ export default {
         this.isFive = true;
         this.isSix = false;
         this.isFinish = false
+      } else if (now.path === "/vipDescription") {
+        this.$store.commit({type: 'goMsite', name: '会员说明'})
+        this.isFour = false;
+        this.isFirst = false;
+        this.isShow = false;
+        this.isThree = false;
+        this.isFive = true;
+        this.isSix = false;
+        this.isFinish = false
+      }else if (now.path === "/computeTime") {
+        this.$store.commit({type: 'goMsite', name: '在线支付'})
+        this.isFour = false;
+        this.isFirst = false;
+        this.isShow = false;
+        this.isThree = false;
+        this.isFive = true;
+        this.isSix = false;
+        this.isFinish = false
+      }else if (now.path === "/useCart") {
+        this.$store.commit({type: 'goMsite', name: '兑换会员'})
+        this.isFour = false;
+        this.isFirst = false;
+        this.isShow = false;
+        this.isThree = false;
+        this.isFive = true;
+        this.isSix = false;
+        this.isFinish = false
+      }else if (now.path === "/invoiceRecord") {
+        this.$store.commit({type: 'goMsite', name: '购买记录'})
+        this.isFour = false;
+        this.isFirst = false;
+        this.isShow = false;
+        this.isThree = false;
+        this.isFive = true;
+        this.isSix = false;
+        this.isFinish = false
       } else if (now.path === "/order") {
         this.$store.commit({type: 'goMsite', name: '订单列表'})
         this.isFour = false;
@@ -393,6 +429,15 @@ export default {
         this.isFinish = false
       }else if (now.path === "/benefit/hbHistory") {
         this.$store.commit({type: 'goMsite', name: '历史红包'})
+        this.isFour = false;
+        this.isFirst = false;
+        this.isShow = false;
+        this.isThree = false;
+        this.isFive = true;
+        this.isSix = false;
+        this.isFinish = false
+      }else if (now.path === "/points/mypoints") {
+        this.$store.commit({type: 'goMsite', name: '我的积分'})
         this.isFour = false;
         this.isFirst = false;
         this.isShow = false;
