@@ -129,6 +129,7 @@ export default {
   .vipcardp2{
     font-size: 0.12rem;
     color: gray;
+    margin-top:0.1rem;
   }
   .vipPowerLast{
     padding-bottom:0.1rem ;
