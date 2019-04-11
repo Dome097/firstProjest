@@ -39,7 +39,7 @@
 
 <script>
 import { MessageBox } from 'mint-ui';
-
+let activity = require('../../../images/activity.png')
   // 推荐有奖
 export default {
   name: "commend",
