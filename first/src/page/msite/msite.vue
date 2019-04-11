@@ -1,6 +1,6 @@
 <template>
   <section>
-    <mt-swipe class="box">
+    <mt-swipe class="box" :auto="0">
         <mt-swipe-item  v-for="(item, pardon) in dataArr" :key="item.id" class="wrap">
           <div v-for="(i ,index) in item " class="lunbotu" @click="toFood(i)">
             <img :src="'https://fuss10.elemecdn.com'+i.image_url" alt="">
@@ -41,7 +41,8 @@
         dataArr:[],
         arr1:[],
         arr2:[],
-        titleData:[]
+        titleData:[],
+        defaultIndex:0
       }
     },
     mounted(){
