@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="top">
-      <img src="../../../images/activity.png" @click="goEleApp" alt="">
+      <img :src="'.'+image" @click="goEleApp" alt="">
     </div>
     <div class="container">
       <div>
@@ -43,8 +43,14 @@ let activity = require('../../../images/activity.png')
   // 推荐有奖
 export default {
   name: "commend",
+  data() {
+    return {
+      image:activity
+    }
+  },
   methods: {
     goEleApp () {
+      console.log(activity)
       MessageBox.alert('请在饿了么APP中打开')
     }
   }
