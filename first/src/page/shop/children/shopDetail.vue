@@ -56,7 +56,7 @@
                       <i class="iconfont add1" :class="{addZ: addZ}" @click.stop="toShopCart(item,index, $event)">&#xe635;</i>
                     <span>
                       <transition name="dome">
-                                            <i class="iconfont minus1" v-if="item.dome" @click.stop="deleteShopCart(item,index)" >&#xe605;</i>
+                      <i class="iconfont minus1" v-if="item.dome" @click.stop="deleteShopCart(item,index)" >&#xe605;</i>
                       </transition>
                       <!--给对象添加一个属性-->
                     <span class="domeSpanCount ">{{item.dome?item.dome:null}}</span>
@@ -219,13 +219,6 @@ export default {
       // 以储存,直接提取,存到vuex中
       this.$store.commit({type:'allFood',data:this.storage.get(this.$store.state.dome.singleStore.id)})
     }
-    // if (this.$store.state.dome.allCartSingleFood[0] === this) {
-
-    // }
-
-    // new Better(wrpper)
-    // new Better(this.$refs.list)
-   // this.$nextTick(() => {
     setTimeout(() => {
       // 左侧滚动栏的better-scroll对象要开启点击事件
       this.left = new Better(this.$refs.l_list, {
@@ -268,12 +261,6 @@ export default {
         }
       },20)
     })
-
-
-          // console.log("this.$refs.productArr",this.$refs.productArr)
-
-
-     // })
   },
   methods:{
     // 置顶
@@ -348,7 +335,7 @@ export default {
       console.log('这是点击单个加号的数据',m)
       let shopID = this.$store.state.dome.singleStore.id
       console.log('shopID',this.$store.state.dome.singleStore)
-       this.$store.commit({type:'addSingleFood',data:m, index:0, id:shopID})
+       this.$store.commit({type:'addSingleFood',data:m, index:0})
       // console.log('this.$store.state.cartSingleFood',this.$store.state.dome.cartSingleFood)
     },
     // 购物车,点击-
