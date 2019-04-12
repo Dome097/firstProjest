@@ -28,7 +28,7 @@
     </div>
     <div class="openVip">
       <p class="openVipHead">开通会员</p>
-      <p>
+      <p class="choseBuy">
         <span>1个月</span>
         <span class="openVipPrice">¥20</span>
         <span class="openVipBuy pull-right" @click="toComputeTime">购买</span>
@@ -119,14 +119,17 @@ export default {
   }
   .vipPowerFirstR,.vipPowerFirstS{
     margin-left: 0.7rem;
+    margin:0.2rem 0 0.1rem 0.8rem;
   }
   .vipPowerFirst>img,.vipPowerLast>img{
     width: 0.5rem;
     height: 0.5rem;
+    margin-top: 0.2rem ;
   }
   .vipcardp2{
     font-size: 0.12rem;
     color: gray;
+    margin-top:0.1rem;
   }
   .vipPowerLast{
     padding-bottom:0.1rem ;
@@ -165,5 +168,7 @@ export default {
    color: gray;
    font-size: 0.14rem;
  }
-
+  .choseBuy{
+    margin-top: 0.1rem ;
+  }
 </style>

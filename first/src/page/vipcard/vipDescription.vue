@@ -37,6 +37,7 @@ export default {
     width: 100%;
     height: 100%;
     background-color: white;
+
   }
   .vipDesText{
     width: 70%;
@@ -49,6 +50,10 @@ export default {
   }
   .vipDesContent>h4{
     font-weight: bold;
+    margin-bottom: 0.1rem ;
+  }
+  .vipDesContent>p{
+    margin-bottom: 0.05rem ;
   }
   .indentContent{
     margin-left: 0.3rem;

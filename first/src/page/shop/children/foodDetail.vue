@@ -31,7 +31,7 @@
         <span class="safePage">食品监督安全公示</span>
         <span @click="toShopSafe" class="goSafePage"><i class="iconfont pull-right ">企业认证详情 &#xe634 </i></span>
       </p>
-      <div>
+      <div class="smile">
         <canvas id="Canvas" width="50" height="50"></canvas>
         <div class="safeContent">
           <span>监督检查结果:</span>
@@ -175,6 +175,12 @@ export default {
     font-size: 0.24rem;
     height: 0.4rem;
   }
+  .activity{
+    padding-top: 0.1rem;
+  }
+  .activity>li{
+    padding-bottom: 0.1rem;
+  }
   .activity>li>span+span{
     color:gray;
   }
@@ -275,5 +281,9 @@ export default {
   }
   .mm-enter, .mm-leave-to {
     opacity: 0;
+  }
+  .smile{
+    height: 1.1rem ;
+    padding-top: 0.1rem;
   }
 </style>
