@@ -128,6 +128,7 @@
     height: 2rem;
   }
   .remindSet>i{
+    margin-top: 0.4rem;
     font-size: 0.8rem;
     color: orange;
   }
